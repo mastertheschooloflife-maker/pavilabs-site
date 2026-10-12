@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klausur-Planer</title>
+<meta name="description" content="Erstellt aus Klausurdatum und Themenliste einen konkreten Vorbereitungsplan nach dem 14-Tage-Zyklus aus dem Buch Lernen meistern: Wissensdiagnose, Lernzettel 2.0, Active Recall und Übungsklausur.">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="pill">
+    <a class="brand" href="/de/">
+      <img src="/assets/tree-night-small.webp" alt="" width="30" height="30">
+      PaviLabs
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
+      <a class="lang-switch" href="/de/">Zur Startseite</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-main">
+  <div class="wrap">
+    <h1>Klausur-Planer</h1>
+    <p class="tool-lede">Die meisten bereiten Klausuren falsch vor: zu spät, mit Wiederlesen statt aktivem Abruf und mit einer Nacht zu wenig Schlaf. Dieser Planer baut dir den vollständigen Vorbereitungszyklus aus dem Buch: von der ehrlichen Wissensdiagnose über Lernzettel 2.0 bis zur Übungsklausur unter Realbedingungen.</p>
+    <p class="tool-src">Aus dem Buch <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a>, Kapitel „Klausuren richtig vorbereiten“.</p>
+
+    <div class="panel no-print">
+      <h2>Dein Plan</h2>
+      <label class="feld" for="fach">Fach oder Klausurthema</label>
+      <input type="text" id="fach" placeholder="z. B. Geschichte: Weimarer Republik">
+      <label class="feld" for="datum">Klausurdatum</label>
+      <input type="date" id="datum">
+      <label class="feld" for="themen">Themen der Klausur (eins pro Zeile)</label>
+      <textarea class="feld-area" id="themen" placeholder="Versailler Vertrag&#10;Hyperinflation 1923&#10;Goldene Zwanziger&#10;Scheitern der Republik"></textarea>
+      <button class="btn" id="btnPlan">Plan erstellen</button>
+      <span id="warnung" style="display:block;margin-top:10px;color:var(--gold);font-size:0.92rem"></span>
+    </div>
+
+    <div id="planBox" hidden>
+      <div class="panel">
+        <h2 id="planTitel"></h2>
+        <p id="planHinweis" style="color:var(--cream-dim);font-size:0.95rem"></p>
+        <div id="planTage"></div>
+        <button class="btn no-print" onclick="window.print()">Plan drucken oder als PDF sichern</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-copy">
+    <div class="wrap">
+      <span>© 2026 PaviLabs</span>
+      <span><a href="/de/">pavilabs.de</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const TAGE = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
+
+function fmt(d) {
+  return TAGE[d.getDay()] + ", " + d.getDate().toString().padStart(2, "0") + "." + (d.getMonth() + 1).toString().padStart(2, "0") + ".";
+}
+
+$("btnPlan").onclick = () => {
+  const fach = $("fach").value.trim() || "deine Klausur";
+  const datumWert = $("datum").value;
+  const themen = $("themen").value.split("\n").map(t => t.trim()).filter(Boolean);
+  const warn = $("warnung");
+  warn.textContent = "";
+  if (!datumWert) { warn.textContent = "Bitte zuerst das Klausurdatum wählen."; return; }
+  const klausur = new Date(datumWert + "T12:00:00");
+  const heute = new Date(); heute.setHours(12, 0, 0, 0);
+  const tageBis = Math.round((klausur - heute) / 86400000);
+  if (tageBis < 1) { warn.textContent = "Das Datum liegt in der Vergangenheit oder ist heute. Bitte ein kommendes Datum wählen."; return; }
+
+  const span = Math.min(tageBis, 14);
+  const start = new Date(klausur); start.setDate(klausur.getDate() - span);
+  const themenListe = themen.length ? themen : ["alle Klausurthemen"];
+  const proTag = (liste, lernTage) => {
+    const chunks = Array.from({length: lernTage}, () => []);
+    liste.forEach((t, i) => chunks[i % lernTage].push(t));
+    return chunks;
+  };
+
+  const tage = [];
+  for (let i = 1; i <= span; i++) {
+    const d = new Date(start); d.setDate(start.getDate() + i);
+    const rest = span - i;
+    let phase, aufgaben;
+    if (i === 1) {
+      phase = "Phase 0: Wissensdiagnose";
+      aufgaben = [
+        "Alle Themen aufschreiben und zu jedem notieren: Was könnte gefragt werden?",
+        "Selbsttest ohne Unterlagen: Welche Fragen kannst du jetzt schon beantworten?",
+        "Ehrliche Karte deiner Wissenslage anlegen: Was fließt, was stockt, wo bist du blank?",
+        "Lernzeit verteilen: Die größten Lücken bekommen die meiste Zeit."
+      ];
+    } else if (rest >= Math.ceil(span * 0.45)) {
+      phase = "Absorptionsphase: Verstehen und strukturieren";
+      aufgaben = [
+        "Lernzettel 2.0 statt Abschreiben: Unterlagen zuklappen, Mindmap aus dem Gedächtnis zeichnen, erst dann mit den Quellen vergleichen.",
+        "Nur die Lücken aus dem Vergleich in den Lernzettel aufnehmen.",
+        "Lernzettel für Active Recall formatieren: vorne Schlüsselwörter, hinten die Erklärung."
+      ];
+    } else if (rest >= 2) {
+      phase = "Anwendungsphase: Abruf unter Druck";
+      aufgaben = [
+        "Active Recall über die bisherigen Lernzettel: erst abrufen, dann nachschauen.",
+        "Eine eigene Übungsklausur erstellen: 3 bis 5 Kernfragen mit Operatoren (beschreibe, erkläre, analysiere, bewerte).",
+        "Die Übungsklausur unter Realbedingungen schreiben: Zeitlimit, keine Hilfsmittel, mit Stift.",
+        "Danach korrigieren und analysieren: Wo waren Lücken, wo war das Zeitmanagement schwach?"
+      ];
+    } else if (rest === 1) {
+      phase = "Konsolidierung";
+      aufgaben = [
+        "Nur noch die Stellen wiederholen, die in der Übungsklausur gestockt haben.",
+        "Letzte Runde Active Recall über alle Lernzettel.",
+        "Nichts Neues mehr anfangen."
+      ];
+    } else {
+      phase = "Vortag und Klausurtag";
+      aufgaben = [
+        "Kurzer Überblick am Vormittag, danach bewusst abschalten.",
+        "Früh schlafen: Eine Nacht zu wenig Schlaf kostet mehr Punkte als eine Stunde weniger Lernen bringt.",
+        "Am Klausurtag: Du hast unter Druck geübt, also kannst du unter Druck abrufen."
+      ];
+    }
+    tage.push({d, phase, aufgaben});
+  }
+
+  const absorptionsTage = tage.filter(t => t.phase.startsWith("Absorption"));
+  const chunks = proTag(themenListe, Math.max(absorptionsTage.length, 1));
+  absorptionsTage.forEach((t, i) => {
+    if (chunks[i] && chunks[i].length) t.aufgaben.unshift("Heutige Themen: " + chunks[i].join(", "));
+  });
+
+  $("planTitel").textContent = "Vorbereitungsplan für " + fach;
+  $("planHinweis").textContent = tageBis > 14
+    ? "Die Klausur liegt " + tageBis + " Tage entfernt. Der strukturierte 14-Tage-Zyklus beginnt am " + fmt(tage[0].d) + "; bis dahin reicht es, den Stoff im Unterricht aktiv mitzunehmen."
+    : (tageBis < 14 ? "Bis zur Klausur bleiben " + tageBis + " Tage. Der Plan staucht den 14-Tage-Zyklus entsprechend; die Reihenfolge der Phasen bleibt gleich." : "14 Tage, zwei komplette Durchgänge: einmal verstehen und strukturieren, einmal festigen und anwenden.");
+  const box = $("planTage");
+  box.innerHTML = "";
+  for (const t of tage) {
+    const el = document.createElement("div");
+    el.className = "plan-tag";
+    el.innerHTML = `<div><span class="pt-datum">${fmt(t.d)}</span><span class="pt-phase">${t.phase}</span></div><ul>${t.aufgaben.map(a => `<li>${a}</li>`).join("")}</ul>`;
+    box.appendChild(el);
+  }
+  const ende = document.createElement("div");
+  ende.className = "plan-tag";
+  ende.innerHTML = `<div><span class="pt-datum">${fmt(klausur)}</span><span class="pt-phase">Klausur</span></div><ul><li>Nach der Rückgabe: Klausur analysieren. Welche Fehlerart war es, Wissen, Struktur oder Zeit? Das ist der Startpunkt für den nächsten Zyklus.</li></ul>`;
+  box.appendChild(ende);
+  $("planBox").hidden = false;
+  $("planBox").scrollIntoView({behavior: "smooth", block: "start"});
+};
+</script>
+
+</body>
+</html>

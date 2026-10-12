@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studienkompass</title>
+<meta name="description" content="Informatik oder Wirtschaftsinformatik? Zwölf Fragen zeigen, welches Studium besser zu deiner Denkweise passt, abgeleitet aus den Studienkompass-Büchern von Pavisanth Pathmarajah.">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="pill">
+    <a class="brand" href="/de/">
+      <img src="/assets/tree-night-small.webp" alt="" width="30" height="30">
+      PaviLabs
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
+      <a class="lang-switch" href="/de/">Zur Startseite</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-main">
+  <div class="wrap">
+    <h1>Studienkompass: Informatik oder Wirtschaftsinformatik?</h1>
+    <p class="tool-lede">Wirtschaftsinformatik ist kein Kompromiss für Unentschlossene, und Informatik ist mehr als Programmieren. Die beiden Fächer stellen unterschiedliche Grundfragen, und welche dich mehr reizt, lässt sich prüfen. Zwölf Situationen, jeweils zwei ehrliche Antworten, am Ende eine begründete Tendenz.</p>
+    <p class="tool-src">Abgeleitet aus den kommenden Büchern „Informatik Meistern: Der große Studienkompass“ und „Wirtschaftsinformatik Meistern: Der Studien- und Karrierekompass“ von Pavisanth Pathmarajah (in Vorbereitung).</p>
+
+    <div class="panel" id="quizPanel">
+      <h2 id="qTitel">Zwölf Fragen, ehrlich beantwortet</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem" id="qIntro">Es gibt keine richtigen Antworten, nur passende. Wähle die Aussage, die dich besser beschreibt, nicht die, die besser klingt.</p>
+      <div id="qBox"></div>
+      <button class="btn" id="btnStart">Starten</button>
+    </div>
+
+    <div class="panel" id="ergebnisPanel" hidden>
+      <h2 id="eTitel"></h2>
+      <div id="eBalken"></div>
+      <div id="eText" style="color:var(--cream-dim)"></div>
+      <button class="btn btn--ghost no-print" id="btnNochmal">Noch einmal durchgehen</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-copy">
+    <div class="wrap">
+      <span>© 2026 PaviLabs</span>
+      <span><a href="/de/">pavilabs.de</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const FRAGEN = [
+  {t: "Ein System funktioniert nicht. Was reizt dich mehr?", a: "Den Fehler bis auf die Ebene von Algorithmus und Datenstruktur zurückzuverfolgen, bis ich genau weiß, warum er auftritt.", b: "Herauszufinden, an welcher Stelle im Arbeitsablauf das System die Menschen im Unternehmen im Stich lässt."},
+  {t: "Welcher Satz beschreibt dich eher?", a: "Ich will verstehen, wie man ein Problem so präzise beschreibt, dass eine Maschine es ausführen kann.", b: "Ich will verstehen, warum Organisationen an Technik scheitern, die eigentlich funktioniert."},
+  {t: "Mathematik im Studium ist für dich...", a: "...ein Kerngebiet, in das ich bereit bin, richtig Zeit zu investieren: Logik, Beweise, Komplexität.", b: "...ein Werkzeug, das ich beherrschen will, soweit es Analysen und Entscheidungen trägt."},
+  {t: "Ein Nachmittag, der dir Spaß machen würde:", a: "Einen eigenen kleinen Interpreter, ein Spiel oder ein Datenstruktur-Experiment programmieren, einfach weil es geht.", b: "Den Bestellprozess eines Onlinehändlers aufzeichnen und herausfinden, wo er Zeit, Geld und Nerven kostet."},
+  {t: "Welches Lob würde dich mehr freuen?", a: "„Dein Code ist sauber, effizient und durchdacht.“", b: "„Durch deine Analyse haben Fachabteilung und IT zum ersten Mal dasselbe Bild.“"},
+  {t: "Beim Wort „Projekt“ denkst du zuerst an...", a: "...das Bauen: Architektur, Implementierung, Tests, ein lauffähiges System.", b: "...das Ganze: Anforderungen, Beteiligte, Budget, Einführung und was die Nutzer am Ende damit tun."},
+  {t: "Du liest einen Artikel über ein Sprachmodell. Deine erste Frage:", a: "Wie funktioniert das im Inneren, vom Training bis zur Inferenz?", b: "Wie führt man so etwas in einem Unternehmen mit 900 Beschäftigten verantwortlich ein?"},
+  {t: "Ein schlechter Geschäftsprozess wird digitalisiert. Deine Reaktion:", a: "Spannend wird es für mich bei der technischen Umsetzung, der Prozess ist Sache der Fachabteilung.", b: "Erst den Prozess reparieren: Ein schlechter Prozess wird durch Software nicht gut, er wird nur schneller schlecht."},
+  {t: "Womit willst du im Beruf eher zu tun haben?", a: "Softwareentwicklung, Systemarchitektur, KI-Entwicklung, IT-Security in der Tiefe.", b: "Requirements Engineering, IT-Projektmanagement, Business Analytics, Product Ownership, Enterprise-Architektur."},
+  {t: "In einer Besprechung mit Nicht-Technikern...", a: "...bin ich am stärksten, wenn ich danach wieder in Ruhe am System arbeiten kann.", b: "...blühe ich auf: Zwischen Fachbereich und IT zu übersetzen ist genau mein Terrain."},
+  {t: "Was wäre für dich das bessere Wahlmodul?", a: "Theoretische Informatik, Compilerbau oder maschinelles Lernen in der Tiefe.", b: "Digitale Transformation, E-Commerce-Plattformen oder IT-Governance."},
+  {t: "Dein Anspruch an Verständnis:", a: "Ich will jedes technische Konzept bis zum Grund durchdringen, auch wenn es dauert.", b: "Ich will genug Tiefe, um Entscheidungen zu tragen, und den Blick für das System aus Menschen, Prozessen und Technik."}
+];
+
+const $ = id => document.getElementById(id);
+let idx = 0, punkteA = 0, punkteB = 0;
+
+function mischen(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+$("btnStart").onclick = () => { idx = 0; punkteA = 0; punkteB = 0; $("btnStart").hidden = true; $("qIntro").hidden = true; $("ergebnisPanel").hidden = true; zeigeFrage(); };
+
+function zeigeFrage() {
+  const box = $("qBox");
+  if (idx >= FRAGEN.length) { zeigeErgebnis(); return; }
+  const q = FRAGEN[idx];
+  $("qTitel").textContent = "Frage " + (idx + 1) + " von " + FRAGEN.length;
+  box.innerHTML = `<div style="font-size:1.12rem;margin:10px 0 4px">${q.t}</div>`;
+  const optionen = mischen([{txt: q.a, wert: "a"}, {txt: q.b, wert: "b"}]);
+  for (const o of optionen) {
+    const b = document.createElement("button");
+    b.className = "quiz-opt";
+    b.textContent = o.txt;
+    b.onclick = () => { if (o.wert === "a") punkteA++; else punkteB++; idx++; zeigeFrage(); };
+    box.appendChild(b);
+  }
+}
+
+function zeigeErgebnis() {
+  $("qBox").innerHTML = "";
+  $("qTitel").textContent = "Zwölf Fragen, ehrlich beantwortet";
+  $("qIntro").hidden = false;
+  $("btnStart").hidden = false;
+  $("btnStart").textContent = "Noch einmal starten";
+
+  const gesamt = punkteA + punkteB;
+  const anteilA = Math.round((punkteA / gesamt) * 100);
+  const anteilB = 100 - anteilA;
+  let titel, text;
+  const bücher = `<p style="margin-top:18px">Zur Vertiefung: Beide Studienkompass-Bücher erscheinen in Kürze. Bis dahin findest du die Lern- und Prüfungsmethodik in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener" style="color:var(--gold)">Lernen meistern</a>, und wie KI in Studium und Beruf hineinspielt, in den <a href="/de/#publikationen" style="color:var(--gold)">KI-Büchern von PaviLabs</a>.</p>`;
+
+  if (anteilA >= 65) {
+    titel = "Deine Tendenz: Informatik";
+    text = `<p>Dich zieht die Grundfrage der Informatik an: Wie beschreibt man ein Problem so genau, dass ein Mensch es versteht und eine Maschine es ausführen kann. Abstraktion, Modellbildung, Logik, Datenorganisation und Komplexitätsdenken sind genau die Disziplinen, die ein Informatikstudium belohnt. Wichtig für den Start: Das Studium belohnt nicht die, die am schnellsten tippen, sondern die, die sauber denken, hartnäckig analysieren und Grundlagen ernst nehmen.</p><p>Drei Gewohnheiten gelten als beste Vorbereitung: regelmäßig kleine Programme schreiben, mathematische Argumente ernst nehmen und jedes Konzept so erklären können, dass es jemand ohne Vorwissen versteht.</p>`;
+  } else if (anteilB >= 65) {
+    titel = "Deine Tendenz: Wirtschaftsinformatik";
+    text = `<p>Dein Terrain ist die Lücke, in der viele Technik-Einführungen scheitern: Die Technik wird erklärt, die Organisation bleibt im Dunkeln. Genau diese Lücke ist das Zuhause der Wirtschaftsinformatik. Prozesse erkennen und verbessern, Anforderungen sauber erheben, zwischen Fachbereich und IT übersetzen, Daten zu Entscheidungen machen: Das ist kein halbes Informatikstudium, sondern ein eigenes Fach mit eigener Grundfrage.</p><p>Und falls dich jemand fragt, ob du dich nur nicht entscheiden konntest: Das ist die falsche Frage. Das Gefühl, zwischen zwei Welten zu stehen, verschwindet an dem Tag, an dem du am ersten echten Fall arbeitest und beide Seiten brauchst.</p>`;
+  } else {
+    titel = "Deine Tendenz: offen, mit gutem Grund";
+    text = `<p>Du bewegst dich nahe der Mitte, und das ist ein brauchbares Ergebnis: Beide Fächer teilen sich ein technisches Fundament, und an vielen Hochschulen kannst du nach den ersten Semestern noch die Richtung schärfen. Entscheidend ist, welche Grundfrage dich länger trägt: das präzise Durchdringen von Systemen (Informatik) oder das Zusammenspiel von Menschen, Prozessen und Technik in Organisationen (Wirtschaftsinformatik).</p><p>Ein praktischer Test: Nimm dir ein Wochenende für ein kleines Programmierprojekt und eines für die Analyse eines realen Prozesses, etwa wie deine Schule oder dein Betrieb etwas organisiert. Welches Wochenende dir schneller verging, ist ein ehrlicheres Signal als jeder Fragebogen.</p>`;
+  }
+
+  $("eTitel").textContent = titel;
+  $("eBalken").innerHTML = `
+    <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:var(--cream-dim)"><span>Informatik ${anteilA}%</span><span>Wirtschaftsinformatik ${anteilB}%</span></div>
+    <div class="ergebnis-balken"><div style="width:${anteilA}%"></div></div>`;
+  $("eText").innerHTML = text + bücher + `<p style="font-size:0.85rem;color:var(--cream-dim);margin-top:14px">Zwölf Fragen ersetzen keine Studienberatung; sie machen deine eigene Tendenz sichtbar. Deine Antworten bleiben im Browser und werden nirgendwohin übertragen.</p>`;
+  $("ergebnisPanel").hidden = false;
+  $("ergebnisPanel").scrollIntoView({behavior: "smooth", block: "start"});
+}
+</script>
+
+</body>
+</html>
