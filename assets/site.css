@@ -528,15 +528,22 @@ html[lang="en"] .dose-samples q { quotes: "\201C" "\201D"; }
 
 .tool-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0 48px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 56px;
   margin-top: 36px;
 }
 
 .tool-card {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
   padding: 26px 0 18px;
   border-top: 1px solid var(--hairline);
 }
+.tool-buch { flex: none; perspective: 900px; padding: 6px 0; display: block; }
+.tool-buch .buch3d, .tool-buch .buch3d img { width: 92px; }
+.tool-card:hover .buch3d { transform: rotateY(-10deg); }
+.tool-inhalt { min-width: 0; }
 .tool-card h3 { font-size: 1.25rem; margin-bottom: 0.4em; }
 .tool-card h3 a { text-decoration: none; }
 .tool-card h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
@@ -801,6 +808,54 @@ input::placeholder, textarea::placeholder { color: rgba(169, 188, 167, 0.55); }
   min-width: 110px;
 }
 .timer-anzeige.laeuft { color: var(--gold); }
+
+/* ---------- 15-Punkte-Checkliste ---------- */
+
+.check-liste { margin: 22px 0 0; padding: 0; list-style: none; }
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  padding: 14px 0;
+  color: var(--cream-dim);
+  font: inherit;
+  font-size: 0.97rem;
+  cursor: pointer;
+}
+.check-item:last-child { border-bottom: 1px solid var(--hairline); }
+.check-item .ck {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--hairline);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: transparent;
+  transform: translateY(1px);
+  transition: background 400ms var(--bez), color 400ms var(--bez), border-color 400ms var(--bez);
+}
+.check-item.ok { color: var(--cream); }
+.check-item.ok .ck { background: var(--akzent, var(--leaf)); border-color: var(--akzent, var(--leaf)); color: var(--ground); }
+.check-stand { margin-top: 14px; font-size: 0.9rem; color: var(--gold); }
+
+.cee-box {
+  margin-top: 20px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: rgba(243, 246, 236, 0.05);
+  border: 1px solid var(--hairline);
+  font-size: 0.95rem;
+  color: var(--cream-dim);
+}
+.cee-box strong { color: var(--cream); }
 
 /* ---------- Buch-Mockups (Publikationen) ---------- */
 
