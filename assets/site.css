@@ -1257,8 +1257,26 @@ body.legal .foot-copy { border-color: rgba(23, 40, 30, 0.12); }
 
 @media (max-width: 880px) {
   .site-head { top: 12px; }
-  .site-head .pill { gap: 16px; padding: 8px 10px 8px 16px; }
-  .site-nav .nav-sections { display: none; }
+  .site-head .pill {
+    gap: 14px;
+    padding: 8px 6px 8px 16px;
+    max-width: calc(100vw - 32px);
+    min-width: 0;
+  }
+  .site-head .brand { flex: none; }
+  .site-nav {
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    white-space: nowrap;
+    gap: 16px;
+    padding-right: 26px;
+    mask-image: linear-gradient(90deg, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
+  }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav a { flex: none; }
 
   .hero .wrap { grid-template-columns: 1fr; padding-top: 118px; gap: 36px; }
   .hero-tree { order: -1; }
