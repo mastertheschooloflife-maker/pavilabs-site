@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="de" style="--akzent:#5C8A3E;--akzent-tief:#33531F">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kommunikationsprüfung Englisch</title>
+<meta name="description" content="Die Kommunikationsprüfung Englisch in der Oberstufe trainieren: Redemittel für Zustimmung, Widerspruch und Kompromiss, Übungsszenarien mit Timer und die typischen Fehler, nach Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen.">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="pill">
+    <a class="brand" href="/de/">
+      <img src="/assets/tree-night-small.webp" alt="" width="30" height="30">
+      PaviLabs
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/tools/kommunikationspruefung-franzoesisch.html">Französisch</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
+      <a class="lang-switch" href="/de/">Zur Startseite</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-main">
+  <div class="wrap">
+    <h1>Kommunikationsprüfung Englisch</h1>
+    <p class="tool-lede">Im mündlichen Abitur präsentierst du; in der Kommunikationsprüfung kommunizierst du. Bewertet wird nicht, ob du fehlerfrei sprichst, sondern ob das Gespräch funktioniert: ob du zuhörst, nachfragst, auf deinen Partner eingehst und gemeinsam zu einem Ergebnis kommst. Genau das lässt sich üben. Hier findest du die Redemittel für jede Gesprächsfunktion, Übungsszenarien mit Timer für das Training zu zweit und die Fehler, an denen Prüflinge am häufigsten Punkte lassen.</p>
+    <p class="tool-src">Dieser Trainer folgt dem Buch <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a>, das die Kommunikationsprüfung und das mündliche Abitur Schritt für Schritt aufbereitet, sowie den Prüfungskapiteln aus <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für die Oberstufe</a>.</p>
+
+    <div class="panel">
+      <h2>Die vier Prüfungsformate</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">So unterschiedlich die Aufgaben wirken, sie testen dasselbe: Interaktion statt Monolog.</p>
+      <dl class="ledger">
+        <div class="row"><dt style="min-width:0;font-size:1.15rem">Rollenspiel</dt><dd>Ihr plant gemeinsam etwas oder sucht eine Lösung. Ziel ist eine Einigung, kein Sieg.</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.15rem">Bildinterpretation</dt><dd>Erst sachlich beschreiben, dann deuten, dann den Partner einbeziehen: What do you think this image is trying to convey?</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.15rem">Pro und Kontra</dt><dd>Du verteidigst eine These, unabhängig von deiner echten Meinung. Konzession zeigen, dann differenzieren.</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.15rem">Informationslücke</dt><dd>Ihr habt unterschiedliche Informationen und füllt die Lücken im Gespräch, durch Nachfragen und Zusammenfassen.</dd></div>
+      </dl>
+    </div>
+
+    <div class="buch-tipp">
+      <span><strong>Aus dem Buch:</strong> Wer mit einigen Fehlern spricht, aber aktiv zuhört und den Dialog voranbringt, bekommt häufig mehr Punkte als der grammatisch perfekte Monologist. Wie Prüfer Interaktion konkret bewerten, zeigt <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a> anhand echter Bewertungsraster.</span>
+    </div>
+
+    <div class="panel">
+      <h2>Redemittel nach Gesprächsfunktion</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst überlegen, wie du die Funktion ausdrücken würdest, dann umdrehen. Pfeil rechts heißt „sitzt", Pfeil links heißt „nochmal".</p>
+      <div class="chip-row" id="deckRow" style="display:none"></div>
+      <div class="chip-row" id="catRow"></div>
+      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
+      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
+      <div class="fcard-buehne" id="buehne">
+        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
+            <div class="fc-etikett" id="fcKatV"></div>
+            <div class="fc-haupt" id="fcFrage"></div>
+          </div>
+          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
+            <div class="fc-etikett" id="fcKatR"></div>
+            <div class="fc-haupt" id="fcAntwort"></div>
+            <div class="fc-detail" id="fcDetail"></div>
+            <div class="fc-note" id="fcNote"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fcard-aktionen">
+        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
+        <button class="btn" id="btnKnown">Sitzt, nächste</button>
+        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
+        <span class="hint" id="restHint"></span>
+      </div>
+      <div class="deck-fertig" id="deckFertig" hidden>
+        <strong>Stapel geschafft.</strong>
+        <span id="fertigText"></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Szenario-Training mit Timer</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Das Buch empfiehlt ein wöchentliches Rollenspiel mit festem Partner, danach gegenseitiges Feedback: Wer hat geleitet, wer unterbrochen, wer einbezogen? Zieh ein Szenario, stellt den Timer und sprecht nur Englisch. Ohne Partner übernimmt ein KI-Chat die Gegenposition.</p>
+      <div class="szenario-box" id="szBox">
+        <div class="sz-rolle" id="szTyp"></div>
+        <div class="sz-text" id="szText"></div>
+        <div class="sz-auftrag" id="szAuftrag"></div>
+      </div>
+      <div class="timer-zeile">
+        <span class="timer-anzeige" id="timerAnzeige">05:00</span>
+        <select class="feld-select" id="timerDauer" style="width:auto">
+          <option value="180">3 Minuten</option>
+          <option value="300" selected>5 Minuten</option>
+          <option value="600">10 Minuten</option>
+        </select>
+        <button class="btn" id="btnTimer">Start</button>
+        <button class="btn btn--ghost" id="btnTimerReset">Zurücksetzen</button>
+        <button class="btn btn--ghost" id="btnSzenario">Neues Szenario</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Woran Prüflinge scheitern</h2>
+      <dl class="ledger">
+        <div class="row"><dt style="min-width:0;font-size:1.05rem">Der Mini-Vortrag</dt><dd>Wirkt flüssig, ist aber nicht interaktiv. Besser in kurzen Einheiten sprechen und Anschlussstellen schaffen: What is your take on that?</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.05rem">Zustimmen ohne Begründung</dt><dd>Ein bloßes I agree zeigt wenig Tiefe. Besser: I agree to some extent because... oder I see your point, but I would add that...</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.05rem">Schweigen bei Unsicherheit</dt><dd>Stark wirkt, wer Probleme kommunikativ löst: Sorry, could you rephrase that? · So, if I understand you correctly...</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.05rem">Den Partner überfahren</dt><dd>Turn-taking wird bewertet: ausreden lassen, an Gesagtes anknüpfen, das Wort gezielt übergeben.</dd></div>
+      </dl>
+      <div class="buch-tipp">
+        <span><strong>Weiterlesen:</strong> Die komplette Vorbereitung, vom Bewertungsraster über Beispieldialoge bis zur Prüfungsangst, steht in <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a>. Für die schriftliche Seite gibt es den <a href="/tools/englisch.html">Englisch-Abitur-Trainer</a>.</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Quiz: Interaktion verstanden?</h2>
+      <div id="quizBox"></div>
+      <button class="btn" id="btnQuiz">Quiz starten</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-copy">
+    <div class="wrap">
+      <span>© 2026 PaviLabs</span>
+      <span><a href="/tools/kommunikationspruefung-franzoesisch.html">Zur französischen Kommunikationsprüfung</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const DECKS = {
+  "Redemittel": {
+    "Aktiv zuhören": [
+      ["Zeigen, dass du zuhörst und aufbaust?", "As you just mentioned... · Building on what you said... · I agree with your point about...", "Dazu kurze Signale: right, I see, exactly, fair enough.", "Aktives Zuhören heißt nicht schweigen, sondern reagieren."],
+      ["Nachfragen und präzisieren lassen?", "Could you elaborate on that? · What do you mean by...? · Could you give an example?", "", "Nachfragen zählt als kommunikative Stärke, nicht als Schwäche."]
+    ],
+    "Meinung abgestuft": [
+      ["Starke Überzeugung ausdrücken?", "I strongly believe that... · I am firmly convinced that... · There is no doubt in my mind that...", "", "Abstufung zeigt Differenzierung, das erwartet die Oberstufe."],
+      ["Moderate und vorsichtige Meinung?", "I tend to think that... · In my view... · It seems to me that... · I would tentatively argue that...", "", "Nicht jede Aussage verträgt volle Überzeugung."]
+    ],
+    "Zustimmen und widersprechen": [
+      ["Ganz oder teilweise zustimmen?", "That is a very valid point. · You have convinced me. · You have a point, but... · That is partly true, however...", "", "Teilzustimmung öffnet das Gespräch, statt es zu beenden."],
+      ["Höflich widersprechen?", "I am afraid I have to disagree. · With respect, I think that... · I beg to differ.", "", "Erst anerkennen (I see your point), dann differenzieren."]
+    ],
+    "Kompromisse finden": [
+      ["Einen Mittelweg vorschlagen?", "How about a middle ground here? · What if we were to...? · Could we find a compromise by...?", "", "In vielen Szenarien ist Einigung das Ziel, nicht Sieg."],
+      ["Zugeständnisse machen und besiegeln?", "I am willing to concede that... if we can agree on... · That seems like a reasonable compromise.", "", "Wer Zugeständnisse benennt, steuert das Ergebnis."]
+    ],
+    "Gespräch steuern": [
+      ["Ein stockendes Gespräch wiederbeleben?", "What is your take on that? · Do you think we should also consider...? · I think we have not yet addressed the issue of...", "", "Gute Antworten öffnen das Gespräch erneut."],
+      ["Missverständnisse reparieren?", "Sorry, I did not quite catch that. · Could you say that again in other words? · So, if I understand you correctly... · Are you suggesting that...?", "", "Repair und negotiation of meaning sind Bewertungskriterien."],
+      ["Zum Kern zurückführen und entscheiden?", "Let us come back to the key question here, which is... · To move this forward, maybe we should decide on...", "", "Topic management: beim Thema bleiben und trotzdem weiterführen."]
+    ],
+    "Bild beschreiben": [
+      ["Ein Bild sachlich beschreiben?", "What I can see in the picture is... · In the foreground there is... · The image appears to depict...", "", "Erst beschreiben, dann deuten, nie umgekehrt."],
+      ["Vom Bild zur Diskussion überleiten?", "This might be a commentary on... · The image seems to suggest... · What do you think this image is trying to convey?", "", "Die Partnerfrage am Ende macht aus der Beschreibung Interaktion."]
+    ]
+  }
+};
+
+const QUIZ = [
+  {f: 'Was unterscheidet die Kommunikationsprüfung vom mündlichen Abitur?', o: ['Sie ist kürzer', 'Interaktion statt Präsentation: Dialog, nicht Monolog', 'Sie wird auf Deutsch geführt'], r: 1, e: 'Im mündlichen Abitur präsentierst du, in der Kommunikationsprüfung kommunizierst du.'},
+  {f: 'Dein Partner sagt etwas Kluges. Die stärkste Reaktion?', o: ['Schweigend nicken', 'I agree.', 'Building on what you said about costs, I would add...'], r: 2, e: 'Inhaltliche Referenzierung zeigt aktives Zuhören; bloßes I agree zeigt wenig Tiefe.'},
+  {f: 'Du hast eine Frage nicht verstanden. Was tust du?', o: ['Irgendwas antworten', 'Schweigen und nachdenken', 'Sorry, could you rephrase that?'], r: 2, e: 'Repair-Strategien zeigen kommunikative Stärke; Schweigen tötet den Sprachfluss.'},
+  {f: 'Im Rollenspiel „Entscheidung treffen" ist das Ziel...', o: ['...deine Option durchzusetzen', '...eine gemeinsame, begründete Einigung', '...möglichst lange zu sprechen'], r: 1, e: 'Erst Optionen sammeln, gemeinsam abwägen, dann einigen: I think option X seems most promising because...'},
+  {f: 'Welche Antwort hält das Gespräch am Leben?', o: ['Yes.', 'Yes, and what is your take on the costs?', 'Yes, that is correct.'], r: 1, e: 'Gute Antworten enden mit einer Anschlussstelle für den Partner.'},
+  {f: 'Dein Partner macht einen Grammatikfehler. Du...', o: ['...korrigierst ihn freundlich', '...ignorierst die Form und reagierst auf den Inhalt', '...wiederholst den Satz korrekt'], r: 1, e: 'Der Prüfer bewertet die Sprache deines Partners separat; Korrigieren wirkt unkommunikativ.'},
+  {f: 'Eine Meinung vorsichtig äußern?', o: ['There is no doubt in my mind that...', 'It seems to me that...', 'Everyone knows that...'], r: 1, e: 'Abgestufte Meinungsäußerung (tentatively, it seems to me) zeigt Differenzierung.'},
+  {f: 'Die Dreierfolge beim Bild?', o: ['Deuten, beschreiben, fragen', 'Beschreiben, deuten, Partner einbeziehen', 'Fragen, deuten, beschreiben'], r: 1, e: 'Erst sachlich (In the foreground...), dann Deutung (This might be a commentary on...), dann die Partnerfrage.'}
+];
+</script>
+<script src="/assets/trainer.js"></script>
+<script>
+const SZENARIEN = [
+  {typ: "Rollenspiel: Entscheidung treffen", text: "You and your partner are organising your year group's graduation event. One of you wants a formal dinner, the other an outdoor festival.", auftrag: "Sammelt Optionen (What are our options?), wägt Vor- und Nachteile ab und einigt euch begründet auf ein Konzept."},
+  {typ: "Rollenspiel: Problem lösen", text: "Your school wants to ban smartphones completely. You two represent the student council and must agree on a counter-proposal.", auftrag: "Findet einen Kompromissvorschlag, den ihr der Schulleitung gemeinsam präsentieren könntet."},
+  {typ: "Pro und Kontra", text: "Social media should be regulated much more strictly. One of you defends the statement, the other attacks it.", auftrag: "Nutzt Konzession (I see your point, but...) und mindestens einen Beleg pro Position. Tauscht nach der Hälfte die Rollen."},
+  {typ: "Pro und Kontra", text: "Artificial intelligence will do more good than harm for young people. Defend or attack, regardless of your real opinion.", auftrag: "Jede Behauptung braucht eine Begründung oder ein Beispiel. Schließt mit einem gemeinsamen Fazit auf Basis beider Seiten."},
+  {typ: "Entscheidung treffen", text: "After graduation you could go travelling together for three months or start university immediately. You disagree.", auftrag: "Hört aktiv zu, referenziert die Argumente des anderen (As you just mentioned...) und handelt einen Mittelweg aus."},
+  {typ: "Informationslücke", text: "You are planning a trip to London. One of you has information about costs and accommodation, the other about sights and transport. Only by asking questions can you build the full plan.", auftrag: "Stellt gezielte Nachfragen (Could you give me more details about...?) und fasst am Ende den gemeinsamen Plan zusammen."},
+  {typ: "Diskussion", text: "Your town has money for exactly one project: a new sports centre or a youth culture club.", auftrag: "Vertretet unterschiedliche Positionen, prüft die Argumente des anderen ernsthaft und findet eine Empfehlung."}
+];
+const $$ = id => document.getElementById(id);
+let szIdx = -1;
+function neuesSzenario() {
+  let i; do { i = Math.floor(Math.random() * SZENARIEN.length); } while (i === szIdx && SZENARIEN.length > 1);
+  szIdx = i;
+  const s = SZENARIEN[i];
+  $$("szTyp").textContent = s.typ;
+  $$("szText").textContent = s.text;
+  $$("szAuftrag").textContent = s.auftrag;
+}
+let timerRest = 300, timerLauf = null;
+function timerAnzeigen() {
+  const m = String(Math.floor(timerRest / 60)).padStart(2, "0");
+  const s = String(timerRest % 60).padStart(2, "0");
+  $$("timerAnzeige").textContent = m + ":" + s;
+}
+$$("timerDauer").onchange = () => { timerRest = parseInt($$("timerDauer").value, 10); timerAnzeigen(); };
+$$("btnTimer").onclick = () => {
+  if (timerLauf) { clearInterval(timerLauf); timerLauf = null; $$("btnTimer").textContent = "Weiter"; $$("timerAnzeige").classList.remove("laeuft"); return; }
+  $$("btnTimer").textContent = "Pause";
+  $$("timerAnzeige").classList.add("laeuft");
+  timerLauf = setInterval(() => {
+    timerRest--;
+    timerAnzeigen();
+    if (timerRest <= 0) {
+      clearInterval(timerLauf); timerLauf = null;
+      $$("timerAnzeige").textContent = "Zeit!";
+      $$("btnTimer").textContent = "Start";
+      $$("timerAnzeige").classList.remove("laeuft");
+      timerRest = parseInt($$("timerDauer").value, 10);
+    }
+  }, 1000);
+};
+$$("btnTimerReset").onclick = () => { if (timerLauf) { clearInterval(timerLauf); timerLauf = null; } timerRest = parseInt($$("timerDauer").value, 10); timerAnzeigen(); $$("btnTimer").textContent = "Start"; $$("timerAnzeige").classList.remove("laeuft"); };
+$$("btnSzenario").onclick = neuesSzenario;
+neuesSzenario();
+timerAnzeigen();
+</script>
+
+</body>
+</html>

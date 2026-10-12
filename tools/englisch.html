@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="de" style="--akzent:#5C8A3E;--akzent-tief:#33531F">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Englisch-Abitur-Trainer</title>
+<meta name="description" content="Grammatik und Konnektoren für das Englisch-Abitur trainieren: Zeitformen, If-Clauses, Reported Speech, Passiv und die typischen Fehler deutscher Lerner, als Lernkarten und Quiz aus dem Buch Englisch Meistern.">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="pill">
+    <a class="brand" href="/de/">
+      <img src="/assets/tree-night-small.webp" alt="" width="30" height="30">
+      PaviLabs
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/tools/franzoesisch.html">Französisch</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
+      <a class="lang-switch" href="/de/">Zur Startseite</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-main">
+  <div class="wrap">
+    <h1>Englisch-Abitur-Trainer</h1>
+    <p class="tool-lede">Ein Aufsatz mit brillantem Inhalt und wackliger Grammatik verliert Punkte, die sich leicht retten lassen. Dieser Trainer deckt den Stoff ab, an dem sich im Englisch-Abitur die Noten entscheiden: die Zeitformen und ihre Signalwörter, die vier If-Clause-Typen, Reported Speech, das Passiv, die Gerundium-Fallen und die fünfzehn Fehler, die deutsche Lerner immer wieder machen. Dazu die Konnektoren, die aus aneinandergereihten Sätzen eine Argumentation machen.</p>
+    <p class="tool-src">Alle Inhalte stammen aus dem Buch <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a>. Dort findest du zu jeder Karte das ausführliche Kapitel mit Herleitung und Übungen. Für die mündliche Seite gibt es den <a href="/tools/kommunikationspruefung-englisch.html">Trainer für die Kommunikationsprüfung</a>.</p>
+
+    <div class="panel">
+      <h2>Lernkarten</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst selbst antworten, dann umdrehen. Was sitzt, sortierst du mit einem Klick aus; der Rest kommt wieder, bis der Stapel leer ist. Tastatur: Leertaste dreht, Pfeil rechts heißt „sitzt", Pfeil links heißt „nochmal".</p>
+      <div class="chip-row" id="deckRow"></div>
+      <div class="chip-row" id="catRow"></div>
+      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
+      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
+      <div class="fcard-buehne" id="buehne">
+        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
+            <div class="fc-etikett" id="fcKatV"></div>
+            <div class="fc-haupt" id="fcFrage"></div>
+          </div>
+          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
+            <div class="fc-etikett" id="fcKatR"></div>
+            <div class="fc-haupt" id="fcAntwort"></div>
+            <div class="fc-detail" id="fcDetail"></div>
+            <div class="fc-note" id="fcNote"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fcard-aktionen">
+        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
+        <button class="btn" id="btnKnown">Sitzt, nächste</button>
+        <button class="btn btn--ghost" id="btnShuffle" title="Stapel neu mischen">Neu mischen</button>
+        <span class="hint" id="restHint"></span>
+      </div>
+      <div class="deck-fertig" id="deckFertig" hidden>
+        <strong>Stapel geschafft.</strong>
+        <span id="fertigText"></span>
+      </div>
+    </div>
+
+    <div class="buch-tipp">
+      <span><strong>Vertiefung:</strong> Die Kapitel 7 bis 10 von <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a> erklären zu jedem dieser Themen die Herleitung, zeigen Musterlösungen und liefern die passenden Übungen, von den Zeitformen bis zu den Stilmitteln.</span>
+    </div>
+
+    <div class="panel">
+      <h2>Quiz: Wo stehst du?</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem">Zwölf Fragen quer durch Grammatik und Konnektoren, jede Antwort mit Begründung.</p>
+      <div id="quizBox"></div>
+      <button class="btn" id="btnQuiz">Quiz starten</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-copy">
+    <div class="wrap">
+      <span>© 2026 PaviLabs</span>
+      <span><a href="/tools/franzoesisch.html">Zum Französisch-Trainer</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Kartenformat: [Vorderseite, Antwort, Detail/Beispiel, Notiz]
+const DECKS = {
+  "Grammatik": {
+    "Zeitformen": [
+      ["Welche Zeitform? Gewohnheiten, Fakten, Fahrpläne. Signalwörter: always, usually, every day, on Mondays", "Present Simple", "I drink coffee every morning. · The train leaves at 8 a.m.", "Auch für Zustandsverben wie love, know, belong, die nie im Progressive stehen."],
+      ["Welche Zeitform? Gerade jetzt, vorübergehend, fest vereinbarte Zukunft. Signalwörter: now, at the moment, currently, this week", "Present Progressive", "I am writing an email right now. · I am meeting Sarah tomorrow.", "Auch für Trends: More and more people are working from home."],
+      ["Welche Zeitform? Vergangenes mit Wirkung auf jetzt, Zeitraum noch offen. Signalwörter: just, already, yet, ever, never, since, for, so far", "Present Perfect", "I have lost my keys. · She has lived in Berlin for five years.", "Die Brücke zur Gegenwart: Ich finde die Schlüssel JETZT nicht."],
+      ["Welche Zeitform? Abgeschlossen, Zeitpunkt klar benannt. Signalwörter: yesterday, last week, in 2023, ago", "Past Simple", "I went to London in 2023. · Shakespeare wrote Hamlet around 1600.", "Keine Verbindung zur Gegenwart, der Zeitpunkt ist datierbar."],
+      ["Welche Zeitform? Die Vergangenheit VOR einer anderen Vergangenheit. Signalwörter: by the time, before, after, already", "Past Perfect (had + Partizip)", "When I arrived, the train had already left.", "Mit Dauer: Past Perfect Progressive. She had been working for eight hours when she took a break."],
+      ["Drei Wege in die Zukunft: Wofür stehen will, going to und Present Progressive?", "will = spontan oder vorhergesagt · going to = geplant oder absehbar · Present Progressive = fest vereinbart", "I'll close the window. · I'm going to study medicine. · I'm meeting Sarah at 8 p.m.", "Variation der Zukunftsformen ist eines der schnellsten Mittel, sprachliches Niveau zu zeigen."],
+      ["Was drückt das Future Perfect aus? By 2030, scientists ______ (develop) new treatments.", "Abgeschlossenheit vor einem Zukunftspunkt: will have developed", "By the time you arrive, I will have finished cooking.", "Selten im Abitur, aber elegant an der richtigen Stelle."],
+      ["for oder since? I have lived here ______ five years. / ______ 2020.", "for + Zeitdauer, since + Anfangspunkt", "for five years · since 2020", "„since two years“ ist einer der häufigsten deutschen Fehler."]
+    ],
+    "If-Clauses": [
+      ["If-Clause Typ 1: Struktur und Verwendung?", "If + Present Simple, will + Infinitiv. Wahrscheinliche Zukunft.", "If I study hard, I will pass the Abitur.", "Typ 0 (Naturgesetze) nimmt zweimal Present Simple: If you heat water, it boils."],
+      ["If-Clause Typ 2: Struktur und Verwendung?", "If + Past Simple, would + Infinitiv. Hypothetische Gegenwart.", "If I were the President, I would invest more in education.", "Im formellen Englisch heißt es If I were, nicht If I was."],
+      ["If-Clause Typ 3: Struktur und Verwendung?", "If + Past Perfect, would have + Partizip. Nicht eingetretene Vergangenheit.", "If she had studied harder, she would have passed the exam.", "Ideal für Geschichtsanalysen und alternative Verläufe."],
+      ["Was ist ein Mixed Conditional?", "Typ 2 und Typ 3 kombiniert: vergangene Bedingung, gegenwärtige Folge, oder umgekehrt.", "If I had studied harder in school, I would have a better job now.", "Wer das sicher anwendet, zeigt Niveau auf 14-bis-15-Punkte-Ebene."],
+      ["Warum ist „If I would have time...“ falsch?", "Im if-Satz steht nie would. Richtig: If I had time, I would...", "If I had more time, I would learn another language.", "Diese eine Regel beseitigt einen der hartnäckigsten Klausurfehler."]
+    ],
+    "Reported Speech": [
+      ["Backshift: Wohin verschieben sich Present Simple, Present Perfect und will?", "Present Simple → Past Simple · Present Perfect → Past Perfect · will → would", "„I love music.“ → He said he loved music. · „I will help.“ → He said he would help.", "Ebenso: can → could, may → might, Past Simple → Past Perfect."],
+      ["Wie verschieben sich Zeit- und Ortsangaben in der indirekten Rede?", "now → then · today → that day · tomorrow → the next day · yesterday → the day before · here → there", "„I'll come tomorrow.“ → She said she would come the next day.", "this wird zu that, next week zu the following week."],
+      ["Fragen in der indirekten Rede: Was passiert mit der Inversion?", "Sie entfällt. Normale Aussagestellung, Entscheidungsfragen mit whether oder if.", "„Where do you live?“ → He asked where I lived. · „Are you coming?“ → She asked if I was coming.", "„He asked where did I live“ ist der klassische Fehler."],
+      ["Wann gibt es KEINEN Backshift?", "Bei allgemeingültigen Wahrheiten und wenn das Reporting Verb im Präsens steht.", "The teacher said that water boils at 100 degrees. · She says she loves you.", "Reporting Verbs wie claim, argue, admit, warn machen Analysen stilistisch reifer als ständiges say."]
+    ],
+    "Passiv": [
+      ["Wie wird das Passiv gebildet, und wann setzt du es ein?", "be in der Zeit des Aktivsatzes + Partizip. Wenn der Handelnde unwichtig ist oder die Handlung im Fokus steht.", "Shakespeare wrote Hamlet. → Hamlet was written by Shakespeare.", "Faustregel aus dem Buch: 20 bis 30 Prozent Passivanteil wirken in formellen Texten optimal."],
+      ["Passiv in Progressive- und Perfect-Zeiten?", "is being read · has been read · was being read · had been read · will be read", "They are building a new school. → A new school is being built.", "Auch mit Modalverben: The book must be read."],
+      ["Welche Textsorten verlangen geradezu nach Passiv?", "Nachrichten, wissenschaftliche Texte, formelle Aufsätze.", "The suspect was arrested yesterday. · The experiment was conducted under controlled conditions.", "Unpersönliche Konstruktionen wie It is widely believed that... klingen sachlich und analytisch."]
+    ],
+    "Gerundium oder Infinitiv": [
+      ["Diese Verben verlangen das Gerundium:", "enjoy, avoid, finish, suggest, deny, mind, consider, keep, give up, look forward to", "I enjoy reading novels. · I look forward to hearing from you.", "look forward to + -ing ist der klassische Briefschluss, to ist hier Präposition."],
+      ["Diese Verben verlangen den Infinitiv:", "want, decide, hope, plan, promise, refuse, agree, manage, offer, fail, seem", "She decided to study medicine. · He promised to call me.", "Tendenz: Infinitiv zeigt Ziel oder Absicht, Gerundium den tatsächlichen Vollzug."],
+      ["remember + Gerundium vs. remember + Infinitiv?", "remember doing = sich an Vergangenes erinnern · remember to do = daran denken, es zu tun", "I remember meeting her last year. · Remember to call your mother.", "Gleiches Muster bei forget."],
+      ["stop + Gerundium vs. stop + Infinitiv?", "stop doing = mit etwas aufhören · stop to do = anhalten, um etwas zu tun", "I stopped smoking last year. · I stopped to buy a coffee.", "Der Bedeutungsunterschied ist klausurrelevant."],
+      ["try + Gerundium vs. try + Infinitiv?", "try doing = etwas ausprobieren · try to do = sich bemühen", "Try opening the window. · I tried to open the window, but it was stuck.", "Ausprobieren ist leicht, sich bemühen kann scheitern."]
+    ],
+    "Modal Perfect": [
+      ["must have / might have + Partizip: Was drücken sie aus?", "must have = starke Vermutung über die Vergangenheit · might have = unsichere Vermutung", "She must have left already, her car is gone. · He might have forgotten our meeting.", "Unverzichtbar in Argumentationstexten über Vergangenes."],
+      ["could have / should have + Partizip: Was drücken sie aus?", "could have = ungenutzte Möglichkeit · should have = Vorwurf oder Bedauern", "You could have called me. · I should have studied harder.", "would have + Partizip gehört zum If-Clause Typ 3."],
+      ["needn't have + Partizip bedeutet?", "Etwas war überflüssig, wurde aber getan.", "You needn't have brought a gift, it wasn't necessary.", "Feiner Unterschied zu didn't need to: dort blieb es womöglich ungetan."]
+    ],
+    "Relativsätze und Satzbau": [
+      ["who, which, that, whose, where: Wofür steht welches Relativpronomen?", "who = Personen · which = Dinge · that = beides (nur defining) · whose = possessiv · where = Orte", "The woman who called me is my aunt. · The student whose essay won is here.", "when für Zeit: The year when I was born."],
+      ["Defining oder non-defining: Woran erkennst du den Unterschied?", "Defining ohne Kommas (nötig zur Identifikation), non-defining mit Kommas (Zusatzinfo).", "The book that I bought is excellent. · Shakespeare, who wrote Hamlet, lived in the 16th century.", "In non-defining Clauses ist that verboten."],
+      ["Wann darfst du das Relativpronomen weglassen?", "Nur wenn es Objekt des Nebensatzes ist.", "The book (that) I read was excellent. · Aber: The man who called me... bleibt.", "„The man called me was friendly“ ist der typische Auslassungsfehler."],
+      ["Die SVO-Regel: Was ist an „Yesterday went I to the cinema“ falsch?", "Englisch kennt keine deutsche Inversion. Subjekt vor Verb, immer.", "Yesterday, I went to the cinema.", "Häufigkeitsadverbien stehen vor dem Vollverb, nach be: She always arrives on time. He is never late."],
+      ["In welcher Reihenfolge stehen mehrere Adverbien?", "Ort, Art, Zeit? Nein: ART vor ORT vor ZEIT ist die Grundfolge im Satz: manner, place, time.", "She played the piano beautifully at the concert last night.", "Die Eselsbrücke aus dem Buch: Adverbien der Art nach dem Verb, Zeit ans Ende oder den Anfang."]
+    ],
+    "Typische Fehler": [
+      ["✗ Many people is concerned about climate change.", "✓ Many people are concerned. people ist immer Plural.", "", "Gleiches Prinzip: police are, children are."],
+      ["✗ I have gathered many informations.", "✓ ...a lot of information. Unzählbar, nie mit s.", "Ebenso: advice, news, knowledge, equipment, furniture, research.", "„an information“ gibt es nicht; wenn zählbar nötig: a piece of information."],
+      ["✗ I am agree with you.", "✓ I agree with you. agree ist ein Vollverb.", "Ebenso: I disagree, nicht I am disagree.", "Direkter Transfer aus dem Deutschen („ich bin einverstanden“)."],
+      ["✗ I became a present for my birthday.", "✓ I got a present. become heißt werden, nicht bekommen.", "I became sick = ich wurde krank.", "Der berühmteste False Friend im deutschen Englisch."],
+      ["✗ The dog wagged it's tail.", "✓ its tail. it's heißt immer it is oder it has.", "", "Der Apostroph macht aus dem Possessivpronomen eine Verkürzung."],
+      ["✗ The party was funny.", "✓ The party was fun. / The movie was funny.", "funny = witzig, komisch · fun = Spaß machend", "Eine Party kann beides sein, aber meist meinst du fun."],
+      ["✗ I'll make a photo of us.", "✓ take a photo. Kollokationen lernen, nicht übersetzen.", "take a break, take a shower, take a walk", "Kollokationsfehler fallen Prüfern sofort auf."],
+      ["✗ I worked by 10 p.m. to finish until Friday.", "✓ until = bis (durchgängig) · by = bis spätestens", "I worked until 10 p.m. · I'll finish by Friday.", "by markiert den Stichtag, until die Dauer."]
+    ]
+  },
+  "Konnektoren": {
+    "Ursache und Folge": [
+      ["Gehobene Alternativen zu because?", "since · as · owing to + Nomen · due to + Nomen · in view of · given that", "As the data clearly indicates, ...", "because ist nicht falsch, aber im Aufsatz schnell repetitiv."],
+      ["Gehobene Alternativen zu so am Satzanfang?", "therefore · consequently · as a result · hence · thus", "Consequently, the policy failed.", "so und also am Satzanfang wirken schulisch."],
+      ["Wie baust du eine Ursache-Wirkung-Kette?", "this has led to · this resulted in", "The unemployment rate rose; consequently, social tensions increased.", "hence und thus sind die formellsten Varianten."]
+    ],
+    "Konzession und Kontrast": [
+      ["Einräumen, ohne das Argument aufzugeben: Welche Wendungen?", "although · even though · despite + Gerundium · admittedly · granted that · it cannot be denied that", "Admittedly, progress has been made; nevertheless, inequalities persist.", "despite nie mit that-Clause: despite being tired."],
+      ["Das Gegenargument nach der Einräumung einleiten?", "however · nevertheless · nonetheless · yet", "I see the appeal; however, the evidence points elsewhere.", "however ist Adverb, keine Konjunktion: Semikolon oder neuer Satz."],
+      ["Gegensätze scharf herausarbeiten?", "in contrast · whereas · while · unlike · on the contrary", "In contrast to the United States, European nations chose regulation.", "Die Dreierstruktur des Buchs: Einräumung, Gegenargument, Beleg."]
+    ],
+    "Addition und Zeit": [
+      ["Formelle Alternativen zu also?", "furthermore · moreover · in addition · what is more · not only ... but also", "Furthermore, recent studies suggest the effects are more severe.", "Nicht jeden Absatz mit in addition beginnen, Variation zählt."],
+      ["Einen Ablauf strukturieren?", "initially · subsequently · eventually · meanwhile · over time", "Initially, the policy seemed promising; over time its shortcomings became apparent.", "Zeitkonnektoren geben Analysen einen roten Faden."]
+    ],
+    "Beispiel und Beleg": [
+      ["Variationen für for example?", "for instance · to illustrate this point · a case in point is · as evidenced by · this is exemplified by", "A case in point is the 2008 financial crisis.", "as evidenced by ist die formellste Variante."],
+      ["Quellen und Befunde einleiten?", "according to · studies have shown that · research suggests that · statistics indicate that", "According to the author, the trend is accelerating.", "Belege direkt nach der Behauptung erhöhen die Überzeugungskraft."]
+    ],
+    "Fazit und Betonung": [
+      ["Ein Fazit einleiten, das mehr ist als Wiederholung?", "ultimately · on balance · all things considered · it can be concluded that · the evidence suggests that", "On balance, the benefits outweigh the risks.", "Das Fazit braucht einen neuen Synthesegedanken, keine Kopie der Einleitung."],
+      ["Einen Gedanken hervorheben oder präzisieren?", "above all · in particular · it is worth noting that · indeed · in fact · strictly speaking", "It is worth noting that the data covers only urban areas.", "indeed verstärkt, in fact korrigiert oder verstärkt."]
+    ]
+  }
+};
+
+const QUIZ = [
+  {f: '„I wanted to go, however I was too tired.“ Was stimmt hier nicht?', o: ['Nichts, der Satz ist korrekt', 'however ist ein Adverb und braucht Semikolon oder neuen Satz', 'however darf nur am Satzende stehen'], r: 1, e: 'Richtig: I wanted to go; however, I was too tired.'},
+  {f: 'I have lived here ______ three years.', o: ['since', 'for', 'during'], r: 1, e: 'for + Zeitdauer, since + Anfangspunkt. „since three years“ ist der klassische deutsche Fehler.'},
+  {f: 'Welche Form ist im formellen Englisch korrekt?', o: ['If I was rich, I would travel.', 'If I were rich, I would travel.', 'If I would be rich, I would travel.'], r: 1, e: 'Typ 2 verlangt Past Simple, bei be in formellem Englisch were. would steht nie im if-Satz.'},
+  {f: '„I am loving this song“ ist in der Klausur...', o: ['...völlig in Ordnung', '...falsch, love ist ein State Verb', '...nur im Present Perfect erlaubt'], r: 1, e: 'Gefühls-, Denk- und Besitzverben stehen nicht im Progressive. I love this song.'},
+  {f: 'When I arrived at the station, the train ______ .', o: ['already left', 'has already left', 'had already left'], r: 2, e: 'Vorzeitigkeit in der Vergangenheit verlangt Past Perfect: had already left.'},
+  {f: '„Where do you live?“ wird in der indirekten Rede zu:', o: ['He asked where did I live.', 'He asked where I lived.', 'He asked where do I live.'], r: 1, e: 'Die Inversion entfällt, die Zeit verschiebt sich: where I lived.'},
+  {f: 'I stopped ______ (rauchen aufhören).', o: ['to smoke', 'smoking', 'smoke'], r: 1, e: 'stop + Gerundium = aufhören. stop to smoke hieße: anhalten, um zu rauchen.'},
+  {f: '„Someone has stolen my bike“ im Passiv:', o: ['My bike has been stolen.', 'My bike has stolen.', 'My bike was being stolen.'], r: 0, e: 'Present Perfect Passiv: has been + Partizip.'},
+  {f: 'The student ______ essay won the prize is here.', o: ['which', 'whose', 'who'], r: 1, e: 'Possessive Beziehung: whose, für Personen und Dinge.'},
+  {f: '„You ______ called me, I would have helped.“ (ungenutzte Möglichkeit)', o: ['must have', 'could have', 'needn’t have'], r: 1, e: 'could have + Partizip: die Möglichkeit bestand, wurde aber nicht genutzt.'},
+  {f: 'Welche Variante gehört in eine formelle Erörterung?', o: ['So the policy failed.', 'Also, the policy failed.', 'Consequently, the policy failed.'], r: 2, e: 'so und also am Satzanfang wirken schulisch; consequently und therefore sind die schriftsprachlichen Formen.'},
+  {f: 'Many people ______ concerned about climate change.', o: ['is', 'are', 'has'], r: 1, e: 'people ist immer Plural: people are.'}
+];
+</script>
+<script src="/assets/trainer.js"></script>
+
+</body>
+</html>

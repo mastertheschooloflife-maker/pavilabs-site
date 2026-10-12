@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="de" style="--akzent:#2C7A72;--akzent-tief:#15505C">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Französisch-Abitur-Trainer</title>
+<meta name="description" content="Grammatik und Konnektoren für das Französisch-Abitur trainieren: Subjonctif, Passé composé gegen Imparfait, Si-Sätze, Pronomen und Teilungsartikel, als Lernkarten und Quiz aus dem Buch Französisch Meistern.">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="pill">
+    <a class="brand" href="/de/">
+      <img src="/assets/tree-night-small.webp" alt="" width="30" height="30">
+      PaviLabs
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/tools/englisch.html">Englisch</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
+      <a class="lang-switch" href="/de/">Zur Startseite</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-main">
+  <div class="wrap">
+    <h1>Französisch-Abitur-Trainer</h1>
+    <p class="tool-lede">Die französische Grammatik wirkt wie ein Dickicht aus Regeln, folgt aber wenigen Grundprinzipien. Wer sie durchschaut, muss nicht mehr tausend Einzelfälle auswendig lernen. Dieser Trainer nimmt sich die Bereiche vor, die in Klausuren über Notenpunkte entscheiden: der Subjonctif als Geheimwaffe der Bestnote, das Duo aus Passé composé und Imparfait, die Si-Sätze mit ihrer einen eisernen Regel, die Pronomen-Reihenfolge und der Teilungsartikel, den das Deutsche gar nicht kennt. Dazu die Konnektoren, mit denen ein Aufsatz vom Mittelmaß zur Oberstufenklausur wird.</p>
+    <p class="tool-src">Alle Inhalte stammen aus dem Buch <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>. Für die mündliche Seite gibt es den <a href="/tools/kommunikationspruefung-franzoesisch.html">Trainer für die Kommunikationsprüfung</a>.</p>
+
+    <div class="panel">
+      <h2>Lernkarten</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst selbst antworten, dann umdrehen. Was sitzt, sortierst du mit einem Klick aus; der Rest kommt wieder, bis der Stapel leer ist. Tastatur: Leertaste dreht, Pfeil rechts heißt „sitzt", Pfeil links heißt „nochmal".</p>
+      <div class="chip-row" id="deckRow"></div>
+      <div class="chip-row" id="catRow"></div>
+      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
+      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
+      <div class="fcard-buehne" id="buehne">
+        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
+            <div class="fc-etikett" id="fcKatV"></div>
+            <div class="fc-haupt" id="fcFrage"></div>
+          </div>
+          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
+            <div class="fc-etikett" id="fcKatR"></div>
+            <div class="fc-haupt" id="fcAntwort"></div>
+            <div class="fc-detail" id="fcDetail"></div>
+            <div class="fc-note" id="fcNote"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fcard-aktionen">
+        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
+        <button class="btn" id="btnKnown">Sitzt, nächste</button>
+        <button class="btn btn--ghost" id="btnShuffle" title="Stapel neu mischen">Neu mischen</button>
+        <span class="hint" id="restHint"></span>
+      </div>
+      <div class="deck-fertig" id="deckFertig" hidden>
+        <strong>Stapel geschafft.</strong>
+        <span id="fertigText"></span>
+      </div>
+    </div>
+
+    <div class="buch-tipp">
+      <span><strong>Vertiefung:</strong> Das Grammatik-Kapitel von <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a> ist der umfangreichste Teil des Buchs: Es leitet jede dieser Regeln her, von der WEDDING-Eselsbrücke für den Subjonctif bis zur Angleichung des Participe passé, und verbindet sie mit Klausurstrategie.</span>
+    </div>
+
+    <div class="panel">
+      <h2>Quiz: Wo stehst du?</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem">Zwölf Fragen quer durch Grammatik und Konnektoren, jede Antwort mit Begründung.</p>
+      <div id="quizBox"></div>
+      <button class="btn" id="btnQuiz">Quiz starten</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-copy">
+    <div class="wrap">
+      <span>© 2026 PaviLabs</span>
+      <span><a href="/tools/englisch.html">Zum Englisch-Trainer</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Kartenformat: [Vorderseite, Antwort, Detail/Beispiel, Notiz]
+const DECKS = {
+  "Grammatik": {
+    "Artikel": [
+      ["Wo setzt Französisch einen Artikel, wo Deutsch keinen braucht?", "Vor abstrakten Begriffen, Sprachen, Ländern, Körperteilen und Wochentagen als Gewohnheit.", "La liberté est précieuse. · J'apprends le français. · Elle a les yeux bleus. · Je fais du sport le mardi.", "Eine der häufigsten Fehlerquellen deutscher Lerner."],
+      ["Was passiert mit un, une, des nach einer Verneinung?", "Sie werden zu de (oder d’).", "J'ai un frère. → Je n'ai pas de frère. · Elle mange des fruits. → Elle ne mange pas de fruits.", "Ausnahme être: Ce n'est pas un problème."],
+      ["Der Teilungsartikel: Formen und Zweck?", "du, de la, de l’, des: für nicht zählbare Mengen, die das Deutsche artikellos lässt.", "Je mange du pain. · Il faut de la patience. · J'ai de la chance.", "Nach Verneinung ebenfalls de: Je ne mange pas de pain."],
+      ["à + le / à + les und de + le / de + les verschmelzen zu?", "au, aux, du, des", "Je vais au cinéma. · Je parle aux élèves. · Le livre du professeur.", "à la, à l’, de la, de l’ bleiben unverändert."]
+    ],
+    "Nomen und Adjektive": [
+      ["Typisch männliche und weibliche Endungen?", "Männlich: -age, -ment, -isme, -eau, -on. Weiblich: -tion, -té, -ée, -ance, -ure, -ette.", "le voyage, le mouvement, le tableau · la nation, la liberté, la culture", "Genus immer mit dem Wort lernen: la table, nie nur table."],
+      ["Welche Adjektive stehen VOR dem Nomen?", "Die BAGS-Gruppe: Beauty, Age, Goodness, Size.", "une jolie maison · un vieux livre · un bon film · une grande ville", "Alle übrigen stehen dahinter: une maison blanche."],
+      ["un grand homme vs. un homme grand: Was ändert die Stellung?", "Vor dem Nomen übertragene Bedeutung (bedeutend), danach wörtliche (groß).", "un ancien professeur = ehemalig · un pauvre homme = bemitleidenswert · mon propre livre = mein eigenes", "la semaine dernière = vergangene Woche, la dernière semaine = die letzte (abschließende) Woche."],
+      ["Steigerung: größer als, genauso wie, am größten?", "plus ... que · aussi ... que · le/la plus ...", "Paul est plus grand que Marie. · C'est le plus beau film de l'année.", "Unregelmäßig: bon → meilleur → le meilleur; bien → mieux; mauvais → pire."],
+      ["Adverbbildung aus prudent und constant?", "-ent → -emment, -ant → -amment: prudemment, constamment", "récent → récemment · brillant → brillamment", "Unregelmäßig: bon → bien, mauvais → mal, meilleur → mieux. Im Passé composé steht das Adverb zwischen Hilfsverb und Partizip: Il a bien parlé."]
+    ],
+    "Pronomen": [
+      ["COD oder COI: le/la/les oder lui/leur?", "Direktes Objekt (ohne Präposition) → le, la, les. Objekt mit à → lui, leur.", "Je le connais. · Je lui parle. (parler à)", "téléphoner à und demander à sind indirekt, appeler und interroger direkt: Verben mit Konstruktion lernen."],
+      ["Wofür stehen y und en?", "y ersetzt Ort oder à + Sache, en ersetzt de + Sache oder Mengen.", "J'y vais. (à Paris) · J'y pense. · J'en parle. · J'en ai trois.", "Die zwei Geheimwaffen für eleganten, wiederholungsfreien Stil."],
+      ["Die Reihenfolge mehrerer Pronomen vor dem Verb?", "me/te/se/nous/vous → le/la/les → lui/leur → y → en", "Je le lui ai dit. · Elle nous en parle.", "„Je lui le donne“ ist der Klassiker unter den Fehlern: richtig ist Je le lui donne."],
+      ["qui, que, dont, où: Wann welches Relativpronomen?", "qui = Subjekt · que = direktes Objekt · dont = de-Konstruktion · où = Ort oder Zeit", "L'homme qui parle. · Le livre que je lis. · Le livre dont je parle. · Le jour où je suis né.", "Nach Präpositionen: lequel/laquelle (avec lequel, auquel, duquel)."]
+    ],
+    "Passé composé und Imparfait": [
+      ["Die Faustregel: Wann Passé composé, wann Imparfait?", "Passé composé = Aktion, punktuelles Ereignis. Imparfait = Kulisse, Beschreibung, Gewohnheit.", "Je lisais quand il est arrivé.", "Stell dir einen Film vor: Die Szene ist Imparfait, die Handlung der Figuren Passé composé."],
+      ["Welche Verben bilden das Passé composé mit être?", "Die Bewegungs- und Zustandsverben: aller, venir, entrer, sortir, monter, descendre, arriver, partir, naître, mourir, tomber, rester, devenir, retourner, passer.", "Elle est allée. · Nous sommes arrivés.", "Dazu alle reflexiven Verben: Je me suis levé."],
+      ["monter, descendre, sortir: être oder avoir?", "Intransitiv être, transitiv (mit direktem Objekt) avoir.", "Je suis monté dans le bus. · J'ai monté la valise.", "Gilt auch für rentrer, retourner, passer."],
+      ["Wann gleicht sich das Participe passé mit avoir an?", "Nur wenn das direkte Objekt VOR dem Verb steht.", "J'ai acheté les fleurs. (keine Angleichung) · Les fleurs que j'ai achetées. · Je les ai achetées.", "Eine der meistgeprüften Regeln des Abiturs."],
+      ["Elle s'est lavée vs. Elle s'est lavé les mains: Warum einmal mit, einmal ohne e?", "Angleichung nur, wenn das Reflexivpronomen direktes Objekt ist. Mit „les mains“ als COD bleibt das Partizip unverändert.", "", "Die feinste Stufe der Angleichungsregel, beliebt in Klausuren."],
+      ["Unregelmäßige Partizipien von avoir, être, faire, prendre, voir, pouvoir, mettre, ouvrir?", "eu, été, fait, pris, vu, pu, mis, ouvert", "dire → dit · écrire → écrit · vivre → vécu · recevoir → reçu · boire → bu", "Diese Liste gehört ins Blindwissen."]
+    ],
+    "Subjonctif": [
+      ["Wie wird der Subjonctif présent gebildet?", "Stamm der 3. Person Plural Präsens + -e, -es, -e, -ions, -iez, -ent.", "ils parlent → que je parle, que nous parlions", "nous- und vous-Form sind mit dem Imparfait identisch."],
+      ["Die wichtigsten unregelmäßigen Subjonctif-Formen?", "être → que je sois · avoir → que j'aie · aller → que j'aille · faire → que je fasse · pouvoir → que je puisse · savoir → que je sache · vouloir → que je veuille", "Il faut que tu sois à l'heure.", "il faut → qu'il faille, il pleut → qu'il pleuve."],
+      ["Welche Auslöser verlangen den Subjonctif?", "Wunsch, Notwendigkeit, Gefühl, Zweifel, Möglichkeit, Wertung: vouloir que, il faut que, être content que, douter que, il est possible que, il est dommage que.", "Je veux que tu viennes. · Il faut que tu partes.", "Die Eselsbrücke aus dem Buch: WEDDING (Wunsch, Emotion, Doubt, Demand, Impossibility, Negation, Gefühl)."],
+      ["Welche Konjunktionen stehen mit Subjonctif?", "bien que, quoique, pour que, afin que, avant que, jusqu'à ce que, à condition que, à moins que, sans que, pourvu que", "Bien qu'il soit fatigué, il travaille.", "pendant que und parce que nehmen dagegen den Indikativ."],
+      ["penser que, croire que, espérer que: Subjonctif oder nicht?", "Bejaht Indikativ, verneint oder fragend Subjonctif.", "Je pense qu'il vient. · Je ne pense pas qu'il vienne.", "Die Ausnahme, die Prüfer gern abfragen."]
+    ],
+    "Si-Sätze und Zeiten": [
+      ["Die drei Si-Satz-Typen?", "Typ 1: si + Présent, Futur. Typ 2: si + Imparfait, Conditionnel. Typ 3: si + Plus-que-parfait, Conditionnel passé.", "Si tu travailles, tu réussiras. · Si j'étais riche, je voyagerais. · Si j'avais su, je serais venu.", "Der Merksatz des Buchs: Nach si darf NIE -rais/-rait stehen."],
+      ["Futur simple: Bildung und wichtigste unregelmäßige Stämme?", "Infinitiv + -ai, -as, -a, -ons, -ez, -ont. être → serai, avoir → aurai, aller → irai, faire → ferai, pouvoir → pourrai, venir → viendrai.", "je parlerai · il faudra · il pleuvra", "Im gehobenen Schriftstil Futur simple statt Futur proche (aller + Infinitiv)."],
+      ["Wofür steht das Conditionnel?", "Höfliche Bitte, Wunsch, Ratschlag, unbestätigte Information, Si-Satz Typ 2, Zukunft in der Vergangenheit.", "Je voudrais un café. · Tu devrais te reposer. · Le président aurait démissionné.", "Bildung: Futurstamm + Imparfait-Endungen."],
+      ["Concordance des temps: Hauptsatz in der Vergangenheit, was passiert im Nebensatz?", "Présent → Imparfait · Passé composé → Plus-que-parfait · Futur → Conditionnel", "Il dit qu'il viendra. → Il a dit qu'il viendrait.", "Dazu verschieben sich Angaben: aujourd'hui → ce jour-là, hier → la veille, demain → le lendemain."],
+      ["depuis + welche Zeitform?", "Présent, wo das Deutsche Perfekt nutzt.", "J'habite ici depuis cinq ans.", "„J'ai vécu ici depuis trois ans“ ist der typische Transferfehler."]
+    ],
+    "Verneinung und Frage": [
+      ["Die wichtigsten Verneinungen neben ne ... pas?", "ne ... plus (nicht mehr), ne ... jamais (nie), ne ... rien (nichts), ne ... personne (niemand), ne ... aucun(e) (kein), ne ... ni ... ni (weder noch)", "Je ne fume plus. · Je ne vois personne.", "In der Klausur steht das ne immer, auch wenn es gesprochen oft wegfällt."],
+      ["Was bedeutet ne ... que?", "Nur. Es ist keine echte Verneinung.", "Je n'ai que dix euros. = Ich habe nur zehn Euro.", "Wird regelmäßig als Verneinung missverstanden."],
+      ["Die drei Frageformen und ihr Register?", "Intonation (umgangssprachlich) · est-ce que (neutral) · Inversion (gehoben, schriftlich)", "Tu viens ? · Est-ce que tu viens ? · Viens-tu ?", "Bei Vokalausgang kommt ein -t-: A-t-il faim ? Va-t-elle au cinéma ?"]
+    ],
+    "Präpositionen und Länder": [
+      ["In oder nach: à, en, au oder aux vor Städten und Ländern?", "à + Stadt · en + weibliches Land · au + männliches Land · aux + Plural", "à Paris · en France · au Canada · aux États-Unis", "Herkunft: de France, du Canada, des États-Unis."],
+      ["dans deux jours vs. pendant deux heures vs. depuis cinq ans?", "dans = in (Zukunft) · pendant = während (Dauer) · depuis = seit (mit Présent!)", "Je pars dans deux jours. · J'ai dormi pendant deux heures.", "chez nur bei Personen: chez mon ami, chez le médecin."]
+    ],
+    "Typische Fehler": [
+      ["✗ Si je serais riche, je voyagerais.", "✓ Si j'étais riche, je voyagerais. Nach si nie Conditionnel.", "", "Die eine Regel, die laut Buch die Hälfte aller Si-Satz-Fehler beseitigt."],
+      ["✗ Je veux qu'il vient.", "✓ Je veux qu'il vienne. vouloir que verlangt den Subjonctif.", "", "Subjonctif-Auslöser gehören ins Blindwissen."],
+      ["✗ Je lui le donne.", "✓ Je le lui donne. Direktes vor indirektem Objekt.", "me/te/se → le/la/les → lui/leur → y → en", ""],
+      ["✗ Les fleurs que j'ai acheté.", "✓ ...que j'ai achetées. COD vor dem Verb → Angleichung.", "", "Gilt auch bei Pronomen: Je les ai achetées."],
+      ["✗ Il est un médecin.", "✓ Il est médecin. oder C'est un médecin.", "Bei Berufen nach il/elle est kein Artikel.", ""],
+      ["✗ Je m'ai levé à sept heures.", "✓ Je me suis levé. Reflexive Verben nehmen immer être.", "", ""],
+      ["✗ Freiheit ist wichtig. → Liberté est importante.", "✓ La liberté est importante. Abstrakta brauchen den Artikel.", "", "Gleiches gilt für Sprachen und Länder: le français, la France."]
+    ]
+  },
+  "Konnektoren": {
+    "Einleitung und Aufzählung": [
+      ["Die Argumentation eröffnen und fortführen?", "tout d'abord · en premier lieu · ensuite · par la suite · de plus · en outre · par ailleurs", "Tout d'abord, il convient d'examiner...", "non seulement ... mais encore verbindet zwei gewichtete Punkte."],
+      ["enfin oder finalement?", "enfin schließt eine Aufzählung ab, finalement klingt nach Ergebnis einer Abwägung.", "Enfin, le troisième argument... · Finalement, après réflexion...", "Ein feiner Unterschied, den Prüfer bemerken."]
+    ],
+    "Beispiel und Erläuterung": [
+      ["Eleganter als par exemple?", "à titre d'exemple · notamment · en particulier · prenons l'exemple de", "Notamment dans les grandes villes, ...", "en effet begründet die vorangehende Aussage."],
+      ["Die gehobenste Feststellung des Aufsatzstils?", "force est de constater que", "Force est de constater que la situation s'aggrave.", "Dazu: il convient de noter que, c'est-à-dire, autrement dit."]
+    ],
+    "Gegensatz und Konzession": [
+      ["Das Trio, das mais ersetzt?", "cependant · toutefois · néanmoins", "Cependant, cette solution a un prix.", "Wer diese drei unterscheidet, schreibt laut Buch eine Oberstufenklausur."],
+      ["Eine wichtige Wendung in der Argumentation markieren?", "or (nun aber) · pourtant (und doch) · en revanche (im Gegensatz dazu)", "Or, les faits montrent le contraire.", "d'une part ... d'autre part ist die gehobene Form von einerseits/andererseits."],
+      ["Konzession mit Verbstruktur: obwohl und trotz?", "bien que + Subjonctif · malgré + Nomen · même si + Indikativ", "Bien que le projet soit coûteux, ... · Malgré la pluie, ...", "avoir beau + Infinitiv: Il a beau travailler, il n'y arrive pas. (So sehr er auch arbeitet...)"]
+    ],
+    "Folgerung und Begründung": [
+      ["Folgerungen formell einleiten?", "par conséquent · c'est pourquoi · dès lors · il s'ensuit que · en somme", "Par conséquent, une réforme s'impose.", "si bien que und de telle sorte que verbinden Ursache und Wirkung im Satz."],
+      ["car, puisque, étant donné que: Welche Nuance?", "car = denn (elegant) · puisque = da (bekannter Grund) · étant donné que = in Anbetracht dessen", "Car la situation l'exige.", "parce que ist korrekt, wirkt im Aufsatz aber schnell schulisch."],
+      ["grâce à, à cause de oder en raison de?", "grâce à = positiv · à cause de = negativ · en raison de = neutral", "Grâce à toi, j'ai réussi. · À cause de la pluie, le match a été annulé.", "faute de = mangels: Faute de temps, ..."]
+    ],
+    "Zweck": [
+      ["Um zu und damit: Welche Konstruktionen?", "pour / afin de + Infinitiv (gleiches Subjekt) · pour que / afin que + Subjonctif (verschiedene Subjekte)", "Je travaille pour réussir. · Je t'explique pour que tu comprennes.", "Der Subjonctif nach pour que ist obligatorisch."]
+    ]
+  }
+};
+
+const QUIZ = [
+  {f: 'Si je ______ riche, je voyagerais.', o: ['serais', 'étais', 'serai'], r: 1, e: 'Nach si nie Conditionnel oder Futur: si + Imparfait, Conditionnel im Hauptsatz.'},
+  {f: 'Je veux que tu ______ .', o: ['viens', 'viendras', 'viennes'], r: 2, e: 'vouloir que ist ein Subjonctif-Auslöser: que tu viennes.'},
+  {f: 'Les fleurs que j’ai ______ sont belles.', o: ['acheté', 'achetées', 'achetés'], r: 1, e: 'Das direkte Objekt (les fleurs, feminin Plural) steht vor dem Verb: Angleichung achetées.'},
+  {f: '„Ich habe es ihm gesagt.“ heißt:', o: ['Je lui l’ai dit.', 'Je le lui ai dit.', 'Je l’ai lui dit.'], r: 1, e: 'Reihenfolge: le/la/les vor lui/leur. Je le lui ai dit.'},
+  {f: 'Welcher Satz beschreibt die Kulisse, welcher die Aktion? „Je ______ quand il ______ .“', o: ['lisais / est arrivé', 'ai lu / arrivait', 'lisais / arrivait'], r: 0, e: 'Imparfait für die laufende Handlung, Passé composé für das Ereignis: Je lisais quand il est arrivé.'},
+  {f: 'Elle ______ hier soir. (partir)', o: ['a parti', 'est partie', 'est parti'], r: 1, e: 'partir gehört zu den être-Verben, das Partizip gleicht sich ans Subjekt an: est partie.'},
+  {f: 'J’habite ici ______ cinq ans.', o: ['depuis', 'pendant', 'il y a'], r: 0, e: 'depuis + Présent für andauernde Zustände, wo das Deutsche Perfekt nutzt.'},
+  {f: '„Ich esse Brot.“ mit Teilungsartikel:', o: ['Je mange le pain.', 'Je mange du pain.', 'Je mange pain.'], r: 1, e: 'Nicht zählbare Menge: Teilungsartikel du. Nach Verneinung: pas de pain.'},
+  {f: 'Bien qu’il ______ fatigué, il travaille.', o: ['est', 'soit', 'était'], r: 1, e: 'bien que verlangt den Subjonctif: qu’il soit.'},
+  {f: 'Je n’ai ______ dix euros. (nur)', o: ['pas', 'que', 'rien'], r: 1, e: 'ne ... que heißt „nur“ und ist keine echte Verneinung.'},
+  {f: 'Welches Trio ersetzt das ewige mais im Aufsatz?', o: ['et, ou, donc', 'cependant, toutefois, néanmoins', 'alors, après, aussi'], r: 1, e: 'Die drei Konzessiv-Konnektoren der Oberstufe.'},
+  {f: '„Dank dir habe ich bestanden.“ heißt:', o: ['À cause de toi, j’ai réussi.', 'En raison de toi, j’ai réussi.', 'Grâce à toi, j’ai réussi.'], r: 2, e: 'grâce à für Positives, à cause de für Negatives, en raison de neutral.'}
+];
+</script>
+<script src="/assets/trainer.js"></script>
+
+</body>
+</html>

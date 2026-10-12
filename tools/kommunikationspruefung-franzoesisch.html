@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="de" style="--akzent:#2C7A72;--akzent-tief:#15505C">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kommunikationsprüfung Französisch</title>
+<meta name="description" content="Die Kommunikationsprüfung Französisch in der Oberstufe trainieren: die drei Prüfungsphasen, Redemittel für Monolog, Dialog und Prüfergespräch, Übungsszenarien mit Timer, nach dem Buch Französisch Meistern.">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="pill">
+    <a class="brand" href="/de/">
+      <img src="/assets/tree-night-small.webp" alt="" width="30" height="30">
+      PaviLabs
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/tools/kommunikationspruefung-englisch.html">Englisch</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
+      <a class="lang-switch" href="/de/">Zur Startseite</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-main">
+  <div class="wrap">
+    <h1>Kommunikationsprüfung Französisch</h1>
+    <p class="tool-lede">Die Kommunikationsprüfung testet etwas anderes als das mündliche Abitur: nicht die Analyse eines Textes, sondern spontanes, lebendiges Französisch in einer realen Situation. Reagieren, verhandeln, höflich widersprechen, einen Kompromiss aushandeln. Wer sich darauf wie auf eine Textanalyse vorbereitet, scheitert an der falschen Stelle. Hier trainierst du die drei Phasen der Prüfung mit den passenden Redemitteln, übst Szenarien mit Timer und lernst die Fauxpas kennen, die Prüfer sofort registrieren.</p>
+    <p class="tool-src">Dieser Trainer folgt dem Kapitel zur Kommunikationsprüfung aus <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>. Die Methodik der mündlichen Vorbereitung vertieft <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a>, deren Strategien sprachübergreifend funktionieren.</p>
+
+    <div class="panel">
+      <h2>Die drei Phasen der Prüfung</h2>
+      <ol class="phasen">
+        <li>
+          <h3>Monolog</h3>
+          <p>Etwa 5 Minuten zu einem persönlichen Thema: dein Engagement, deine Pläne nach dem Bac, eine prägende Erfahrung.</p>
+        </li>
+        <li>
+          <h3>Dialog</h3>
+          <p>Das Herzstück: Rollenspiel oder Diskussion mit einem Mitschüler, meist mit dem Ziel eines Kompromisses.</p>
+        </li>
+        <li>
+          <h3>Prüfergespräch</h3>
+          <p>Der Prüfer steigt mit weiterführenden Fragen ein. Die anspruchsvollste Phase, weil nichts davon planbar ist.</p>
+        </li>
+      </ol>
+      <div class="buch-tipp">
+        <span><strong>Aus dem Buch:</strong> Geprüft werden fünf Kernkompetenzen: Spontanität, Interaktion, pragmatische Kompetenz, Lernstrategien sowie Aussprache und Sprachfluss. Akzentfreiheit erwartet niemand; wer aber alle drei Sätze stockt, verliert Flusspunkte. Die Details stehen in <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a>.</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Redemittel nach Gesprächsfunktion</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst überlegen, wie du die Funktion ausdrücken würdest, dann umdrehen. Pfeil rechts heißt „sitzt", Pfeil links heißt „nochmal".</p>
+      <div class="chip-row" id="deckRow" style="display:none"></div>
+      <div class="chip-row" id="catRow"></div>
+      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
+      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
+      <div class="fcard-buehne" id="buehne">
+        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
+            <div class="fc-etikett" id="fcKatV"></div>
+            <div class="fc-haupt" id="fcFrage"></div>
+          </div>
+          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
+            <div class="fc-etikett" id="fcKatR"></div>
+            <div class="fc-haupt" id="fcAntwort"></div>
+            <div class="fc-detail" id="fcDetail"></div>
+            <div class="fc-note" id="fcNote"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fcard-aktionen">
+        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
+        <button class="btn" id="btnKnown">Sitzt, nächste</button>
+        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
+        <span class="hint" id="restHint"></span>
+      </div>
+      <div class="deck-fertig" id="deckFertig" hidden>
+        <strong>Stapel geschafft.</strong>
+        <span id="fertigText"></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Szenario-Training mit Timer</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Das Buch empfiehlt: drei Monate vor der Prüfung zweimal pro Woche 20 Minuten mit einem festen Partner üben. Zieh ein Szenario, stellt den Timer und sprecht nur Französisch, auch wenn Worte fehlen: paraphrasieren statt ins Deutsche wechseln.</p>
+      <div class="szenario-box" id="szBox">
+        <div class="sz-rolle" id="szTyp"></div>
+        <div class="sz-text" id="szText"></div>
+        <div class="sz-auftrag" id="szAuftrag"></div>
+      </div>
+      <div class="timer-zeile">
+        <span class="timer-anzeige" id="timerAnzeige">05:00</span>
+        <select class="feld-select" id="timerDauer" style="width:auto">
+          <option value="180">3 Minuten</option>
+          <option value="300" selected>5 Minuten</option>
+          <option value="600">10 Minuten</option>
+        </select>
+        <button class="btn" id="btnTimer">Start</button>
+        <button class="btn btn--ghost" id="btnTimerReset">Zurücksetzen</button>
+        <button class="btn btn--ghost" id="btnSzenario">Neues Szenario</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Die Fauxpas, die Prüfer sofort registrieren</h2>
+      <dl class="ledger">
+        <div class="row"><dt style="min-width:0;font-size:1.05rem">Auswendig abspulen</dt><dd>Bereite Themen vor, nicht Sätze. Erkennbar aufgesagte Texte wirken unecht.</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.05rem">Den Partner korrigieren</dt><dd>Ein schwerer Fauxpas. Reagiere auf den Inhalt; die Sprache deines Partners bewertet der Prüfer separat.</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.05rem">Dominieren oder verstummen</dt><dd>Prüfer achten auf das Gleichgewicht der Sprechanteile. Wer dem Partner kein Wort lässt, schadet sich selbst.</dd></div>
+        <div class="row"><dt style="min-width:0;font-size:1.05rem">Ins Deutsche wechseln</dt><dd>Niemals. Lieber unperfekt paraphrasieren. Pausen füllst du mit: Eh bien, réfléchissons... · En fait, ce qui me vient à l'esprit, c'est...</dd></div>
+      </dl>
+      <div class="buch-tipp">
+        <span><strong>Weiterlesen:</strong> Höflichkeit ist Teil der Bewertung: Excusez-moi de vous interrompre, Si je peux me permettre und Pourriez-vous répéter sind nicht optional. Das komplette Kapitel samt Bewertungslogik steht in <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a>. Für Grammatik und Konnektoren gibt es den <a href="/tools/franzoesisch.html">Französisch-Abitur-Trainer</a>.</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Quiz: Prüfungslogik verstanden?</h2>
+      <div id="quizBox"></div>
+      <button class="btn" id="btnQuiz">Quiz starten</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-copy">
+    <div class="wrap">
+      <span>© 2026 PaviLabs</span>
+      <span><a href="/tools/kommunikationspruefung-englisch.html">Zur englischen Kommunikationsprüfung</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const DECKS = {
+  "Redemittel": {
+    "Monolog eröffnen": [
+      ["Den Monolog strukturiert beginnen?", "J'aimerais commencer par... · Permettez-moi de présenter... · Pour ma part, je dirais que...", "", "Der Monolog ist persönlich gefärbt: deine Welt, auf Französisch."],
+      ["Einen Punkt veranschaulichen?", "Pour illustrer mon propos, prenons l'exemple de... · Ce qui me frappe le plus, c'est...", "", "Ein konkretes Beispiel trägt mehr als drei Behauptungen."]
+    ],
+    "Zustimmen": [
+      ["Volle Zustimmung ausdrücken?", "Je suis tout à fait d'accord avec toi. · Je partage entièrement ton point de vue. · Effectivement, c'est un bon argument.", "", "Tu as raison de dire que... greift das Argument des Partners konkret auf."]
+    ],
+    "Höflich widersprechen": [
+      ["Widersprechen, ohne unhöflich zu sein?", "Je ne suis pas tout à fait de cet avis. · C'est un argument intéressant, mais... · Je comprends ton point de vue, néanmoins...", "", "Permets-moi de te contredire sur ce point ist die eleganteste Eröffnung."]
+    ],
+    "Nachfragen": [
+      ["Präzisierung oder Beispiel erbitten?", "Pourrais-tu préciser ce que tu entends par...? · Qu'est-ce que tu veux dire exactement ? · Tu pourrais donner un exemple concret ?", "", "Nachfragen zeigt Interaktionskompetenz, keine Schwäche."],
+      ["Beim Prüfer höflich nachhaken?", "Pardonnez-moi, je n'ai pas bien saisi... · Pourriez-vous répéter, s'il vous plaît ?", "", "Im Prüfergespräch gilt vous, im Schülerdialog meist tu."]
+    ],
+    "Vorschlagen und verhandeln": [
+      ["Vorschläge ins Gespräch bringen?", "Et si on essayait de...? · Que dirais-tu de...? · Je propose qu'on... · On pourrait peut-être envisager de...", "", "Offene Vorschläge laden den Partner ein, statt ihn zu überfahren."],
+      ["Einen Kompromiss aushandeln?", "Trouvons un compromis : tu fais X, je fais Y. · Je suis prêt(e) à faire des concessions sur... · À condition que..., je serais d'accord pour...", "", "à condition que verlangt den Subjonctif."]
+    ],
+    "Zeit gewinnen": [
+      ["Nachdenkpausen elegant füllen?", "Voilà une question intéressante... · Laissez-moi réfléchir un instant... · C'est une question complexe à laquelle on peut répondre de plusieurs façons.", "", "Stille wirkt unsicher; gefüllte Pausen wirken nachdenklich."],
+      ["Die Frage des Prüfers spiegeln?", "Si je vous comprends bien, vous me demandez si...", "", "Spiegeln verschafft Zeit und zeigt Verständnis zugleich."]
+    ],
+    "Differenziert antworten": [
+      ["Im Prüfergespräch differenzieren?", "À mon avis, tout dépend du contexte... · Cela dépend en grande partie de... · Plusieurs perspectives sont possibles. D'abord...", "", "Differenzierung schlägt Schwarz-Weiß-Antworten."]
+    ]
+  }
+};
+
+const QUIZ = [
+  {f: 'Aus welchen drei Phasen besteht die Kommunikationsprüfung typischerweise?', o: ['Diktat, Übersetzung, Aufsatz', 'Monolog, Dialog mit Mitschüler, Diskussion mit dem Prüfer', 'Hörverstehen, Leseverstehen, Grammatiktest'], r: 1, e: 'Rund 20 bis 30 Minuten, meist zu zweit oder zu dritt: Monolog, Dialog, Prüfergespräch.'},
+  {f: 'Dein Partner macht einen Grammatikfehler. Du...', o: ['...korrigierst ihn dezent', '...reagierst nur auf den Inhalt', '...machst eine kurze Pause, damit er es merkt'], r: 1, e: 'Korrigieren ist der klassische Fauxpas; in echter Kommunikation würdest du es auch nicht tun.'},
+  {f: 'Dir fehlt mitten im Satz ein Wort. Was tust du?', o: ['Kurz ins Deutsche wechseln', 'Paraphrasieren und weitersprechen', 'Den Satz abbrechen und schweigen'], r: 1, e: 'Niemals ins Deutsche wechseln; elegantes Umschreiben ist eine bewertete Strategie.'},
+  {f: 'Der Prüfer stellt eine unerwartete Frage. Deine erste Reaktion?', o: ['Sofort irgendetwas sagen', 'Voilà une question intéressante... und kurz ordnen', 'Um eine andere Frage bitten'], r: 1, e: 'Zeitgewinnungsfloskeln füllen die Pause und wirken souverän statt unsicher.'},
+  {f: '„À condition que..." verlangt...', o: ['...den Indikativ', '...den Subjonctif', '...das Conditionnel'], r: 1, e: 'À condition que tu sois d’accord: Subjonctif, auch mitten im Verhandeln.'},
+  {f: 'Was wird NICHT erwartet?', o: ['Verständlichkeit und Sprachfluss', 'Akzentfreies Französisch', 'Eingehen auf den Partner'], r: 1, e: 'Akzentfreiheit erwartet kein Prüfer; Verständlichkeit und Fluss zählen.'},
+  {f: 'Die beste Vorbereitung laut Buch?', o: ['Alle Redemittel auswendig, dann allein üben', 'Drei Monate lang zweimal pro Woche Rollenspiele mit festem Partner', 'Eine Nacht vor der Prüfung intensiv wiederholen'], r: 1, e: 'Regelmäßige Rollenspiele zu den typischen Themen schlagen jede Last-Minute-Vorbereitung.'},
+  {f: 'Welche Anrede im Prüfergespräch?', o: ['tu, das wirkt natürlicher', 'vous, mit höflichen Wendungen', 'Gemischt, je nach Stimmung'], r: 1, e: 'Pragmatische Kompetenz heißt auch: Register und Anrede der Situation anpassen.'}
+];
+</script>
+<script src="/assets/trainer.js"></script>
+<script>
+const SZENARIEN = [
+  {typ: "Rollenspiel: Reiseplanung", text: "Vous êtes deux amis qui doivent décider où passer les vacances. L'un veut aller en montagne, l'autre à la plage.", auftrag: "Diskutiert Vor- und Nachteile und findet einen Kompromiss. Nutzt mindestens einen Vorschlag mit „Et si on...?"},
+  {typ: "Rollenspiel: Studienwahl", text: "Après le bac : l'un de vous veut étudier par passion, l'autre privilégie la sécurité financière. Qu'est-ce qui compte le plus ?", auftrag: "Hört einander zu, greift Argumente auf (Tu as mentionné...) und formuliert am Ende eine gemeinsame Einsicht."},
+  {typ: "Rollenspiel: Wohnsituation", text: "Après le bac, vous hésitez : colocation dans une grande ville ou studio dans une petite ville ?", auftrag: "Jeder nennt zwei Argumente, dann verhandelt ihr: Je suis prêt(e) à faire des concessions sur..."},
+  {typ: "Diskussion: Gesellschaft", text: "Faut-il supprimer l'argent liquide ? L'un défend la thèse, l'autre l'attaque.", auftrag: "Höflich widersprechen (Je ne suis pas tout à fait de cet avis...), nach der Hälfte Rollen tauschen."},
+  {typ: "Diskussion: Gesellschaft", text: "Les réseaux sociaux sont-ils bons ou mauvais pour la démocratie ?", auftrag: "Differenziert statt absolut: Cela dépend en grande partie de... Mindestens ein konkretes Beispiel pro Person."},
+  {typ: "Diskussion: Schule", text: "Faut-il introduire l'uniforme scolaire dans les écoles allemandes ?", auftrag: "Baut eine Konzession ein (C'est un argument intéressant, mais...) und schließt mit einem gemeinsamen Fazit."},
+  {typ: "Diskussion: Politik", text: "Faut-il abaisser l'âge du droit de vote à 16 ans ?", auftrag: "Einer beginnt mit einem kurzen Monolog (1 Minute), dann offene Diskussion mit echten Nachfragen."}
+];
+const $$ = id => document.getElementById(id);
+let szIdx = -1;
+function neuesSzenario() {
+  let i; do { i = Math.floor(Math.random() * SZENARIEN.length); } while (i === szIdx && SZENARIEN.length > 1);
+  szIdx = i;
+  const s = SZENARIEN[i];
+  $$("szTyp").textContent = s.typ;
+  $$("szText").textContent = s.text;
+  $$("szAuftrag").textContent = s.auftrag;
+}
+let timerRest = 300, timerLauf = null;
+function timerAnzeigen() {
+  const m = String(Math.floor(timerRest / 60)).padStart(2, "0");
+  const s = String(timerRest % 60).padStart(2, "0");
+  $$("timerAnzeige").textContent = m + ":" + s;
+}
+$$("timerDauer").onchange = () => { timerRest = parseInt($$("timerDauer").value, 10); timerAnzeigen(); };
+$$("btnTimer").onclick = () => {
+  if (timerLauf) { clearInterval(timerLauf); timerLauf = null; $$("btnTimer").textContent = "Weiter"; $$("timerAnzeige").classList.remove("laeuft"); return; }
+  $$("btnTimer").textContent = "Pause";
+  $$("timerAnzeige").classList.add("laeuft");
+  timerLauf = setInterval(() => {
+    timerRest--;
+    timerAnzeigen();
+    if (timerRest <= 0) {
+      clearInterval(timerLauf); timerLauf = null;
+      $$("timerAnzeige").textContent = "Temps !";
+      $$("btnTimer").textContent = "Start";
+      $$("timerAnzeige").classList.remove("laeuft");
+      timerRest = parseInt($$("timerDauer").value, 10);
+    }
+  }, 1000);
+};
+$$("btnTimerReset").onclick = () => { if (timerLauf) { clearInterval(timerLauf); timerLauf = null; } timerRest = parseInt($$("timerDauer").value, 10); timerAnzeigen(); $$("btnTimer").textContent = "Start"; $$("timerAnzeige").classList.remove("laeuft"); };
+$$("btnSzenario").onclick = neuesSzenario;
+neuesSzenario();
+timerAnzeigen();
+</script>
+
+</body>
+</html>
