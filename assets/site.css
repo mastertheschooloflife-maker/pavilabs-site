@@ -624,6 +624,222 @@ input::placeholder, textarea::placeholder { color: rgba(169, 188, 167, 0.55); }
 .karte .k-note { margin-top: 10px; font-size: 0.9rem; color: var(--ink-muted); }
 .karte ::selection { background: var(--leaf-deep); color: var(--paper); }
 
+/* ---------- Lernkarten 2.0 (3D-Flip) ---------- */
+
+.deck-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 22px;
+  font-size: 0.9rem;
+  color: var(--cream-dim);
+}
+.deck-kopf .dk-stand { font-variant-numeric: tabular-nums; }
+.deck-balken {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(243, 246, 236, 0.1);
+  overflow: hidden;
+  margin: 8px 0 18px;
+}
+.deck-balken > div { height: 100%; background: var(--akzent, var(--leaf)); border-radius: 999px; transition: width 500ms var(--bez); }
+
+.fcard-buehne { perspective: 1400px; }
+
+.fcard {
+  position: relative;
+  width: 100%;
+  min-height: 250px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 650ms var(--bez);
+  outline-offset: 6px;
+}
+.fcard.flipped { transform: rotateY(180deg); }
+
+.fcard-seite {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 20px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 26px 30px 56px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  border-top: 4px solid var(--akzent, var(--leaf));
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.fcard-seite::after {
+  content: attr(data-hinweis);
+  position: absolute;
+  bottom: 16px;
+  left: 30px;
+  right: 30px;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  opacity: 0.75;
+}
+.fcard-rueck { transform: rotateY(180deg); }
+
+.fc-etikett {
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  color: var(--akzent-tief, var(--leaf-deep));
+  margin-bottom: 14px;
+}
+.fc-haupt {
+  font-family: "Gloock", Georgia, serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  line-height: 1.28;
+  margin: auto 0;
+  text-wrap: balance;
+}
+.fcard-rueck .fc-haupt { font-size: clamp(1.1rem, 2.2vw, 1.45rem); margin: 0 0 10px; }
+.fc-detail { font-size: 0.97rem; color: var(--ink); line-height: 1.6; }
+.fc-detail .bsp { display: block; margin-top: 10px; font-style: italic; color: var(--ink-muted); }
+.fc-note { margin-top: 12px; font-size: 0.88rem; color: var(--ink-muted); border-top: 1px solid #DAD6C6; padding-top: 10px; }
+.fcard ::selection { background: var(--leaf-deep); color: var(--paper); }
+
+.fcard-aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 22px;
+}
+.fcard-aktionen .btn { margin-top: 0; }
+.fcard-aktionen .hint { font-size: 0.82rem; color: var(--cream-dim); margin-left: auto; }
+
+.deck-fertig {
+  margin-top: 18px;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px dashed var(--hairline);
+  text-align: center;
+  color: var(--cream-dim);
+}
+.deck-fertig strong { color: var(--cream); font-family: "Gloock", Georgia, serif; font-size: 1.3rem; display: block; margin-bottom: 8px; }
+
+/* ---------- Prüfungs-Trainer (Kommunikationsprüfung) ---------- */
+
+.phasen {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ph;
+  border-top: 1px solid var(--hairline);
+}
+.phasen li { counter-increment: ph; padding: 22px 28px 6px 0; }
+.phasen li + li { border-left: 1px solid var(--hairline); padding-left: 28px; }
+.phasen h3 { font-size: 1.18rem; display: flex; align-items: baseline; gap: 12px; }
+.phasen h3::before {
+  content: counter(ph);
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 650;
+  color: var(--ground);
+  background: var(--akzent, var(--leaf));
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transform: translateY(-2px);
+}
+.phasen p { color: var(--cream-dim); font-size: 0.95rem; }
+
+.buch-tipp {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 22px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: rgba(208, 178, 105, 0.08);
+  border: 1px solid rgba(208, 178, 105, 0.3);
+  font-size: 0.93rem;
+  color: var(--cream-dim);
+}
+.buch-tipp strong { color: var(--gold); font-weight: 650; }
+.buch-tipp a { color: var(--gold); }
+
+.szenario-box {
+  margin-top: 18px;
+  padding: 24px 28px;
+  border-radius: 18px;
+  background: var(--paper);
+  color: var(--ink);
+  border-top: 4px solid var(--akzent, var(--leaf));
+}
+.szenario-box .sz-rolle { font-size: 0.8rem; font-weight: 650; color: var(--akzent-tief, var(--leaf-deep)); margin-bottom: 8px; }
+.szenario-box .sz-text { font-family: "Gloock", Georgia, serif; font-size: 1.25rem; line-height: 1.3; }
+.szenario-box .sz-auftrag { margin-top: 12px; font-size: 0.95rem; color: var(--ink-muted); }
+
+.timer-zeile { display: flex; align-items: center; gap: 18px; margin-top: 20px; flex-wrap: wrap; }
+.timer-anzeige {
+  font-family: "Gloock", Georgia, serif;
+  font-size: 2.1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--cream);
+  min-width: 110px;
+}
+.timer-anzeige.laeuft { color: var(--gold); }
+
+/* ---------- Buch-Mockups (Publikationen) ---------- */
+
+.pub { display: flex; gap: 26px; align-items: flex-start; }
+.pub-buch { flex: none; perspective: 900px; padding: 6px 0; display: block; }
+.buch3d {
+  display: block;
+  position: relative;
+  width: 108px;
+  transform-style: preserve-3d;
+  transform: rotateY(-24deg);
+  transition: transform 700ms var(--bez);
+}
+.pub:hover .buch3d { transform: rotateY(-10deg); }
+.buch3d img {
+  display: block;
+  width: 108px;
+  height: auto;
+  border-radius: 3px 8px 8px 3px;
+  box-shadow: 14px 18px 34px rgba(0, 0, 0, 0.5);
+}
+.buch3d::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: 0;
+  width: 16px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.35), rgba(255,255,255,0.12) 45%, rgba(0,0,0,0.25));
+  transform: translateX(-15px) rotateY(-78deg);
+  transform-origin: right;
+  border-radius: 2px 0 0 2px;
+}
+.buch3d::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  right: -5px;
+  width: 5px;
+  background: repeating-linear-gradient(180deg, #F6F3E8 0 2px, #DAD5C4 2px 3px);
+  transform: rotateY(55deg);
+  transform-origin: left;
+  border-radius: 0 2px 2px 0;
+}
+.pub-inhalt { min-width: 0; }
+
 .quiz-opt {
   display: block;
   width: 100%;
@@ -666,6 +882,12 @@ input::placeholder, textarea::placeholder { color: rgba(169, 188, 167, 0.55); }
 @media (max-width: 880px) {
   .tool-grid { grid-template-columns: 1fr; }
   .plan-tag { grid-template-columns: 1fr; gap: 6px; }
+  .phasen { grid-template-columns: 1fr; border-top: 0; }
+  .phasen li { padding: 20px 0 2px; border-top: 1px solid var(--hairline); }
+  .phasen li + li { border-left: 0; padding-left: 0; }
+  .pub { flex-direction: row; }
+  .buch3d, .buch3d img { width: 86px; }
+  .fcard { min-height: 300px; }
 }
 
 @media print {
