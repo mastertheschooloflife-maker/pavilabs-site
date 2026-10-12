@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="de" style="--akzent:#C9A75B;--akzent-tief:#8A6D2F">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prüfungscoach</title>
+<meta name="description" content="Prüfungsangst verstehen und regulieren: produktive Anspannung statt Blackout, geführte Atemübungen mit Timer, kognitive Umstrukturierung, das Blackout-Protokoll und die Routine für den Prüfungsmorgen, nach den Büchern Englisch Meistern und Lernen meistern.">
+<link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="pill">
+    <a class="brand" href="/de/">
+      <img src="/assets/tree-night-small.webp" alt="" width="30" height="30">
+      PaviLabs
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/tools/klausurplaner.html">Klausur-Planer</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
+      <a class="lang-switch" href="/de/">Zur Startseite</a>
+    </nav>
+  </div>
+</header>
+
+<main class="tool-main">
+  <div class="wrap">
+    <h1>Prüfungscoach: Ruhe, wenn es zählt</h1>
+    <p class="tool-lede">Prüfungsangst ist kein Zeichen von Schwäche und kein Zeichen mangelnder Vorbereitung. Sie ist eine neurologische Reaktion, die die Klügsten und Fleißigsten genauso trifft wie alle anderen. Der Unterschied liegt nicht darin, ob du sie hast, sondern wie du mit ihr umgehst. Dieses Werkzeug erklärt, was dabei im Kopf passiert, und gibt dir die Techniken für drei Momente: die Wochen davor, den Prüfungsmorgen und die Minute, in der die Panik aufsteigt.</p>
+    <p class="tool-src">Dieser Coach folgt dem Prüfungsangst-Kapitel aus <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für die Oberstufe</a> und dem Gesundheitskapitel aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
+
+    <div class="panel">
+      <h2>Anspannung ist nicht der Feind</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Das Yerkes-Dodson-Gesetz beschreibt den Zusammenhang zwischen Erregung und Leistung als umgekehrte U-Kurve: Zu wenig Aktivierung macht träge, ein mittleres Niveau macht wach und abrufbereit, zu viel kippt in Denkblockaden und Blackout. Das Ziel ist nicht absolute Ruhe, sondern der Wechsel von lähmender Angst (Distress) in produktive Anspannung (Eustress).</p>
+      <dl class="ledger">
+        <div class="row"><dt>Eustress</dt><dd>Leichtes Kribbeln, Fokus, Wachheit, der Wille, es gut zu machen. Das Gehirn ist aktiviert und abrufbereit. Hier willst du hin.</dd></div>
+        <div class="row"><dt>Distress</dt><dd>Panik, Tunnelblick, Herzrasen, das Gefühl, alles vergessen zu haben. Das Gehirn ist überstimuliert; der Zugriff auf vorhandenes Wissen ist blockiert.</dd></div>
+        <div class="row"><dt>Typische Denkfehler</dt><dd>Katastrophisieren („Wenn das schiefgeht, ist alles vorbei“), Alles-oder-Nichts („Entweder brillant oder schlecht“), Gedankenlesen („Alle werden es merken“). Solche Gedanken wirken im Moment wahr, sind aber überzogen; wer sie erkennt, nimmt ihnen die Wucht.</dd></div>
+      </dl>
+      <div class="cee-box"><strong>Kognitive Umstrukturierung in drei Fragen:</strong> Stimmt der Gedanke „Ich werde versagen“ wirklich? Welche Belege sprechen dagegen (bestandene Klausuren, die investierte Vorbereitung)? Wie lautet der realistische Satz? Zum Beispiel: „Ich bin gut vorbereitet. Das Ergebnis spiegelt eine einzelne Leistungssituation wider, nicht meinen Wert als Mensch.“</div>
+    </div>
+
+    <div class="panel">
+      <h2>Atem-Trainer</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Zwei Techniken aus dem Buch, geführt mit Timer. Die verlängerte Ausatmung signalisiert dem Nervensystem Sicherheit; beide lassen sich diskret am Tisch anwenden. Sie ersetzen keine Vorbereitung, fangen aber die akute Stressspitze ab.</p>
+      <div class="atem-wahl chip-row">
+        <button class="chip aktiv" id="btn478" type="button">4-7-8-Atmung</button>
+        <button class="chip" id="btnSeufzer" type="button">Physiologischer Seufzer</button>
+      </div>
+      <div class="atem-buehne">
+        <div class="atem-kreis" id="atemKreis"><span id="atemPhase">Bereit?</span></div>
+        <p class="atem-info" id="atemInfo">Vier Sekunden durch die Nase einatmen, sieben Sekunden halten, acht Sekunden durch den Mund ausatmen. Drei Zyklen genügen oft.</p>
+        <div class="fcard-aktionen" style="justify-content:center">
+          <button class="btn" id="btnAtem">Übung starten</button>
+          <span class="hint" id="atemZyklus"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Wenn der Blackout kommt</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Ein Blackout ist eine vorübergehende Abrufblockade unter hohem Stress, nicht das Verschwinden deines Wissens. Das Protokoll:</p>
+      <ol class="phasen">
+        <li><h3>Verankern</h3><p>Tischfläche bewusst berühren, beide Füße auf den Boden drücken, ein ruhiger Atemzug. Das holt das Gehirn in den Moment zurück.</p></li>
+        <li><h3>Aufgabe wechseln</h3><p>An etwas anderem arbeiten; das Gehirn sucht im Hintergrund weiter nach der Information.</p></li>
+        <li><h3>Abruf öffnen</h3><p>Frei in Stichpunkten notieren, was allgemein zum Thema einfällt, und Kontextanker nutzen: Wo habe ich das gelernt, mit welchem Beispiel?</p></li>
+      </ol>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:14px">Dazu das Reframing: Dein Körper unterscheidet Angst und Aufregung kaum. Statt „Ich bin vollkommen ruhig“ (was er nicht glaubt) hilft der realistische Satz: „Ich bin angespannt, weil mir das wichtig ist, und ich kann trotzdem klar arbeiten.“</p>
+    </div>
+
+    <div class="panel">
+      <h2>Die Wochen davor: das stärkste Gegenmittel</h2>
+      <dl class="ledger">
+        <div class="row"><dt>Vorbereitung</dt><dd>Angst entsteht aus Ungewissheit. Probeprüfungen unter echten Bedingungen, aktives Abrufen statt Wiederlesen, verteiltes Wiederholen. Kein Atemtrick ersetzt fehlende Vorbereitung.</dd></div>
+        <div class="row"><dt>Exposition</dt><dd>Die Prüfungssituation selbst üben: unter Zeitdruck schreiben, am fremden Tisch, pünktlich beginnen. So lernt das Nervensystem: unangenehm, aber bewältigbar.</dd></div>
+        <div class="row"><dt>Schlaf und Bewegung</dt><dd>Schlafentzug ist einer der stärksten Leistungskiller; wer müde ist, bewertet Anforderungen schneller als Bedrohung. Regelmäßige Bewegung baut Stress physiologisch ab.</dd></div>
+        <div class="row"><dt>Fehlerprotokoll</dt><dd>Nach jeder Probeklausur kurz notieren: Was war inhaltlich schwer, was Stressfehler, was Flüchtigkeit? So wird Angst in konkrete Lernarbeit übersetzt.</dd></div>
+      </dl>
+      <div class="buch-tipp">
+        <span><strong>Aus den Büchern:</strong> Den 14-Tage-Vorbereitungszyklus aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a> setzt der <a href="/tools/klausurplaner.html">Klausur-Planer</a> direkt in einen Tagesplan um; die Klausurtaktik unter Zeitdruck vertieft <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a>.</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Der Prüfungsmorgen</h2>
+      <ul class="check-liste" id="checkListe">
+        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Eiweißreich gefrühstückt: Eier, Vollkornbrot, Joghurt, Nüsse oder Haferflocken.</span></button></li>
+        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Koffein mit Maß: ein Kaffee oder Tee, nicht drei. Zu viel verstärkt Zittern und Unruhe.</span></button></li>
+        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Keine neue Lerneinheit: nur wenige Ankerbegriffe oder Übersichten wiederholt.</span></button></li>
+        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Zehn Minuten Bewegung: Spazierengehen oder leichtes Stretching reguliert die Anspannung.</span></button></li>
+        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Bewusst gewählt, was stabilisiert: Musik oder Ruhe, nicht das, was zusätzlich hochfährt.</span></button></li>
+        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Das Startritual steht: erste Minute atmen, Aufgaben überfliegen, leichte Aufgaben markieren, dann erst loslegen.</span></button></li>
+      </ul>
+      <p class="check-stand" id="checkStand"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Wenn die Angst chronisch ist</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Anhaltende, intensive Prüfungsangst über Wochen, die Schlaf, Konzentration oder Alltag deutlich beeinträchtigt, ist mehr als normale Nervosität. Wenn du wegen anstehender Prüfungen über Wochen schlecht schläfst, schon lange vorher panikartige Symptome erlebst oder die Angst dich vom Lernen und vom normalen Leben abhält, sprich mit jemandem: einem Elternteil, einer Lehrkraft, der Schulpsychologie oder einer Ärztin oder einem Arzt. Prüfungsangst auf diesem Niveau ist behandelbar, und Unterstützung zu suchen ist kein Zeichen von Schwäche.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-copy">
+    <div class="wrap">
+      <span>© 2026 PaviLabs</span>
+      <span><a href="/tools/klausurplaner.html">Zum Klausur-Planer</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $$ = id => document.getElementById(id);
+
+// Atem-Trainer
+const TECHNIKEN = {
+  k478: {
+    name: "4-7-8-Atmung",
+    info: "Vier Sekunden durch die Nase einatmen, sieben Sekunden halten, acht Sekunden durch den Mund ausatmen. Drei Zyklen genügen oft.",
+    zyklen: 3,
+    phasen: [
+      {label: "Einatmen", dauer: 4, scale: 1.45},
+      {label: "Halten", dauer: 7, scale: 1.45},
+      {label: "Ausatmen", dauer: 8, scale: 1.0}
+    ]
+  },
+  seufzer: {
+    name: "Physiologischer Seufzer",
+    info: "Ruhig durch die Nase einatmen, ein zweites kleines Einatmen obendrauf, dann lang und kontrolliert durch den Mund ausatmen. Ein bis drei Wiederholungen fangen die erste Stressspitze ab.",
+    zyklen: 3,
+    phasen: [
+      {label: "Einatmen", dauer: 3, scale: 1.3},
+      {label: "Nachatmen", dauer: 1.5, scale: 1.45},
+      {label: "Lang ausatmen", dauer: 6, scale: 1.0}
+    ]
+  }
+};
+let technik = TECHNIKEN.k478;
+let atemLauf = null;
+
+function waehle(t, btnAktiv, btnAndere) {
+  technik = t;
+  $$(btnAktiv).classList.add("aktiv");
+  $$(btnAndere).classList.remove("aktiv");
+  $$("atemInfo").textContent = t.info;
+  stoppeAtem();
+}
+$$("btn478").onclick = () => waehle(TECHNIKEN.k478, "btn478", "btnSeufzer");
+$$("btnSeufzer").onclick = () => waehle(TECHNIKEN.seufzer, "btnSeufzer", "btn478");
+
+function stoppeAtem() {
+  if (atemLauf) { clearTimeout(atemLauf); atemLauf = null; }
+  const k = $$("atemKreis");
+  k.style.transitionDuration = "600ms";
+  k.style.transform = "scale(1)";
+  $$("atemPhase").textContent = "Bereit?";
+  $$("atemZyklus").textContent = "";
+  $$("btnAtem").textContent = "Übung starten";
+}
+
+$$("btnAtem").onclick = () => {
+  if (atemLauf) { stoppeAtem(); return; }
+  $$("btnAtem").textContent = "Abbrechen";
+  let zyklus = 0, phase = 0;
+  function schritt() {
+    if (phase === 0) {
+      zyklus++;
+      if (zyklus > technik.zyklen) {
+        stoppeAtem();
+        $$("atemPhase").textContent = "Gut so.";
+        $$("atemZyklus").textContent = "Übung abgeschlossen.";
+        return;
+      }
+      $$("atemZyklus").textContent = "Zyklus " + zyklus + " von " + technik.zyklen;
+    }
+    const p = technik.phasen[phase];
+    const k = $$("atemKreis");
+    $$("atemPhase").textContent = p.label;
+    k.style.transitionDuration = p.dauer + "s";
+    k.style.transform = "scale(" + p.scale + ")";
+    phase = (phase + 1) % technik.phasen.length;
+    atemLauf = setTimeout(schritt, p.dauer * 1000);
+  }
+  schritt();
+};
+
+// Checkliste
+const items = document.querySelectorAll("#checkListe .check-item");
+function checkStand() {
+  const ok = document.querySelectorAll("#checkListe .check-item.ok").length;
+  $$("checkStand").style.setProperty("--anteil", String(Math.round((ok / items.length) * 100)));
+  $$("checkStand").textContent = ok === items.length
+    ? "Alle " + items.length + " Punkte sitzen. Geh ruhig rein."
+    : ok + " von " + items.length + " Punkten erledigt.";
+}
+items.forEach(b => b.addEventListener("click", () => { b.classList.toggle("ok"); checkStand(); }));
+checkStand();
+</script>
+
+</body>
+</html>

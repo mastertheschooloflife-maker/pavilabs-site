@@ -86,7 +86,7 @@ function zeigeFrage() {
   if (idx >= FRAGEN.length) { zeigeErgebnis(); return; }
   const q = FRAGEN[idx];
   $("qTitel").textContent = "Frage " + (idx + 1) + " von " + FRAGEN.length;
-  box.innerHTML = `<div style="font-size:1.12rem;margin:10px 0 4px">${q.t}</div>`;
+  box.innerHTML = `<div class="quiz-balken" style="margin-top:14px"><div style="width:${Math.round((idx / FRAGEN.length) * 100)}%"></div></div><div class="quiz-frage">${q.t}</div>`;
   const optionen = mischen([{txt: q.a, wert: "a"}, {txt: q.b, wert: "b"}]);
   for (const o of optionen) {
     const b = document.createElement("button");
