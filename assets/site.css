@@ -475,6 +475,43 @@ html[lang="en"] .dose-samples q { quotes: "\201C" "\201D"; }
 
 .steps p { color: var(--cream-dim); font-size: 0.98rem; }
 
+/* ---------- Publikationen ---------- */
+
+.pubs .wrap { padding-top: 110px; padding-bottom: 110px; }
+
+.pubs h2 { font-size: clamp(1.9rem, 3.1vw, 2.6rem); }
+
+.pubs-intro { color: var(--cream-dim); font-weight: 350; max-width: 56ch; }
+
+.pub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 64px;
+  margin-top: 36px;
+}
+
+.pub {
+  padding: 26px 0 18px;
+  border-top: 1px solid var(--hairline);
+}
+
+.pub h3 { font-size: 1.22rem; margin-bottom: 0.4em; }
+
+.pub h3 a { text-decoration: none; }
+.pub h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+
+.pub p { color: var(--cream-dim); font-size: 0.96rem; max-width: none; margin-bottom: 0.7em; }
+
+.pub .pub-meta {
+  font-size: 0.88rem;
+  color: var(--cream-dim);
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+}
+
+.pub .pub-meta a { color: var(--gold); }
+
 /* ---------- Papier-Karte (Privatsphäre) ---------- */
 
 .privacy .wrap { padding-top: 20px; padding-bottom: 130px; }
@@ -616,6 +653,8 @@ body.legal .foot-copy { border-color: rgba(23, 40, 30, 0.12); }
   .phone-shell, .world--ai .phone-shell { transform: none; }
 
   .ledger dt { min-width: 70px; font-size: 1.6rem; }
+
+  .pub-grid { grid-template-columns: 1fr; }
 
   .steps { grid-template-columns: 1fr; border-top: 0; }
   .steps li { padding: 22px 0 2px; border-top: 1px solid var(--hairline); }
