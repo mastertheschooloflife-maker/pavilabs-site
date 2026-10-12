@@ -202,6 +202,14 @@ section > .wrap, footer > .wrap { position: relative; z-index: 1; }
   margin-bottom: 0.4em;
 }
 
+.hero-slogan {
+  font-family: "Gloock", Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--gold);
+  letter-spacing: 0.01em;
+  margin: -4px 0 22px;
+}
+
 .hero .lede {
   font-size: 1.14rem;
   font-weight: 350;
