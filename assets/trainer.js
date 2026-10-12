@@ -79,6 +79,7 @@
   function nochmal() { if (!stapel.length) return; stapel.push(stapel.shift()); zeigeKarte(); }
   function sitzt() { if (!stapel.length) return; stapel.shift(); geschafft++; zeigeKarte(); }
 
+  if (!$("fcard")) return;
   $("fcard").addEventListener("click", flip);
   $("fcard").addEventListener("keydown", e => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); flip(); } });
   document.addEventListener("keydown", e => {
@@ -99,10 +100,13 @@
     const box = $("quizBox");
     if (qIdx >= qFragen.length) {
       const wert = qPunkte / qFragen.length;
+      const prozent = Math.round(wert * 100);
       const fazit = wert >= 0.8 ? "Starkes Fundament. Die Lernkarten oben schließen die letzten Lücken."
         : wert >= 0.5 ? "Solide Basis. Geh die Kategorien durch, in denen du geraten hast."
         : "Die Lernkarten oben sind der schnellste Weg nach vorn, Kategorie für Kategorie.";
-      box.innerHTML = '<div class="karte"><div class="k-frage">' + qPunkte + " von " + qFragen.length + ' richtig.</div><div class="k-antwort">' + fazit + "</div></div>";
+      box.innerHTML = '<div class="karte"><div class="k-frage">' + qPunkte + " von " + qFragen.length + ' richtig.</div>'
+        + '<div class="quiz-balken" style="margin:14px 0 4px"><div style="width:' + prozent + '%"></div></div>'
+        + '<div class="k-antwort">' + fazit + "</div></div>";
       const again = document.createElement("button");
       again.className = "btn"; again.textContent = "Noch einmal";
       again.onclick = () => { $("btnQuiz").hidden = false; box.innerHTML = ""; };
@@ -110,7 +114,9 @@
       return;
     }
     const q = qFragen[qIdx];
-    box.innerHTML = '<div style="color:var(--cream-dim);font-size:0.9rem;margin-top:12px">Frage ' + (qIdx + 1) + " von " + qFragen.length + '</div><div style="font-size:1.1rem;margin:8px 0 4px">' + q.f + "</div>";
+    box.innerHTML = '<div class="quiz-kopf"><span>Frage ' + (qIdx + 1) + " von " + qFragen.length + '</span><span class="qk-stand">' + qPunkte + " richtig</span></div>"
+      + '<div class="quiz-balken"><div style="width:' + Math.round((qIdx / qFragen.length) * 100) + '%"></div></div>'
+      + '<div class="quiz-frage">' + q.f + "</div>";
     q.o.forEach((opt, i) => {
       const b = document.createElement("button");
       b.className = "quiz-opt"; b.textContent = opt;
