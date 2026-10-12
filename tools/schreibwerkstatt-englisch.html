@@ -7,9 +7,6 @@
 <meta name="description" content="Klausurtexte und Sprachmittlung für das Englisch-Abitur: der 5-Minuten-Plan, die PEEL-Struktur, starke Einleitungen, formelles Register und der Mediations-Workflow, nach dem Buch Englisch Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -82,7 +79,7 @@
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
       <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
       <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+        <div class="fcard" id="fcard" tabindex="0" role="button">
           <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
             <div class="fc-etikett" id="fcKatV"></div>
             <div class="fc-haupt" id="fcFrage"></div>
@@ -111,14 +108,14 @@
       <h2>Die letzten 90 Sekunden</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Endkontrolle vor der Abgabe. Hake ab, was du geprüft hast:</p>
       <ul class="check-liste" id="checkListe">
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Einleitung und Schluss direkt hintereinander gelesen: Beide tragen dieselbe These.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Erste und letzte Sätze jedes Absatzes geprüft: Der rote Faden ist sichtbar.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Analysen stehen im Present Tense: The author argues, nicht argued.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Keine Kontraktionen, keine Umgangssprache: do not statt don't, children statt kids.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Jede Behauptung hat einen Beleg; jeder Absatz beginnt mit einem passenden Konnektor.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Zeichensetzung, Apostrophe, Großschreibung und anspruchsvolle Wörter kontrolliert.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Einleitung und Schluss direkt hintereinander gelesen: Beide tragen dieselbe These.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Erste und letzte Sätze jedes Absatzes geprüft: Der rote Faden ist sichtbar.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Analysen stehen im Present Tense: The author argues, nicht argued.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Keine Kontraktionen, keine Umgangssprache: do not statt don't, children statt kids.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Jede Behauptung hat einen Beleg; jeder Absatz beginnt mit einem passenden Konnektor.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Zeichensetzung, Apostrophe, Großschreibung und anspruchsvolle Wörter kontrolliert.</span></button></li>
       </ul>
-      <p class="check-stand" id="checkStand"></p>
+      <p class="check-stand" id="checkStand" role="status"></p>
       <div class="buch-tipp">
         <span><strong>Der nächste Schritt:</strong> Operatoren und Stilmittel für den Analyseteil trainierst du in der <a href="/tools/textanalyse-englisch.html">Textanalyse Englisch</a>; die vollständigen Mustertexte und den Übungsplan findest du in <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a>.</span>
       </div>
@@ -126,7 +123,7 @@
 
     <div class="panel">
       <h2>Quiz: Schreiblogik verstanden?</h2>
-      <div id="quizBox"></div>
+      <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
     </div>
   </div>
@@ -136,6 +133,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/schreibwerkstatt-franzoesisch.html">Zur Schreibwerkstatt Französisch</a></span>
     </div>
   </div>
@@ -189,7 +187,7 @@ function checkStand() {
     ? "Alle " + items.length + " Punkte geprüft. Jetzt kannst du abgeben."
     : ok + " von " + items.length + " Punkten geprüft.";
 }
-items.forEach(b => b.addEventListener("click", () => { b.classList.toggle("ok"); checkStand(); }));
+items.forEach(b => b.addEventListener("click", () => { const an = b.classList.toggle("ok"); b.setAttribute("aria-pressed", an); checkStand(); }));
 checkStand();
 </script>
 

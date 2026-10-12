@@ -7,9 +7,6 @@
 <meta name="description" content="Grammatik und Konnektoren für das Französisch-Abitur trainieren: Subjonctif, Passé composé gegen Imparfait, Si-Sätze, Pronomen und Teilungsartikel, als Lernkarten und Quiz aus dem Buch Französisch Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -21,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/tools/englisch.html">Englisch</a>
+      <a class="nav-sections" href="/tools/englisch.html">Englisch-Trainer</a>
       <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
@@ -42,7 +39,7 @@
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
       <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
       <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+        <div class="fcard" id="fcard" tabindex="0" role="button">
           <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
             <div class="fc-etikett" id="fcKatV"></div>
             <div class="fc-haupt" id="fcFrage"></div>
@@ -74,7 +71,7 @@
     <div class="panel">
       <h2>Quiz: Wo stehst du?</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem">Zwölf Fragen quer durch Grammatik und Konnektoren, jede Antwort mit Begründung.</p>
-      <div id="quizBox"></div>
+      <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
     </div>
   </div>
@@ -84,6 +81,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/englisch.html">Zum Englisch-Trainer</a></span>
     </div>
   </div>

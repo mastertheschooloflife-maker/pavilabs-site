@@ -7,9 +7,6 @@
 <meta name="description" content="Duales Studium oder klassisches Studium? Zwölf ehrliche Fragen zu Arbeitsstil, Motivation, Belastbarkeit und Freiheitsbedürfnis zeigen, welcher Weg zu dir passt, abgeleitet aus dem kommenden Buch Duales Studium Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -45,7 +42,7 @@
       <h2 id="eTitel"></h2>
       <div id="eBalken"></div>
       <div id="eText" style="color:var(--cream-dim)"></div>
-      <button class="btn btn--ghost no-print" id="btnNochmal" hidden>Noch einmal durchgehen</button>
+      <button class="btn btn--ghost no-print" id="btnNochmal">Noch einmal durchgehen</button>
     </div>
   </div>
 </main>
@@ -54,6 +51,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/studienkompass.html">Zum Studienkompass</a></span>
     </div>
   </div>
@@ -76,11 +74,12 @@ const FRAGEN = [
 ];
 
 const $ = id => document.getElementById(id);
-let idx = 0, punkteA = 0, punkteB = 0;
+let idx = 0, punkteA = 0, punkteB = 0, sperre = 0;
 
 function mischen(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 $("btnStart").onclick = () => { idx = 0; punkteA = 0; punkteB = 0; $("btnStart").hidden = true; $("qIntro").hidden = true; $("ergebnisPanel").hidden = true; zeigeFrage(); };
+$("btnNochmal").onclick = () => { $("btnStart").click(); $("quizPanel").scrollIntoView({behavior: "smooth", block: "start"}); };
 
 function zeigeFrage() {
   const box = $("qBox");
@@ -93,7 +92,7 @@ function zeigeFrage() {
     const b = document.createElement("button");
     b.className = "quiz-opt";
     b.textContent = o.txt;
-    b.onclick = () => { if (o.wert === "a") punkteA++; else punkteB++; idx++; zeigeFrage(); };
+    b.onclick = () => { if (Date.now() < sperre) return; sperre = Date.now() + 400; if (o.wert === "a") punkteA++; else punkteB++; idx++; zeigeFrage(); };
     box.appendChild(b);
   }
 }

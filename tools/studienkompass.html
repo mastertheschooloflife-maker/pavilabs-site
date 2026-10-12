@@ -7,9 +7,6 @@
 <meta name="description" content="Informatik oder Wirtschaftsinformatik? Zwölf Fragen zeigen, welches Studium besser zu deiner Denkweise passt, abgeleitet aus den Studienkompass-Büchern von Pavisanth Pathmarajah.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -21,6 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/tools/duales-studium-check.html">Duales-Studium-Check</a>
       <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
@@ -53,6 +51,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/de/">pavilabs.de</a></span>
     </div>
   </div>
@@ -75,11 +74,12 @@ const FRAGEN = [
 ];
 
 const $ = id => document.getElementById(id);
-let idx = 0, punkteA = 0, punkteB = 0;
+let idx = 0, punkteA = 0, punkteB = 0, sperre = 0;
 
 function mischen(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
 $("btnStart").onclick = () => { idx = 0; punkteA = 0; punkteB = 0; $("btnStart").hidden = true; $("qIntro").hidden = true; $("ergebnisPanel").hidden = true; zeigeFrage(); };
+$("btnNochmal").onclick = () => { $("btnStart").click(); $("quizPanel").scrollIntoView({behavior: "smooth", block: "start"}); };
 
 function zeigeFrage() {
   const box = $("qBox");
@@ -92,7 +92,7 @@ function zeigeFrage() {
     const b = document.createElement("button");
     b.className = "quiz-opt";
     b.textContent = o.txt;
-    b.onclick = () => { if (o.wert === "a") punkteA++; else punkteB++; idx++; zeigeFrage(); };
+    b.onclick = () => { if (Date.now() < sperre) return; sperre = Date.now() + 400; if (o.wert === "a") punkteA++; else punkteB++; idx++; zeigeFrage(); };
     box.appendChild(b);
   }
 }

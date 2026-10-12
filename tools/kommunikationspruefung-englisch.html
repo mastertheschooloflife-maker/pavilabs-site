@@ -7,9 +7,6 @@
 <meta name="description" content="Die Kommunikationsprüfung Englisch in der Oberstufe bis zu 15 Punkten trainieren: Bewertungslogik, Redemittel für jede Gesprächsfunktion, Prüferfragen kontern, Szenario-Training mit Timer und die 15-Punkte-Checkliste, nach Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -21,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/tools/kommunikationspruefung-franzoesisch.html">Französisch</a>
+      <a class="nav-sections" href="/tools/kommunikationspruefung-franzoesisch.html">Prüfung Französisch</a>
       <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
@@ -31,7 +28,7 @@
 <main class="tool-main">
   <div class="wrap">
     <h1>Kommunikationsprüfung Englisch</h1>
-    <p class="tool-lede">Im mündlichen Abitur präsentierst du; in der Kommunikationsprüfung kommunizierst du. Bewertet wird nicht, ob du fehlerfrei sprichst, sondern ob das Gespräch funktioniert: ob du zuhörst, nachfragst, auf deinen Partner eingehst und gemeinsam zu einem Ergebnis kommst. Wer mit einigen Fehlern spricht, aber den Dialog trägt, schlägt regelmäßig den grammatisch perfekten Monologisten. Diese Seite enthält alles, was du für die volle Punktzahl brauchst: die Bewertungslogik, die Redemittel für jede Gesprächsfunktion, die Antwortmuster auf Prüferfragen, Szenarien zum Üben und die Checkliste für den Prüfungstag.</p>
+    <p class="tool-lede">Im mündlichen Abitur präsentierst du; in der Kommunikationsprüfung kommunizierst du. Bewertet wird nicht, ob du fehlerfrei sprichst, sondern ob das Gespräch funktioniert: ob du zuhörst, nachfragst, auf deinen Partner eingehst und gemeinsam zu einem Ergebnis kommst. Wer mit einigen Fehlern spricht, aber den Dialog trägt, schlägt regelmäßig den grammatisch perfekten Monologisten. Diese Seite enthält alles, was du für die volle Punktzahl brauchst: die Bewertungslogik, die Redemittel für jede Gesprächsfunktion, die Antwortmuster auf Prüferfragen, Szenarien zum Üben und die 15-Punkte-Checkliste.</p>
     <p class="tool-src">Dieser Trainer folgt dem Buch <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a>, das beide mündlichen Formate mit Bewertungsrastern, Beispieldialogen und Wochenplänen aufbereitet, sowie den Prüfungskapiteln aus <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für die Oberstufe</a>.</p>
 
     <div class="panel">
@@ -88,7 +85,7 @@
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
       <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
       <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+        <div class="fcard" id="fcard" tabindex="0" role="button">
           <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
             <div class="fc-etikett" id="fcKatV"></div>
             <div class="fc-haupt" id="fcFrage"></div>
@@ -120,7 +117,7 @@
       <h2>Körpersprache und Pausen</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">In der Kommunikationsprüfung zählt auch, was du nicht sagst. Prüfer achten darauf, bewusst oder unbewusst.</p>
       <dl class="ledger">
-        <div class="row"><dt>Augenkontakt</dt><dd>Schau deinen Gesprächspartner an, nicht deine Notizen oder die Decke. In Teil drei ist der Prüfer dein Gesprächspartner, behandle ihn auch so.</dd></div>
+        <div class="row"><dt>Augenkontakt</dt><dd>Schau deinen Gesprächspartner an, nicht deine Notizen oder die Decke. Auch der Prüfer ist dein Gesprächspartner, behandle ihn so.</dd></div>
         <div class="row"><dt>Haltung</dt><dd>Aufrecht und zugewandt signalisiert Engagement, bevor du ein Wort gesagt hast.</dd></div>
         <div class="row"><dt>Mimik</dt><dd>Nicken bei Zustimmung, fragend hochgezogene Augenbraue, Lächeln bei Einigung: nonverbale Reaktionen sind aktives Zuhören.</dd></div>
         <div class="row"><dt>Pausen</dt><dd>Kurze Pausen wirken nachdenklich, lange unsicher. Fülle sie: That is a good point, let me think...</dd></div>
@@ -136,8 +133,8 @@
         <div class="sz-auftrag" id="szAuftrag"></div>
       </div>
       <div class="timer-zeile">
-        <span class="timer-anzeige" id="timerAnzeige">05:00</span>
-        <select class="feld-select" id="timerDauer" style="width:auto">
+        <span class="timer-anzeige" id="timerAnzeige" role="timer">05:00</span>
+        <select class="feld-select" id="timerDauer" aria-label="Dauer" style="width:auto">
           <option value="180">3 Minuten</option>
           <option value="300" selected>5 Minuten</option>
           <option value="600">10 Minuten</option>
@@ -164,18 +161,18 @@
       <h2>Dein Weg zu 15 Punkten</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Checkliste aus Buch und Praxis. Hake ab, was bereits sitzt; der Rest ist dein Trainingsplan für die nächsten Wochen.</p>
       <ul class="check-liste" id="checkListe">
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Ich kenne den Unterschied zwischen Präsentation und Interaktion und spreche in kurzen Einheiten mit Anschlussstellen.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Für jede Gesprächsfunktion (zustimmen, widersprechen, nachfragen, vorschlagen, Kompromiss) habe ich drei Wendungen parat.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Meine Meinungen äußere ich abgestuft: strongly believe, tend to think, tentatively argue.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Jeder Beitrag folgt Claim, Evidence, Explanation statt bloßer Behauptung.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Repair-Strategien sitzen: Nachfragen und Umformulieren statt Schweigen.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Ich habe jedes der vier Prüfungsformate mindestens einmal unter Zeitdruck geübt.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Wöchentliches Rollenspiel mit Partner und gegenseitigem Feedback läuft.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Täglich zehn Minuten frei Englisch sprechen, über irgendetwas.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Augenkontakt, zugewandte Haltung und gefüllte Pausen sind in den Übungen selbstverständlich geworden.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Die sechs Scheiter-Muster oben lösen bei mir einen inneren Alarm aus, wenn ich in eines davon rutsche.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Ich kenne den Unterschied zwischen Präsentation und Interaktion und spreche in kurzen Einheiten mit Anschlussstellen.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Für jede Gesprächsfunktion (zustimmen, widersprechen, nachfragen, vorschlagen, Kompromiss) habe ich drei Wendungen parat.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Meine Meinungen äußere ich abgestuft: strongly believe, tend to think, tentatively argue.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Jeder Beitrag folgt Claim, Evidence, Explanation statt bloßer Behauptung.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Repair-Strategien sitzen: Nachfragen und Umformulieren statt Schweigen.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Ich habe jedes der vier Prüfungsformate mindestens einmal unter Zeitdruck geübt.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Wöchentliches Rollenspiel mit Partner und gegenseitigem Feedback läuft.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Täglich zehn Minuten frei Englisch sprechen, über irgendetwas.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Augenkontakt, zugewandte Haltung und gefüllte Pausen sind in den Übungen selbstverständlich geworden.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Die sechs Scheiter-Muster oben lösen bei mir einen inneren Alarm aus, wenn ich in eines davon rutsche.</span></button></li>
       </ul>
-      <p class="check-stand" id="checkStand"></p>
+      <p class="check-stand" id="checkStand" role="status"></p>
       <div class="buch-tipp">
         <span><strong>Der letzte Schritt:</strong> Dieses Werkzeug gibt dir das Gerüst; die Tiefe kommt aus dem Üben mit vollständigen Musterdialogen, Bewertungsrastern und dem Wochenplan aus <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a>. Wer beides kombiniert, geht ohne Überraschungen in die Prüfung. Für die schriftliche Seite: der <a href="/tools/englisch.html">Englisch-Abitur-Trainer</a>.</span>
       </div>
@@ -183,7 +180,7 @@
 
     <div class="panel">
       <h2>Quiz: Interaktion verstanden?</h2>
-      <div id="quizBox"></div>
+      <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
     </div>
   </div>
@@ -193,6 +190,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/kommunikationspruefung-franzoesisch.html">Zur französischen Kommunikationsprüfung</a></span>
     </div>
   </div>
@@ -269,7 +267,7 @@ const SZENARIEN = [
   {typ: "Informationslücke", text: "You are planning a trip to London. One of you has information about costs and accommodation, the other about sights and transport. Only by asking questions can you build the full plan.", auftrag: "Stellt gezielte Nachfragen (Could you give me more details about...?) und fasst am Ende den gemeinsamen Plan zusammen."},
   {typ: "Diskussion", text: "Your town has money for exactly one project: a new sports centre or a youth culture club.", auftrag: "Vertretet unterschiedliche Positionen, prüft die Argumente des anderen ernsthaft und findet eine Empfehlung."},
   {typ: "Bildinterpretation", text: "Imagine a photo showing a crowded beach next to a melting glacier. Describe it to your partner, interpret it together and discuss the issue behind it.", auftrag: "Dreischritt: beschreiben (In the foreground...), deuten (This might be a commentary on...), Partner einbeziehen (What do you think...?)."},
-  {typ: "Prüfergespräch simulieren", text: "One of you plays the examiner and asks follow-up questions about a topic from your course: Could you elaborate? Can you give an example? But wouldn't you say...?", auftrag: "Der Prüfling antwortet mit den Kontermustern aus den Lernkarten, dann Rollentausch. Nutzt die acht Fragetypen."}
+  {typ: "Prüfergespräch simulieren", text: "One of you plays the examiner and asks follow-up questions about a topic from your course: Could you elaborate? Can you give an example? But wouldn't you say...?", auftrag: "Der Prüfling antwortet mit den Kontermustern aus den Lernkarten, dann Rollentausch. Variiert die Fragetypen."}
 ];
 const $$ = id => document.getElementById(id);
 let szIdx = -1;
@@ -291,6 +289,7 @@ $$("timerDauer").onchange = () => { timerRest = parseInt($$("timerDauer").value,
 $$("btnTimer").onclick = () => {
   if (timerLauf) { clearInterval(timerLauf); timerLauf = null; $$("btnTimer").textContent = "Weiter"; $$("timerAnzeige").classList.remove("laeuft"); return; }
   $$("btnTimer").textContent = "Pause";
+  timerAnzeigen();
   $$("timerAnzeige").classList.add("laeuft");
   timerLauf = setInterval(() => {
     timerRest--;
@@ -318,7 +317,7 @@ function checkStand() {
     ? "Alle " + items.length + " Punkte sitzen. Jetzt entscheidet nur noch die Übungsroutine."
     : ok + " von " + items.length + " Punkten sitzen.";
 }
-items.forEach(b => b.addEventListener("click", () => { b.classList.toggle("ok"); checkStand(); }));
+items.forEach(b => b.addEventListener("click", () => { const an = b.classList.toggle("ok"); b.setAttribute("aria-pressed", an); checkStand(); }));
 checkStand();
 </script>
 

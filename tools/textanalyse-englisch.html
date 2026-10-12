@@ -4,12 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Textanalyse Englisch</title>
-<meta name="description" content="Operatoren und Stilmittel für das Englisch-Abitur: die drei Anforderungsbereiche, alle Aufgabenverben von name bis evaluate, 24 Stilmittel als Lernkarten und die goldene Analyse-Formel, nach dem Buch Englisch Meistern.">
+<meta name="description" content="Operatoren und Stilmittel für das Englisch-Abitur: die drei Anforderungsbereiche, alle Aufgabenverben von name bis evaluate, die wichtigsten Stilmittel als Lernkarten und die goldene Analyse-Formel, nach dem Buch Englisch Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -49,7 +46,7 @@
 
     <div class="panel">
       <h2>Die goldene Analyse-Formel</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Der größte Fehler bei Stilmitteln: benennen, Beispiel nennen, aufhören. Das reicht für AFB I. Die Spitzennote verlangt alle vier Schritte.</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Der größte Fehler bei Stilmitteln: benennen, Beispiel nennen, aufhören. Das reicht für AFB I. Die Spitzennote verlangt den vollständigen Vierschritt aus Name, Zitat, Erklärung und Wirkung.</p>
       <ol class="phasen">
         <li><h3>Name + Zitat</h3><p>Stilmittel englisch benennen, Textstelle in Anführungszeichen mit Zeilenangabe zitieren.</p></li>
         <li><h3>Erklärung</h3><p>Warum zählt dieser Ausdruck als Stilmittel? Was genau macht ihn zur Metapher oder Anapher?</p></li>
@@ -61,13 +58,13 @@
 
     <div class="panel">
       <h2>Operatoren und Stilmittel als Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Zwei Stapel: die Operatoren nach Anforderungsbereich und alle 24 Stilmittel in vier Kategorien. Erst selbst antworten, dann umdrehen. Pfeil rechts heißt „sitzt“, Pfeil links heißt „nochmal“.</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Zwei Stapel: die Operatoren nach Anforderungsbereich und die Stilmittel in vier Kategorien. Erst selbst antworten, dann umdrehen. Pfeil rechts heißt „sitzt“, Pfeil links heißt „nochmal“.</p>
       <div class="chip-row" id="deckRow"></div>
       <div class="chip-row" id="catRow"></div>
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
       <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
       <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+        <div class="fcard" id="fcard" tabindex="0" role="button">
           <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
             <div class="fc-etikett" id="fcKatV"></div>
             <div class="fc-haupt" id="fcFrage"></div>
@@ -109,7 +106,7 @@
 
     <div class="panel">
       <h2>Quiz: Analyse-Logik verstanden?</h2>
-      <div id="quizBox"></div>
+      <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
     </div>
   </div>
@@ -119,6 +116,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/textanalyse-franzoesisch.html">Zur Textanalyse Französisch</a></span>
     </div>
   </div>

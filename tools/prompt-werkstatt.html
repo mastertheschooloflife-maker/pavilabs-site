@@ -7,9 +7,6 @@
 <meta name="description" content="Prompting als Handwerk: der Vier-Fragen-Baukasten für vollständige Prompts, die Techniken der Profis von Few-Shot bis Meta-Prompting, zehn Prompt-Rezepte als Lernkarten und die Prüfroutine gegen Halluzinationen, nach dem Buch Künstliche Intelligenz Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -38,17 +35,17 @@
       <h2>Der Prompt-Baukasten</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Gute Prompts müssen nicht lang sein, sondern vollständig. Ein vollständiger Prompt beantwortet vier Fragen: Was genau soll entstehen? Für wen? In welcher Form? Und woran erkenne ich, dass es gut ist? Fülle aus, was du brauchst; der Baukasten setzt daraus deinen Prompt zusammen. Alles bleibt im Browser.</p>
       <div class="pb-form">
-        <label class="feld"><span>Aufgabe: Was genau soll entstehen?</span><textarea class="feld-text" id="pbAufgabe" rows="2" placeholder="Ein Ankündigungstext von etwa 150 Wörtern für unseren Kundennewsletter über das neue Berechtigungsmodul"></textarea></label>
-        <label class="feld"><span>Zielgruppe: Für wen ist es?</span><input class="feld-text" id="pbZielgruppe" placeholder="IT-Leiter mittelständischer Unternehmen, die die Software bereits nutzen"></label>
-        <label class="feld"><span>Form: Format, Länge, Ton</span><input class="feld-text" id="pbForm" placeholder="Sachlich, ohne Marketingfloskeln, etwa 150 Wörter, Abschluss mit Webinar-Hinweis"></label>
-        <label class="feld"><span>Qualität: Woran erkennst du ein gutes Ergebnis? Negativliste?</span><input class="feld-text" id="pbQualitaet" placeholder="Keine Superlative, keine rhetorischen Fragen, keine Weltlage-Einleitungen"></label>
-        <label class="feld"><span>Rolle oder Perspektive (optional)</span><input class="feld-text" id="pbRolle" placeholder="Prüfe aus der Perspektive eines skeptischen Vorstands, der nur auf Zahlen schaut"></label>
+        <label class="feld"><span>Aufgabe: Was genau soll entstehen?</span><textarea class="feld-text" id="pbAufgabe" rows="2" placeholder="Eine Gliederung für ein zehnminütiges Referat über die Weimarer Republik, mit drei Kernpunkten und einem Einstieg, der das Publikum packt"></textarea></label>
+        <label class="feld"><span>Zielgruppe: Für wen ist es?</span><input class="feld-text" id="pbZielgruppe" placeholder="Ein Geschichts-Leistungskurs mit Vorwissen aus dem Unterricht"></label>
+        <label class="feld"><span>Form: Format, Länge, Ton</span><input class="feld-text" id="pbForm" placeholder="Stichpunkte statt Fließtext, maximal eine Seite, nüchterner Ton"></label>
+        <label class="feld"><span>Qualität: Woran erkennst du ein gutes Ergebnis? Negativliste?</span><input class="feld-text" id="pbQualitaet" placeholder="Keine Floskeln, keine erfundenen Zahlen oder Zitate, keine Weltlage-Einleitungen"></label>
+        <label class="feld"><span>Rolle oder Perspektive (optional)</span><input class="feld-text" id="pbRolle" placeholder="Prüfe anschließend aus Sicht einer strengen Lehrkraft, die jede unbelegte Behauptung markiert"></label>
         <label class="feld"><span>Beispiel des gewünschten Stils (optional, stärkstes Steuerungsinstrument)</span><textarea class="feld-text" id="pbBeispiel" rows="2" placeholder="Ein gelungenes bestehendes Exemplar einfügen: verfasse nach dem Muster dieses Beispiels..."></textarea></label>
       </div>
       <div class="fcard-aktionen">
         <button class="btn" id="btnBauen">Prompt zusammensetzen</button>
         <button class="btn btn--ghost" id="btnKopieren" hidden>In die Zwischenablage</button>
-        <span class="hint" id="pbHinweis"></span>
+        <span class="hint" id="pbHinweis" role="status"></span>
       </div>
       <pre class="pb-ausgabe" id="pbAusgabe" hidden></pre>
       <div class="buch-tipp">
@@ -76,7 +73,7 @@
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
       <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
       <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+        <div class="fcard" id="fcard" tabindex="0" role="button">
           <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
             <div class="fc-etikett" id="fcKatV"></div>
             <div class="fc-haupt" id="fcFrage"></div>
@@ -115,7 +112,7 @@
 
     <div class="panel">
       <h2>Quiz: Prompting-Handwerk verstanden?</h2>
-      <div id="quizBox"></div>
+      <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
     </div>
   </div>
@@ -125,6 +122,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/de/#publikationen">Zu den KI-Büchern</a></span>
     </div>
   </div>
@@ -168,6 +166,7 @@ const QUIZ = [
 const $$ = id => document.getElementById(id);
 $$("btnBauen").onclick = () => {
   const teile = [];
+  const satz = t => /[.!?:…]$/.test(t) ? t : t + ".";
   const rolle = $$("pbRolle").value.trim();
   const aufgabe = $$("pbAufgabe").value.trim();
   const ziel = $$("pbZielgruppe").value.trim();
@@ -176,11 +175,11 @@ $$("btnBauen").onclick = () => {
   const beispiel = $$("pbBeispiel").value.trim();
   if (!aufgabe) { $$("pbHinweis").textContent = "Mindestens die Aufgabe ausfüllen."; return; }
   $$("pbHinweis").textContent = "";
-  if (rolle) teile.push(rolle.replace(/\.?$/, "."));
-  teile.push(aufgabe.replace(/\.?$/, "."));
-  if (ziel) teile.push("Zielgruppe: " + ziel.replace(/\.?$/, "."));
-  if (form) teile.push("Form und Ton: " + form.replace(/\.?$/, "."));
-  if (qual) teile.push("Qualitätskriterien und Negativliste: " + qual.replace(/\.?$/, "."));
+  if (rolle) teile.push(satz(rolle));
+  teile.push(satz(aufgabe));
+  if (ziel) teile.push("Zielgruppe: " + satz(ziel));
+  if (form) teile.push("Form und Ton: " + satz(form));
+  if (qual) teile.push("Qualitätskriterien und Negativliste: " + satz(qual));
   if (beispiel) teile.push("Orientiere dich an Aufbau und Tonlage des folgenden Beispiels:\n<beispiel>\n" + beispiel + "\n</beispiel>");
   teile.push("Fasse zuerst in eigenen Worten zusammen, was ich von dir will, und nenne offene Fragen. Schreibe erst danach.");
   const prompt = teile.join("\n\n");

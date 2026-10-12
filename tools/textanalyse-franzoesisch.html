@@ -7,9 +7,6 @@
 <meta name="description" content="Operatoren und figures de style für das Französisch-Abitur: alle Aufgabenverben von résumer bis discuter, die wichtigsten Stilmittel als Lernkarten und die Drei-Schritt-Methode der Analyse, nach dem Buch Französisch Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -66,7 +63,7 @@
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
       <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
       <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+        <div class="fcard" id="fcard" tabindex="0" role="button">
           <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
             <div class="fc-etikett" id="fcKatV"></div>
             <div class="fc-haupt" id="fcFrage"></div>
@@ -108,7 +105,7 @@
 
     <div class="panel">
       <h2>Quiz: Operatoren sicher deuten</h2>
-      <div id="quizBox"></div>
+      <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
     </div>
   </div>
@@ -118,6 +115,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/textanalyse-englisch.html">Zur Textanalyse Englisch</a></span>
     </div>
   </div>
@@ -197,7 +195,7 @@ const QUIZ = [
   {f: '« Moi, président, je ne nommerai pas... Moi, président... » ist...', o: ['...ein Parallelismus', '...eine Anapher', '...eine Epipher'], r: 1, e: 'Wiederholung am Satzanfang: die Anapher, Hollandes berühmtes Beispiel von 2012.'},
   {f: 'Eine gute Stilmittelanalyse besteht aus...', o: ['...Benennen des Stilmittels', '...identifier, citer, interpréter', '...möglichst vielen Fachbegriffen'], r: 1, e: 'Die Drei-Schritt-Methode: benennen, belegen, Wirkung erläutern.'},
   {f: '„Analysez la relation entre les deux personnages“ verlangt...', o: ['...beide Personen einzeln charakterisieren', '...die spezifische Beziehung analysieren', '...die Handlung zusammenfassen'], r: 1, e: 'Das Subjekt der Aufgabe genau lesen: die Beziehung, nicht die Personen einzeln.'},
-  {f: '« Il faut manger pour vivre, et non vivre pour manger » ist...', o: ['...ein Chiasmus', '...eine Gradation', '...eine Periphrase'], r: 1, e: 'Kreuzstellung ABBA: manger und vivre in umgekehrter Reihenfolge.'},
+  {f: '« Il faut manger pour vivre, et non vivre pour manger » ist...', o: ['...ein Chiasmus', '...eine Gradation', '...eine Periphrase'], r: 0, e: 'Kreuzstellung ABBA: manger und vivre in umgekehrter Reihenfolge.'},
   {f: 'Eingrenzungen wie « en vous appuyant sur le texte » sind...', o: ['...optionale Hinweise', '...verbindlicher Teil der Aufgabe', '...nur für den Leistungskurs relevant'], r: 1, e: 'Wer sie ignoriert, bekommt Abzüge: Sie gehören zur Aufgabenstellung.'}
 ];
 </script>

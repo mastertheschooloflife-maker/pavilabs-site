@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de" style="--akzent:#C9A75B;--akzent-tief:#8A6D2F">
+<html lang="de" style="--akzent:#C9A75B;--akzent-tief:#7A5F26">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,9 +7,6 @@
 <meta name="description" content="Prüfungsangst verstehen und regulieren: produktive Anspannung statt Blackout, geführte Atemübungen mit Timer, kognitive Umstrukturierung, das Blackout-Protokoll und die Routine für den Prüfungsmorgen, nach den Büchern Englisch Meistern und Lernen meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -53,11 +50,11 @@
         <button class="chip" id="btnSeufzer" type="button">Physiologischer Seufzer</button>
       </div>
       <div class="atem-buehne">
-        <div class="atem-kreis" id="atemKreis"><span id="atemPhase">Bereit?</span></div>
+        <div class="atem-kreis" id="atemKreis"><span id="atemPhase" role="status">Bereit?</span></div>
         <p class="atem-info" id="atemInfo">Vier Sekunden durch die Nase einatmen, sieben Sekunden halten, acht Sekunden durch den Mund ausatmen. Drei Zyklen genügen oft.</p>
         <div class="fcard-aktionen" style="justify-content:center">
           <button class="btn" id="btnAtem">Übung starten</button>
-          <span class="hint" id="atemZyklus"></span>
+          <span class="hint" id="atemZyklus" role="status"></span>
         </div>
       </div>
     </div>
@@ -89,19 +86,19 @@
     <div class="panel">
       <h2>Der Prüfungsmorgen</h2>
       <ul class="check-liste" id="checkListe">
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Eiweißreich gefrühstückt: Eier, Vollkornbrot, Joghurt, Nüsse oder Haferflocken.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Koffein mit Maß: ein Kaffee oder Tee, nicht drei. Zu viel verstärkt Zittern und Unruhe.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Keine neue Lerneinheit: nur wenige Ankerbegriffe oder Übersichten wiederholt.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Zehn Minuten Bewegung: Spazierengehen oder leichtes Stretching reguliert die Anspannung.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Bewusst gewählt, was stabilisiert: Musik oder Ruhe, nicht das, was zusätzlich hochfährt.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Das Startritual steht: erste Minute atmen, Aufgaben überfliegen, leichte Aufgaben markieren, dann erst loslegen.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Eiweißreich gefrühstückt: Eier, Vollkornbrot, Joghurt, Nüsse oder Haferflocken.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Koffein mit Maß: ein Kaffee oder Tee, nicht drei. Zu viel verstärkt Zittern und Unruhe.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Keine neue Lerneinheit: nur wenige Ankerbegriffe oder Übersichten wiederholt.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Zehn Minuten Bewegung: Spazierengehen oder leichtes Stretching reguliert die Anspannung.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Bewusst gewählt, was stabilisiert: Musik oder Ruhe, nicht das, was zusätzlich hochfährt.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Das Startritual steht: erste Minute atmen, Aufgaben überfliegen, leichte Aufgaben markieren, dann erst loslegen.</span></button></li>
       </ul>
-      <p class="check-stand" id="checkStand"></p>
+      <p class="check-stand" id="checkStand" role="status"></p>
     </div>
 
     <div class="panel">
       <h2>Wenn die Angst chronisch ist</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Anhaltende, intensive Prüfungsangst über Wochen, die Schlaf, Konzentration oder Alltag deutlich beeinträchtigt, ist mehr als normale Nervosität. Wenn du wegen anstehender Prüfungen über Wochen schlecht schläfst, schon lange vorher panikartige Symptome erlebst oder die Angst dich vom Lernen und vom normalen Leben abhält, sprich mit jemandem: einem Elternteil, einer Lehrkraft, der Schulpsychologie oder einer Ärztin oder einem Arzt. Prüfungsangst auf diesem Niveau ist behandelbar, und Unterstützung zu suchen ist kein Zeichen von Schwäche.</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Anhaltende, intensive Prüfungsangst über Wochen, die Schlaf, Konzentration oder Alltag deutlich beeinträchtigt, ist mehr als normale Nervosität. Wenn du wegen anstehender Prüfungen über Wochen schlecht schläfst, schon lange vorher panikartige Symptome erlebst oder die Angst dich vom Lernen und vom normalen Leben abhält, sprich mit jemandem: einem Elternteil, einer Lehrkraft, der Schulpsychologie oder einer Ärztin oder einem Arzt. Prüfungsangst auf diesem Niveau ist behandelbar, und Unterstützung zu suchen ist kein Zeichen von Schwäche. Wenn du anonym und kostenlos reden willst: Die Nummer gegen Kummer ist montags bis samstags von 14 bis 20 Uhr unter 116 111 erreichbar.</p>
     </div>
   </div>
 </main>
@@ -110,6 +107,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/klausurplaner.html">Zum Klausur-Planer</a></span>
     </div>
   </div>
@@ -199,7 +197,7 @@ function checkStand() {
     ? "Alle " + items.length + " Punkte sitzen. Geh ruhig rein."
     : ok + " von " + items.length + " Punkten erledigt.";
 }
-items.forEach(b => b.addEventListener("click", () => { b.classList.toggle("ok"); checkStand(); }));
+items.forEach(b => b.addEventListener("click", () => { const an = b.classList.toggle("ok"); b.setAttribute("aria-pressed", an); checkStand(); }));
 checkStand();
 </script>
 

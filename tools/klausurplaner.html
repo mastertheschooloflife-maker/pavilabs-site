@@ -7,9 +7,6 @@
 <meta name="description" content="Erstellt aus Klausurdatum und Themenliste einen konkreten Vorbereitungsplan nach dem 14-Tage-Zyklus aus dem Buch Lernen meistern: Wissensdiagnose, Lernzettel 2.0, Active Recall und Übungsklausur.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -21,6 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
+      <a class="nav-sections" href="/tools/pruefungscoach.html">Prüfungscoach</a>
       <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
@@ -42,7 +40,7 @@
       <label class="feld" for="themen">Themen der Klausur (eins pro Zeile)</label>
       <textarea class="feld-area" id="themen" placeholder="Versailler Vertrag&#10;Hyperinflation 1923&#10;Goldene Zwanziger&#10;Scheitern der Republik"></textarea>
       <button class="btn" id="btnPlan">Plan erstellen</button>
-      <span id="warnung" style="display:block;margin-top:10px;color:var(--gold);font-size:0.92rem"></span>
+      <span id="warnung" role="status" style="display:block;margin-top:10px;color:var(--gold);font-size:0.92rem"></span>
     </div>
 
     <div id="planBox" hidden>
@@ -60,6 +58,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/de/">pavilabs.de</a></span>
     </div>
   </div>
@@ -95,11 +94,17 @@ $("btnPlan").onclick = () => {
   };
 
   const tage = [];
-  for (let i = 1; i <= span; i++) {
+  for (let i = 0; i < span; i++) {
     const d = new Date(start); d.setDate(start.getDate() + i);
     const rest = span - i;
     let phase, aufgaben;
-    if (i === 1) {
+    if (rest === 1) {
+      phase = "Vortag";
+      aufgaben = [
+        "Kurzer Überblick am Vormittag, danach bewusst abschalten.",
+        "Früh schlafen: Eine Nacht zu wenig Schlaf kostet mehr Punkte als eine Stunde weniger Lernen bringt."
+      ];
+    } else if (i === 0) {
       phase = "Phase 0: Wissensdiagnose";
       aufgaben = [
         "Alle Themen aufschreiben und zu jedem notieren: Was könnte gefragt werden?",
@@ -114,15 +119,7 @@ $("btnPlan").onclick = () => {
         "Nur die Lücken aus dem Vergleich in den Lernzettel aufnehmen.",
         "Lernzettel für Active Recall formatieren: vorne Schlüsselwörter, hinten die Erklärung."
       ];
-    } else if (rest >= 2) {
-      phase = "Anwendungsphase: Abruf unter Druck";
-      aufgaben = [
-        "Active Recall über die bisherigen Lernzettel: erst abrufen, dann nachschauen.",
-        "Eine eigene Übungsklausur erstellen: 3 bis 5 Kernfragen mit Operatoren (beschreibe, erkläre, analysiere, bewerte).",
-        "Die Übungsklausur unter Realbedingungen schreiben: Zeitlimit, keine Hilfsmittel, mit Stift.",
-        "Danach korrigieren und analysieren: Wo waren Lücken, wo war das Zeitmanagement schwach?"
-      ];
-    } else if (rest === 1) {
+    } else if (rest === 2 && span >= 5) {
       phase = "Konsolidierung";
       aufgaben = [
         "Nur noch die Stellen wiederholen, die in der Übungsklausur gestockt haben.",
@@ -130,21 +127,26 @@ $("btnPlan").onclick = () => {
         "Nichts Neues mehr anfangen."
       ];
     } else {
-      phase = "Vortag und Klausurtag";
+      phase = "Anwendungsphase: Abruf unter Druck";
       aufgaben = [
-        "Kurzer Überblick am Vormittag, danach bewusst abschalten.",
-        "Früh schlafen: Eine Nacht zu wenig Schlaf kostet mehr Punkte als eine Stunde weniger Lernen bringt.",
-        "Am Klausurtag: Du hast unter Druck geübt, also kannst du unter Druck abrufen."
+        "Active Recall über die bisherigen Lernzettel: erst abrufen, dann nachschauen.",
+        "Eine eigene Übungsklausur erstellen: 3 bis 5 Kernfragen mit Operatoren (beschreibe, erkläre, analysiere, bewerte).",
+        "Die Übungsklausur unter Realbedingungen schreiben: Zeitlimit, keine Hilfsmittel, mit Stift.",
+        "Danach korrigieren und analysieren: Wo waren Lücken, wo war das Zeitmanagement schwach?"
       ];
     }
     tage.push({d, phase, aufgaben});
   }
 
+  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const absorptionsTage = tage.filter(t => t.phase.startsWith("Absorption"));
   const chunks = proTag(themenListe, Math.max(absorptionsTage.length, 1));
   absorptionsTage.forEach((t, i) => {
-    if (chunks[i] && chunks[i].length) t.aufgaben.unshift("Heutige Themen: " + chunks[i].join(", "));
+    if (chunks[i] && chunks[i].length) t.aufgaben.unshift("Heutige Themen: " + chunks[i].map(esc).join(", "));
   });
+  if (!absorptionsTage.length && tage.length) {
+    tage[0].aufgaben.unshift("Deine Themen, nach Lücken priorisiert: " + themenListe.map(esc).join(", "));
+  }
 
   $("planTitel").textContent = "Vorbereitungsplan für " + fach;
   $("planHinweis").textContent = tageBis > 14
@@ -160,7 +162,7 @@ $("btnPlan").onclick = () => {
   }
   const ende = document.createElement("div");
   ende.className = "plan-tag";
-  ende.innerHTML = `<div><span class="pt-datum">${fmt(klausur)}</span><span class="pt-phase">Klausur</span></div><ul><li>Nach der Rückgabe: Klausur analysieren. Welche Fehlerart war es, Wissen, Struktur oder Zeit? Das ist der Startpunkt für den nächsten Zyklus.</li></ul>`;
+  ende.innerHTML = `<div><span class="pt-datum">${fmt(klausur)}</span><span class="pt-phase">Klausurtag</span></div><ul><li>Du hast unter Druck geübt, also kannst du unter Druck abrufen.</li><li>Nach der Rückgabe: Klausur analysieren. Welche Fehlerart war es, Wissen, Struktur oder Zeit? Das ist der Startpunkt für den nächsten Zyklus.</li></ul>`;
   box.appendChild(ende);
   $("planBox").hidden = false;
   $("planBox").scrollIntoView({behavior: "smooth", block: "start"});

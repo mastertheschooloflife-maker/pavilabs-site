@@ -7,9 +7,6 @@
 <meta name="description" content="Die Kommunikationsprüfung Französisch in der Oberstufe bis zu 15 Punkten trainieren: die drei Prüfungsphasen, das offizielle Bewertungsraster, Redemittel für Monolog, Dialog und Prüfergespräch, Szenario-Training mit Timer, nach dem Buch Französisch Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500;650&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -21,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/tools/kommunikationspruefung-englisch.html">Englisch</a>
+      <a class="nav-sections" href="/tools/kommunikationspruefung-englisch.html">Prüfung Englisch</a>
       <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
@@ -31,7 +28,7 @@
 <main class="tool-main">
   <div class="wrap">
     <h1>Kommunikationsprüfung Französisch</h1>
-    <p class="tool-lede">Die Kommunikationsprüfung testet etwas anderes als das mündliche Abitur: nicht die Analyse eines Textes, sondern spontanes, lebendiges Französisch in einer realen Situation. Reagieren, verhandeln, höflich widersprechen, einen Kompromiss aushandeln. Wer sich darauf wie auf eine Textanalyse vorbereitet, scheitert an der falschen Stelle. Diese Seite enthält alles für die volle Punktzahl: die drei Prüfungsphasen, das offizielle Bewertungsraster, die Redemittel für jede Gesprächsfunktion, Szenarien zum Üben und die Checkliste für den Prüfungstag.</p>
+    <p class="tool-lede">Die Kommunikationsprüfung testet etwas anderes als das mündliche Abitur: nicht die Analyse eines Textes, sondern spontanes, lebendiges Französisch in einer realen Situation. Reagieren, verhandeln, höflich widersprechen, einen Kompromiss aushandeln. Wer sich darauf wie auf eine Textanalyse vorbereitet, scheitert an der falschen Stelle. Diese Seite enthält alles für die volle Punktzahl: die drei Prüfungsphasen, das offizielle Bewertungsraster, die Redemittel für jede Gesprächsfunktion, Szenarien zum Üben und die 15-Punkte-Checkliste.</p>
     <p class="tool-src">Dieser Trainer folgt dem Kapitel zur Kommunikationsprüfung aus <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>. Die sprachübergreifende Methodik der mündlichen Vorbereitung vertieft <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a>.</p>
 
     <div class="panel">
@@ -71,7 +68,7 @@
         <div class="row"><dt>Durchgängiger Partnerkontakt</dt><dd>Flexibles, unbeschwertes Eingehen auf Partner und Prüfer, situationsangemessen bis zum Schluss.</dd></div>
       </dl>
       <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> Wie du jede dieser Kompetenzen einzeln trainierst und woran Prüfer die Stufen festmachen, steht im Prüfungskapitel von <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a>; die Bewertungslogik beider mündlicher Formate vertieft <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Umfassende Vorbereitung für mündliche Prüfungen</a>.</span>
+        <span><strong>Aus dem Buch:</strong> Wie du jede dieser Kompetenzen einzeln trainierst und woran Prüfer die Stufen festmachen, steht im Prüfungskapitel von <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a>.</span>
       </div>
     </div>
 
@@ -90,7 +87,7 @@
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
       <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
       <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button" aria-label="Lernkarte umdrehen">
+        <div class="fcard" id="fcard" tabindex="0" role="button">
           <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
             <div class="fc-etikett" id="fcKatV"></div>
             <div class="fc-haupt" id="fcFrage"></div>
@@ -127,8 +124,8 @@
         <div class="sz-auftrag" id="szAuftrag"></div>
       </div>
       <div class="timer-zeile">
-        <span class="timer-anzeige" id="timerAnzeige">05:00</span>
-        <select class="feld-select" id="timerDauer" style="width:auto">
+        <span class="timer-anzeige" id="timerAnzeige" role="timer">05:00</span>
+        <select class="feld-select" id="timerDauer" aria-label="Dauer" style="width:auto">
           <option value="180">3 Minuten</option>
           <option value="300" selected>5 Minuten</option>
           <option value="600">10 Minuten</option>
@@ -156,18 +153,18 @@
       <h2>Dein Weg zu 15 Punkten</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Checkliste aus Buch, Rastern und Praxis. Hake ab, was bereits sitzt; der Rest ist dein Trainingsplan.</p>
       <ul class="check-liste" id="checkListe">
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Ich kenne die drei Phasen und weiß, dass Monolog, Dialog und Prüfergespräch unterschiedlich trainiert werden.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Zu jedem Themenfeld meines Kurses kann ich drei Minuten frei sprechen, nur mit Stichworten.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Für jede Gesprächsfunktion (zustimmen, widersprechen, nachfragen, vorschlagen, verhandeln) habe ich drei Wendungen parat.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Jeder Beitrag folgt Aussage, Beleg, Erklärung statt bloßer Behauptung.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Die Höflichkeitswendungen sitzen: Excusez-moi de vous interrompre, Si je peux me permettre, Pourriez-vous répéter.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Paraphrasieren statt Deutsch: Fehlt ein Wort, umschreibe ich es, ohne den Fluss zu verlieren.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Subjonctif nach den Pflicht-Auslösern (il faut que, pour que, bien que, à condition que) kommt automatisch.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Seit mindestens einem Monat übe ich zweimal pro Woche 20 Minuten Rollenspiele mit festem Partner.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Register sitzt: tu im Schülerdialog, vous und Höflichkeitsformen im Prüfergespräch.</span></button></li>
-        <li><button class="check-item" type="button"><span class="ck">✓</span><span>Die sechs Fauxpas oben lösen bei mir einen inneren Alarm aus, bevor ich in einen davon rutsche.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Ich kenne die drei Phasen und weiß, dass Monolog, Dialog und Prüfergespräch unterschiedlich trainiert werden.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Zu jedem Themenfeld meines Kurses kann ich drei Minuten frei sprechen, nur mit Stichworten.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Für jede Gesprächsfunktion (zustimmen, widersprechen, nachfragen, vorschlagen, verhandeln) habe ich drei Wendungen parat.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Jeder Beitrag folgt Aussage, Beleg, Erklärung statt bloßer Behauptung.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Die Höflichkeitswendungen sitzen: Excusez-moi de vous interrompre, Si je peux me permettre, Pourriez-vous répéter.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Paraphrasieren statt Deutsch: Fehlt ein Wort, umschreibe ich es, ohne den Fluss zu verlieren.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Subjonctif nach den Pflicht-Auslösern (il faut que, pour que, bien que, à condition que) kommt automatisch.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Seit mindestens einem Monat übe ich zweimal pro Woche 20 Minuten Rollenspiele mit festem Partner.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Register sitzt: tu im Schülerdialog, vous und Höflichkeitsformen im Prüfergespräch.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Die sechs Fauxpas oben lösen bei mir einen inneren Alarm aus, bevor ich in einen davon rutsche.</span></button></li>
       </ul>
-      <p class="check-stand" id="checkStand"></p>
+      <p class="check-stand" id="checkStand" role="status"></p>
       <div class="buch-tipp">
         <span><strong>Der letzte Schritt:</strong> Dieses Werkzeug gibt dir das Gerüst; die Tiefe kommt aus dem vollständigen Prüfungskapitel mit Beispieldialogen und Themenfeldern in <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>. Für Grammatik und Konnektoren: der <a href="/tools/franzoesisch.html">Französisch-Abitur-Trainer</a>.</span>
       </div>
@@ -175,7 +172,7 @@
 
     <div class="panel">
       <h2>Quiz: Prüfungslogik verstanden?</h2>
-      <div id="quizBox"></div>
+      <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
     </div>
   </div>
@@ -185,6 +182,7 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
+      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/kommunikationspruefung-englisch.html">Zur englischen Kommunikationsprüfung</a></span>
     </div>
   </div>
@@ -280,6 +278,7 @@ $$("timerDauer").onchange = () => { timerRest = parseInt($$("timerDauer").value,
 $$("btnTimer").onclick = () => {
   if (timerLauf) { clearInterval(timerLauf); timerLauf = null; $$("btnTimer").textContent = "Weiter"; $$("timerAnzeige").classList.remove("laeuft"); return; }
   $$("btnTimer").textContent = "Pause";
+  timerAnzeigen();
   $$("timerAnzeige").classList.add("laeuft");
   timerLauf = setInterval(() => {
     timerRest--;
@@ -307,7 +306,7 @@ function checkStand() {
     ? "Alle " + items.length + " Punkte sitzen. Jetzt entscheidet nur noch die Übungsroutine."
     : ok + " von " + items.length + " Punkten sitzen.";
 }
-items.forEach(b => b.addEventListener("click", () => { b.classList.toggle("ok"); checkStand(); }));
+items.forEach(b => b.addEventListener("click", () => { const an = b.classList.toggle("ok"); b.setAttribute("aria-pressed", an); checkStand(); }));
 checkStand();
 </script>
 
