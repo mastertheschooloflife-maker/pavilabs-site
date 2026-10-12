@@ -37,13 +37,15 @@
     }
   }
 
+  function kartenAktionen() { return $("btnKnown") ? $("btnKnown").closest(".fcard-aktionen") : null; }
+
   function neuerStapel() {
     stapel = mischen([...DECKS[deck][kat]]);
     gesamt = stapel.length;
     geschafft = 0;
     $("deckFertig").hidden = true;
     $("buehne").style.display = "";
-    document.querySelector(".fcard-aktionen").style.display = "";
+    kartenAktionen().style.display = "";
     zeigeKarte();
   }
 
@@ -58,7 +60,7 @@
     updateKopf();
     if (!stapel.length) {
       $("buehne").style.display = "none";
-      document.querySelector(".fcard-aktionen").style.display = "none";
+      kartenAktionen().style.display = "none";
       $("fertigText").textContent = "Alle " + gesamt + " Karten aus „" + kat + "“ sitzen. Wähle die nächste Kategorie oder mische neu.";
       $("deckFertig").hidden = false;
       return;
@@ -66,6 +68,8 @@
     const [frage, antwort, detail, note] = stapel[0];
     offen = false;
     $("fcard").classList.remove("flipped");
+    const seiten = $("fcard").querySelectorAll(".fcard-seite");
+    if (seiten.length === 2) { seiten[0].removeAttribute("aria-hidden"); seiten[1].setAttribute("aria-hidden", "true"); }
     $("fcKatV").textContent = kat;
     $("fcKatR").textContent = kat;
     $("fcFrage").textContent = frage;
@@ -75,7 +79,15 @@
     $("fcNote").style.display = note ? "" : "none";
   }
 
-  function flip() { offen = !offen; $("fcard").classList.toggle("flipped", offen); }
+  function flip() {
+    offen = !offen;
+    $("fcard").classList.toggle("flipped", offen);
+    const seiten = $("fcard").querySelectorAll(".fcard-seite");
+    if (seiten.length === 2) {
+      seiten[0].toggleAttribute("aria-hidden", offen);
+      seiten[1].toggleAttribute("aria-hidden", !offen);
+    }
+  }
   function nochmal() { if (!stapel.length) return; stapel.push(stapel.shift()); zeigeKarte(); }
   function sitzt() { if (!stapel.length) return; stapel.shift(); geschafft++; zeigeKarte(); }
 
@@ -83,10 +95,13 @@
   $("fcard").addEventListener("click", flip);
   $("fcard").addEventListener("keydown", e => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); flip(); } });
   document.addEventListener("keydown", e => {
-    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    const t = e.target;
+    if (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT") return;
+    if (t.closest && (t.closest("#quizBox") || t.closest("#qBox"))) return;
     if (e.key === "ArrowRight") { e.preventDefault(); sitzt(); }
     if (e.key === "ArrowLeft") { e.preventDefault(); nochmal(); }
-    if (e.key === " " && e.target === document.body) { e.preventDefault(); flip(); }
+    if (e.key === " " && t === document.body) { e.preventDefault(); flip(); }
   });
   $("btnAgain").onclick = nochmal;
   $("btnKnown").onclick = sitzt;
@@ -117,15 +132,17 @@
     box.innerHTML = '<div class="quiz-kopf"><span>Frage ' + (qIdx + 1) + " von " + qFragen.length + '</span><span class="qk-stand">' + qPunkte + " richtig</span></div>"
       + '<div class="quiz-balken"><div style="width:' + Math.round((qIdx / qFragen.length) * 100) + '%"></div></div>'
       + '<div class="quiz-frage">' + q.f + "</div>";
-    q.o.forEach((opt, i) => {
+    const optionen = mischen(q.o.map((opt, i) => ({ opt, ok: i === q.r })));
+    optionen.forEach(o => {
       const b = document.createElement("button");
-      b.className = "quiz-opt"; b.textContent = opt;
+      b.className = "quiz-opt"; b.textContent = o.opt;
+      b.dataset.ok = o.ok ? "1" : "";
       b.onclick = () => {
         if (box.querySelector(".richtig")) return;
-        box.querySelectorAll(".quiz-opt").forEach((x, j) => x.classList.add(j === q.r ? "richtig" : (x === b ? "falsch" : "neutral")));
-        if (i === q.r) qPunkte++;
+        box.querySelectorAll(".quiz-opt").forEach(x => x.classList.add(x.dataset.ok ? "richtig" : (x === b ? "falsch" : "neutral")));
+        if (o.ok) qPunkte++;
         const e = document.createElement("div");
-        e.className = "quiz-erkl"; e.textContent = q.e;
+        e.className = "quiz-erkl"; e.textContent = (o.ok ? "Richtig. " : "Falsch. ") + q.e;
         box.appendChild(e);
         const weiter = document.createElement("button");
         weiter.className = "btn"; weiter.textContent = "Weiter";
