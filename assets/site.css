@@ -512,6 +512,171 @@ html[lang="en"] .dose-samples q { quotes: "\201C" "\201D"; }
 
 .pub .pub-meta a { color: var(--gold); }
 
+/* ---------- Werkzeuge ---------- */
+
+.tools-sec .wrap { padding-top: 110px; padding-bottom: 20px; }
+.tools-sec h2 { font-size: clamp(1.9rem, 3.1vw, 2.6rem); }
+.tools-intro { color: var(--cream-dim); font-weight: 350; max-width: 56ch; }
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 48px;
+  margin-top: 36px;
+}
+
+.tool-card {
+  padding: 26px 0 18px;
+  border-top: 1px solid var(--hairline);
+}
+.tool-card h3 { font-size: 1.25rem; margin-bottom: 0.4em; }
+.tool-card h3 a { text-decoration: none; }
+.tool-card h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+.tool-card p { color: var(--cream-dim); font-size: 0.96rem; }
+.tool-card .tool-go { font-size: 0.92rem; color: var(--gold); }
+
+/* Werkzeug-Seiten */
+
+.tool-main .wrap { max-width: 880px; padding-top: 150px; padding-bottom: 110px; }
+.tool-main h1 { font-size: clamp(2.1rem, 4vw, 3rem); }
+.tool-main .tool-lede { color: var(--cream-dim); font-weight: 350; max-width: 58ch; }
+.tool-src {
+  font-size: 0.92rem;
+  color: var(--cream-dim);
+  border-left: 1px solid var(--gold);
+  padding-left: 14px;
+  max-width: 56ch;
+}
+.tool-src a { color: var(--gold); }
+
+.panel {
+  margin-top: 36px;
+  padding: 26px 28px;
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  background: rgba(243, 246, 236, 0.04);
+}
+
+.panel h2 { font-size: 1.3rem; }
+
+label.feld { display: block; font-size: 0.95rem; color: var(--cream-dim); margin: 16px 0 6px; }
+
+input[type="date"], input[type="number"], input[type="text"], select.feld-select, textarea.feld-area {
+  width: 100%;
+  background: rgba(243, 246, 236, 0.07);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  color: var(--cream);
+  font: inherit;
+  padding: 10px 14px;
+}
+textarea.feld-area { min-height: 96px; resize: vertical; }
+input::placeholder, textarea::placeholder { color: rgba(169, 188, 167, 0.55); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 11px 24px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--paper);
+  color: var(--ground);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform 500ms var(--bez);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(0.98); }
+.btn--ghost {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid var(--hairline);
+}
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 8px; }
+.chip {
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  color: var(--cream-dim);
+  font: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 400ms var(--bez), color 400ms var(--bez);
+}
+.chip:hover { color: var(--cream); }
+.chip.aktiv { background: var(--paper); color: var(--ground); border-color: var(--paper); font-weight: 600; }
+
+.karte {
+  margin-top: 18px;
+  padding: 26px 28px;
+  border-radius: 18px;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 140px;
+}
+.karte .k-frage { font-family: "Gloock", Georgia, serif; font-size: 1.4rem; line-height: 1.25; }
+.karte .k-antwort { margin-top: 14px; font-size: 1.05rem; }
+.karte .k-note { margin-top: 10px; font-size: 0.9rem; color: var(--ink-muted); }
+.karte ::selection { background: var(--leaf-deep); color: var(--paper); }
+
+.quiz-opt {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-top: 10px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--hairline);
+  background: rgba(243, 246, 236, 0.05);
+  color: var(--cream);
+  font: inherit;
+  cursor: pointer;
+}
+.quiz-opt:hover { background: rgba(243, 246, 236, 0.1); }
+.quiz-opt.richtig { background: rgba(92, 138, 62, 0.35); border-color: var(--leaf); }
+.quiz-opt.falsch { background: rgba(166, 61, 47, 0.35); border-color: #A63D2F; }
+.quiz-erkl { margin-top: 14px; color: var(--cream-dim); font-size: 0.95rem; }
+
+.plan-tag {
+  border-top: 1px solid var(--hairline);
+  padding: 16px 0;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 18px;
+}
+.plan-tag .pt-datum { font-family: "Gloock", Georgia, serif; font-size: 1.05rem; color: var(--cream); }
+.plan-tag .pt-phase { font-size: 0.82rem; color: var(--gold); display: block; margin-top: 4px; }
+.plan-tag ul { margin: 0; padding-left: 18px; color: var(--cream-dim); font-size: 0.95rem; }
+.plan-tag li { margin-bottom: 4px; }
+
+.ergebnis-balken {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(243, 246, 236, 0.12);
+  overflow: hidden;
+  margin: 8px 0 18px;
+}
+.ergebnis-balken > div { height: 100%; background: var(--gold); border-radius: 999px; transition: width 900ms var(--bez); }
+
+@media (max-width: 880px) {
+  .tool-grid { grid-template-columns: 1fr; }
+  .plan-tag { grid-template-columns: 1fr; gap: 6px; }
+}
+
+@media print {
+  body::after, .site-head, .btn, .no-print { display: none !important; }
+  body { background: #fff; color: #111; }
+  .panel { border-color: #bbb; background: #fff; }
+  .plan-tag { border-color: #ccc; }
+  .plan-tag .pt-datum, .plan-tag ul { color: #111; }
+  .plan-tag .pt-phase { color: #666; }
+}
+
 /* ---------- Papier-Karte (Privatsphäre) ---------- */
 
 .privacy .wrap { padding-top: 20px; padding-bottom: 130px; }
