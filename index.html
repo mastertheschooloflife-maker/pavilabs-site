@@ -3,23 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PaviLabs: Knowledge in daily doses</title>
-<meta name="description" content="PaviLabs builds the Daily Dose learning apps: security and AI literacy in five good minutes a day. No account, no ads, everything stays on your device.">
+<title>PaviLabs: Learning apps, exercises and books</title>
+<meta name="description" content="PaviLabs builds learning apps on digital security and artificial intelligence, free online exercises for German upper secondary school, and books by Pavisanth Pathmarajah.">
 <link rel="canonical" href="https://pavilabs.de/">
-<link rel="alternate" hreflang="de" href="https://pavilabs.de/de/">
 <link rel="alternate" hreflang="en" href="https://pavilabs.de/">
+<link rel="alternate" hreflang="de" href="https://pavilabs.de/de/">
+<link rel="alternate" hreflang="x-default" href="https://pavilabs.de/">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" sizes="48x48" href="/assets/favicon-48.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta property="og:title" content="PaviLabs">
-<meta property="og:description" content="Knowledge in daily doses: learning apps for security and AI literacy.">
+<meta property="og:title" content="PaviLabs: Learning apps, exercises and books">
+<meta property="og:description" content="Knowledge you can put to use straight away: learning apps, free exercises and books.">
 <meta property="og:image" content="https://pavilabs.de/assets/og.png">
 <meta property="og:url" content="https://pavilabs.de/">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add('js')</script>
 <noscript><style>.reveal{opacity:1 !important;transform:none !important;filter:none !important}</style></noscript>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="site-head">
   <div class="pill">
@@ -28,380 +31,235 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Main">
-      <a class="nav-sections" href="#security">Security</a>
-      <a class="nav-sections" href="#ai">AI</a>
-      <a class="nav-sections" href="#method">Method</a>
-      <a class="nav-sections" href="#tools">Tools</a>
-      <a class="nav-sections" href="#publications">Publications</a>
+      <a class="nav-sections" href="#apps">Apps</a>
+      <a class="nav-sections" href="/tools.html">Study tools</a>
+      <a class="nav-sections" href="/books.html">Books</a>
       <a class="nav-sections" href="/about.html">About</a>
-      <a class="nav-sections" href="#privacy">Privacy</a>
       <a class="lang-switch" href="/de/" lang="de" hreflang="de">Deutsch</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
   <section class="hero">
     <div class="glow glow--leaf" style="width:900px;height:900px;top:-280px;left:-260px;"></div>
     <div class="wrap">
       <div>
-        <h1 class="reveal">Knowledge in daily&nbsp;doses.</h1>
+        <h1 class="reveal">Knowledge you can put to use straight away.</h1>
         <p class="hero-slogan reveal" style="--d:60ms">Paving Paths to a smarter future</p>
-        <p class="lede reveal" style="--d:90ms">PaviLabs builds learning apps for two skills that everyday life increasingly demands: digital security and a confident, informed use of AI. Each lesson is short, grounded in a real case, and designed so that a few minutes a day add up to lasting knowledge.</p>
-        <div class="hero-apps reveal" style="--d:180ms">
-          <a class="app-chip" href="#security">
-            <img class="dot" src="/assets/icon-security.webp" alt="" width="24" height="24">
-            Daily Dose of Security
-            <span class="go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke-width="2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span>
-          </a>
-          <a class="app-chip" href="#ai">
-            <img class="dot" src="/assets/icon-ai.webp" alt="" width="24" height="24">
-            Daily Dose of AI
-            <span class="go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke-width="2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span>
-          </a>
-          <a class="app-chip" href="#tools">
-            Study tools
-            <span class="go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke-width="2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span>
-          </a>
+        <p class="lede reveal" style="--d:90ms">PaviLabs builds learning apps, free online exercises and books. They help you move more safely through digital life, understand artificial intelligence better, or prepare for exams with a plan.</p>
+        <p class="lede reveal" style="--d:120ms">Pick a topic, start with a short exercise and learn at your own pace.</p>
+        <div class="hero-ctas reveal" style="--d:180ms">
+          <a class="btn" href="#apps">Explore the apps</a>
+          <a class="btn btn--ghost" href="/tools.html">Free study tools</a>
         </div>
       </div>
       <div class="hero-tree reveal" style="--d:140ms">
         <img src="/assets/tree-night.webp" fetchpriority="high" alt="The PaviLabs tree: leaves on one side, circuit traces on the other, a path leading to its roots" width="540" height="540">
       </div>
     </div>
-  </section>
-
-  <svg class="trail" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M 70,10 C 300,95 520,0 700,55 S 1050,100 1180,60"/>
-  </svg>
-
-  <section class="world" id="security">
-    <div class="glow glow--leaf" style="width:780px;height:780px;top:40px;right:-220px;"></div>
-    <div class="wrap">
-      <div class="world-copy">
-        <div class="world-kopf reveal">
-          <img src="/assets/icon-security.webp" alt="" width="54" height="54">
-          <h2>Daily Dose of Security</h2>
-        </div>
-        <p class="lead reveal" style="--d:70ms">Daily Dose of Security covers the essentials of digital self-defense: recognizing scams, protecting accounts and data, and responding correctly when something goes wrong. Every lesson is built on a documented real-world case.</p>
-        <p class="dose-samples reveal" style="--d:120ms">Two examples from the curriculum: <q>Not all MFA is created equal</q> and <q>Spear phishing, whaling and CEO fraud</q>.</p>
-        <dl class="ledger reveal" style="--d:160ms">
-          <div class="row"><dt>16</dt><dd>learning paths</dd></div>
-          <div class="row"><dt>240</dt><dd>lessons per language</dd></div>
-          <div class="row"><dt>130</dt><dd>practical daily tips</dd></div>
-          <div class="row"><dt>3</dt><dd>levels per path, beginner to expert</dd></div>
-        </dl>
-        <p class="cert-line reveal" style="--d:200ms">Each level ends with an exam. Pass it with 80 percent and the app issues a PaviLabs certificate as a PDF.</p>
-        <p class="langs reveal" style="--d:230ms">Complete in English, German, French and Spanish.</p>
-        <div class="store-row reveal" style="--d:260ms">
-          <a class="store-btn" href="https://apps.apple.com/app/id6811169295">
-            Download on the App&nbsp;Store
-            <span class="go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke-width="2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span>
-          </a>
-          <span class="store-note">Google Play: in closed testing, public release ahead</span>
-        </div>
-      </div>
-      <div class="world-visual reveal" style="--d:150ms">
-        <div class="phone-shell"><div class="phone"><img src="/assets/shot-security-dark.webp" alt="Daily Dose of Security: the Today screen with the daily dose, in dark mode" width="262" height="626" loading="lazy"></div></div>
+    <div class="band" aria-label="Lesson titles from both apps">
+      <div class="band-track">
+        <ul>
+          <li>Spear phishing, whaling and CEO fraud</li>
+          <li>Verification workflows by stake level</li>
+          <li>What makes a password strong</li>
+          <li>Hand over the context</li>
+          <li>How infections happen</li>
+          <li>Tokens: how the model reads</li>
+          <li>What your posts give away</li>
+          <li>The risk pyramid and its logic</li>
+          <li>First moves in the first hour</li>
+          <li>The voice on the phone</li>
+          <li>Who protects what: shared responsibility</li>
+          <li>How machines dream up pictures</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <svg class="trail" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M 1130,10 C 900,100 640,5 460,60 S 160,95 20,55"/>
-  </svg>
-
-  <section class="world world--ai" id="ai">
-    <div class="glow glow--petrol" style="width:860px;height:860px;top:-40px;left:-260px;"></div>
+  <section class="block" id="apps">
+    <div class="glow glow--petrol" style="width:760px;height:760px;top:20px;right:-260px;"></div>
     <div class="wrap">
-      <div class="world-copy">
-        <div class="world-kopf reveal">
-          <img src="/assets/icon-ai.webp" alt="" width="54" height="54">
-          <h2>Daily Dose of AI</h2>
-        </div>
-        <p class="lead reveal" style="--d:70ms">Daily Dose of AI explains how language models work, how to write precise prompts, and how to judge AI output reliably. Further learning paths cover deepfakes, protecting your data, and the legal foundations up to the EU AI Act.</p>
-        <p class="dose-samples reveal" style="--d:120ms">Two examples from the curriculum: <q>Verification workflows by stake level</q> and <q>A skeleton you can reuse</q>.</p>
-        <dl class="ledger reveal" style="--d:160ms">
-          <div class="row"><dt>16</dt><dd>learning paths</dd></div>
-          <div class="row"><dt>240</dt><dd>lessons per language</dd></div>
-          <div class="row"><dt>130</dt><dd>practical daily tips</dd></div>
-          <div class="row"><dt>3</dt><dd>levels per path, beginner to expert</dd></div>
-        </dl>
-        <p class="cert-line reveal" style="--d:200ms">The same exams and PaviLabs certificates as the security app, from fundamentals to expert level.</p>
-        <p class="langs reveal" style="--d:230ms">Complete in English, German, French and Spanish.</p>
-        <div class="store-row reveal" style="--d:260ms">
-          <span class="store-note">Submitted for review at the App&nbsp;Store and Google&nbsp;Play. Launching soon.</span>
-        </div>
+      <div class="block-kopf">
+        <h2 class="wipe">Two apps for everyday life</h2>
+        <p>Both apps work without an account and without ads. A lesson takes about five minutes: a short text built on a real case, a few quiz questions, one recommendation for the day.</p>
       </div>
-      <div class="world-visual reveal" style="--d:150ms">
-        <div class="phone-shell"><div class="phone"><img src="/assets/shot-ai-dark.webp" alt="Daily Dose of AI: the Today screen with the daily dose, in dark mode" width="262" height="626" loading="lazy"></div></div>
-      </div>
-    </div>
-  </section>
-
-  <svg class="trail" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M 70,15 C 320,90 560,10 760,60 S 1060,95 1180,45"/>
-  </svg>
-
-  <section class="method" id="method">
-    <div class="glow glow--gold" style="width:720px;height:720px;top:-80px;right:-200px;"></div>
-    <div class="wrap">
-      <h2 class="reveal">One dose, three steps</h2>
-      <p class="method-intro reveal" style="--d:70ms">Both apps work with a daily goal of 3 to 15 minutes. Every dose follows the same structure, and the daily streak keeps the habit going.</p>
-      <ol class="steps">
-        <li class="reveal" style="--d:120ms">
-          <h3>Lesson</h3>
-          <p>A compact reading of about five minutes, built around a real case.</p>
-        </li>
-        <li class="reveal" style="--d:190ms">
-          <h3>Quiz</h3>
-          <p>A few focused questions, with every answer clearly explained.</p>
-        </li>
-        <li class="reveal" style="--d:260ms">
-          <h3>Takeaway</h3>
-          <p>One concrete recommendation you can apply the same day.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="tools-sec" id="tools">
-    <div class="glow glow--petrol" style="width:680px;height:680px;top:-40px;right:-220px;"></div>
-    <div class="wrap">
-      <h2 class="reveal">Tools</h2>
-      <p class="tools-intro reveal" style="--d:70ms">Fourteen free study tools, built from the methods and content of the books. Each runs entirely in your browser: no sign-up, no transmission, no storage. The tools are in German, made for students preparing for the German Abitur.</p>
-      <h3 class="tool-gruppe reveal">Languages</h3>
-      <div class="tool-grid">
-        <article class="tool-card reveal">
-          <a class="tool-buch" href="/tools/englisch.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-englisch.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/englisch.html">English exam trainer</a></h3>
-            <p>The grammar that decides English grades: tenses, conditionals, reported speech, the passive and the classic German-learner mistakes, plus all the connectors, as flashcards and a quiz.</p>
-            <span class="tool-go">From Englisch Meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal" style="--d:60ms">
-          <a class="tool-buch" href="/tools/franzoesisch.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-franzoesisch.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/franzoesisch.html">French exam trainer</a></h3>
-            <p>Subjonctif, passé composé versus imparfait, si-clauses, pronoun order and the partitive article: the grammar of top grades, as flashcards and a quiz, including the elevated connectors.</p>
-            <span class="tool-go">From Französisch Meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal">
-          <a class="tool-buch" href="/tools/textanalyse-englisch.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-textanalyse-en.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/textanalyse-englisch.html">English text analysis</a></h3>
-            <p>Task verbs and stylistic devices: the three competence levels, every operator from name to evaluate, the key devices as flashcards and the golden formula that turns naming into analysis.</p>
-            <span class="tool-go">From Englisch Meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal" style="--d:60ms">
-          <a class="tool-buch" href="/tools/textanalyse-franzoesisch.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-textanalyse-fr.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/textanalyse-franzoesisch.html">French text analysis</a></h3>
-            <p>From résumer to discuter: every task verb by competence level, the figures de style with their effect, and the three-step method of analysis.</p>
-            <span class="tool-go">From Französisch Meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal">
-          <a class="tool-buch" href="/tools/schreibwerkstatt-englisch.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-schreibwerkstatt-en.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/schreibwerkstatt-englisch.html">English writing workshop</a></h3>
-            <p>The five-minute plan, strong introductions, the PEEL paragraph structure, formal register and the mediation workflow, with a 90-second final checklist.</p>
-            <span class="tool-go">From Englisch Meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal" style="--d:60ms">
-          <a class="tool-buch" href="/tools/schreibwerkstatt-franzoesisch.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-schreibwerkstatt-fr.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/schreibwerkstatt-franzoesisch.html">French writing workshop</a></h3>
-            <p>Résumé, analysis, commentaire and creative writing: the structures, the phrases for every essay part, the WO method for arguments and exam time management.</p>
-            <span class="tool-go">From Französisch Meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal">
-          <a class="tool-buch" href="/tools/kommunikationspruefung-englisch.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-komm-englisch.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/kommunikationspruefung-englisch.html">English speaking exam</a></h3>
-            <p>Everything for top marks: the official assessment grid, phrases for every conversational move, examiner questions with counters, practice scenarios with a timer and a 15-point checklist.</p>
-            <span class="tool-go">From Englisch Meistern: Oral exams</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal" style="--d:60ms">
-          <a class="tool-buch" href="/tools/kommunikationspruefung-franzoesisch.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-komm-franzoesisch.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/kommunikationspruefung-franzoesisch.html">French speaking exam</a></h3>
-            <p>The three exam phases from monologue to examiner discussion, the assessment grid, the phrases for polite disagreement and compromise, and scenarios to practise with a partner.</p>
-            <span class="tool-go">From Französisch Meistern</span>
-          </div>
-        </article>
-
-      </div>
-      <h3 class="tool-gruppe reveal">Learning, exams and AI</h3>
-      <div class="tool-grid">
-        <article class="tool-card reveal">
-          <a class="tool-buch" href="/tools/klausurplaner.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-klausurplaner.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/klausurplaner.html">Exam planner</a></h3>
-            <p>Enter your exam date and topics and get a concrete day-by-day plan: honest knowledge diagnosis, smart summary sheets, active recall and a mock exam under real conditions.</p>
-            <span class="tool-go">From Lernen meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal" style="--d:60ms">
-          <a class="tool-buch" href="/tools/pruefungscoach.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-pruefungscoach.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/pruefungscoach.html">Exam coach</a></h3>
-            <p>From paralysing fear to productive tension: guided breathing with a timer, cognitive reframing, a blackout protocol and the exam-morning routine.</p>
-            <span class="tool-go">From Englisch Meistern and Lernen meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal">
-          <a class="tool-buch" href="/tools/mitarbeit.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-mitarbeit.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/mitarbeit.html">Class participation</a></h3>
-            <p>Oral grades are built lesson by lesson: the halo effect, a 15-minute prep routine, the PREP method, Cornell notes and presentations people remember.</p>
-            <span class="tool-go">From Lernen meistern</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal" style="--d:60ms">
-          <a class="tool-buch" href="/tools/prompt-werkstatt.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-prompt-werkstatt.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/prompt-werkstatt.html">Prompt workshop</a></h3>
-            <p>Prompting as a craft: a four-question builder that assembles your prompt, the professionals’ techniques and the verification routine against hallucinations.</p>
-            <span class="tool-go">From Künstliche Intelligenz Meistern</span>
-          </div>
-        </article>
-
-      </div>
-      <h3 class="tool-gruppe reveal">Choosing your degree</h3>
-      <div class="tool-grid">
-        <article class="tool-card reveal">
-          <a class="tool-buch" href="/tools/studienkompass.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-studienkompass.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/studienkompass.html">Study compass</a></h3>
-            <p>Computer science or information systems? Twelve everyday situations reveal which fundamental question truly suits you, with a reasoned result instead of a quick label.</p>
-            <span class="tool-go">From the upcoming study compass books</span>
-          </div>
-        </article>
-
-        <article class="tool-card reveal" style="--d:60ms">
-          <a class="tool-buch" href="/tools/duales-studium-check.html" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/tool-duales-check.webp" alt="" loading="lazy" width="92" height="147"></span></a>
-          <div class="tool-inhalt">
-            <h3><a href="/tools/duales-studium-check.html">Dual study check</a></h3>
-            <p>Dual or classic degree? Twelve situations about working style, resilience and the need for freedom reveal your tendency, with a reasoned result.</p>
-            <span class="tool-go">From the upcoming book Duales Studium Meistern</span>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="pubs" id="publications">
-    <div class="glow glow--leaf" style="width:700px;height:700px;top:-60px;left:-220px;"></div>
-    <div class="wrap">
-      <h2 class="reveal">Publications</h2>
-      <p class="pubs-intro reveal" style="--d:70ms">Alongside the apps, eight books by Pavisanth Pathmarajah have been published: practical guides to artificial intelligence, and study guides for school and exams.</p>
-      <div class="pub-grid">
-        <article class="pub reveal">
-          <a class="pub-buch" href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/mastering-ai.webp" alt="Buchcover: Mastering Artificial Intelligence" loading="lazy" width="108" height="173"></span></a>
-          <div class="pub-inhalt">
-          <h3><a href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener">Mastering Artificial Intelligence: The Advanced Practitioner's Manual</a></h3>
-          <p>An in-depth manual for professionals who already know the fundamentals of generative AI and want to build dependable workflows and solutions, and use AI with confidence at work.</p>
-          <span class="pub-meta"><span>English</span><a href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener">View on Amazon</a></span>
-          </div>
-        </article>
-        <article class="pub reveal" style="--d:60ms">
-          <a class="pub-buch" href="https://www.amazon.de/dp/B0HGQP7LJM" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/ai-practice.webp" alt="Buchcover: Artificial Intelligence in Practice" loading="lazy" width="108" height="173"></span></a>
-          <div class="pub-inhalt">
-          <h3><a href="https://www.amazon.de/dp/B0HGQP7LJM" rel="noopener">Artificial Intelligence in Practice: A Beginner's Guide for Everyday Use</a></h3>
-          <p>An accessible, practical introduction to using AI in everyday life, written in clear language for readers without a technical background.</p>
-          <span class="pub-meta"><span>English</span><a href="https://www.amazon.de/dp/B0HGQP7LJM" rel="noopener">View on Amazon</a></span>
-          </div>
-        </article>
-        <article class="pub reveal" style="--d:90ms">
-          <a class="pub-buch" href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/ki-meistern.webp" alt="Buchcover: Künstliche Intelligenz Meistern" loading="lazy" width="108" height="173"></span></a>
-          <div class="pub-inhalt">
-          <h3><a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern: Das Praxishandbuch für angehende KI-Experten</a></h3>
-          <p>A practitioner's handbook for working professionally with tools such as ChatGPT, Claude, Copilot and Gemini: prompt and context engineering, custom GPTs, AI agents, automation, RAG and data analysis at work.</p>
-          <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">View on Amazon</a></span>
-          </div>
-        </article>
-        <article class="pub reveal" style="--d:120ms">
-          <a class="pub-buch" href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/ki-alltag.webp" alt="Buchcover: Künstliche Intelligenz alltagstauglich gemacht" loading="lazy" width="108" height="173"></span></a>
-          <div class="pub-inhalt">
-          <h3><a href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener">Künstliche Intelligenz alltagstauglich gemacht: Der Einstieg ohne Vorkenntnisse</a></h3>
-          <p>An entry point that assumes no prior knowledge: what AI can do today, how to bring tools like ChatGPT into everyday life, and how to stay in control while doing so.</p>
-          <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener">View on Amazon</a></span>
-          </div>
-        </article>
-        <article class="pub reveal" style="--d:150ms">
-          <a class="pub-buch" href="https://www.amazon.de/dp/1691857440" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/englisch-oberstufe.webp" alt="Buchcover: Englisch Meistern: Das Handbuch für Englisch in der Oberstufe" loading="lazy" width="108" height="173"></span></a>
-          <div class="pub-inhalt">
-          <h3><a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a></h3>
-          <p>A complete companion for English at German upper secondary school: study techniques that build lasting skills, plus step-by-step preparation for written and oral exams.</p>
-          <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/1691857440" rel="noopener">View on Amazon</a></span>
-          </div>
-        </article>
-        <article class="pub reveal" style="--d:180ms">
-          <a class="pub-buch" href="https://www.amazon.de/dp/1074147715" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/englisch-muendlich.webp" alt="Buchcover: Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen" loading="lazy" width="108" height="173"></span></a>
-          <div class="pub-inhalt">
-          <h3><a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a></h3>
-          <p>Focused preparation for oral English exams, from learning technique to a clear plan for exam day.</p>
-          <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/1074147715" rel="noopener">View on Amazon</a></span>
-          </div>
-        </article>
-        <article class="pub reveal" style="--d:210ms">
-          <a class="pub-buch" href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/franzoesisch.webp" alt="Buchcover: Französisch Meistern" loading="lazy" width="108" height="173"></span></a>
-          <div class="pub-inhalt">
-          <h3><a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a></h3>
-          <p>A guide to French at upper secondary level that combines grammar and vocabulary with learning strategy and targeted exam preparation.</p>
-          <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">View on Amazon</a></span>
-          </div>
-        </article>
-        <article class="pub reveal" style="--d:240ms">
-          <a class="pub-buch" href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/lernen.webp" alt="Buchcover: Lernen meistern" loading="lazy" width="108" height="173"></span></a>
-          <div class="pub-inhalt">
-          <h3><a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a></h3>
-          <p>A compact guide to learning itself: how the right techniques and mindset turn effort into reliable results at school, from motivation to exam season.</p>
-          <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">View on Amazon</a></span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="privacy" id="privacy">
-    <div class="wrap">
-      <div class="paper-shell reveal">
-        <div class="paper-card">
+      <div class="app-paar stagger">
+        <article class="app-teaser" style="--akzent:#8FB877">
+          <div class="phone-shell settle"><div class="phone"><img src="/assets/shot-security-dark.webp" alt="Daily Dose of Security, the Today screen in dark mode with daily doses on multi-factor authentication and spear phishing" width="132" height="316" loading="lazy"></div></div>
           <div>
-            <h2>Privacy by principle</h2>
-            <p class="statement">Both apps work entirely without an account. Progress, streaks and certificates are stored only on your device. The apps contain no analytics software and no ad networks. The only external content is the linked YouTube lesson videos, which load only after your explicit consent.</p>
+            <div class="app-name"><img src="/assets/icon-security.webp" alt="" width="40" height="40"><h3>Daily Dose of Security</h3></div>
+            <p class="app-fokus">Short units on phishing, scams, account protection and safe habits. Each unit uses a documented case to show what to look for and what to do differently.</p>
+            <ul class="merkmale">
+              <li>16 learning paths, three levels each</li>
+              <li>An exam per level, a certificate from 80 percent</li>
+              <li>English, German, French, Spanish</li>
+            </ul>
+            <ul class="status">
+              <li><span class="plattform">App Store</span><span class="stand stand--live"><a href="https://apps.apple.com/app/id6811169295">available</a></span></li>
+              <li><span class="plattform">Google Play</span><span class="stand">closed testing</span></li>
+            </ul>
+            <p class="stand-hinweis">As of October 2026</p>
+            <a class="mehr" href="/security.html">See the security app</a>
           </div>
-          <ul class="privacy-links">
-            <li>
-              <span class="app-name">Daily Dose of Security</span>
-              <span class="link-pair"><a href="https://mastertheschooloflife-maker.github.io/pavilabs-support/index.html">Support</a> <a href="https://mastertheschooloflife-maker.github.io/pavilabs-support/privacy.html">Privacy policy</a></span>
-            </li>
-            <li>
-              <span class="app-name">Daily Dose of AI</span>
-              <span class="link-pair"><a href="https://mastertheschooloflife-maker.github.io/pavilabs-support/ai.html">Support</a> <a href="https://mastertheschooloflife-maker.github.io/pavilabs-support/ai-privacy.html">Privacy policy</a></span>
-            </li>
-          </ul>
+        </article>
+        <article class="app-teaser" style="--akzent:#9DBBC0">
+          <div class="phone-shell settle"><div class="phone"><img src="/assets/shot-ai-lesson.webp" alt="Daily Dose of AI, the lesson “Say what you actually want” from the Prompting path" width="132" height="316" loading="lazy"></div></div>
+          <div>
+            <div class="app-name"><img src="/assets/icon-ai.webp" alt="" width="40" height="40"><h3>Daily Dose of AI</h3></div>
+            <p class="app-fokus">Learn how language models work, how to improve your prompts and how to check AI output. Further paths cover deepfakes, data protection and the EU AI Act.</p>
+            <ul class="merkmale">
+              <li>16 learning paths, three levels each</li>
+              <li>Practice cards on ChatGPT, Claude, Gemini and Copilot</li>
+              <li>English, German, French, Spanish</li>
+            </ul>
+            <ul class="status">
+              <li><span class="plattform">App Store</span><span class="stand">in review</span></li>
+              <li><span class="plattform">Google Play</span><span class="stand">in review</span></li>
+            </ul>
+            <p class="stand-hinweis">As of October 2026</p>
+            <a class="mehr" href="/ai.html">Explore the app and its lessons</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="tools">
+    <div class="wrap">
+      <div class="block-kopf">
+        <h2 class="wipe">Free study tools</h2>
+        <p>Fourteen exercises that run in your browser, with no sign-up and no data transfer. They are in German and aimed at students preparing for the German Abitur.</p>
+      </div>
+      <div class="kat-liste stagger">
+        <article class="kat">
+          <a class="kat-bild settle" href="/tools.html#languages" tabindex="-1" aria-hidden="true"><img src="/assets/previews/textanalyse-englisch.webp" alt="" width="480" height="300" loading="lazy"></a>
+          <div class="kat-text">
+            <h3>English and French</h3>
+            <p>Grammar flashcards, text analysis, a writing workshop and speaking exam practice, for both languages.</p>
+            <ul class="kat-tools">
+              <li><a href="/tools/englisch.html">English grammar</a></li>
+              <li><a href="/tools/franzoesisch.html">French grammar</a></li>
+              <li><a href="/tools/textanalyse-englisch.html">Text analysis EN</a></li>
+              <li><a href="/tools/textanalyse-franzoesisch.html">Text analysis FR</a></li>
+              <li><a href="/tools/schreibwerkstatt-englisch.html">Writing EN</a></li>
+              <li><a href="/tools/schreibwerkstatt-franzoesisch.html">Writing FR</a></li>
+              <li><a href="/tools/kommunikationspruefung-englisch.html">Speaking exam EN</a></li>
+              <li><a href="/tools/kommunikationspruefung-franzoesisch.html">Speaking exam FR</a></li>
+            </ul>
+            <a class="mehr" href="/tools.html#languages">All language tools</a>
+          </div>
+        </article>
+        <article class="kat">
+          <a class="kat-bild settle" href="/tools.html#learning" tabindex="-1" aria-hidden="true"><img src="/assets/previews/klausurplaner.webp" alt="" width="480" height="300" loading="lazy"></a>
+          <div class="kat-text">
+            <h3>Learning and AI</h3>
+            <p>A planner that turns your exam date into a daily plan, breathing exercises for exam stress, methods for class participation and a builder for better prompts.</p>
+            <ul class="kat-tools">
+              <li><a href="/tools/klausurplaner.html">Exam planner</a></li>
+              <li><a href="/tools/pruefungscoach.html">Exam coach</a></li>
+              <li><a href="/tools/mitarbeit.html">Class participation</a></li>
+              <li><a href="/tools/prompt-werkstatt.html">Prompt workshop</a></li>
+            </ul>
+            <a class="mehr" href="/tools.html#learning">To the learning tools</a>
+          </div>
+        </article>
+        <article class="kat">
+          <a class="kat-bild settle" href="/tools.html#degree" tabindex="-1" aria-hidden="true"><img src="/assets/previews/studienkompass.webp" alt="" width="480" height="300" loading="lazy"></a>
+          <div class="kat-text">
+            <h3>Choosing a degree</h3>
+            <p>Two self-checks with twelve questions each: computer science or information systems, dual or classic degree. The result shows which answers pointed where.</p>
+            <ul class="kat-tools">
+              <li><a href="/tools/studienkompass.html">Study compass</a></li>
+              <li><a href="/tools/duales-studium-check.html">Dual study check</a></li>
+            </ul>
+            <a class="mehr" href="/tools.html#degree">To the self-checks</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="books">
+    <div class="glow glow--leaf" style="width:700px;height:700px;top:-60px;left:-240px;"></div>
+    <div class="wrap">
+      <div class="block-kopf">
+        <h2 class="wipe">Books</h2>
+        <p>Eight books in two series. The first ones grew out of study notes I collected while preparing for my own final exams in 2019.</p>
+      </div>
+      <div class="serien">
+        <div class="serie">
+          <h3>Learning and school</h3>
+          <p>English, French and learning itself, for German upper secondary school. In German.</p>
+          <div class="serie-cover stagger">
+            <a href="https://www.amazon.de/dp/1691857440" rel="noopener"><span class="buch3d"><img src="/assets/covers/englisch-oberstufe.webp" alt="Englisch Meistern: Das Handbuch für Englisch in der Oberstufe" loading="lazy" width="92" height="147"></span></a>
+            <a href="https://www.amazon.de/dp/1074147715" rel="noopener"><span class="buch3d"><img src="/assets/covers/englisch-muendlich.webp" alt="Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen" loading="lazy" width="92" height="147"></span></a>
+            <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener"><span class="buch3d"><img src="/assets/covers/franzoesisch.webp" alt="Französisch Meistern: Das Handbuch für die Oberstufe" loading="lazy" width="92" height="147"></span></a>
+            <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener"><span class="buch3d"><img src="/assets/covers/lernen.webp" alt="Lernen meistern: Der simple Weg zum schulischen Erfolg" loading="lazy" width="92" height="147"></span></a>
+          </div>
+          <a class="mehr" href="/books.html#learning">See the series</a>
+        </div>
+        <div class="serie">
+          <h3>Artificial intelligence</h3>
+          <p>From a first introduction without prior knowledge to a practitioner's handbook, in English and German.</p>
+          <div class="serie-cover stagger">
+            <a href="https://www.amazon.de/dp/B0HGQP7LJM" rel="noopener"><span class="buch3d"><img src="/assets/covers/ai-practice.webp" alt="Artificial Intelligence in Practice" loading="lazy" width="92" height="147"></span></a>
+            <a href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener"><span class="buch3d"><img src="/assets/covers/mastering-ai.webp" alt="Mastering Artificial Intelligence" loading="lazy" width="92" height="147"></span></a>
+            <a href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener"><span class="buch3d"><img src="/assets/covers/ki-alltag.webp" alt="Künstliche Intelligenz alltagstauglich gemacht" loading="lazy" width="92" height="147"></span></a>
+            <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener"><span class="buch3d"><img src="/assets/covers/ki-meistern.webp" alt="Künstliche Intelligenz Meistern: Das Praxishandbuch" loading="lazy" width="92" height="147"></span></a>
+          </div>
+          <a class="mehr" href="/books.html#ai">See the series</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block" id="author">
+    <div class="wrap">
+      <div class="autor">
+        <figure class="autor-bild settle">
+          <span><img src="/assets/autor.webp" alt="Pavisanth Pathmarajah in a light shirt, arms crossed, in front of a grey background" width="640" height="800" loading="lazy"></span>
+          <figcaption>Pavisanth Pathmarajah</figcaption>
+        </figure>
+        <div class="autor-text">
+          <h2 class="wipe">About me</h2>
+          <p class="aussage scrub">My first books grew out of the study notes from my own exam preparation. Since then I write learning material that you can put to use straight away.</p>
+          <p>I finished my Abitur in 2019 with a grade average of 1.1, and the notes from that time became my first book the same year. Today I write about learning, languages and artificial intelligence, and I build the Daily Dose apps.</p>
+          <a class="mehr" href="/about.html">More about me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="trust">
+    <div class="wrap">
+      <div class="block-kopf">
+        <h2 class="wipe">Where the content comes from</h2>
+        <p>And what happens to your data.</p>
+      </div>
+      <div class="vertrauen">
+        <div>
+          <h3>Content</h3>
+          <p>The exercises and apps build on the books. The app lessons refer to documented cases. Notes on exam formats follow published guidelines from individual German states, such as North Rhine-Westphalia and Hesse, and vary from state to state.</p>
+        </div>
+        <div>
+          <h3>Data</h3>
+          <p>The apps work without an account. Progress, streaks and certificates stay on your device, with no analytics software and no ad networks. Lesson videos from YouTube load only after your consent. This website serves its fonts from its own server.</p>
+          <p class="link-pair"><a href="https://mastertheschooloflife-maker.github.io/pavilabs-support/privacy.html">Privacy: security app</a><a href="https://mastertheschooloflife-maker.github.io/pavilabs-support/ai-privacy.html">Privacy: AI app</a><a href="/datenschutz.html">Privacy: website (German)</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="next">
+    <div class="wrap">
+      <ul class="abschluss">
+        <li><a href="#apps"><span class="titel">Apps</span><span class="wozu">Security and AI, about five minutes a day</span></a></li>
+        <li><a href="/tools.html"><span class="titel">Study tools</span><span class="wozu">Fourteen free exercises in your browser</span></a></li>
+        <li><a href="/books.html"><span class="titel">Books</span><span class="wozu">Eight titles in two series</span></a></li>
+        <li><a href="/about.html#contact"><span class="titel">Contact</span><span class="wozu">Via LinkedIn or email</span></a></li>
+      </ul>
     </div>
   </section>
 </main>
@@ -412,32 +270,19 @@
       <span class="brand"><img src="/assets/tree-night-small.webp" alt="" width="30" height="30">PaviLabs</span>
     </div>
     <ul class="foot-links">
-      <li><a href="/impressum.html">Impressum (legal notice)</a></li>
-      <li><a href="/datenschutz.html">Datenschutz (privacy)</a></li>
+      <li><a href="/impressum.html">Legal notice</a></li>
+      <li><a href="/datenschutz.html">Privacy</a></li>
       <li><a href="/de/" lang="de" hreflang="de">Deutsche Version</a></li>
     </ul>
   </div>
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span>Knowledge in daily doses.</span>
+      <span>Learning that fits into your day.</span>
     </div>
   </div>
 </footer>
 
-<script>
-  const animated = document.querySelectorAll('.reveal, .trail');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
-      }
-    }, { threshold: 0.25, rootMargin: '0px 0px -5% 0px' });
-    animated.forEach(el => io.observe(el));
-  } else {
-    animated.forEach(el => el.classList.add('in-view'));
-  }
-</script>
-
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
