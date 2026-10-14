@@ -18,8 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/tools/textanalyse-franzoesisch.html">Textanalyse</a>
-      <a class="nav-sections" href="/de/#werkzeuge">Alle Werkzeuge</a>
+      <a class="nav-sections" href="/de/werkzeuge.html">Alle Lernwerkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
   </div>
@@ -27,34 +26,25 @@
 
 <main class="tool-main">
   <div class="wrap">
+    <nav class="breadcrumb" aria-label="Pfad"><a href="/de/werkzeuge.html">Lernwerkzeuge</a><span aria-hidden="true">/</span><a href="/de/werkzeuge.html#sprachen">Französisch</a><span aria-hidden="true">/</span><span aria-current="page">Schreibwerkstatt</span></nav>
     <h1>Schreibwerkstatt Französisch</h1>
-    <p class="tool-lede">Im Aufsatz kommt alles zusammen: Wortschatz, Grammatik, Konnektoren, Operatoren. Das französische Abitur kennt vier Aufsatzformen mit je eigener Logik: das Résumé, die Analyse, den Commentaire und die kreative Aufgabe. Wer die Strukturen verinnerlicht hat, schreibt unter Zeitdruck so souverän, als würde er eine geübte Choreographie tanzen. Diese Werkstatt gibt dir die Strukturen, die Wendungen für jeden Aufsatzteil, die WO-Methode für Argumente und das Zeitmanagement der Klausur.</p>
-    <p class="tool-src">Diese Werkstatt folgt dem Kapitel Schriftliche Textproduktion aus <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>.</p>
+    <p class="tool-lede">Wähle eine der vier Aufsatzformen, Résumé, Analyse, Commentaire oder création, und sieh dir ihren Aufbau an. Die Wendungen für jeden Aufsatzteil lernst du auf Karten, dazu kommen die WO-Methode für Argumente und ein Zeitplan für die Klausur.</p>
+    <div class="schnellstart"><a class="btn" href="#ueben">Aufbau wählen</a><a class="btn btn--ghost" href="#karten">Wendungen üben</a><a class="btn btn--ghost" href="#quiz">Quiz starten</a></div>
+    <p class="tool-src">Grundlage ist das Kapitel Schriftliche Textproduktion aus <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>.</p>
 
-    <div class="panel">
-      <h2>Die vier Aufsatzformen</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Das Résumé</dt><dd>Präsens, dritte Person, keine Zitate, keine Wertung, Längenvorgabe einhalten. Dreiteiler: Einstiegssatz mit Autor, Titel und Thema, Hauptteil mit Konnektoren (d'abord, par ailleurs, en conclusion), Abschluss mit Schlussfolgerung statt abruptem Ende.</dd></div>
-        <div class="row"><dt>Die Analyse</dt><dd>Fünf Säulen: Erzählperspektive, Struktur, Figurenkonstellation, sprachliche Mittel, Atmosphäre. Vier Teile: Einleitung mit problématique, knappe Inhaltsangabe, Hauptteil in zwei bis drei thematischen Abschnitten, Schluss mit Rückbezug auf die Leitfrage.</dd></div>
-        <div class="row"><dt>Der Commentaire</dt><dd>Die Krone des argumentativen Schreibens: dialektische Struktur aus Thèse, Antithèse und Synthèse. Die Synthèse ist kein Kompromiss, sondern eine neue Perspektive, die den Gegensatz überschreitet. Genau sie trennt die Spitzengruppe vom Durchschnitt.</dd></div>
-        <div class="row"><dt>La création</dt><dd>Brief, Tagebucheintrag, Dialog (mit Gedankenstrichen statt Anführungszeichen), Fortsetzung, Zeitungsartikel oder Rede. Textsortenkonventionen beachten, Perspektive und Zeitform konsequent halten, und: Auch kreative Texte werden primär sprachlich bewertet. Subjonctif und Konnektoren gehören auch hierhin.</dd></div>
-      </dl>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a> zeigt jede Aufsatzform mit vollständigem Beispieltext, vom 99-Wörter-Résumé bis zur Camus-Analyse auf 14-Punkte-Niveau.</span>
+    <div class="panel" id="ueben">
+      <h2>Aufgabe wählen, Aufbau sehen</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Ein Klick auf die Aufsatzform zeigt dir ihren Aufbau in der Reihenfolge, in der du schreibst.</p>
+      <div class="chip-row" id="aufgabenWahl">
+        <button class="chip" type="button" data-typ="Résumé" aria-pressed="false">Résumé</button>
+        <button class="chip" type="button" data-typ="Analyse" aria-pressed="false">Analyse</button>
+        <button class="chip" type="button" data-typ="Commentaire" aria-pressed="false">Commentaire</button>
+        <button class="chip" type="button" data-typ="Création" aria-pressed="false">Création</button>
       </div>
+      <div id="aufbauBox" aria-live="polite"></div>
     </div>
 
-    <div class="panel">
-      <h2>Der Commentaire im Detail</h2>
-      <ol class="phasen">
-        <li><h3>Introduction</h3><p>10 bis 15 Prozent: amorce (eleganter Einstieg), Thema und These umreißen, problématique formulieren, Plan ankündigen: Nous verrons d'abord... puis... enfin...</p></li>
-        <li><h3>Thèse + Antithèse</h3><p>Je etwa 30 Prozent, ähnlich stark: je zwei bis drei Argumente mit Beispiel. Übergang: Toutefois, on peut objecter que...</p></li>
-        <li><h3>Synthèse + Conclusion</h3><p>Die neue Perspektive, die beide Pole überschreitet, dann Antwort auf die problématique und ouverture.</p></li>
-      </ol>
-      <div class="cee-box"><strong>Die WO-Methode für Argumente:</strong> Acht Perspektiven liefern dir zu jedem Thema binnen Minuten mehr Argumente, als du unterbringen kannst: wirtschaftlich, sozial, politisch, kulturell, ethisch, ökologisch, historisch, individuell. Jede Perspektive eine Frage: Welche wirtschaftlichen Aspekte? Welche sozialen? ...</div>
-    </div>
-
-    <div class="panel">
+    <div class="panel" id="karten">
       <h2>Wendungen als Lernkarten</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Formulierungen für jeden Aufsatzteil, vom Résumé-Einstieg bis zur ouverture. Pfeil rechts heißt „sitzt“, Pfeil links heißt „nochmal“.</p>
       <div class="chip-row" id="deckRow" style="display:none"></div>
@@ -88,8 +78,28 @@
     </div>
 
     <div class="panel">
+      <h2>Die vier Aufsatzformen</h2>
+      <dl class="ledger">
+        <div class="row"><dt>Das Résumé</dt><dd>Präsens, dritte Person, keine Zitate, keine Wertung, Längenvorgabe einhalten. Dreiteiler: Einstiegssatz mit Autor, Titel und Thema, Hauptteil mit Konnektoren (d'abord, par ailleurs, en conclusion), Abschluss mit Schlussfolgerung statt abruptem Ende.</dd></div>
+        <div class="row"><dt>Die Analyse</dt><dd>Fünf Säulen: Erzählperspektive, Struktur, Figurenkonstellation, sprachliche Mittel, Atmosphäre. Vier Teile: Einleitung mit problématique, knappe Inhaltsangabe, Hauptteil in zwei bis drei thematischen Abschnitten, Schluss mit Rückbezug auf die Leitfrage.</dd></div>
+        <div class="row"><dt>Der Commentaire</dt><dd>Argumentatives Schreiben in dialektischer Struktur aus Thèse, Antithèse und Synthèse. Die Synthèse ist kein Kompromiss, sondern eine neue Perspektive, die den Gegensatz überschreitet.</dd></div>
+        <div class="row"><dt>La création</dt><dd>Brief, Tagebucheintrag, Dialog (mit Gedankenstrichen statt Anführungszeichen), Fortsetzung, Zeitungsartikel oder Rede. Textsortenkonventionen beachten, Perspektive und Zeitform konsequent halten. Auch kreative Texte werden vor allem sprachlich bewertet, Subjonctif und Konnektoren gehören also auch hierhin.</dd></div>
+      </dl>
+    </div>
+
+    <div class="panel">
+      <h2>Der Commentaire im Detail</h2>
+      <ol class="phasen">
+        <li><h3>Introduction</h3><p>10 bis 15 Prozent: amorce (eleganter Einstieg), Thema und These umreißen, problématique formulieren, Plan ankündigen: Nous verrons d'abord... puis... enfin...</p></li>
+        <li><h3>Thèse + Antithèse</h3><p>Je etwa 30 Prozent, ähnlich stark: je zwei bis drei Argumente mit Beispiel. Übergang: Toutefois, on peut objecter que...</p></li>
+        <li><h3>Synthèse + Conclusion</h3><p>Die neue Perspektive, die beide Pole überschreitet, dann Antwort auf die problématique und ouverture.</p></li>
+      </ol>
+      <div class="cee-box"><strong>Die WO-Methode für Argumente:</strong> Acht Perspektiven helfen dir, zu jedem Thema schnell Argumente zu finden: wirtschaftlich, sozial, politisch, kulturell, ethisch, ökologisch, historisch, individuell. Jede Perspektive eine Frage: Welche wirtschaftlichen Aspekte? Welche sozialen? ...</div>
+    </div>
+
+    <div class="panel">
       <h2>Zeitmanagement in der Klausur</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Das bewährte Schema für eine fünfstündige LK-Klausur; passe es an deine Klausurdauer an. Die letzten 30 Minuten gehören der Endkontrolle, nicht neuem Inhalt.</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Ein Schema für eine fünfstündige LK-Klausur; passe es an deine Klausurdauer an. Die letzten 30 Minuten gehören der Endkontrolle, nicht neuem Inhalt.</p>
       <dl class="ledger">
         <div class="row"><dt>5 bis 10 Minuten</dt><dd>Aufgaben lesen, Operatoren markieren, Längenangaben und Anforderungsbereiche klären.</dd></div>
         <div class="row"><dt>20 bis 30 Minuten</dt><dd>Text aktiv lesen: Schlüsselstellen markieren, Stilmittel identifizieren, Argumente sammeln.</dd></div>
@@ -97,15 +107,22 @@
         <div class="row"><dt>3 bis 3,5 Stunden</dt><dd>Schreiben, strikt nach Plan, mit Konnektoren-Variation.</dd></div>
         <div class="row"><dt>20 bis 30 Minuten</dt><dd>Korrektur der typischen Fehlerquellen: Subjonctif nach que, Si-Satz-Logik, Partizip-Angleichung, Akzente, falsche Freunde.</dd></div>
       </dl>
-      <div class="buch-tipp">
-        <span><strong>Der nächste Schritt:</strong> Operatoren und figures de style für den Analyseteil trainierst du in der <a href="/tools/textanalyse-franzoesisch.html">Textanalyse Französisch</a>, die Grammatik der Bestnote im <a href="/tools/franzoesisch.html">Französisch-Abitur-Trainer</a>.</span>
-      </div>
     </div>
 
-    <div class="panel">
+    <div class="panel" id="quiz">
       <h2>Quiz: Aufsatzformen verstanden?</h2>
       <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
+    </div>
+
+    <div class="panel weiterlernen">
+      <h2>Weiterlernen</h2>
+      <p><a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a> zeigt jede Aufsatzform mit vollständigem Beispieltext, vom 99-Wörter-Résumé bis zur Camus-Analyse.</p>
+      <ul class="verwandt">
+        <li><a href="/tools/textanalyse-franzoesisch.html">Textanalyse Französisch</a>: Operatoren und figures de style für den Analyseteil</li>
+        <li><a href="/tools/franzoesisch.html">Französisch-Abitur-Trainer</a>: Subjonctif, Si-Sätze und Konnektoren auf Lernkarten</li>
+        <li><a href="/tools/schreibwerkstatt-englisch.html">Schreibwerkstatt Englisch</a>: Aufbau von Analyse, Erörterung und Sprachmittlung auf Englisch</li>
+      </ul>
     </div>
   </div>
 </main>
@@ -140,7 +157,7 @@ const DECKS = {
       ["Grenzen einer These benennen?", "« Or, cette thèse présente certaines limites. » · « Cependant, plusieurs arguments s'opposent à cette vision. »", "", ""]
     ],
     "Synthèse": [
-      ["Die Pole zusammenführen?", "« En définitive, ces deux positions ne sont pas inconciliables. » · « Il convient de dépasser cette opposition apparente... »", "", "Die Synthèse ist der Bestnoten-Teil: kein bloßes „beide haben recht“."],
+      ["Die Pole zusammenführen?", "« En définitive, ces deux positions ne sont pas inconciliables. » · « Il convient de dépasser cette opposition apparente... »", "", "Die Synthèse ist mehr als ein bloßes „beide haben recht“."],
       ["Die eigene höhere Perspektive formulieren?", "« Force est de reconnaître que la vérité se situe entre les deux... »", "", ""]
     ],
     "Conclusion": [
@@ -155,7 +172,7 @@ const QUIZ = [
   {f: 'Der Originaltext ist in der Ich-Form. Dein Résumé...', o: ['...übernimmt die Ich-Form', '...steht in der dritten Person: Le narrateur se sent seul', '...wechselt zwischen beiden'], r: 1, e: 'Dritte Person ist Pflicht, ebenso wie der Verzicht auf Zitate und Wertungen.'},
   {f: '„En environ 100 mots“ und du schreibst 200. Das Ergebnis?', o: ['Bonuspunkte für Ausführlichkeit', 'Eine verfehlte Aufgabe, selbst bei brillantem Inhalt', 'Kein Unterschied'], r: 1, e: 'Die Längenvorgabe ist verbindlich: 90 bis 110 Wörter.'},
   {f: 'Die fünf Säulen der Analyse sind...', o: ['Einleitung, These, Argumente, Beispiele, Schluss', 'Erzählperspektive, Struktur, Figuren, sprachliche Mittel, Atmosphäre', 'Wortschatz, Grammatik, Stil, Inhalt, Form'], r: 1, e: 'Systematisch durcharbeiten und jede Aussage mit Textzitat belegen.'},
-  {f: 'Die Synthèse im Commentaire ist...', o: ['...eine Zusammenfassung beider Teile', '...eine neue Perspektive, die den Gegensatz überschreitet', '...ein Kompromiss: beide haben recht'], r: 1, e: 'Wer nur Pro und Contra aufzählt, schreibt Durchschnitt; die echte Synthese landet in der Spitzengruppe.'},
+  {f: 'Die Synthèse im Commentaire ist...', o: ['...eine Zusammenfassung beider Teile', '...eine neue Perspektive, die den Gegensatz überschreitet', '...ein Kompromiss: beide haben recht'], r: 1, e: 'Wer nur Pro und Contra aufzählt, bleibt beim Gegensatz stehen; die Synthèse führt darüber hinaus.'},
   {f: 'Was ist die problématique?', o: ['Das Problem des Protagonisten', 'Die Leitfrage, die den Aufsatz strukturiert', 'Die schwierigste Vokabel des Textes'], r: 1, e: 'Sie wird in der Einleitung formuliert und im Schluss beantwortet.'},
   {f: 'Die WO-Methode liefert...', o: ['...Wörter für den Wortschatz', '...Argumente über acht Perspektiven von Wirtschaft bis Individuum', '...die richtige Reihenfolge der Absätze'], r: 1, e: 'Wirtschaft, Soziales, Politik, Kultur, Ethik, Ökologie, Geschichte, Individuum.'},
   {f: 'Französische Dialoge in der création verwenden...', o: ['...Anführungszeichen wie im Deutschen', '...Gedankenstriche für den Sprecherwechsel', '...kursive Schrift'], r: 1, e: 'Textsortenkonventionen sind Teil der Bewertung.'},
@@ -164,6 +181,56 @@ const QUIZ = [
 ];
 </script>
 <script src="/assets/trainer.js"></script>
+<script>
+(function () {
+  // Beispielaufbau je Aufsatzform, abgeleitet aus den Abschnitten dieser Seite
+  const AUFBAU = {
+    "Résumé": [
+      "Einstiegssatz mit Autor, Titel, Textsorte und Thema: « Dans le texte ci-dessus, X traite de... »",
+      "Hauptteil: den Kerninhalt im Präsens und in der dritten Person wiedergeben, verknüpft mit Konnektoren wie d'abord und par ailleurs.",
+      "Keine Zitate, keine Wertung, die Längenvorgabe einhalten.",
+      "Abschluss mit Schlussfolgerung (en conclusion) statt abruptem Ende."
+    ],
+    "Analyse": [
+      "Einleitung mit problématique.",
+      "Knappe Inhaltsangabe.",
+      "Hauptteil in zwei bis drei thematischen Abschnitten entlang der fünf Säulen: Erzählperspektive, Struktur, Figurenkonstellation, sprachliche Mittel, Atmosphäre. Jede Aussage mit Textzitat belegen.",
+      "Schluss mit Rückbezug auf die Leitfrage."
+    ],
+    "Commentaire": [
+      "Introduction (10 bis 15 Prozent): amorce, Thema und These umreißen, problématique formulieren, Plan ankündigen.",
+      "Thèse (etwa 30 Prozent): zwei bis drei Argumente mit Beispiel.",
+      "Antithèse (etwa 30 Prozent, ähnlich stark): Übergang mit « Toutefois, on peut objecter que... »",
+      "Synthèse: eine neue Perspektive, die beide Pole überschreitet.",
+      "Conclusion: Antwort auf die problématique und ouverture."
+    ],
+    "Création": [
+      "Textsorte bestimmen: Brief, Tagebucheintrag, Dialog, Fortsetzung, Zeitungsartikel oder Rede.",
+      "Konventionen der Textsorte beachten; im Dialog Gedankenstriche statt Anführungszeichen.",
+      "Perspektive und Zeitform konsequent halten.",
+      "Sprachlich genau schreiben: Subjonctif und Konnektoren gehören auch in kreative Texte."
+    ]
+  };
+  const box = document.getElementById("aufbauBox");
+  const chips = document.querySelectorAll("#aufgabenWahl .chip");
+  function zeige(typ) {
+    chips.forEach(c => {
+      const an = c.dataset.typ === typ;
+      c.classList.toggle("aktiv", an);
+      c.setAttribute("aria-pressed", an ? "true" : "false");
+    });
+    const ol = document.createElement("ol");
+    AUFBAU[typ].forEach(schritt => {
+      const li = document.createElement("li");
+      li.textContent = schritt;
+      ol.appendChild(li);
+    });
+    box.replaceChildren(ol);
+  }
+  chips.forEach(c => c.addEventListener("click", () => zeige(c.dataset.typ)));
+  if (chips.length) zeige(chips[0].dataset.typ);
+})();
+</script>
 
 </body>
 </html>
