@@ -18,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/de/werkzeuge.html">Alle Lernwerkzeuge</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Lernwerkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
   </div>
@@ -26,15 +26,13 @@
 
 <main class="tool-main">
   <div class="wrap">
-    <nav class="breadcrumb" aria-label="Pfad"><a href="/de/werkzeuge.html">Lernwerkzeuge</a><span aria-hidden="true">/</span><a href="/de/werkzeuge.html#sprachen">Englisch</a><span aria-hidden="true">/</span><span aria-current="page">Grammatik-Trainer</span></nav>
     <h1>Englisch-Abitur-Trainer</h1>
-    <p class="tool-lede">Zwei Kartenstapel: Grammatik von den Zeitformen über If-Clauses und Reported Speech bis zu typischen Fehlern deutscher Lerner, dazu Konnektoren für die Argumentation. Du drehst jede Karte um und markierst sie mit Pfeil rechts als „sitzt“ oder mit Pfeil links als „nochmal“.</p>
-    <div class="schnellstart"><a class="btn" href="#ueben">Lernkarten üben</a><a class="btn btn--ghost" href="#quiz">Quiz starten</a></div>
-    <p class="tool-src">Die Inhalte stammen aus dem Buch <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a>.</p>
+    <p class="tool-lede">Ein Aufsatz mit brillantem Inhalt und wackliger Grammatik verliert Punkte, die sich leicht retten lassen. Dieser Trainer deckt den Stoff ab, an dem sich im Englisch-Abitur die Noten entscheiden: die Zeitformen und ihre Signalwörter, die vier If-Clause-Typen, Reported Speech, das Passiv, die Gerundium-Fallen und die typischen Fehler, die deutsche Lerner immer wieder machen. Dazu die Konnektoren, die aus aneinandergereihten Sätzen eine Argumentation machen.</p>
+    <p class="tool-src">Alle Inhalte stammen aus dem Buch <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a>. Dort findest du zu jeder Karte das ausführliche Kapitel mit Herleitung und Übungen. Für die mündliche Seite gibt es den <a href="/tools/kommunikationspruefung-englisch.html">Trainer für die Kommunikationsprüfung</a>.</p>
 
-    <div class="panel" id="ueben">
+    <div class="panel">
       <h2>Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst selbst antworten, dann umdrehen. Was sitzt, sortierst du mit einem Klick aus; der Rest kommt wieder, bis der Stapel leer ist. Die Leertaste dreht die Karte.</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst selbst antworten, dann umdrehen. Was sitzt, sortierst du mit einem Klick aus; der Rest kommt wieder, bis der Stapel leer ist. Tastatur: Leertaste dreht, Pfeil rechts heißt „sitzt", Pfeil links heißt „nochmal".</p>
       <div class="chip-row" id="deckRow"></div>
       <div class="chip-row" id="catRow"></div>
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
@@ -65,21 +63,15 @@
       </div>
     </div>
 
-    <div class="panel" id="quiz">
+    <div class="buch-tipp">
+      <span><strong>Vertiefung:</strong> Die Kapitel 7 bis 10 von <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a> erklären zu jedem dieser Themen die Herleitung, zeigen Musterlösungen und liefern die passenden Übungen, von den Zeitformen bis zu den Stilmitteln. Operatoren und Stilmittel trainierst du in der <a href="/tools/textanalyse-englisch.html">Textanalyse Englisch</a>.</span>
+    </div>
+
+    <div class="panel">
       <h2>Quiz: Wo stehst du?</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem">Zwölf Fragen quer durch Grammatik und Konnektoren, jede Antwort mit Begründung.</p>
       <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
-
-    <div class="panel weiterlernen">
-      <h2>Weiterlernen</h2>
-      <p>Herleitung, Musterlösungen und Übungen zu jedem Kartenthema stehen in den Kapiteln 7 bis 10 von <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a>.</p>
-      <ul class="verwandt">
-        <li><a href="/tools/textanalyse-englisch.html">Textanalyse Englisch</a>: Operatoren und Stilmittel für den Analyseteil</li>
-        <li><a href="/tools/schreibwerkstatt-englisch.html">Schreibwerkstatt Englisch</a>: Aufbau von Analyse, Erörterung und Sprachmittlung</li>
-        <li><a href="/tools/kommunikationspruefung-englisch.html">Kommunikationsprüfung Englisch</a>: Redemittel und Szenarien für die mündliche Prüfung</li>
-      </ul>
     </div>
   </div>
 </main>
@@ -112,7 +104,7 @@ const DECKS = {
       ["If-Clause Typ 1: Struktur und Verwendung?", "If + Present Simple, will + Infinitiv. Wahrscheinliche Zukunft.", "If I study hard, I will pass the Abitur.", "Typ 0 (Naturgesetze) nimmt zweimal Present Simple: If you heat water, it boils."],
       ["If-Clause Typ 2: Struktur und Verwendung?", "If + Past Simple, would + Infinitiv. Hypothetische Gegenwart.", "If I were the President, I would invest more in education.", "Im formellen Englisch heißt es If I were, nicht If I was."],
       ["If-Clause Typ 3: Struktur und Verwendung?", "If + Past Perfect, would have + Partizip. Nicht eingetretene Vergangenheit.", "If she had studied harder, she would have passed the exam.", "Ideal für Geschichtsanalysen und alternative Verläufe."],
-      ["Was ist ein Mixed Conditional?", "Typ 2 und Typ 3 kombiniert: vergangene Bedingung, gegenwärtige Folge, oder umgekehrt.", "If I had studied harder in school, I would have a better job now.", "Jede Satzhälfte folgt ihrer eigenen Zeitebene: Past Perfect für die vergangene Bedingung, would + Infinitiv für die Folge heute."],
+      ["Was ist ein Mixed Conditional?", "Typ 2 und Typ 3 kombiniert: vergangene Bedingung, gegenwärtige Folge, oder umgekehrt.", "If I had studied harder in school, I would have a better job now.", "Wer das sicher anwendet, zeigt Niveau auf 14-bis-15-Punkte-Ebene."],
       ["Warum ist „If I would have time...“ falsch?", "Im if-Satz steht nie would. Richtig: If I had time, I would...", "If I had more time, I would learn another language.", "Diese eine Regel beseitigt einen der hartnäckigsten Klausurfehler."]
     ],
     "Reported Speech": [

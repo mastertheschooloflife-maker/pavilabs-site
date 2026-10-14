@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Prompt-Werkstatt</title>
-<meta name="description" content="Prompting als Handwerk: der Vier-Fragen-Baukasten für vollständige Prompts, bewährte Techniken von Few-Shot bis Meta-Prompting, zehn Prompt-Rezepte als Lernkarten und die Prüfroutine gegen Halluzinationen, nach dem Buch Künstliche Intelligenz Meistern.">
+<meta name="description" content="Prompting als Handwerk: der Vier-Fragen-Baukasten für vollständige Prompts, die Techniken der Profis von Few-Shot bis Meta-Prompting, zehn Prompt-Rezepte als Lernkarten und die Prüfroutine gegen Halluzinationen, nach dem Buch Künstliche Intelligenz Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
@@ -18,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/de/werkzeuge.html">Alle Lernwerkzeuge</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Lernwerkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
   </div>
@@ -26,25 +26,20 @@
 
 <main class="tool-main">
   <div class="wrap">
-    <nav class="breadcrumb" aria-label="Pfad"><a href="/de/werkzeuge.html">Lernwerkzeuge</a><span aria-hidden="true">/</span><a href="/de/werkzeuge.html#lernen">Lernen und KI</a><span aria-hidden="true">/</span><span aria-current="page">Prompt-Werkstatt</span></nav>
     <h1>Prompt-Werkstatt</h1>
-    <p class="tool-lede">Der Baukasten fragt vier Dinge ab (was entstehen soll, für wen, in welcher Form, woran du ein gutes Ergebnis erkennst) und setzt daraus einen vollständigen Prompt zusammen. Darunter stehen bewährte Techniken, Prompt-Rezepte als Lernkarten und eine Prüfroutine für die Antworten.</p>
-    <div class="schnellstart"><a class="btn" href="#ueben">Prompt bauen</a><a class="btn btn--ghost" href="#rezepte">Lernkarten üben</a><a class="btn btn--ghost" href="#quiz">Quiz starten</a></div>
-    <p class="tool-src">Nach den Kapiteln Prompt Engineering, Kontext und Qualitätssicherung aus <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern: Das Praxishandbuch</a>.</p>
+    <p class="tool-lede">Über Prompting kursiert viel Halbwissen, und ganze Kursindustrien leben von angeblichen Geheimformeln. Die gute Nachricht: Wirksames Prompting ist kein Geheimwissen, sondern ein Handwerk mit einer überschaubaren Zahl von Techniken. Diese Werkstatt gibt dir das Repertoire: den Vier-Fragen-Baukasten, der aus einer vagen Anfrage einen vollständigen Prompt macht, die Techniken der Profis und die Prüfroutine, mit der du Ergebnisse kontrollierst, statt ihnen blind zu vertrauen.</p>
+    <p class="tool-src">Diese Werkstatt folgt den Kapiteln Prompt Engineering, Kontext und Qualitätssicherung aus <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern: Das Praxishandbuch</a>; den Einstieg bietet <a href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener">Künstliche Intelligenz alltagstauglich gemacht</a>.</p>
 
-    <div class="panel" id="ueben">
+    <div class="panel">
       <h2>Der Prompt-Baukasten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Ein guter Prompt muss nicht lang sein, aber vollständig. Fülle aus, was du brauchst, und setz den Prompt zusammen. Alles bleibt im Browser.</p>
-      <div class="cee-box">Wie das Ergebnis aussieht, zeigt ein Beispiel: eine Referatsgliederung zur Weimarer Republik für einen Geschichts-Leistungskurs. Der Knopf füllt die Felder damit und setzt den Prompt sofort zusammen.
-        <div style="margin-top:12px"><button class="btn btn--ghost" id="btnBeispiel" type="button">Beispiel einsetzen</button></div>
-      </div>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Gute Prompts müssen nicht lang sein, sondern vollständig. Ein vollständiger Prompt beantwortet vier Fragen: Was genau soll entstehen? Für wen? In welcher Form? Und woran erkenne ich, dass es gut ist? Fülle aus, was du brauchst; der Baukasten setzt daraus deinen Prompt zusammen. Alles bleibt im Browser.</p>
       <div class="pb-form">
         <label class="feld"><span>Aufgabe: Was genau soll entstehen?</span><textarea class="feld-text" id="pbAufgabe" rows="2" placeholder="Eine Gliederung für ein zehnminütiges Referat über die Weimarer Republik, mit drei Kernpunkten und einem Einstieg, der das Publikum packt"></textarea></label>
         <label class="feld"><span>Zielgruppe: Für wen ist es?</span><input class="feld-text" id="pbZielgruppe" placeholder="Ein Geschichts-Leistungskurs mit Vorwissen aus dem Unterricht"></label>
         <label class="feld"><span>Form: Format, Länge, Ton</span><input class="feld-text" id="pbForm" placeholder="Stichpunkte statt Fließtext, maximal eine Seite, nüchterner Ton"></label>
         <label class="feld"><span>Qualität: Woran erkennst du ein gutes Ergebnis? Negativliste?</span><input class="feld-text" id="pbQualitaet" placeholder="Keine Floskeln, keine erfundenen Zahlen oder Zitate, keine Weltlage-Einleitungen"></label>
         <label class="feld"><span>Rolle oder Perspektive (optional)</span><input class="feld-text" id="pbRolle" placeholder="Prüfe anschließend aus Sicht einer strengen Lehrkraft, die jede unbelegte Behauptung markiert"></label>
-        <label class="feld"><span>Beispiel des gewünschten Stils (optional, steuert Stil und Format am direktesten)</span><textarea class="feld-text" id="pbBeispiel" rows="2" placeholder="Ein gelungenes bestehendes Exemplar einfügen: verfasse nach dem Muster dieses Beispiels..."></textarea></label>
+        <label class="feld"><span>Beispiel des gewünschten Stils (optional, stärkstes Steuerungsinstrument)</span><textarea class="feld-text" id="pbBeispiel" rows="2" placeholder="Ein gelungenes bestehendes Exemplar einfügen: verfasse nach dem Muster dieses Beispiels..."></textarea></label>
       </div>
       <div class="fcard-aktionen">
         <button class="btn" id="btnBauen">Prompt zusammensetzen</button>
@@ -52,26 +47,26 @@
         <span class="hint" id="pbHinweis" role="status"></span>
       </div>
       <pre class="pb-ausgabe" id="pbAusgabe" hidden></pre>
+      <div class="buch-tipp">
+        <span><strong>Aus dem Buch:</strong> Das Prompt-Engineering-Kapitel in <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern</a> führt jede dieser Zutaten mit durchgespielten Praxisbeispielen aus, von der Negativliste bis zur Prompt-Bibliothek für wiederkehrende Aufgaben.</span>
+      </div>
     </div>
 
-    <div class="panel" id="techniken">
-      <h2>Bewährte Techniken</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Um Prompting kursiert viel Halbwissen, oft verkauft als Geheimformel. Tatsächlich ist es ein Handwerk mit einer überschaubaren Zahl von Techniken.</p>
+    <div class="panel">
+      <h2>Die Techniken der Profis</h2>
       <dl class="ledger">
         <div class="row"><dt>Rollen mit Perspektive</dt><dd>„Du bist ein Marketingexperte“ bewirkt wenig. Wirkung entsteht, wenn die Rolle Wissen, Maßstäbe und Blickwinkel transportiert: „Prüfe den Vertragsentwurf aus der Perspektive der Gegenseite, deren Ziel es ist, Haftungsrisiken auf uns abzuwälzen.“</dd></div>
-        <div class="row"><dt>Beispiele (Few-Shot)</dt><dd>Ein sehr zuverlässiges Steuerungsinstrument: zwei, drei Exemplare des gewünschten Ergebnisses zeigen, statt den Stil zu beschreiben. Dazu passt ein Gegenbeispiel mit dem Vermerk „so bitte nicht, zu werblich“.</dd></div>
-        <div class="row"><dt>Prüfpfad vorgeben</dt><dd>Neben dem Ergebnis auch den Arbeitsprozess vorgeben: „Prüfe in vier Schritten: erstens alle Annahmen auflisten, zweitens jede nach Plausibilität bewerten, drittens das Szenario mit 30 Prozent schlechteren Annahmen durchrechnen, viertens Gesamturteil mit den drei größten Risiken.“ Bei Reasoning-Modellen lohnt es sich oft, weniger den Lösungsweg und mehr klare Ziele und Prüfkriterien vorzugeben.</dd></div>
+        <div class="row"><dt>Beispiele (Few-Shot)</dt><dd>Das zuverlässigste Steuerungsinstrument: zwei, drei Exemplare des gewünschten Ergebnisses zeigen statt den Stil zu beschreiben. Der unterschätzte Kniff: zusätzlich ein Gegenbeispiel mit „so bitte nicht, zu werblich“.</dd></div>
+        <div class="row"><dt>Prüfpfad vorgeben</dt><dd>Nicht nur das Ergebnis, den Arbeitsprozess vorgeben: „Prüfe in vier Schritten: erstens alle Annahmen auflisten, zweitens jede nach Plausibilität bewerten, drittens das Szenario mit 30 Prozent schlechteren Annahmen durchrechnen, viertens Gesamturteil mit den drei größten Risiken.“ Reasoning-Modelle brauchen weniger Wie und mehr glasklare Ziele und Prüfschemata.</dd></div>
         <div class="row"><dt>Markierungen</dt><dd>Bei längeren Prompts Anweisung, Kontext und Material mit klar benannten Blöcken trennen, sonst kommentiert die KI den zu korrigierenden Text, statt ihn zu korrigieren. Ausgabeformat exakt definieren: Tabelle mit festen Spalten, Gliederung mit maximal zwei Ebenen.</dd></div>
         <div class="row"><dt>Meta-Prompting</dt><dd>Die KI ihre eigenen Arbeitsanweisungen schreiben lassen: „Analysiere, welche Informationen in meinem Prompt gefehlt haben, und schreibe eine verbesserte Version; stelle mir vorher alle Fragen, deren Antworten du brauchst.“</dd></div>
-        <div class="row"><dt>Dialog-Dramaturgie</dt><dd>Statt eines einzelnen Prompts ein Gespräch in Phasen planen: Erkunden (Rückfragen, Gliederungsvarianten), Erzeugen (Entwurf), Härten (das Modell attackiert den eigenen Entwurf). Hängt der Dialog fest, ist ein Neustart mit verbessertem Prompt meist schneller als die zehnte Korrekturschleife.</dd></div>
-        <div class="row"><dt>Prompt-Bibliothek</dt><dd>Jeden Prompt, der überraschend gut funktioniert hat, notieren und für wiederkehrende Aufgaben wiederverwenden. Nach einigen Monaten ist daraus ein eigenes Arbeitsmittel geworden.</dd></div>
+        <div class="row"><dt>Dialog-Dramaturgie</dt><dd>Anfänger denken in Prompts, Fortgeschrittene in Gesprächen: Erkunden (Rückfragen, Gliederungsvarianten), Erzeugen (Entwurf), Härten (das Modell attackiert den eigenen Entwurf). Festgefahrener Dialog? Neustart mit verbessertem Prompt schlägt die zehnte Korrekturschleife.</dd></div>
       </dl>
-      <p style="color:var(--cream-dim);font-size:0.88rem;max-width:62ch;margin-top:14px">Stand: Oktober 2026. Sprachmodelle entwickeln sich schnell; prüfe Aussagen über bestimmte Modelltypen gegen die aktuelle Dokumentation der Anbieter.</p>
     </div>
 
-    <div class="panel" id="rezepte">
+    <div class="panel">
       <h2>Prompt-Rezepte als Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Zehn Muster aus dem Buch für wiederkehrende Aufgaben: erst überlegen, wie das Rezept geht, dann umdrehen.</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Muster aus dem Buch, die in Seminaren regelmäßig für Aha-Momente sorgen: erst überlegen, wie das Rezept geht, dann umdrehen.</p>
       <div class="chip-row" id="deckRow" style="display:none"></div>
       <div class="chip-row" id="catRow"></div>
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
@@ -107,23 +102,17 @@
       <dl class="ledger">
         <div class="row"><dt>Erst binden, dann fragen</dt><dd>„Beantworte ausschließlich auf Basis des beigefügten Dokuments, kennzeichne jede nicht direkt belegbare Aussage als Interpretation und zitiere zu jeder Antwort die relevante Passage.“ Das reduziert die Neigung, Wissenslücken mit Allgemeinwissen zu füllen.</dd></div>
         <div class="row"><dt>In Etappen arbeiten</dt><dd>Lange Dokumente nicht mit einer Frage bewerfen: erst eine strukturierte Übersicht erstellen lassen, dann gezielt in die relevanten Abschnitte einsteigen. Anweisungen an den Anfang, die Kernfrage nach dem Material wiederholen.</dd></div>
-        <div class="row"><dt>Prüfen statt vertrauen</dt><dd>Extraktionstabellen gegen das Original kontrollieren, nie blind übernehmen. Modelle erfinden mitunter Angaben, wo Wissen fehlt; das Prüfen bleibt deine Aufgabe.</dd></div>
+        <div class="row"><dt>Prüfen statt vertrauen</dt><dd>Extraktionstabellen gegen das Original kontrollieren, nie blind übernehmen. Modelle erfinden, wo Wissen fehlt; die Prüfkompetenz ist der eigentliche Berufsvorteil.</dd></div>
       </dl>
+      <div class="buch-tipp">
+        <span><strong>Aus dem Buch:</strong> Die sechs übernehmbaren Prüf-Prompts und die Prüfroutine eines Teams stehen im Qualitätssicherungs-Kapitel von <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern</a>. Auf Englisch: <a href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener">Mastering Artificial Intelligence</a>.</span>
+      </div>
     </div>
 
-    <div class="panel" id="quiz">
+    <div class="panel">
       <h2>Quiz: Prompting-Handwerk verstanden?</h2>
       <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
-
-    <div class="panel weiterlernen">
-      <h2>Weiterlernen</h2>
-      <p>Durchgespielte Praxisbeispiele zu jeder Zutat des Baukastens und sechs Prüf-Prompts zum Übernehmen stehen in <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern</a> (englisch: <a href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener">Mastering Artificial Intelligence</a>); für den Einstieg gibt es <a href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener">Künstliche Intelligenz alltagstauglich gemacht</a>.</p>
-      <ul class="verwandt">
-        <li><a href="/tools/klausurplaner.html">Klausur-Planer</a>: Lernzeit bis zur Klausur in Phasen einteilen</li>
-        <li><a href="/tools/mitarbeit.html">Mitarbeit und Referate</a>: Referate aufbauen, wie im Beispiel-Prompt</li>
-      </ul>
     </div>
   </div>
 </main>
@@ -133,7 +122,7 @@
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
       <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
-      <span><a href="/de/buecher.html">Zu den KI-Büchern</a></span>
+      <span><a href="/de/#publikationen">Zu den KI-Büchern</a></span>
     </div>
   </div>
 </footer>
@@ -142,9 +131,9 @@
 const DECKS = {
   "Rezepte": {
     "Bessere Ergebnisse": [
-      ["Die Interview-Umkehr", "Statt Informationen zu liefern, lässt du dich befragen.", "Stelle mir nacheinander zehn Fragen, um alles zu erfahren, was du für ein überzeugendes Anschreiben brauchst, und schreibe es erst danach.", "Das Ergebnis wird meist persönlicher als mit einem selbst formulierten Prompt."],
+      ["Die Interview-Umkehr", "Statt Informationen zu liefern, lässt du dich befragen.", "Stelle mir nacheinander zehn Fragen, um alles zu erfahren, was du für ein überzeugendes Anschreiben brauchst, und schreibe es erst danach.", "Das Ergebnis ist persönlicher als jeder selbst formulierte Prompt."],
       ["Der Verständnistest", "Missverständnisse auffliegen lassen, bevor sie Arbeit kosten.", "Fasse in eigenen Worten zusammen, was ich von dir will, und nenne die Punkte, die unklar sind.", "Vor jeder komplexen Aufgabe."],
-      ["Die Rubrik zuerst", "Selbstbewertung einbauen.", "Entwickle vor dem Schreiben eine Bewertungsrubrik mit fünf Kriterien, schreibe dann den Text und benote und überarbeite ihn anschließend selbst anhand der Rubrik.", "Die Selbstbewertungsschleife verbessert die Qualität oft spürbar."],
+      ["Die Rubrik zuerst", "Selbstbewertung einbauen.", "Entwickle vor dem Schreiben eine Bewertungsrubrik mit fünf Kriterien, schreibe dann den Text und benote und überarbeite ihn anschließend selbst anhand der Rubrik.", "Die Selbstbewertungsschleife hebt die Qualität messbar."],
       ["Die Extremvarianten", "Echte Alternativen erzwingen.", "Drei Fassungen: eine konservative, eine gewagte und eine, die eine Regel bewusst bricht.", "Die beste Lösung liegt oft zwischen zwei Extremen."],
       ["Das Erklärlevel", "Eigene Verständnislücken sichtbar machen.", "Erkläre mir dieses Konzept dreimal: für einen Vorstand in drei Sätzen, für einen Fachkollegen, für einen Berufseinsteiger.", ""]
     ],
@@ -160,15 +149,15 @@ const DECKS = {
 
 const QUIZ = [
   {f: 'Gute Prompts müssen vor allem...', o: ['...möglichst lang sein', '...vollständig sein: Was, für wen, in welcher Form, woran gemessen', '...höflich formuliert sein'], r: 1, e: 'Länge ist nicht das Kriterium; die vier Fragen als Checkliste schon.'},
-  {f: '„Du bist ein Marketingexperte“ bewirkt wenig, weil...', o: ['...Modelle keine Rollen verstehen', '...die Rolle zu unspezifisch ist: Sie muss Wissen, Maßstäbe und Perspektive transportieren', '...Rollen verboten sind'], r: 1, e: 'Eine Rolle hilft, wenn sie einen Blickwinkel erzeugt, den du selbst schwer einnehmen kannst.'},
-  {f: 'Ein sehr zuverlässiges Instrument für Stil und Format?', o: ['Eine ausführliche Stilbeschreibung', 'Zwei bis drei Beispiele des gewünschten Ergebnisses', 'Großbuchstaben für wichtige Wörter'], r: 1, e: 'Modelle sind Mustervervollständiger; nichts definiert ein Muster so klar wie Exemplare davon. Dazu ein Gegenbeispiel.'},
-  {f: 'Reasoning-Modelle brauchen laut Faustregel...', o: ['...den detaillierten Lösungsweg', '...das Prüfschema, an dem sie die eigene Lösung messen', '...kürzere Prompts'], r: 1, e: 'Als Faustregel gibt man klassischen Modellen eher den Lösungsweg, Reasoning-Modellen eher Ziel und Bewertungskriterien. Prüfe das gegen die aktuelle Dokumentation des Anbieters.'},
+  {f: '„Du bist ein Marketingexperte“ bewirkt wenig, weil...', o: ['...Modelle keine Rollen verstehen', '...die Rolle zu unspezifisch ist: Sie muss Wissen, Maßstäbe und Perspektive transportieren', '...Rollen verboten sind'], r: 1, e: 'Wert entsteht, wenn die Rolle einen Blickwinkel erzeugt, den du selbst schwer einnehmen kannst.'},
+  {f: 'Das zuverlässigste Instrument für Stil und Format?', o: ['Eine ausführliche Stilbeschreibung', 'Zwei bis drei Beispiele des gewünschten Ergebnisses', 'Großbuchstaben für wichtige Wörter'], r: 1, e: 'Modelle sind Mustervervollständiger; nichts definiert ein Muster wie Exemplare davon. Plus Gegenbeispiel.'},
+  {f: 'Reasoning-Modelle brauchen laut Faustregel...', o: ['...den detaillierten Lösungsweg', '...das Prüfschema, an dem sie die eigene Lösung messen', '...kürzere Prompts'], r: 1, e: 'Klassischen Modellen gibt man den Lösungsweg, Reasoning-Modellen Ziel und Bewertungskriterien.'},
   {f: 'Die KI kommentiert den Text, den sie korrigieren sollte. Ursache?', o: ['Das Modell ist zu schwach', 'Anweisung und Material waren nicht klar getrennt', 'Der Text war zu lang'], r: 1, e: 'Markierungen lösen das: Material zwischen klar benannte Marker, Anweisung verweist darauf.'},
-  {f: 'Ein Dialog ist festgefahren, das Modell fällt in dieselben Fehler zurück. Du...', o: ['...korrigierst weiter, Hartnäckigkeit zahlt sich aus', '...startest neu mit verbessertem Ausgangsprompt', '...formulierst die Korrektur in Großbuchstaben'], r: 1, e: 'Der Neustart ist meist schneller als die zehnte Korrekturschleife.'},
+  {f: 'Ein Dialog ist festgefahren, das Modell fällt in dieselben Fehler zurück. Du...', o: ['...korrigierst weiter, Hartnäckigkeit zahlt sich aus', '...startest neu mit verbessertem Ausgangsprompt', '...formulierst die Korrektur in Großbuchstaben'], r: 1, e: 'Der Neustart ist fast immer schneller als die zehnte Korrekturschleife.'},
   {f: 'Was ist ein Premortem?', o: ['Eine Zusammenfassung nach Projektende', 'Die Analyse des fiktiven Scheiterns VOR der Entscheidung', 'Ein Prompt zum Löschen alter Chats'], r: 1, e: 'Das Modell muss eine konkrete Geschichte des Scheiterns konstruieren statt höflicher Bedenken.'},
   {f: 'Bei der Arbeit mit einem Vertrag gilt zuerst:', o: ['Möglichst viele Fragen auf einmal stellen', 'Das Modell ausdrücklich auf das Material verpflichten und Belege verlangen', 'Das Dokument zusammenfassen lassen und löschen'], r: 1, e: 'Erst binden, dann fragen: kennzeichnen, zitieren, gegen das Original kontrollieren.'},
   {f: 'Die Extraktionstabelle aus einem Vertrag...', o: ['...kann direkt übernommen werden', '...wird gegen das Original kontrolliert', '...ersetzt die juristische Prüfung'], r: 1, e: 'Aus einer Stunde Lesearbeit werden fünf Minuten Prüfarbeit, nicht null.'},
-  {f: 'Welcher Rat hilft beim Weiterlernen?', o: ['Einen teuren Kurs buchen', 'Eine persönliche Prompt-Sammlung anlegen und jeden überraschend guten Prompt notieren', 'Täglich neue Geheimformeln testen'], r: 1, e: 'Nach einigen Monaten ist das ein Arbeitsmittel, das auf deine eigenen Aufgaben zugeschnitten ist.'}
+  {f: 'Der wichtigste Rat zum Weiterlernen?', o: ['Einen teuren Kurs buchen', 'Eine persönliche Prompt-Sammlung anlegen und jeden überraschend guten Prompt notieren', 'Täglich neue Geheimformeln testen'], r: 1, e: 'Nach drei Monaten ist das ein Arbeitsmittel, das kein Kurs ersetzt.'}
 ];
 </script>
 <script src="/assets/trainer.js"></script>
@@ -197,13 +186,6 @@ $$("btnBauen").onclick = () => {
   aus.textContent = prompt;
   aus.hidden = false;
   $$("btnKopieren").hidden = false;
-};
-// Beispiel: füllt die Felder mit den Platzhaltertexten und setzt den Prompt zusammen.
-// Das Stilbeispiel-Feld bleibt leer, weil sein Platzhalter eine Anleitung ist, kein Beispieltext.
-$$("btnBeispiel").onclick = () => {
-  ["pbAufgabe", "pbZielgruppe", "pbForm", "pbQualitaet", "pbRolle"].forEach(id => { $$(id).value = $$(id).placeholder; });
-  $$("pbBeispiel").value = "";
-  $$("btnBauen").click();
 };
 $$("btnKopieren").onclick = async () => {
   try {

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Duales-Studium-Check</title>
-<meta name="description" content="Duales Studium oder klassisches Studium? Zwölf Fragen zu Arbeitsstil, Motivation, Belastbarkeit und Freiheitsbedürfnis zeigen deine Tendenz und welche Antworten dafür sprechen, abgeleitet aus dem kommenden Buch Duales Studium Meistern.">
+<meta name="description" content="Duales Studium oder klassisches Studium? Zwölf ehrliche Fragen zu Arbeitsstil, Motivation, Belastbarkeit und Freiheitsbedürfnis zeigen, welcher Weg zu dir passt, abgeleitet aus dem kommenden Buch Duales Studium Meistern.">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
@@ -18,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/de/werkzeuge.html">Alle Lernwerkzeuge</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Lernwerkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
   </div>
@@ -26,35 +26,22 @@
 
 <main class="tool-main">
   <div class="wrap">
-    <nav class="breadcrumb" aria-label="Pfad"><a href="/de/werkzeuge.html">Lernwerkzeuge</a><span aria-hidden="true">/</span><a href="/de/werkzeuge.html#studienwahl">Studienwahl</a><span aria-hidden="true">/</span><span aria-current="page">Duales-Studium-Check</span></nav>
     <h1>Duales-Studium-Check</h1>
-    <p class="tool-lede">Zwölf Situationen zu Kalender, Geld, Freiheit und Belastung, je zwei Antworten zur Wahl. Das Ergebnis zeigt, ob du eher zum dualen oder zum klassischen Studium neigst, und listet auf, welche deiner Antworten für welchen Weg sprachen.</p>
-    <div class="schnellstart"><a class="btn" href="#quizPanel">Check starten</a><a class="btn btn--ghost" href="#weiterlernen">Weiterlernen</a></div>
+    <p class="tool-lede">Ein duales Studium ist kein Kompromiss zwischen Ausbildung und Studium, sondern ein eigener Bildungsweg mit eigener Logik: frühe Verantwortung, feste Strukturen, echte Praxis, anspruchsvolles Tempo. Und die Entscheidung dafür ist auch eine Entscheidung über Lebensstil: Manche brauchen akademische Freiheit und breite Exploration, andere wachsen gerade in Struktur und konkreten Aufgaben. Beides ist legitim; falsch wird es nur, wenn der Weg nicht zur eigenen Arbeitsweise passt. Zwölf Situationen zeigen deine Tendenz, ehrlich statt geschönt.</p>
     <p class="tool-src">Abgeleitet aus dem kommenden Buch „Duales Studium Meistern“ von Pavisanth Pathmarajah (in Vorbereitung).</p>
 
     <div class="panel" id="quizPanel">
       <h2 id="qTitel">Zwölf Fragen, ehrlich beantwortet</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem" id="qIntro">Es gibt keine richtigen Antworten, nur passende. Wähle die Aussage, die dich besser beschreibt, nicht die, die nach Prestige oder einer schönen Stellenanzeige klingt. Das duale Studium ist ein eigener Bildungsweg mit früher Verantwortung, festen Strukturen und hohem Tempo; beide Wege sind legitim, solange sie zu deiner Arbeitsweise passen.</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem" id="qIntro">Es gibt keine richtigen Antworten, nur passende. Wähle die Aussage, die dich besser beschreibt, nicht die, die besser klingt. Die Entscheidung sollte nicht aus Prestige, Druck oder einer schönen Stellenanzeige entstehen, sondern aus einem ehrlichen Verständnis des eigenen Arbeitsstils.</p>
       <div id="qBox"></div>
       <button class="btn" id="btnStart">Starten</button>
     </div>
 
     <div class="panel" id="ergebnisPanel" hidden>
       <h2 id="eTitel"></h2>
-      <p style="font-size:0.88rem;color:var(--cream-dim);margin-bottom:14px">Zwölf Fragen ersetzen keine Studienberatung; sie machen deine eigene Tendenz sichtbar. Deine Antworten bleiben im Browser und werden nirgendwohin übertragen.</p>
       <div id="eBalken"></div>
-      <div id="eListen"></div>
       <div id="eText" style="color:var(--cream-dim)"></div>
       <button class="btn btn--ghost no-print" id="btnNochmal">Noch einmal durchgehen</button>
-    </div>
-
-    <div class="panel weiterlernen" id="weiterlernen">
-      <h2>Weiterlernen</h2>
-      <p>„Duales Studium Meistern“ ist in Vorbereitung; bis dahin steht die Lern- und Prüfungsmethodik für beide Wege in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
-      <ul class="verwandt">
-        <li><a href="/tools/studienkompass.html">Studienkompass</a>: Informatik oder Wirtschaftsinformatik als Fach</li>
-        <li><a href="/tools/klausurplaner.html">Klausur-Planer</a>: Vorbereitung auf eine Prüfung in Phasen planen</li>
-      </ul>
     </div>
   </div>
 </main>
@@ -74,7 +61,7 @@ const FRAGEN = [
   {t: "Dein Kalender für die nächsten drei Jahre:", a: "Darf voll sein, wenn jede Woche eine klare Struktur hat: Vorlesungsblöcke, Praxisphasen, feste Aufgaben.", b: "Soll Raum lassen: Semester selbst gestalten, Schwerpunkte verschieben, auch mal ein Nebenprojekt verfolgen."},
   {t: "Semesterferien bedeuten für dich...", a: "...verzichtbar: Mir reicht geregelter Urlaub wie im Berufsleben, wenn ich dafür Gehalt und Erfahrung bekomme.", b: "...wichtige Freiräume: lange Phasen für Reisen, Praktika nach Wahl, eigene Projekte oder einfach Abstand."},
   {t: "Geld während des Studiums ist für dich...", a: "...ein echter Faktor: Eigenes Gehalt ab dem ersten Semester gibt mir Unabhängigkeit und Ernsthaftigkeit.", b: "...zweitrangig: Ich finanziere lieber flexibel (Nebenjob, Förderung), wenn ich dafür frei in der Gestaltung bin."},
-  {t: "Theorie lernst du am liebsten...", a: "...wenn ich sie direkt anwenden kann: Ein Modul wird für mich erst greifbar, wenn es im Betrieb als Prozess oder Projekt auftaucht.", b: "...um ihrer selbst willen: Ich will Konzepte erst in Breite und Tiefe durchdringen, die Anwendung kommt später."},
+  {t: "Theorie lernst du am liebsten...", a: "...wenn ich sie direkt anwenden kann: Ein Modul wird für mich erst wertvoll, wenn es im Betrieb als Prozess oder Projekt auftaucht.", b: "...um ihrer selbst willen: Ich will Konzepte erst in Breite und Tiefe durchdringen, die Anwendung kommt später."},
   {t: "Eine Prüfungsphase fällt mit einer anspruchsvollen Arbeitswoche zusammen. Dein Gefühl:", a: "Machbar: Ich plane früh, kommuniziere rechtzeitig und teile meine Energie ein. Solche Wochen gehören dazu.", b: "Abschreckend: Ich will mich in Prüfungsphasen voll aufs Lernen konzentrieren können, ohne Lieferpflichten daneben."},
   {t: "Verantwortung im echten Betrieb...", a: "...will ich so früh wie möglich: eigene Aufgaben, echte Kunden, echte Konsequenzen, auch wenn ich noch lerne.", b: "...darf warten: Erst ein solides Fundament und Orientierung, dann der Ernstfall."},
   {t: "Selbstorganisation beschreibt dich...", a: "...gut: Wochenplanung, Prioritäten, rechtzeitig kommunizieren: So arbeite ich jetzt schon.", b: "...ehrlich gesagt noch nicht: Ich brauche Phasen, in denen wenig festgelegt ist, und finde meinen Rhythmus frei besser."},
@@ -87,11 +74,10 @@ const FRAGEN = [
 
 const $ = id => document.getElementById(id);
 let idx = 0, punkteA = 0, punkteB = 0, sperre = 0;
-let antworten = [];
 
 function mischen(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-$("btnStart").onclick = () => { idx = 0; punkteA = 0; punkteB = 0; antworten = []; $("btnStart").hidden = true; $("qIntro").hidden = true; $("ergebnisPanel").hidden = true; zeigeFrage(); };
+$("btnStart").onclick = () => { idx = 0; punkteA = 0; punkteB = 0; $("btnStart").hidden = true; $("qIntro").hidden = true; $("ergebnisPanel").hidden = true; zeigeFrage(); };
 $("btnNochmal").onclick = () => { $("btnStart").click(); $("quizPanel").scrollIntoView({behavior: "smooth", block: "start"}); };
 
 function zeigeFrage() {
@@ -105,51 +91,8 @@ function zeigeFrage() {
     const b = document.createElement("button");
     b.className = "quiz-opt";
     b.textContent = o.txt;
-    b.onclick = () => {
-      if (Date.now() < sperre) return;
-      sperre = Date.now() + 400;
-      if (o.wert === "a") punkteA++; else punkteB++;
-      antworten.push({frage: q.t, antwort: o.txt, richtung: o.wert});
-      idx++;
-      zeigeFrage();
-    };
+    b.onclick = () => { if (Date.now() < sperre) return; sperre = Date.now() + 400; if (o.wert === "a") punkteA++; else punkteB++; idx++; zeigeFrage(); };
     box.appendChild(b);
-  }
-}
-
-// Kürzt einen Antworttext auf den ersten Satz. Führende Auslassungspunkte bleiben stehen.
-function ersterSatz(s) {
-  const m = s.match(/^[\s\S]*?[.!?](?=\s|$)/);
-  return m ? m[0] : s;
-}
-
-function zeigeListen(gruppen) {
-  const ziel = $("eListen");
-  ziel.replaceChildren();
-  for (const g of gruppen) {
-    const auswahl = antworten.filter(x => x.richtung === g.richtung);
-    const h = document.createElement("h3");
-    h.style.cssText = "font-size:1rem;margin:20px 0 8px";
-    h.textContent = g.titel + " (" + auswahl.length + ")";
-    const ul = document.createElement("ul");
-    ul.style.cssText = "margin:0 0 6px;padding-left:1.2em";
-    if (!auswahl.length) {
-      const li = document.createElement("li");
-      li.textContent = "Keine.";
-      ul.appendChild(li);
-    }
-    for (const x of auswahl) {
-      const li = document.createElement("li");
-      li.style.marginBottom = "8px";
-      const frage = document.createElement("span");
-      frage.style.cssText = "display:block;font-size:0.82rem;color:var(--cream-dim)";
-      frage.textContent = x.frage;
-      li.appendChild(frage);
-      li.appendChild(document.createTextNode(ersterSatz(x.antwort)));
-      ul.appendChild(li);
-    }
-    ziel.appendChild(h);
-    ziel.appendChild(ul);
   }
 }
 
@@ -164,27 +107,24 @@ function zeigeErgebnis() {
   const anteilA = Math.round((punkteA / gesamt) * 100);
   const anteilB = 100 - anteilA;
   let titel, text;
+  const buecher = `<p style="margin-top:18px">Zur Vertiefung: „Duales Studium Meistern“ erscheint in Kürze. Bis dahin hilft bei der Fächerfrage der <a href="/tools/studienkompass.html" style="color:var(--gold)">Studienkompass</a>, und die Lern- und Prüfungsmethodik für beide Wege steht in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener" style="color:var(--gold)">Lernen meistern</a>.</p>`;
 
   if (anteilA >= 65) {
     titel = "Deine Tendenz: duales Studium";
-    text = `<p>Struktur, frühe Verantwortung, eigenes Gehalt und Theorie, die sofort im Betrieb landet: Dafür ist das duale Studium gebaut, und deine Antworten sprechen dafür, dass dir dieser Rahmen liegt. Sieh dir trotzdem die andere Seite an: Die Freiheit eines klassischen Studiums ist kleiner, die Kalender sind voller, Urlaub ersetzt die Semesterferien, und Prüfungen treffen auf Arbeitsphasen, in denen du trotzdem zuverlässig liefern musst.</p><p>Dein nächster Schritt ist die Auswahl: Welche Abteilungen, Projekte und Werte prägen das Unternehmen? Eine starke Bewerbung beantwortet drei Fragen: Warum dieses Fach, warum dieses Unternehmen, warum diese Studienform. Im Gespräch stellst du eigene Fragen: Wie werden Praxisphasen geplant, gibt es feste Betreuer, wie wird mit Prüfungsphasen umgegangen?</p>`;
+    text = `<p>Struktur, frühe Verantwortung, eigenes Gehalt und Theorie, die sofort im Betrieb landet: Genau dafür ist das duale Studium gebaut, und deine Antworten zeigen, dass du in diesem Rahmen eher aufblühst als leidest. Wichtig bleibt der ehrliche Blick auf die andere Seite: Die Freiheit eines klassischen Studiums ist kleiner, die Kalender sind voller, Urlaub ersetzt die Semesterferien, und Prüfungen treffen auf Arbeitsphasen, in denen du trotzdem zuverlässig liefern musst.</p><p>Dein nächster Schritt ist die Auswahl: Welche Abteilungen, Projekte und Werte prägen das Unternehmen? Eine starke Bewerbung beantwortet drei Fragen: Warum dieses Fach, warum dieses Unternehmen, warum diese Studienform. Und im Gespräch stellst du eigene Fragen: Wie werden Praxisphasen geplant, gibt es feste Betreuer, wie wird mit Prüfungsphasen umgegangen?</p>`;
   } else if (anteilB >= 65) {
     titel = "Deine Tendenz: klassisches Studium";
-    text = `<p>Akademische Freiheit, breite Exploration, flexible Semester: Deine Antworten sprechen für den klassischen Weg. Auf Praxis verzichtest du damit nicht. Praktika, Werkstudentenstellen und eigene Projekte kannst du dort platzieren, wo sie zu deinen Interessen passen, statt sie vertraglich festgelegt zu bekommen.</p><p>Ein Gedanke aus dem Buch gilt auch für dich: Im Studium kommt weiter, wer früh lernt, sich selbst zu organisieren, nicht wer am meisten aushält. Aufgaben sortieren, Energie einteilen, rechtzeitig kommunizieren, Prioritäten setzen: Das zählt auf beiden Wegen.</p>`;
+    text = `<p>Akademische Freiheit, breite Exploration, flexible Semester: Deine Antworten sprechen für den klassischen Weg. Das ist keine Entscheidung gegen Praxis, sondern für selbstgewählte Praxis: Praktika, Werkstudentenstellen und eigene Projekte kannst du dort platzieren, wo sie zu deinen Interessen passen, statt sie vertraglich festgelegt zu bekommen.</p><p>Der wichtigste Gedanke aus dem Buch gilt trotzdem auch für dich: Ein Studium belohnt nicht die, die am meisten aushalten, sondern die, die früh lernen, sich selbst zu organisieren. Aufgaben sortieren, Energie einteilen, rechtzeitig kommunizieren, Prioritäten setzen: Das entscheidet auf beiden Wegen.</p>`;
   } else {
     titel = "Deine Tendenz: offen, mit gutem Grund";
-    text = `<p>Du bewegst dich nahe der Mitte, und auch das ist ein Ergebnis: Beide Wege können für dich funktionieren, und beide verlangen Selbstorganisation. Offen bleibt die Lebensstilfrage: Brauchst du akademische Freiheit und breite Exploration, oder wächst du in festen Strukturen mit konkreten Aufgaben und frühem Praxisbezug?</p><p>Ein praktischer Test: Sprich mit je einer Person aus beiden Welten, einem dual Studierenden und einem klassisch Studierenden desselben Fachs, und frag nach einer ganz normalen Woche. Welche der beiden Wochen du eher haben willst, sagt mehr als jeder Fragebogen.</p>`;
+    text = `<p>Du bewegst dich nahe der Mitte, und das ist ein ehrliches Ergebnis: Beide Wege können für dich funktionieren, und beide verlangen dieselbe Kernkompetenz: Selbstorganisation. Entscheidend ist die Lebensstilfrage: Brauchst du akademische Freiheit und breite Exploration, oder wächst du in festen Strukturen mit konkreten Aufgaben und frühem Praxisbezug?</p><p>Ein praktischer Test: Sprich mit je einer Person aus beiden Welten, einem dual Studierenden und einem klassisch Studierenden desselben Fachs, und frag nach einer ganz normalen Woche. Welche der beiden Wochen du eher haben willst, ist ein ehrlicheres Signal als jeder Fragebogen.</p>`;
   }
 
   $("eTitel").textContent = titel;
   $("eBalken").innerHTML = `
     <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:var(--cream-dim)"><span>Dual ${anteilA}%</span><span>Klassisch ${anteilB}%</span></div>
     <div class="ergebnis-balken"><div style="width:${anteilA}%"></div></div>`;
-  zeigeListen([
-    {richtung: "a", titel: "Für das duale Studium sprachen diese Antworten"},
-    {richtung: "b", titel: "Für das klassische Studium sprachen diese Antworten"}
-  ]);
-  $("eText").innerHTML = text;
+  $("eText").innerHTML = text + buecher + `<p style="font-size:0.85rem;color:var(--cream-dim);margin-top:14px">Zwölf Fragen ersetzen keine Studienberatung; sie machen deine eigene Tendenz sichtbar. Deine Antworten bleiben im Browser und werden nirgendwohin übertragen.</p>`;
   $("ergebnisPanel").hidden = false;
   $("ergebnisPanel").scrollIntoView({behavior: "smooth", block: "start"});
 }

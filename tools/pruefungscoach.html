@@ -18,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/de/werkzeuge.html">Alle Lernwerkzeuge</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Lernwerkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
   </div>
@@ -26,15 +26,24 @@
 
 <main class="tool-main">
   <div class="wrap">
-    <nav class="breadcrumb" aria-label="Pfad"><a href="/de/werkzeuge.html">Lernwerkzeuge</a><span aria-hidden="true">/</span><a href="/de/werkzeuge.html#lernen">Lernen und KI</a><span aria-hidden="true">/</span><span aria-current="page">Prüfungscoach</span></nav>
     <h1>Prüfungscoach: Ruhe, wenn es zählt</h1>
-    <p class="tool-lede">Vier Module für unterschiedliche Momente: eine geführte Atemübung, ein Protokoll für den Blackout, Gewohnheiten für die Wochen davor und eine Checkliste für den Prüfungsmorgen. Fang mit dem Modul an, das zu deiner Lage passt.</p>
-    <div class="schnellstart"><a class="btn" href="#ueben">Atemübung starten</a><a class="btn btn--ghost" href="#blackout">Blackout-Protokoll</a><a class="btn btn--ghost" href="#morgen">Checkliste ansehen</a></div>
-    <p class="tool-src">Nach dem Prüfungsangst-Kapitel aus <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a> und dem Gesundheitskapitel aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
+    <p class="tool-lede">Prüfungsangst ist kein Zeichen von Schwäche und kein Zeichen mangelnder Vorbereitung. Sie ist eine neurologische Reaktion, die die Klügsten und Fleißigsten genauso trifft wie alle anderen. Der Unterschied liegt nicht darin, ob du sie hast, sondern wie du mit ihr umgehst. Dieses Werkzeug erklärt, was dabei im Kopf passiert, und gibt dir die Techniken für drei Momente: die Wochen davor, den Prüfungsmorgen und die Minute, in der die Panik aufsteigt.</p>
+    <p class="tool-src">Dieser Coach folgt dem Prüfungsangst-Kapitel aus <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für die Oberstufe</a> und dem Gesundheitskapitel aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
 
-    <div class="panel" id="ueben">
-      <h2>1. Atemübung</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Wähle eine Technik, tippe auf „Übung starten“ und atme im Takt des Kreises. Beide Techniken aus dem Buch arbeiten mit einer langen Ausatmung und lassen sich unauffällig am Tisch anwenden. Sie ersetzen keine Vorbereitung, können aber eine akute Stressspitze abfangen.</p>
+    <div class="panel">
+      <h2>Anspannung ist nicht der Feind</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Das Yerkes-Dodson-Gesetz beschreibt den Zusammenhang zwischen Erregung und Leistung als umgekehrte U-Kurve: Zu wenig Aktivierung macht träge, ein mittleres Niveau macht wach und abrufbereit, zu viel kippt in Denkblockaden und Blackout. Das Ziel ist nicht absolute Ruhe, sondern der Wechsel von lähmender Angst (Distress) in produktive Anspannung (Eustress).</p>
+      <dl class="ledger">
+        <div class="row"><dt>Eustress</dt><dd>Leichtes Kribbeln, Fokus, Wachheit, der Wille, es gut zu machen. Das Gehirn ist aktiviert und abrufbereit. Hier willst du hin.</dd></div>
+        <div class="row"><dt>Distress</dt><dd>Panik, Tunnelblick, Herzrasen, das Gefühl, alles vergessen zu haben. Das Gehirn ist überstimuliert; der Zugriff auf vorhandenes Wissen ist blockiert.</dd></div>
+        <div class="row"><dt>Typische Denkfehler</dt><dd>Katastrophisieren („Wenn das schiefgeht, ist alles vorbei“), Alles-oder-Nichts („Entweder brillant oder schlecht“), Gedankenlesen („Alle werden es merken“). Solche Gedanken wirken im Moment wahr, sind aber überzogen; wer sie erkennt, nimmt ihnen die Wucht.</dd></div>
+      </dl>
+      <div class="cee-box"><strong>Kognitive Umstrukturierung in drei Fragen:</strong> Stimmt der Gedanke „Ich werde versagen“ wirklich? Welche Belege sprechen dagegen (bestandene Klausuren, die investierte Vorbereitung)? Wie lautet der realistische Satz? Zum Beispiel: „Ich bin gut vorbereitet. Das Ergebnis spiegelt eine einzelne Leistungssituation wider, nicht meinen Wert als Mensch.“</div>
+    </div>
+
+    <div class="panel">
+      <h2>Atem-Trainer</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Zwei Techniken aus dem Buch, geführt mit Timer. Die verlängerte Ausatmung signalisiert dem Nervensystem Sicherheit; beide lassen sich diskret am Tisch anwenden. Sie ersetzen keine Vorbereitung, fangen aber die akute Stressspitze ab.</p>
       <div class="atem-wahl chip-row">
         <button class="chip aktiv" id="btn478" type="button">4-7-8-Atmung</button>
         <button class="chip" id="btnSeufzer" type="button">Physiologischer Seufzer</button>
@@ -49,66 +58,46 @@
       </div>
     </div>
 
-    <div class="panel" id="blackout">
-      <h2>2. Wenn der Blackout kommt</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Für den Moment in der Prüfung, in dem nichts mehr abrufbar scheint. Ein Blackout ist eine vorübergehende Abrufblockade unter hohem Stress, dein Wissen ist nicht verschwunden. Geh die drei Schritte der Reihe nach durch:</p>
+    <div class="panel">
+      <h2>Wenn der Blackout kommt</h2>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Ein Blackout ist eine vorübergehende Abrufblockade unter hohem Stress, nicht das Verschwinden deines Wissens. Das Protokoll:</p>
       <ol class="phasen">
-        <li><h3>Verankern</h3><p>Tischfläche bewusst berühren, beide Füße auf den Boden drücken, ein ruhiger Atemzug. Das lenkt die Aufmerksamkeit zurück in den Moment.</p></li>
-        <li><h3>Aufgabe wechseln</h3><p>An etwas anderem weiterarbeiten. Oft taucht die gesuchte Information dabei später von selbst wieder auf.</p></li>
+        <li><h3>Verankern</h3><p>Tischfläche bewusst berühren, beide Füße auf den Boden drücken, ein ruhiger Atemzug. Das holt das Gehirn in den Moment zurück.</p></li>
+        <li><h3>Aufgabe wechseln</h3><p>An etwas anderem arbeiten; das Gehirn sucht im Hintergrund weiter nach der Information.</p></li>
         <li><h3>Abruf öffnen</h3><p>Frei in Stichpunkten notieren, was allgemein zum Thema einfällt, und Kontextanker nutzen: Wo habe ich das gelernt, mit welchem Beispiel?</p></li>
       </ol>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:14px">Dazu das Reframing: Körperlich fühlen sich Angst und Aufregung sehr ähnlich an. Statt „Ich bin vollkommen ruhig“ (was du dir selbst kaum glaubst) hilft der realistische Satz: „Ich bin angespannt, weil mir das wichtig ist, und ich kann trotzdem klar arbeiten.“</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:14px">Dazu das Reframing: Dein Körper unterscheidet Angst und Aufregung kaum. Statt „Ich bin vollkommen ruhig“ (was er nicht glaubt) hilft der realistische Satz: „Ich bin angespannt, weil mir das wichtig ist, und ich kann trotzdem klar arbeiten.“</p>
     </div>
 
-    <div class="panel" id="wochen">
-      <h2>3. Die Wochen davor</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Das Buch nennt gute Vorbereitung das stärkste Gegenmittel. Vier Ansatzpunkte für die Zeit vor der Prüfung:</p>
+    <div class="panel">
+      <h2>Die Wochen davor: das stärkste Gegenmittel</h2>
       <dl class="ledger">
-        <div class="row"><dt>Vorbereitung</dt><dd>Viel Angst speist sich aus Ungewissheit. Probeprüfungen unter echten Bedingungen, aktives Abrufen statt Wiederlesen, verteiltes Wiederholen. Kein Atemtrick ersetzt fehlende Vorbereitung. Einen Tagesplan dafür erstellt der <a href="/tools/klausurplaner.html">Klausur-Planer</a>.</dd></div>
-        <div class="row"><dt>Exposition</dt><dd>Die Prüfungssituation selbst üben: unter Zeitdruck schreiben, am fremden Tisch, pünktlich beginnen. So erlebst du die Lage wiederholt als unangenehm, aber bewältigbar.</dd></div>
-        <div class="row"><dt>Schlaf und Bewegung</dt><dd>Schlafmangel drückt die Leistung, und wer müde ist, erlebt Anforderungen schneller als Bedrohung. Regelmäßige Bewegung hilft vielen, Stress abzubauen.</dd></div>
-        <div class="row"><dt>Fehlerprotokoll</dt><dd>Nach jeder Probeklausur kurz notieren: Was war inhaltlich schwer, was Stressfehler, was Flüchtigkeit? So wird aus Angst konkrete Lernarbeit.</dd></div>
+        <div class="row"><dt>Vorbereitung</dt><dd>Angst entsteht aus Ungewissheit. Probeprüfungen unter echten Bedingungen, aktives Abrufen statt Wiederlesen, verteiltes Wiederholen. Kein Atemtrick ersetzt fehlende Vorbereitung.</dd></div>
+        <div class="row"><dt>Exposition</dt><dd>Die Prüfungssituation selbst üben: unter Zeitdruck schreiben, am fremden Tisch, pünktlich beginnen. So lernt das Nervensystem: unangenehm, aber bewältigbar.</dd></div>
+        <div class="row"><dt>Schlaf und Bewegung</dt><dd>Schlafentzug ist einer der stärksten Leistungskiller; wer müde ist, bewertet Anforderungen schneller als Bedrohung. Regelmäßige Bewegung baut Stress physiologisch ab.</dd></div>
+        <div class="row"><dt>Fehlerprotokoll</dt><dd>Nach jeder Probeklausur kurz notieren: Was war inhaltlich schwer, was Stressfehler, was Flüchtigkeit? So wird Angst in konkrete Lernarbeit übersetzt.</dd></div>
       </dl>
+      <div class="buch-tipp">
+        <span><strong>Aus den Büchern:</strong> Den 14-Tage-Vorbereitungszyklus aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a> setzt der <a href="/tools/klausurplaner.html">Klausur-Planer</a> direkt in einen Tagesplan um; die Klausurtaktik unter Zeitdruck vertieft <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a>.</span>
+      </div>
     </div>
 
-    <div class="panel" id="morgen">
-      <h2>4. Der Prüfungsmorgen</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Geh die Liste vor dem Aufbruch durch und hake ab, was erledigt ist.</p>
+    <div class="panel">
+      <h2>Der Prüfungsmorgen</h2>
       <ul class="check-liste" id="checkListe">
         <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Eiweißreich gefrühstückt: Eier, Vollkornbrot, Joghurt, Nüsse oder Haferflocken.</span></button></li>
         <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Koffein mit Maß: ein Kaffee oder Tee, nicht drei. Zu viel verstärkt Zittern und Unruhe.</span></button></li>
         <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Keine neue Lerneinheit: nur wenige Ankerbegriffe oder Übersichten wiederholt.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Zehn Minuten Bewegung: Spazierengehen oder leichtes Stretching kann die Anspannung senken.</span></button></li>
+        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Zehn Minuten Bewegung: Spazierengehen oder leichtes Stretching reguliert die Anspannung.</span></button></li>
         <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Bewusst gewählt, was stabilisiert: Musik oder Ruhe, nicht das, was zusätzlich hochfährt.</span></button></li>
         <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Das Startritual steht: erste Minute atmen, Aufgaben überfliegen, leichte Aufgaben markieren, dann erst loslegen.</span></button></li>
       </ul>
       <p class="check-stand" id="checkStand" role="status"></p>
     </div>
 
-    <div class="panel" id="hintergrund">
-      <h2>Was bei Prüfungsangst passiert</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Prüfungsangst ist kein Zeichen von Schwäche oder mangelnder Vorbereitung, sie trifft auch Fleißige und gut Vorbereitete. Ein verbreitetes Modell aus der Psychologie, die Yerkes-Dodson-Kurve, beschreibt den Zusammenhang zwischen Erregung und Leistung als umgekehrtes U: Zu wenig Aktivierung macht träge, ein mittleres Niveau macht wach, zu viel kippt in Denkblockaden. Das Ziel ist also keine völlige Ruhe, sondern der Wechsel von lähmender Angst (Distress) zu produktiver Anspannung (Eustress).</p>
-      <dl class="ledger">
-        <div class="row"><dt>Eustress</dt><dd>Leichtes Kribbeln, Fokus, Wachheit, der Wille, es gut zu machen. Du kommst gut an dein Wissen heran. Hier willst du hin.</dd></div>
-        <div class="row"><dt>Distress</dt><dd>Panik, Tunnelblick, Herzrasen, das Gefühl, alles vergessen zu haben. Der Zugriff auf vorhandenes Wissen fällt dann schwer.</dd></div>
-        <div class="row"><dt>Typische Denkfehler</dt><dd>Katastrophisieren („Wenn das schiefgeht, ist alles vorbei“), Alles-oder-Nichts („Entweder brillant oder schlecht“), Gedankenlesen („Alle werden es merken“). Solche Gedanken wirken im Moment wahr, sind aber überzogen. Wer sie erkennt, nimmt ihnen einen Teil ihrer Wucht.</dd></div>
-      </dl>
-      <div class="cee-box"><strong>Kognitive Umstrukturierung in drei Fragen:</strong> Stimmt der Gedanke „Ich werde versagen“ wirklich? Welche Belege sprechen dagegen (bestandene Klausuren, die investierte Vorbereitung)? Wie lautet der realistische Satz? Zum Beispiel: „Ich bin gut vorbereitet. Das Ergebnis spiegelt eine einzelne Leistungssituation wider, nicht meinen Wert als Mensch.“</div>
-    </div>
-
-    <div class="panel" id="chronisch">
+    <div class="panel">
       <h2>Wenn die Angst chronisch ist</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Anhaltende, intensive Prüfungsangst über Wochen, die Schlaf, Konzentration oder Alltag deutlich beeinträchtigt, ist mehr als normale Nervosität. Wenn du wegen anstehender Prüfungen über Wochen schlecht schläfst, schon lange vorher panikartige Symptome erlebst oder die Angst dich vom Lernen und vom normalen Leben abhält, sprich mit jemandem: einem Elternteil, einer Lehrkraft, der Schulpsychologie oder einer Ärztin oder einem Arzt. Prüfungsangst auf diesem Niveau ist behandelbar, und Unterstützung zu suchen ist kein Zeichen von Schwäche. Wenn du anonym und kostenlos reden willst: Die Nummer gegen Kummer ist montags bis samstags von 14 bis 20 Uhr unter 116 111 erreichbar.</p>
-    </div>
-
-    <div class="panel weiterlernen">
-      <h2>Weiterlernen</h2>
-      <p>Mehr zu Prüfungsangst und Klausurtaktik unter Zeitdruck steht in <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für die Oberstufe</a>, das Gesundheitskapitel findest du in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
-      <ul class="verwandt">
-        <li><a href="/tools/klausurplaner.html">Klausur-Planer</a>: Tagesplan für die 14 Tage vor der Klausur</li>
-        <li><a href="/tools/mitarbeit.html">Mitarbeit und Referate</a>: frei sprechen und Referate üben</li>
-        <li><a href="/tools/kommunikationspruefung-englisch.html">Kommunikationsprüfung Englisch</a>: mündliche Prüfung mit Timer üben</li>
-      </ul>
     </div>
   </div>
 </main>
@@ -140,7 +129,7 @@ const TECHNIKEN = {
   },
   seufzer: {
     name: "Physiologischer Seufzer",
-    info: "Ruhig durch die Nase einatmen, ein zweites kleines Einatmen obendrauf, dann lang und kontrolliert durch den Mund ausatmen. Ein bis drei Wiederholungen können die erste Stressspitze abfangen.",
+    info: "Ruhig durch die Nase einatmen, ein zweites kleines Einatmen obendrauf, dann lang und kontrolliert durch den Mund ausatmen. Ein bis drei Wiederholungen fangen die erste Stressspitze ab.",
     zyklen: 3,
     phasen: [
       {label: "Einatmen", dauer: 3, scale: 1.3},
@@ -204,7 +193,7 @@ function checkStand() {
   const ok = document.querySelectorAll("#checkListe .check-item.ok").length;
   $$("checkStand").style.setProperty("--anteil", String(Math.round((ok / items.length) * 100)));
   $$("checkStand").textContent = ok === items.length
-    ? "Alle " + items.length + " Punkte erledigt. Geh ruhig rein."
+    ? "Alle " + items.length + " Punkte sitzen. Geh ruhig rein."
     : ok + " von " + items.length + " Punkten erledigt.";
 }
 items.forEach(b => b.addEventListener("click", () => { const an = b.classList.toggle("ok"); b.setAttribute("aria-pressed", an); checkStand(); }));

@@ -18,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/de/werkzeuge.html">Alle Lernwerkzeuge</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Lernwerkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
   </div>
@@ -26,13 +26,11 @@
 
 <main class="tool-main">
   <div class="wrap">
-    <nav class="breadcrumb" aria-label="Pfad"><a href="/de/werkzeuge.html">Lernwerkzeuge</a><span aria-hidden="true">/</span><a href="/de/werkzeuge.html#lernen">Lernen und KI</a><span aria-hidden="true">/</span><span aria-current="page">Klausur-Planer</span></nav>
     <h1>Klausur-Planer</h1>
-    <p class="tool-lede">Trag Klausurdatum und Themen ein, und der Planer verteilt die Tage bis zur Prüfung auf feste Phasen: Wissensdiagnose, Verstehen, Abruf unter Zeitdruck, Konsolidierung. Den fertigen Tagesplan kannst du drucken oder als PDF sichern.</p>
-    <div class="schnellstart"><a class="btn" href="#ueben">Plan erstellen</a><a class="btn btn--ghost" href="#methode">Methode lesen</a></div>
-    <p class="tool-src">Nach dem Kapitel „Klausuren richtig vorbereiten“ aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
+    <p class="tool-lede">Die meisten Klausuren scheitern nicht am Lernstoff, sondern am Vorgehen: zu spät begonnen, nur wiedergelesen statt aktiv abgerufen, und am Ende fehlt die eine Nacht Schlaf, die mehr wert gewesen wäre als jede weitere Lernstunde. Dieser Planer nimmt dir die Planung ab. Du trägst Klausurdatum und Themen ein und bekommst einen Tagesplan, der dem bewährten Zyklus aus dem Buch folgt: erst ehrlich herausfinden, was du wirklich kannst, dann verstehen und strukturieren, dann unter echten Bedingungen anwenden. Am Ende gehst du ruhiger in die Prüfung, weil du genau weißt, wo du stehst.</p>
+    <p class="tool-src">Aus dem Buch <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a>, Kapitel „Klausuren richtig vorbereiten“.</p>
 
-    <div class="panel no-print" id="ueben">
+    <div class="panel no-print">
       <h2>Dein Plan</h2>
       <label class="feld" for="fach">Fach oder Klausurthema</label>
       <input type="text" id="fach" placeholder="z. B. Geschichte: Weimarer Republik">
@@ -42,7 +40,6 @@
       <textarea class="feld-area" id="themen" placeholder="Versailler Vertrag&#10;Hyperinflation 1923&#10;Goldene Zwanziger&#10;Scheitern der Republik"></textarea>
       <button class="btn" id="btnPlan">Plan erstellen</button>
       <span id="warnung" role="status" style="display:block;margin-top:10px;color:var(--gold);font-size:0.92rem"></span>
-      <noscript><p style="color:var(--gold);font-size:0.95rem;margin-top:12px">Der Planer braucht JavaScript. Die Methode dahinter steht unten.</p></noscript>
     </div>
 
     <div id="planBox" hidden>
@@ -52,27 +49,6 @@
         <div id="planTage"></div>
         <button class="btn no-print" onclick="window.print()">Plan drucken oder als PDF sichern</button>
       </div>
-    </div>
-
-    <div class="panel no-print" id="methode">
-      <h2>Die Methode hinter dem Plan</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Der Planer folgt dem 14-Tage-Zyklus aus dem Buch. Liegt die Klausur weiter weg, beginnt der Plan 14 Tage vorher. Bleibt weniger Zeit, staucht er die Phasen, ihre Reihenfolge bleibt gleich.</p>
-      <ol class="phasen">
-        <li><h3>Wissensdiagnose</h3><p>Alle Themen aufschreiben, ohne Unterlagen testen, welche Fragen du schon beantworten kannst, und die Lernzeit nach den größten Lücken verteilen.</p></li>
-        <li><h3>Verstehen und strukturieren</h3><p>Lernzettel 2.0: Unterlagen zu, Mindmap aus dem Gedächtnis zeichnen, dann mit den Quellen vergleichen und nur die Lücken nachtragen. Vorne stehen Schlüsselwörter, hinten die Erklärung.</p></li>
-        <li><h3>Abruf unter Druck</h3><p>Active Recall über die Lernzettel, dann eine eigene Übungsklausur mit 3 bis 5 Kernfragen schreiben: mit Zeitlimit, ohne Hilfsmittel, danach korrigieren.</p></li>
-        <li><h3>Konsolidierung und Vortag</h3><p>Nur noch wiederholen, was in der Übungsklausur gestockt hat, nichts Neues anfangen. Am Vortag ein kurzer Überblick, dann abschalten und früh schlafen.</p></li>
-      </ol>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:14px">Der Zyklus setzt an Stellen an, an denen Vorbereitung oft hakt: ein zu später Start, Wiederlesen statt aktivem Abrufen, zu wenig Schlaf vor der Prüfung. Nach der Rückgabe beginnt der nächste Durchgang mit der Frage, welche Fehlerart es war: Wissen, Struktur oder Zeit.</p>
-    </div>
-
-    <div class="panel weiterlernen">
-      <h2>Weiterlernen</h2>
-      <p>Den Zyklus mit allen Schritten beschreibt das Kapitel „Klausuren richtig vorbereiten“ in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a>.</p>
-      <ul class="verwandt">
-        <li><a href="/tools/pruefungscoach.html">Prüfungscoach</a>: Atemübung und Blackout-Protokoll für den Prüfungstag</li>
-        <li><a href="/tools/mitarbeit.html">Mitarbeit und Referate</a>: Cornell-Mitschriften, die du später als Lernzettel nutzt</li>
-      </ul>
     </div>
   </div>
 </main>
@@ -125,7 +101,7 @@ $("btnPlan").onclick = () => {
       phase = "Vortag";
       aufgaben = [
         "Kurzer Überblick am Vormittag, danach bewusst abschalten.",
-        "Früh schlafen: Am Vortag bringt Schlaf meist mehr als eine zusätzliche Lernstunde."
+        "Früh schlafen: Eine Nacht zu wenig Schlaf kostet mehr Punkte als eine Stunde weniger Lernen bringt."
       ];
     } else if (i === 0) {
       phase = "Phase 0: Wissensdiagnose";
@@ -185,7 +161,7 @@ $("btnPlan").onclick = () => {
   }
   const ende = document.createElement("div");
   ende.className = "plan-tag";
-  ende.innerHTML = `<div><span class="pt-datum">${fmt(klausur)}</span><span class="pt-phase">Klausurtag</span></div><ul><li>Du hast den Abruf unter Zeitdruck geübt. Geh die Aufgaben so an wie in der Übungsklausur.</li><li>Nach der Rückgabe: Klausur analysieren. Welche Fehlerart war es, Wissen, Struktur oder Zeit? Das ist der Startpunkt für den nächsten Zyklus.</li></ul>`;
+  ende.innerHTML = `<div><span class="pt-datum">${fmt(klausur)}</span><span class="pt-phase">Klausurtag</span></div><ul><li>Du hast unter Druck geübt, also kannst du unter Druck abrufen.</li><li>Nach der Rückgabe: Klausur analysieren. Welche Fehlerart war es, Wissen, Struktur oder Zeit? Das ist der Startpunkt für den nächsten Zyklus.</li></ul>`;
   box.appendChild(ende);
   $("planBox").hidden = false;
   $("planBox").scrollIntoView({behavior: "smooth", block: "start"});

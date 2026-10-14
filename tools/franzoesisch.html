@@ -18,7 +18,7 @@
       PaviLabs
     </a>
     <nav class="site-nav" aria-label="Hauptnavigation">
-      <a class="nav-sections" href="/de/werkzeuge.html">Alle Lernwerkzeuge</a>
+      <a class="nav-sections" href="/de/#werkzeuge">Alle Lernwerkzeuge</a>
       <a class="lang-switch" href="/de/">Zur Startseite</a>
     </nav>
   </div>
@@ -26,15 +26,13 @@
 
 <main class="tool-main">
   <div class="wrap">
-    <nav class="breadcrumb" aria-label="Pfad"><a href="/de/werkzeuge.html">Lernwerkzeuge</a><span aria-hidden="true">/</span><a href="/de/werkzeuge.html#sprachen">Französisch</a><span aria-hidden="true">/</span><span aria-current="page">Grammatik-Trainer</span></nav>
     <h1>Französisch-Abitur-Trainer</h1>
-    <p class="tool-lede">Ein Grammatikstapel vom Teilungsartikel über Passé composé und Imparfait bis zu Subjonctif und Si-Sätzen, dazu ein Stapel Konnektoren für den Aufsatz. Jede Karte drehst du um und sortierst sie mit Pfeil rechts als „sitzt“ oder mit Pfeil links als „nochmal“.</p>
-    <div class="schnellstart"><a class="btn" href="#ueben">Lernkarten üben</a><a class="btn btn--ghost" href="#quiz">Quiz starten</a></div>
-    <p class="tool-src">Die Inhalte stammen aus dem Buch <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>.</p>
+    <p class="tool-lede">Die französische Grammatik wirkt wie ein Dickicht aus Regeln, folgt aber wenigen Grundprinzipien. Wer sie durchschaut, muss nicht mehr tausend Einzelfälle auswendig lernen. Dieser Trainer nimmt sich die Bereiche vor, die in Klausuren über Notenpunkte entscheiden: der Subjonctif als Geheimwaffe der Bestnote, das Duo aus Passé composé und Imparfait, die Si-Sätze mit ihrer einen eisernen Regel, die Pronomen-Reihenfolge und der Teilungsartikel, den das Deutsche gar nicht kennt. Dazu die Konnektoren, mit denen ein Aufsatz vom Mittelmaß zur Oberstufenklausur wird.</p>
+    <p class="tool-src">Alle Inhalte stammen aus dem Buch <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>. Für die mündliche Seite gibt es den <a href="/tools/kommunikationspruefung-franzoesisch.html">Trainer für die Kommunikationsprüfung</a>.</p>
 
-    <div class="panel" id="ueben">
+    <div class="panel">
       <h2>Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst selbst antworten, dann umdrehen. Was sitzt, sortierst du mit einem Klick aus; der Rest kommt wieder, bis der Stapel leer ist. Die Leertaste dreht die Karte.</p>
+      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst selbst antworten, dann umdrehen. Was sitzt, sortierst du mit einem Klick aus; der Rest kommt wieder, bis der Stapel leer ist. Tastatur: Leertaste dreht, Pfeil rechts heißt „sitzt", Pfeil links heißt „nochmal".</p>
       <div class="chip-row" id="deckRow"></div>
       <div class="chip-row" id="catRow"></div>
       <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
@@ -65,21 +63,15 @@
       </div>
     </div>
 
-    <div class="panel" id="quiz">
+    <div class="buch-tipp">
+      <span><strong>Vertiefung:</strong> Das Grammatik-Kapitel von <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a> ist der umfangreichste Teil des Buchs: Es leitet jede dieser Regeln her, von der WEDDING-Eselsbrücke für den Subjonctif bis zur Angleichung des Participe passé, und verbindet sie mit Klausurstrategie.</span>
+    </div>
+
+    <div class="panel">
       <h2>Quiz: Wo stehst du?</h2>
       <p style="color:var(--cream-dim);font-size:0.95rem">Zwölf Fragen quer durch Grammatik und Konnektoren, jede Antwort mit Begründung.</p>
       <div id="quizBox" aria-live="polite"></div>
       <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
-
-    <div class="panel weiterlernen">
-      <h2>Weiterlernen</h2>
-      <p>Das Grammatik-Kapitel von <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a> leitet jede dieser Regeln her, von der WEDDING-Eselsbrücke für den Subjonctif bis zur Angleichung des Participe passé.</p>
-      <ul class="verwandt">
-        <li><a href="/tools/textanalyse-franzoesisch.html">Textanalyse Französisch</a>: Operatoren, figures de style und das Résumé</li>
-        <li><a href="/tools/schreibwerkstatt-franzoesisch.html">Schreibwerkstatt Französisch</a>: Aufbau von Résumé, Analyse und Commentaire</li>
-        <li><a href="/tools/kommunikationspruefung-franzoesisch.html">Kommunikationsprüfung Französisch</a>: Vorbereitung auf die mündliche Prüfung</li>
-      </ul>
     </div>
   </div>
 </main>
@@ -113,7 +105,7 @@ const DECKS = {
     ],
     "Pronomen": [
       ["COD oder COI: le/la/les oder lui/leur?", "Direktes Objekt (ohne Präposition) → le, la, les. Objekt mit à → lui, leur.", "Je le connais. · Je lui parle. (parler à)", "téléphoner à und demander à sind indirekt, appeler und interroger direkt: Verben mit Konstruktion lernen."],
-      ["Wofür stehen y und en?", "y ersetzt Ort oder à + Sache, en ersetzt de + Sache oder Mengen.", "J'y vais. (à Paris) · J'y pense. · J'en parle. · J'en ai trois.", "Mit y und en vermeidest du Wiederholungen und schreibst flüssiger."],
+      ["Wofür stehen y und en?", "y ersetzt Ort oder à + Sache, en ersetzt de + Sache oder Mengen.", "J'y vais. (à Paris) · J'y pense. · J'en parle. · J'en ai trois.", "Die zwei Geheimwaffen für eleganten, wiederholungsfreien Stil."],
       ["Die Reihenfolge mehrerer Pronomen vor dem Verb?", "me/te/se/nous/vous → le/la/les → lui/leur → y → en", "Je le lui ai dit. · Elle nous en parle.", "„Je lui le donne“ ist der Klassiker unter den Fehlern: richtig ist Je le lui donne."],
       ["qui, que, dont, où: Wann welches Relativpronomen?", "qui = Subjekt · que = direktes Objekt · dont = de-Konstruktion · où = Ort oder Zeit", "L'homme qui parle. · Le livre que je lis. · Le livre dont je parle. · Le jour où je suis né.", "Nach Präpositionen: lequel/laquelle (avec lequel, auquel, duquel)."]
     ],
