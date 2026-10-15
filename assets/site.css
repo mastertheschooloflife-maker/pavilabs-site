@@ -1384,3 +1384,37 @@ a.btn { text-decoration: none; }
 .autor-bild > span { display: block; overflow: hidden; border-radius: 20px; }
 .autor-bild img { display: block; width: 100%; height: auto; }
 .autor-bild--klein { width: min(260px, 70%); margin: 8px 0 28px; }
+
+
+/* ---------- Werkzeugkarten: Übungsvorschau statt Buchcover ---------- */
+
+.tool-bild {
+  flex: none;
+  display: block;
+  width: 176px;
+  margin-top: 4px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  background: rgba(243, 246, 236, 0.03);
+}
+.tool-bild img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform 500ms var(--bez), filter 500ms var(--bez);
+}
+.tool-card:hover .tool-bild img { transform: scale(1.04); filter: brightness(1.08); }
+@media (max-width: 1100px) and (min-width: 881px) {
+  .tool-bild { width: 140px; }
+}
+@media (max-width: 560px) {
+  .tool-card { flex-direction: column; gap: 16px; }
+  .tool-bild { width: 100%; max-width: 420px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tool-bild img { transition: none; }
+  .tool-card:hover .tool-bild img { transform: none; }
+}
