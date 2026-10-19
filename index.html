@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://pavilabs.de/">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="/assets/site.css">
-<noscript><style>.reveal{opacity:1 !important;transform:none !important;filter:none !important}</style></noscript>
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
 </head>
 <body>
 
@@ -43,9 +43,9 @@
     <div class="wrap">
       <div>
         <h1 class="reveal">Knowledge you can put to use straight&nbsp;away.</h1>
-        <p class="hero-slogan reveal" style="--d:60ms">Paving Paths to a smarter future</p>
-        <p class="lede reveal" style="--d:90ms">PaviLabs builds learning apps, free online exercises and books. They help you move more safely through digital life, understand artificial intelligence better, or prepare for exams with a plan. Pick a topic, start with a short exercise and learn at your own pace.</p>
-        <div class="hero-apps reveal" style="--d:180ms">
+        <p class="hero-slogan reveal">Paving Paths to a smarter future</p>
+        <p class="lede reveal">PaviLabs builds learning apps, free online exercises and books. They help you move more safely through digital life, understand artificial intelligence better, or prepare for exams with a plan. Pick a topic, start with a short exercise and learn at your own pace.</p>
+        <div class="hero-apps reveal">
           <a class="app-chip" href="#security">
             <img class="dot" src="/assets/icon-security.webp" alt="" width="24" height="24">
             Daily Dose of Security
@@ -62,15 +62,18 @@
           </a>
         </div>
       </div>
-      <div class="hero-tree reveal" style="--d:140ms">
+      <div class="hero-tree reveal">
         <img src="/assets/tree-night.webp" fetchpriority="high" alt="The PaviLabs tree: leaves on one side, circuit traces on the other, a path leading to its roots" width="540" height="540">
       </div>
     </div>
   </section>
 
-  <svg class="trail" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M 70,10 C 300,95 520,0 700,55 S 1050,100 1180,60"/>
-  </svg>
+  <div class="trace" data-trace aria-hidden="true">
+    <div class="wrap">
+      <svg class="trace__svg trace__svg--wide" viewBox="0 0 1120 120" focusable="false"><defs><linearGradient id="trw1" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="1096" y2="0"><stop offset="0" style="stop-color:var(--leaf-deep)"/><stop offset=".55" style="stop-color:var(--leaf)"/><stop offset="1" style="stop-color:var(--mint)"/></linearGradient></defs><g stroke="url(#trw1)"><path class="trace-line" pathLength="1" d="M24 20 L316 20 L364 68 L748 68 L784 104 L1096 104"/><path class="trace-line trace-line--branch" style="--b:1" pathLength="1" d="M560 68 L596 32 L690 32"/></g><circle class="trace-node trace-ring" style="--n:0" cx="24" cy="20" r="5.5"/><circle class="trace-node trace-via" style="--n:1" cx="560" cy="68" r="2.8"/><g transform="translate(690 32) scale(1 1) rotate(-10)"><g class="trace-node trace-leaf" style="--n:2"><path d="M0 0C6 -10 18 -12 28 -6C22 3 11 7 0 0Z"/><path class="trace-rib" d="M3 -1L21 -5"/></g></g><circle class="trace-node trace-ring" style="--n:3" cx="1096" cy="104" r="5.5"/></svg>
+      <svg class="trace__svg trace__svg--narrow" viewBox="0 0 360 120" focusable="false"><defs><linearGradient id="trn1" gradientUnits="userSpaceOnUse" x1="14" y1="0" x2="346" y2="0"><stop offset="0" style="stop-color:var(--leaf-deep)"/><stop offset=".55" style="stop-color:var(--leaf)"/><stop offset="1" style="stop-color:var(--mint)"/></linearGradient></defs><g stroke="url(#trn1)"><path class="trace-line" pathLength="1" d="M14 18 L118 18 L158 58 L246 58 L282 94 L346 94"/><path class="trace-line trace-line--branch" style="--b:1" pathLength="1" d="M204 58 L228 34 L262 34"/></g><circle class="trace-node trace-ring" style="--n:0" cx="14" cy="18" r="5.5"/><circle class="trace-node trace-via" style="--n:1" cx="204" cy="58" r="2.8"/><g transform="translate(262 34) scale(1 1) rotate(-10)"><g class="trace-node trace-leaf" style="--n:2"><path d="M0 0C6 -10 18 -12 28 -6C22 3 11 7 0 0Z"/><path class="trace-rib" d="M3 -1L21 -5"/></g></g><circle class="trace-node trace-ring" style="--n:3" cx="346" cy="94" r="5.5"/></svg>
+    </div>
+  </div>
 
   <section class="world" id="security">
     <div class="glow glow--leaf" style="width:780px;height:780px;top:40px;right:-220px;"></div>
@@ -80,17 +83,17 @@
           <img src="/assets/icon-security.webp" alt="" width="54" height="54">
           <h2>Daily Dose of Security</h2>
         </div>
-        <p class="lead reveal" style="--d:70ms">Short units on phishing, scams, account protection and safe habits. Each unit uses a documented case to show what to look for and what to do differently.</p>
-        <p class="dose-samples reveal" style="--d:120ms">Two examples from the curriculum: <q>Not all MFA is created equal</q> and <q>Spear phishing, whaling and CEO fraud</q>.</p>
-        <dl class="ledger reveal" style="--d:160ms">
+        <p class="lead reveal">Short units on phishing, scams, account protection and safe habits. Each unit uses a documented case to show what to look for and what to do differently.</p>
+        <p class="dose-samples reveal">Two examples from the curriculum: <q>Not all MFA is created equal</q> and <q>Spear phishing, whaling and CEO fraud</q>.</p>
+        <dl class="ledger reveal">
           <div class="row"><dt>16</dt><dd>learning paths</dd></div>
           <div class="row"><dt>240</dt><dd>lessons per language</dd></div>
           <div class="row"><dt>130</dt><dd>practical daily tips</dd></div>
           <div class="row"><dt>3</dt><dd>levels per path, beginner to expert</dd></div>
         </dl>
-        <p class="cert-line reveal" style="--d:200ms">Each level ends with an exam. Pass it with 80 percent and the app issues a PaviLabs certificate as a PDF.</p>
-        <p class="langs reveal" style="--d:230ms">Complete in English, German, French and Spanish.</p>
-        <div class="store-row reveal" style="--d:260ms">
+        <p class="cert-line reveal">Each level ends with an exam. Pass it with 80 percent and the app issues a PaviLabs certificate as a PDF.</p>
+        <p class="langs reveal">Complete in English, German, French and Spanish.</p>
+        <div class="store-row reveal">
           <a class="store-btn" href="https://apps.apple.com/app/id6811169295">
             Download on the App&nbsp;Store
             <span class="go" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke-width="2"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span>
@@ -98,15 +101,18 @@
           <span class="store-note">Google Play: in closed testing, public release ahead</span>
         </div>
       </div>
-      <div class="world-visual reveal" style="--d:150ms">
+      <div class="world-visual reveal">
         <div class="phone-shell"><div class="phone"><img src="/assets/shot-security-dark.webp" alt="Daily Dose of Security: the Today screen with the daily dose, in dark mode" width="262" height="626" loading="lazy"></div></div>
       </div>
     </div>
   </section>
 
-  <svg class="trail" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M 1130,10 C 900,100 640,5 460,60 S 160,95 20,55"/>
-  </svg>
+  <div class="trace" data-trace aria-hidden="true">
+    <div class="wrap">
+      <svg class="trace__svg trace__svg--wide" viewBox="0 0 1120 120" focusable="false"><defs><linearGradient id="trw2" gradientUnits="userSpaceOnUse" x1="1096" y1="0" x2="24" y2="0"><stop offset="0" style="stop-color:var(--leaf-deep)"/><stop offset=".55" style="stop-color:var(--leaf)"/><stop offset="1" style="stop-color:var(--mint)"/></linearGradient></defs><g stroke="url(#trw2)"><path class="trace-line" pathLength="1" d="M1096 98 L862 98 L814 50 L432 50 L396 14 L24 14"/><path class="trace-line trace-line--branch" style="--b:1" pathLength="1" d="M650 50 L686 86 L772 86"/></g><circle class="trace-node trace-ring" style="--n:0" cx="1096" cy="98" r="5.5"/><circle class="trace-node trace-via" style="--n:1" cx="650" cy="50" r="2.8"/><g transform="translate(772 86) scale(1 1) rotate(-10)"><g class="trace-node trace-leaf" style="--n:2"><path d="M0 0C6 -10 18 -12 28 -6C22 3 11 7 0 0Z"/><path class="trace-rib" d="M3 -1L21 -5"/></g></g><circle class="trace-node trace-ring" style="--n:3" cx="24" cy="14" r="5.5"/></svg>
+      <svg class="trace__svg trace__svg--narrow" viewBox="0 0 360 120" focusable="false"><defs><linearGradient id="trn2" gradientUnits="userSpaceOnUse" x1="346" y1="0" x2="14" y2="0"><stop offset="0" style="stop-color:var(--leaf-deep)"/><stop offset=".55" style="stop-color:var(--leaf)"/><stop offset="1" style="stop-color:var(--mint)"/></linearGradient></defs><g stroke="url(#trn2)"><path class="trace-line" pathLength="1" d="M346 104 L262 104 L222 64 L110 64 L78 32 L14 32"/><path class="trace-line trace-line--branch" style="--b:1" pathLength="1" d="M170 64 L194 88 L226 88"/></g><circle class="trace-node trace-ring" style="--n:0" cx="346" cy="104" r="5.5"/><circle class="trace-node trace-via" style="--n:1" cx="170" cy="64" r="2.8"/><g transform="translate(226 88) scale(1 1) rotate(-10)"><g class="trace-node trace-leaf" style="--n:2"><path d="M0 0C6 -10 18 -12 28 -6C22 3 11 7 0 0Z"/><path class="trace-rib" d="M3 -1L21 -5"/></g></g><circle class="trace-node trace-ring" style="--n:3" cx="14" cy="32" r="5.5"/></svg>
+    </div>
+  </div>
 
   <section class="world world--ai" id="ai">
     <div class="glow glow--petrol" style="width:860px;height:860px;top:-40px;left:-260px;"></div>
@@ -116,45 +122,48 @@
           <img src="/assets/icon-ai.webp" alt="" width="54" height="54">
           <h2>Daily Dose of AI</h2>
         </div>
-        <p class="lead reveal" style="--d:70ms">Learn how language models work, how to improve your prompts and how to check AI output. Further paths cover deepfakes, data protection and the EU AI Act.</p>
-        <p class="dose-samples reveal" style="--d:120ms">Two examples from the curriculum: <q>Verification workflows by stake level</q> and <q>A skeleton you can reuse</q>.</p>
-        <dl class="ledger reveal" style="--d:160ms">
+        <p class="lead reveal">Learn how language models work, how to improve your prompts and how to check AI output. Further paths cover deepfakes, data protection and the EU AI Act.</p>
+        <p class="dose-samples reveal">Two examples from the curriculum: <q>Verification workflows by stake level</q> and <q>A skeleton you can reuse</q>.</p>
+        <dl class="ledger reveal">
           <div class="row"><dt>16</dt><dd>learning paths</dd></div>
           <div class="row"><dt>240</dt><dd>lessons per language</dd></div>
           <div class="row"><dt>130</dt><dd>practical daily tips</dd></div>
           <div class="row"><dt>3</dt><dd>levels per path, beginner to expert</dd></div>
         </dl>
-        <p class="cert-line reveal" style="--d:200ms">The same exams and PaviLabs certificates as the security app, from fundamentals to expert level.</p>
-        <p class="langs reveal" style="--d:230ms">Complete in English, German, French and Spanish.</p>
-        <div class="store-row reveal" style="--d:260ms">
+        <p class="cert-line reveal">The same exams and PaviLabs certificates as the security app, from fundamentals to expert level.</p>
+        <p class="langs reveal">Complete in English, German, French and Spanish.</p>
+        <div class="store-row reveal">
           <span class="store-note">Submitted for review at the App&nbsp;Store and Google&nbsp;Play. Launching soon.</span>
         </div>
       </div>
-      <div class="world-visual reveal" style="--d:150ms">
+      <div class="world-visual reveal">
         <div class="phone-shell"><div class="phone"><img src="/assets/shot-ai-dark.webp" alt="Daily Dose of AI: the Today screen with the daily dose, in dark mode" width="262" height="626" loading="lazy"></div></div>
       </div>
     </div>
   </section>
 
-  <svg class="trail" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M 70,15 C 320,90 560,10 760,60 S 1060,95 1180,45"/>
-  </svg>
+  <div class="trace" data-trace aria-hidden="true">
+    <div class="wrap">
+      <svg class="trace__svg trace__svg--wide" viewBox="0 0 1120 120" focusable="false"><defs><linearGradient id="trw3" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="1096" y2="0"><stop offset="0" style="stop-color:var(--leaf-deep)"/><stop offset=".55" style="stop-color:var(--leaf)"/><stop offset="1" style="stop-color:var(--mint)"/></linearGradient></defs><g stroke="url(#trw3)"><path class="trace-line" pathLength="1" d="M24 92 L212 92 L260 44 L520 44 L556 80 L1096 80"/><path class="trace-line trace-line--branch" style="--b:1" pathLength="1" d="M372 44 L396 20 L468 20"/><path class="trace-line trace-line--branch" style="--b:2" pathLength="1" d="M812 80 L836 104 L930 104"/></g><circle class="trace-node trace-ring" style="--n:0" cx="24" cy="92" r="5.5"/><circle class="trace-node trace-via" style="--n:1" cx="372" cy="44" r="2.8"/><g transform="translate(468 20) scale(1 1) rotate(-10)"><g class="trace-node trace-leaf" style="--n:2"><path d="M0 0C6 -10 18 -12 28 -6C22 3 11 7 0 0Z"/><path class="trace-rib" d="M3 -1L21 -5"/></g></g><circle class="trace-node trace-via" style="--n:3" cx="812" cy="80" r="2.8"/><circle class="trace-node trace-ring" style="--n:4" cx="930" cy="104" r="5.5"/><circle class="trace-node trace-ring" style="--n:5" cx="1096" cy="80" r="5.5"/></svg>
+      <svg class="trace__svg trace__svg--narrow" viewBox="0 0 360 120" focusable="false"><defs><linearGradient id="trn3" gradientUnits="userSpaceOnUse" x1="14" y1="0" x2="346" y2="0"><stop offset="0" style="stop-color:var(--leaf-deep)"/><stop offset=".55" style="stop-color:var(--leaf)"/><stop offset="1" style="stop-color:var(--mint)"/></linearGradient></defs><g stroke="url(#trn3)"><path class="trace-line" pathLength="1" d="M14 96 L86 96 L126 56 L236 56 L268 88 L346 88"/><path class="trace-line trace-line--branch" style="--b:1" pathLength="1" d="M176 56 L200 32 L240 32"/></g><circle class="trace-node trace-ring" style="--n:0" cx="14" cy="96" r="5.5"/><circle class="trace-node trace-via" style="--n:1" cx="176" cy="56" r="2.8"/><g transform="translate(240 32) scale(1 1) rotate(-10)"><g class="trace-node trace-leaf" style="--n:2"><path d="M0 0C6 -10 18 -12 28 -6C22 3 11 7 0 0Z"/><path class="trace-rib" d="M3 -1L21 -5"/></g></g><circle class="trace-node trace-ring" style="--n:3" cx="346" cy="88" r="5.5"/></svg>
+    </div>
+  </div>
 
   <section class="method" id="method">
-    <div class="glow glow--gold" style="width:720px;height:720px;top:-80px;right:-200px;"></div>
+    <div class="glow glow--mint" style="width:720px;height:720px;top:-80px;right:-200px;"></div>
     <div class="wrap">
       <h2 class="reveal">One dose, three steps</h2>
-      <p class="method-intro reveal" style="--d:70ms">Both apps work without an account and without ads. A lesson takes about five minutes, and you set your own daily goal, from 3 to 15 minutes.</p>
+      <p class="method-intro reveal">Both apps work without an account and without ads. A lesson takes about five minutes, and you set your own daily goal, from 3 to 15 minutes.</p>
       <ol class="steps">
-        <li class="reveal" style="--d:120ms">
+        <li class="reveal">
           <h3>Lesson</h3>
           <p>A compact reading of about five minutes, built around a real case.</p>
         </li>
-        <li class="reveal" style="--d:190ms">
+        <li class="reveal">
           <h3>Quiz</h3>
           <p>A few focused questions, with every answer clearly explained.</p>
         </li>
-        <li class="reveal" style="--d:260ms">
+        <li class="reveal">
           <h3>Takeaway</h3>
           <p>One concrete recommendation you can apply the same day.</p>
         </li>
@@ -162,11 +171,18 @@
     </div>
   </section>
 
+  <div class="trace" data-trace aria-hidden="true">
+    <div class="wrap">
+      <svg class="trace__svg trace__svg--wide" viewBox="0 0 1120 120" focusable="false"><defs><linearGradient id="trw4" gradientUnits="userSpaceOnUse" x1="1096" y1="0" x2="24" y2="0"><stop offset="0" style="stop-color:var(--leaf-deep)"/><stop offset=".55" style="stop-color:var(--leaf)"/><stop offset="1" style="stop-color:var(--mint)"/></linearGradient></defs><g stroke="url(#trw4)"><path class="trace-line" pathLength="1" d="M1096 22 L934 22 L886 70 L612 70 L576 34 L24 34"/><path class="trace-line trace-line--branch" style="--b:1" pathLength="1" d="M760 70 L796 106 L884 106"/></g><circle class="trace-node trace-ring" style="--n:0" cx="1096" cy="22" r="5.5"/><circle class="trace-node trace-via" style="--n:1" cx="760" cy="70" r="2.8"/><circle class="trace-node trace-ring" style="--n:2" cx="884" cy="106" r="5.5"/><g transform="translate(300 34) scale(-1 1) rotate(-10)"><g class="trace-node trace-leaf" style="--n:3"><path d="M0 0C6 -10 18 -12 28 -6C22 3 11 7 0 0Z"/><path class="trace-rib" d="M3 -1L21 -5"/></g></g><circle class="trace-node trace-ring" style="--n:4" cx="24" cy="34" r="5.5"/></svg>
+      <svg class="trace__svg trace__svg--narrow" viewBox="0 0 360 120" focusable="false"><defs><linearGradient id="trn4" gradientUnits="userSpaceOnUse" x1="346" y1="0" x2="14" y2="0"><stop offset="0" style="stop-color:var(--leaf-deep)"/><stop offset=".55" style="stop-color:var(--leaf)"/><stop offset="1" style="stop-color:var(--mint)"/></linearGradient></defs><g stroke="url(#trn4)"><path class="trace-line" pathLength="1" d="M346 20 L278 20 L238 60 L150 60 L118 92 L14 92"/><path class="trace-line trace-line--branch" style="--b:1" pathLength="1" d="M196 60 L220 84 L262 84"/></g><circle class="trace-node trace-ring" style="--n:0" cx="346" cy="20" r="5.5"/><circle class="trace-node trace-via" style="--n:1" cx="196" cy="60" r="2.8"/><circle class="trace-node trace-ring" style="--n:2" cx="262" cy="84" r="5.5"/><circle class="trace-node trace-ring" style="--n:3" cx="14" cy="92" r="5.5"/></svg>
+    </div>
+  </div>
+
   <section class="tools-sec" id="tools">
     <div class="glow glow--petrol" style="width:680px;height:680px;top:-40px;right:-220px;"></div>
     <div class="wrap">
       <h2 class="reveal">Free study tools</h2>
-      <p class="tools-intro reveal" style="--d:70ms">Fourteen exercises that run in your browser, with no sign-up and no data transfer. They are in German and aimed at students preparing for the German Abitur.</p>
+      <p class="tools-intro reveal">Fourteen exercises that run in your browser, with no sign-up and no data transfer. They are in German and aimed at students preparing for the German Abitur.</p>
       <h3 class="tool-gruppe reveal">English and French</h3>
       <div class="tool-grid">
         <article class="tool-card reveal">
@@ -178,7 +194,7 @@
           </div>
         </article>
 
-        <article class="tool-card reveal" style="--d:60ms">
+        <article class="tool-card reveal">
           <a class="tool-bild" href="/tools/franzoesisch.html" aria-hidden="true" tabindex="-1"><img src="/assets/previews/franzoesisch.webp" alt="" loading="lazy" width="480" height="300"></a>
           <div class="tool-inhalt">
             <h3><a href="/tools/franzoesisch.html">French exam trainer</a></h3>
@@ -196,7 +212,7 @@
           </div>
         </article>
 
-        <article class="tool-card reveal" style="--d:60ms">
+        <article class="tool-card reveal">
           <a class="tool-bild" href="/tools/textanalyse-franzoesisch.html" aria-hidden="true" tabindex="-1"><img src="/assets/previews/textanalyse-franzoesisch.webp" alt="" loading="lazy" width="480" height="300"></a>
           <div class="tool-inhalt">
             <h3><a href="/tools/textanalyse-franzoesisch.html">French text analysis</a></h3>
@@ -214,7 +230,7 @@
           </div>
         </article>
 
-        <article class="tool-card reveal" style="--d:60ms">
+        <article class="tool-card reveal">
           <a class="tool-bild" href="/tools/schreibwerkstatt-franzoesisch.html" aria-hidden="true" tabindex="-1"><img src="/assets/previews/schreibwerkstatt-franzoesisch.webp" alt="" loading="lazy" width="480" height="300"></a>
           <div class="tool-inhalt">
             <h3><a href="/tools/schreibwerkstatt-franzoesisch.html">French writing workshop</a></h3>
@@ -232,7 +248,7 @@
           </div>
         </article>
 
-        <article class="tool-card reveal" style="--d:60ms">
+        <article class="tool-card reveal">
           <a class="tool-bild" href="/tools/kommunikationspruefung-franzoesisch.html" aria-hidden="true" tabindex="-1"><img src="/assets/previews/kommunikationspruefung-franzoesisch.webp" alt="" loading="lazy" width="480" height="300"></a>
           <div class="tool-inhalt">
             <h3><a href="/tools/kommunikationspruefung-franzoesisch.html">French speaking exam</a></h3>
@@ -253,7 +269,7 @@
           </div>
         </article>
 
-        <article class="tool-card reveal" style="--d:60ms">
+        <article class="tool-card reveal">
           <a class="tool-bild" href="/tools/pruefungscoach.html" aria-hidden="true" tabindex="-1"><img src="/assets/previews/pruefungscoach.webp" alt="" loading="lazy" width="480" height="300"></a>
           <div class="tool-inhalt">
             <h3><a href="/tools/pruefungscoach.html">Exam coach</a></h3>
@@ -271,7 +287,7 @@
           </div>
         </article>
 
-        <article class="tool-card reveal" style="--d:60ms">
+        <article class="tool-card reveal">
           <a class="tool-bild" href="/tools/prompt-werkstatt.html" aria-hidden="true" tabindex="-1"><img src="/assets/previews/prompt-werkstatt.webp" alt="" loading="lazy" width="480" height="300"></a>
           <div class="tool-inhalt">
             <h3><a href="/tools/prompt-werkstatt.html">Prompt workshop</a></h3>
@@ -292,7 +308,7 @@
           </div>
         </article>
 
-        <article class="tool-card reveal" style="--d:60ms">
+        <article class="tool-card reveal">
           <a class="tool-bild" href="/tools/duales-studium-check.html" aria-hidden="true" tabindex="-1"><img src="/assets/previews/duales-studium-check.webp" alt="" loading="lazy" width="480" height="300"></a>
           <div class="tool-inhalt">
             <h3><a href="/tools/duales-studium-check.html">Dual study check</a></h3>
@@ -309,7 +325,7 @@
     <div class="glow glow--leaf" style="width:700px;height:700px;top:-60px;left:-220px;"></div>
     <div class="wrap">
       <h2 class="reveal">Books</h2>
-      <p class="pubs-intro reveal" style="--d:70ms">Eight books in two series. The first ones grew out of study notes I collected while preparing for my own final exams in 2019: which methods earn marks in tests and which only cost time. The AI series followed in 2026 and is written for anyone who wants to use AI in everyday life or at work.</p>
+      <p class="pubs-intro reveal">Eight books in two series. The first ones grew out of study notes I collected while preparing for my own final exams in 2019: which methods earn marks in tests and which only cost time. The AI series followed in 2026 and is written for anyone who wants to use AI in everyday life or at work.</p>
       <div class="pub-grid">
         <article class="pub reveal">
           <a class="pub-buch" href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/mastering-ai.webp" alt="Buchcover: Mastering Artificial Intelligence" loading="lazy" width="108" height="173"></span></a>
@@ -319,7 +335,7 @@
           <span class="pub-meta"><span>English</span><a href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener">View on Amazon</a></span>
           </div>
         </article>
-        <article class="pub reveal" style="--d:60ms">
+        <article class="pub reveal">
           <a class="pub-buch" href="https://www.amazon.de/dp/B0HGQP7LJM" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/ai-practice.webp" alt="Buchcover: Artificial Intelligence in Practice" loading="lazy" width="108" height="173"></span></a>
           <div class="pub-inhalt">
           <h3><a href="https://www.amazon.de/dp/B0HGQP7LJM" rel="noopener">Artificial Intelligence in Practice: A Beginner's Guide for Everyday Use</a></h3>
@@ -327,7 +343,7 @@
           <span class="pub-meta"><span>English</span><a href="https://www.amazon.de/dp/B0HGQP7LJM" rel="noopener">View on Amazon</a></span>
           </div>
         </article>
-        <article class="pub reveal" style="--d:90ms">
+        <article class="pub reveal">
           <a class="pub-buch" href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/ki-meistern.webp" alt="Buchcover: Künstliche Intelligenz Meistern" loading="lazy" width="108" height="173"></span></a>
           <div class="pub-inhalt">
           <h3><a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern: Das Praxishandbuch für angehende KI-Experten</a></h3>
@@ -335,7 +351,7 @@
           <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">View on Amazon</a></span>
           </div>
         </article>
-        <article class="pub reveal" style="--d:120ms">
+        <article class="pub reveal">
           <a class="pub-buch" href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/ki-alltag.webp" alt="Buchcover: Künstliche Intelligenz alltagstauglich gemacht" loading="lazy" width="108" height="173"></span></a>
           <div class="pub-inhalt">
           <h3><a href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener">Künstliche Intelligenz alltagstauglich gemacht: Der Einstieg ohne Vorkenntnisse</a></h3>
@@ -343,7 +359,7 @@
           <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener">View on Amazon</a></span>
           </div>
         </article>
-        <article class="pub reveal" style="--d:150ms">
+        <article class="pub reveal">
           <a class="pub-buch" href="https://www.amazon.de/dp/1691857440" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/englisch-oberstufe.webp" alt="Buchcover: Englisch Meistern: Das Handbuch für Englisch in der Oberstufe" loading="lazy" width="108" height="173"></span></a>
           <div class="pub-inhalt">
           <h3><a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a></h3>
@@ -351,7 +367,7 @@
           <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/1691857440" rel="noopener">View on Amazon</a></span>
           </div>
         </article>
-        <article class="pub reveal" style="--d:180ms">
+        <article class="pub reveal">
           <a class="pub-buch" href="https://www.amazon.de/dp/1074147715" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/englisch-muendlich.webp" alt="Buchcover: Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen" loading="lazy" width="108" height="173"></span></a>
           <div class="pub-inhalt">
           <h3><a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a></h3>
@@ -359,7 +375,7 @@
           <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/1074147715" rel="noopener">View on Amazon</a></span>
           </div>
         </article>
-        <article class="pub reveal" style="--d:210ms">
+        <article class="pub reveal">
           <a class="pub-buch" href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/franzoesisch.webp" alt="Buchcover: Französisch Meistern" loading="lazy" width="108" height="173"></span></a>
           <div class="pub-inhalt">
           <h3><a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a></h3>
@@ -367,7 +383,7 @@
           <span class="pub-meta"><span>German</span><a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">View on Amazon</a></span>
           </div>
         </article>
-        <article class="pub reveal" style="--d:240ms">
+        <article class="pub reveal">
           <a class="pub-buch" href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener" aria-hidden="true" tabindex="-1"><span class="buch3d"><img src="/assets/covers/lernen.webp" alt="Buchcover: Lernen meistern" loading="lazy" width="108" height="173"></span></a>
           <div class="pub-inhalt">
           <h3><a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a></h3>
@@ -423,19 +439,7 @@
   </div>
 </footer>
 
-<script>
-  const animated = document.querySelectorAll('.reveal, .trail');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
-      }
-    }, { threshold: 0.25, rootMargin: '0px 0px -5% 0px' });
-    animated.forEach(el => io.observe(el));
-  } else {
-    animated.forEach(el => el.classList.add('in-view'));
-  }
-</script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>
