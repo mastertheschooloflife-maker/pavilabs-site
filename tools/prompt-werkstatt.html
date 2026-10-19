@@ -1,13 +1,126 @@
 <!doctype html>
-<html lang="de" style="--akzent:#3E97B5;--akzent-tief:#1F5A70">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Prompt-Werkstatt</title>
-<meta name="description" content="Prompting als Handwerk: der Vier-Fragen-Baukasten für vollständige Prompts, die Techniken der Profis von Few-Shot bis Meta-Prompting, zehn Prompt-Rezepte als Lernkarten und die Prüfroutine gegen Halluzinationen, nach dem Buch Künstliche Intelligenz Meistern.">
+<title>Prompt-Werkstatt: vier Fragen, ein vollständiger Prompt</title>
+<meta name="description" content="Ein Baukasten setzt aus vier Fragen einen vollständigen Prompt zusammen, mit Beispiel, Live-Vorschau und Kopieren. Dazu Techniken mit schwachem und besserem Prompt im Vergleich, zehn Prompt-Rezepte als Lernkarten und ein Quiz, nach dem Buch Künstliche Intelligenz Meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/prompt-werkstatt.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+/* Prompt-Werkstatt: seitenlokale Ergänzungen zum Grundsystem */
+.pw-stand { margin: 0; font-size: 0.86rem; color: var(--fg-dim); }
+.pw-stand strong { color: var(--fg); font-weight: 650; }
+
+.pw-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 20px; align-items: start; }
+.pw-form { display: grid; gap: 18px; }
+.pw-form__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding-bottom: 16px; border-bottom: 1px solid var(--hairline); }
+.pw-form__top p { margin: 0; flex: 1 1 220px; font-size: 0.93rem; color: var(--fg-dim); }
+.pw-form__top .btn { margin: 0; }
+.pw-field { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 6px 12px; align-items: start; }
+.pw-field__n {
+  grid-row: span 2;
+  width: 28px; height: 28px; margin-top: 1px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--hairline-strong); color: var(--fg);
+  font-size: 0.8rem; font-weight: 700;
+  transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out), color var(--dur-state) var(--ease-out);
+}
+.pw-field.is-filled .pw-field__n { background: var(--leaf); border-color: var(--leaf); color: var(--ground); }
+.pw-field__n--opt { border-style: dashed; color: var(--fg-dim); }
+.pw-field label { display: block; font-weight: 650; color: var(--fg); font-size: 0.98rem; }
+.pw-field label small { display: block; font-weight: 400; color: var(--fg-dim); font-size: 0.86rem; margin-top: 2px; }
+.pw-field textarea { grid-column: 2; margin: 0; min-height: 48px; resize: none; overflow: hidden; line-height: 1.5; }
+#pbAufgabe, #pbBeispiel { min-height: 74px; }
+.pw-opt { border-top: 1px solid var(--hairline); padding-top: 16px; display: grid; gap: 18px; }
+.pw-opt > .t-label { margin: 0; }
+
+.pw-preview { position: sticky; top: 96px; display: grid; gap: 14px; }
+.pw-sheet {
+  border-radius: 18px; background: var(--paper-bright); color: var(--ink);
+  padding: 20px 22px 18px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.25), 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+}
+.pw-sheet__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.pw-sheet__head h3 { margin: 0; font-size: 1rem; color: var(--ink); }
+.pw-sheet__meta { font-size: 0.82rem; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.pw-out { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-height: min(520px, calc(100vh - 300px)); overflow: auto; }
+.pw-out li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: start; }
+.pw-out li > span {
+  width: 22px; height: 22px; margin-top: 2px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 0.72rem; font-weight: 700;
+  background: var(--paper-deep); color: var(--ink-muted);
+}
+.pw-out li[data-q="1"] > span, .pw-out li[data-q="2"] > span, .pw-out li[data-q="3"] > span, .pw-out li[data-q="4"] > span { background: var(--leaf-deep); color: var(--paper-bright); }
+.pw-out p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.97rem; line-height: 1.6; }
+.pw-out li.is-new p { animation: pw-in var(--dur-layout) var(--ease-expo); }
+@keyframes pw-in { from { background: rgba(143, 184, 119, 0.35); } }
+.pw-empty { margin: 0; color: var(--ink-muted); font-size: 0.97rem; }
+.pw-sheet ::selection { background: var(--leaf-deep); color: var(--paper-bright); }
+.pw-sheet__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--paper-line); }
+.pw-copy { margin: 0; }
+.pw-copy.is-done { background: var(--mint); }
+.pw-copy svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pw-copymsg { font-size: 0.88rem; color: var(--leaf-ink); min-height: 1.3em; }
+.pw-hint { margin: 0; font-size: 0.88rem; color: var(--fg-dim); }
+
+/* Techniken: aufklappbare Karten mit Vorher/Nachher */
+.pw-tech { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.pw-card {
+  border: 1px solid var(--hairline); border-radius: 18px;
+  background: var(--ground-raise);
+  transition: border-color var(--dur-state) var(--ease-out);
+}
+.pw-card[open] { border-color: rgba(143, 184, 119, 0.55); grid-column: 1 / -1; }
+.pw-card > summary {
+  list-style: none; cursor: pointer;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; align-items: center;
+  min-height: 64px; padding: 16px 20px;
+  border-radius: 18px;
+}
+.pw-card > summary::-webkit-details-marker { display: none; }
+.pw-card > summary strong { font-size: 1.04rem; color: var(--fg); }
+.pw-card > summary span { grid-column: 1; font-size: 0.9rem; color: var(--fg-dim); line-height: 1.45; }
+.pw-card > summary::after {
+  content: ""; grid-column: 2; grid-row: 1 / span 2;
+  width: 9px; height: 9px; margin-right: 4px;
+  border-right: 2px solid var(--fg-dim); border-bottom: 2px solid var(--fg-dim);
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform var(--dur-state) var(--ease-expo);
+}
+.pw-card[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+.pw-card > summary:hover strong { color: var(--mint); }
+.pw-card__body { padding: 0 20px 20px; }
+.pw-card__body > p { color: var(--fg-dim); margin: 0 0 14px; }
+.pw-card .t-compare__side p { font-size: 0.97rem; white-space: pre-line; overflow-wrap: anywhere; }
+.pw-card::details-content { block-size: 0; overflow: clip; transition: block-size var(--dur-layout) var(--ease-expo), content-visibility var(--dur-layout) allow-discrete; }
+.pw-card[open]::details-content { block-size: auto; }
+.pw-group { font-size: 1.05rem; margin: 30px 0 12px; color: var(--fg); }
+.pw-group:first-of-type { margin-top: 0; }
+
+@media (max-width: 880px) {
+  .pw-layout { grid-template-columns: 1fr; }
+  .pw-preview { position: static; }
+  .pw-out { max-height: none; overflow: visible; }
+  .pw-tech { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .pw-field { grid-template-columns: 26px minmax(0, 1fr); gap: 6px 10px; }
+  .pw-field textarea { grid-column: 1 / -1; }
+  .pw-sheet { padding: 16px; }
+  .pw-out li { grid-template-columns: 22px minmax(0, 1fr); gap: 8px; }
+  .pw-card > summary { padding: 14px 16px; }
+  .pw-card__body { padding: 0 14px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pw-card::details-content { transition: none; }
+  .pw-out li.is-new p { animation: none; }
+}
+</style>
 </head>
 <body>
 
@@ -24,96 +137,259 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Prompt-Werkstatt</h1>
-    <p class="tool-lede">Über Prompting kursiert viel Halbwissen, und ganze Kursindustrien leben von angeblichen Geheimformeln. Die gute Nachricht: Wirksames Prompting ist kein Geheimwissen, sondern ein Handwerk mit einer überschaubaren Zahl von Techniken. Diese Werkstatt gibt dir das Repertoire: den Vier-Fragen-Baukasten, der aus einer vagen Anfrage einen vollständigen Prompt macht, die Techniken der Profis und die Prüfroutine, mit der du Ergebnisse kontrollierst, statt ihnen blind zu vertrauen.</p>
-    <p class="tool-src">Diese Werkstatt folgt den Kapiteln Prompt Engineering, Kontext und Qualitätssicherung aus <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern: Das Praxishandbuch</a>; den Einstieg bietet <a href="https://www.amazon.de/dp/B0HG8J2ZMW" rel="noopener">Künstliche Intelligenz alltagstauglich gemacht</a>.</p>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Lernen und KI</a></li>
+        <li><span aria-current="page">Prompt-Werkstatt</span></li>
+      </ol>
+    </nav>
 
-    <div class="panel">
-      <h2>Der Prompt-Baukasten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Gute Prompts müssen nicht lang sein, sondern vollständig. Ein vollständiger Prompt beantwortet vier Fragen: Was genau soll entstehen? Für wen? In welcher Form? Und woran erkenne ich, dass es gut ist? Fülle aus, was du brauchst; der Baukasten setzt daraus deinen Prompt zusammen. Alles bleibt im Browser.</p>
-      <div class="pb-form">
-        <label class="feld"><span>Aufgabe: Was genau soll entstehen?</span><textarea class="feld-text" id="pbAufgabe" rows="2" placeholder="Eine Gliederung für ein zehnminütiges Referat über die Weimarer Republik, mit drei Kernpunkten und einem Einstieg, der das Publikum packt"></textarea></label>
-        <label class="feld"><span>Zielgruppe: Für wen ist es?</span><input class="feld-text" id="pbZielgruppe" placeholder="Ein Geschichts-Leistungskurs mit Vorwissen aus dem Unterricht"></label>
-        <label class="feld"><span>Form: Format, Länge, Ton</span><input class="feld-text" id="pbForm" placeholder="Stichpunkte statt Fließtext, maximal eine Seite, nüchterner Ton"></label>
-        <label class="feld"><span>Qualität: Woran erkennst du ein gutes Ergebnis? Negativliste?</span><input class="feld-text" id="pbQualitaet" placeholder="Keine Floskeln, keine erfundenen Zahlen oder Zitate, keine Weltlage-Einleitungen"></label>
-        <label class="feld"><span>Rolle oder Perspektive (optional)</span><input class="feld-text" id="pbRolle" placeholder="Prüfe anschließend aus Sicht einer strengen Lehrkraft, die jede unbelegte Behauptung markiert"></label>
-        <label class="feld"><span>Beispiel des gewünschten Stils (optional, stärkstes Steuerungsinstrument)</span><textarea class="feld-text" id="pbBeispiel" rows="2" placeholder="Ein gelungenes bestehendes Exemplar einfügen: verfasse nach dem Muster dieses Beispiels..."></textarea></label>
+    <header class="t-intro">
+      <div>
+        <h1>Prompt-Werkstatt</h1>
+        <p class="t-goal">Ein guter Prompt muss nicht lang sein, aber vollständig. Beantworte vier Fragen, und der Baukasten setzt daraus deinen Prompt zusammen. Darunter siehst du an Beispielen, was einen schwachen von einem besseren Prompt unterscheidet.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start="#pbAufgabe">Übung starten</a>
+          <a class="btn btn--ghost" href="#techniken">Techniken ansehen</a>
+        </div>
       </div>
-      <div class="fcard-aktionen">
-        <button class="btn" id="btnBauen">Prompt zusammensetzen</button>
-        <button class="btn btn--ghost" id="btnKopieren" hidden>In die Zwischenablage</button>
-        <span class="hint" id="pbHinweis" role="status"></span>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>4</dt><dd>Fragen</dd></div>
+          <div><dt>9</dt><dd>Techniken im Vergleich</dd></div>
+          <div><dt>10</dt><dd>Rezepte</dd></div>
+          <div><dt>10</dt><dd>Quizfragen</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So gehst du vor">
+          <li><span><strong>Vier Fragen beantworten</strong> oder erst das Beispiel einsetzen.</span></li>
+          <li><span><strong>Vorschau prüfen:</strong> Jede Zeile zeigt, aus welcher Frage sie stammt.</span></li>
+          <li><span><strong>Kopieren</strong> und in das KI-Werkzeug deiner Wahl einfügen.</span></li>
+        </ol>
+        <p class="pw-stand"><strong>Stand: Oktober 2026.</strong> Sprachmodelle ändern sich schnell, Aussagen über einzelne Modelltypen können veralten.</p>
       </div>
-      <pre class="pb-ausgabe" id="pbAusgabe" hidden></pre>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> Das Prompt-Engineering-Kapitel in <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern</a> führt jede dieser Zutaten mit durchgespielten Praxisbeispielen aus, von der Negativliste bis zur Prompt-Bibliothek für wiederkehrende Aufgaben.</span>
-      </div>
-    </div>
+    </header>
 
-    <div class="panel">
-      <h2>Die Techniken der Profis</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Rollen mit Perspektive</dt><dd>„Du bist ein Marketingexperte“ bewirkt wenig. Wirkung entsteht, wenn die Rolle Wissen, Maßstäbe und Blickwinkel transportiert: „Prüfe den Vertragsentwurf aus der Perspektive der Gegenseite, deren Ziel es ist, Haftungsrisiken auf uns abzuwälzen.“</dd></div>
-        <div class="row"><dt>Beispiele (Few-Shot)</dt><dd>Das zuverlässigste Steuerungsinstrument: zwei, drei Exemplare des gewünschten Ergebnisses zeigen statt den Stil zu beschreiben. Der unterschätzte Kniff: zusätzlich ein Gegenbeispiel mit „so bitte nicht, zu werblich“.</dd></div>
-        <div class="row"><dt>Prüfpfad vorgeben</dt><dd>Nicht nur das Ergebnis, den Arbeitsprozess vorgeben: „Prüfe in vier Schritten: erstens alle Annahmen auflisten, zweitens jede nach Plausibilität bewerten, drittens das Szenario mit 30 Prozent schlechteren Annahmen durchrechnen, viertens Gesamturteil mit den drei größten Risiken.“ Reasoning-Modelle brauchen weniger Wie und mehr glasklare Ziele und Prüfschemata.</dd></div>
-        <div class="row"><dt>Markierungen</dt><dd>Bei längeren Prompts Anweisung, Kontext und Material mit klar benannten Blöcken trennen, sonst kommentiert die KI den zu korrigierenden Text, statt ihn zu korrigieren. Ausgabeformat exakt definieren: Tabelle mit festen Spalten, Gliederung mit maximal zwei Ebenen.</dd></div>
-        <div class="row"><dt>Meta-Prompting</dt><dd>Die KI ihre eigenen Arbeitsanweisungen schreiben lassen: „Analysiere, welche Informationen in meinem Prompt gefehlt haben, und schreibe eine verbesserte Version; stelle mir vorher alle Fragen, deren Antworten du brauchst.“</dd></div>
-        <div class="row"><dt>Dialog-Dramaturgie</dt><dd>Anfänger denken in Prompts, Fortgeschrittene in Gesprächen: Erkunden (Rückfragen, Gliederungsvarianten), Erzeugen (Entwurf), Härten (das Modell attackiert den eigenen Entwurf). Festgefahrener Dialog? Neustart mit verbessertem Prompt schlägt die zehnte Korrekturschleife.</dd></div>
-      </dl>
-    </div>
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Üben: der Prompt-Baukasten</h2>
+        <p class="t-zone__hint">Alles bleibt in deinem Browser, deine Eingaben nur auf diesem Gerät.</p>
+      </div>
 
-    <div class="panel">
-      <h2>Prompt-Rezepte als Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Muster aus dem Buch, die in Seminaren regelmäßig für Aha-Momente sorgen: erst überlegen, wie das Rezept geht, dann umdrehen.</p>
-      <div class="chip-row" id="deckRow" style="display:none"></div>
-      <div class="chip-row" id="catRow"></div>
-      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
-      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
-      <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button">
-          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
-            <div class="fc-etikett" id="fcKatV"></div>
-            <div class="fc-haupt" id="fcFrage"></div>
+      <div class="pw-layout">
+        <form class="t-surface pw-form" id="pbBaukasten" novalidate>
+          <div class="pw-form__top">
+            <p>Noch keine Idee? Das Beispiel füllt alle Felder: eine Referatsgliederung für einen Geschichtskurs.</p>
+            <button type="button" class="btn btn--ghost btn--small" id="btnBeispiel">Beispiel einsetzen</button>
           </div>
-          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
-            <div class="fc-etikett" id="fcKatR"></div>
-            <div class="fc-haupt" id="fcAntwort"></div>
-            <div class="fc-detail" id="fcDetail"></div>
-            <div class="fc-note" id="fcNote"></div>
+          <div id="pbProgress"></div>
+
+          <div class="pw-field" data-q="1">
+            <span class="pw-field__n" aria-hidden="true">1</span>
+            <label for="pbAufgabe">Was genau soll entstehen?<small>Die Aufgabe, so konkret wie möglich.</small></label>
+            <textarea class="feld-area" id="pbAufgabe" rows="2" placeholder="z. B. eine Gliederung für ein zehnminütiges Referat über die Weimarer Republik"></textarea>
+          </div>
+          <div class="pw-field" data-q="2">
+            <span class="pw-field__n" aria-hidden="true">2</span>
+            <label for="pbZielgruppe">Für wen ist es?<small>Zielgruppe und ihr Vorwissen.</small></label>
+            <textarea class="feld-area" id="pbZielgruppe" rows="1" placeholder="z. B. ein Geschichts-Leistungskurs"></textarea>
+          </div>
+          <div class="pw-field" data-q="3">
+            <span class="pw-field__n" aria-hidden="true">3</span>
+            <label for="pbForm">In welcher Form?<small>Format, Länge, Ton.</small></label>
+            <textarea class="feld-area" id="pbForm" rows="1" placeholder="z. B. Stichpunkte, höchstens eine Seite"></textarea>
+          </div>
+          <div class="pw-field" data-q="4">
+            <span class="pw-field__n" aria-hidden="true">4</span>
+            <label for="pbQualitaet">Woran erkennst du ein gutes Ergebnis?<small>Kriterien und eine Negativliste: was du nicht willst.</small></label>
+            <textarea class="feld-area" id="pbQualitaet" rows="1" placeholder="z. B. keine Floskeln, keine erfundenen Zahlen"></textarea>
+          </div>
+
+          <div class="pw-opt">
+            <span class="t-label">Optional</span>
+            <div class="pw-field" data-q="R">
+              <span class="pw-field__n pw-field__n--opt" aria-hidden="true">R</span>
+              <label for="pbRolle">Rolle oder Perspektive<small>Wirkt, wenn sie Wissen, Maßstäbe und einen Blickwinkel mitbringt.</small></label>
+              <textarea class="feld-area" id="pbRolle" rows="1" placeholder="z. B. Prüfe aus Sicht einer strengen Lehrkraft"></textarea>
+            </div>
+            <div class="pw-field" data-q="B">
+              <span class="pw-field__n pw-field__n--opt" aria-hidden="true">B</span>
+              <label for="pbBeispiel">Beispiel des gewünschten Stils<small>Steuert Stil und Format am direktesten. Füg ein gelungenes Exemplar ein.</small></label>
+              <textarea class="feld-area" id="pbBeispiel" rows="2" placeholder="Ein gelungener Text, an dem sich das Modell orientieren soll"></textarea>
+            </div>
+          </div>
+          <noscript><p class="t-noscript">Die Live-Vorschau braucht JavaScript. Ohne sie funktioniert der Baukasten als Checkliste: Schreib deinen Prompt so, dass er die vier Fragen beantwortet, und hänge den Satz an: „Fasse zuerst in eigenen Worten zusammen, was ich von dir will, und nenne offene Fragen. Schreibe erst danach.“</p></noscript>
+        </form>
+
+        <div class="pw-preview">
+          <div class="pw-sheet" aria-labelledby="pbTitel">
+            <div class="pw-sheet__head">
+              <h3 id="pbTitel">Dein Prompt</h3>
+              <span class="pw-sheet__meta" id="pbMeta"></span>
+            </div>
+            <ol class="pw-out" id="pbOut" aria-live="polite" aria-label="Vorschau des Prompts"></ol>
+            <p class="pw-empty" id="pbLeer">Sobald du die erste Frage beantwortest, entsteht hier dein Prompt. Oder setz oben das Beispiel ein.</p>
+            <div class="pw-sheet__foot">
+              <button type="button" class="btn btn--primary pw-copy" id="btnKopieren" disabled></button>
+              <span class="pw-copymsg" id="pbCopyMsg" role="status"></span>
+            </div>
+          </div>
+          <p class="pw-hint">Der letzte Absatz kommt immer dazu. Er bittet das Modell, deinen Auftrag erst zusammenzufassen, so fallen Missverständnisse früh auf.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-zone" id="techniken" aria-labelledby="h-tech">
+      <div class="t-zone__head">
+        <h2 id="h-tech">Techniken: schwach und besser</h2>
+        <p class="t-zone__hint">Stand: Oktober 2026. Aufklappen zeigt beide Fassungen.</p>
+      </div>
+
+      <h3 class="pw-group">Prompts bauen</h3>
+      <div class="pw-tech">
+        <details class="pw-card">
+          <summary><strong>Rollen mit Perspektive</strong><span>Eine Rolle hilft, wenn sie einen Blickwinkel erzeugt.</span></summary>
+          <div class="pw-card__body">
+            <p>„Du bist ein Experte“ bewirkt wenig. Eine Rolle hilft, wenn sie Wissen, Maßstäbe und einen Blickwinkel mitbringt, den du selbst schwer einnehmen kannst.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Du bist ein Jurist. Prüfe diesen Vertragsentwurf.</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Prüfe den Vertragsentwurf aus der Perspektive der Gegenseite, deren Ziel es ist, Haftungsrisiken auf uns abzuwälzen.</p></figure>
+            </div>
+          </div>
+        </details>
+        <details class="pw-card">
+          <summary><strong>Beispiele zeigen (Few-Shot)</strong><span>Exemplare statt Stilbeschreibung.</span></summary>
+          <div class="pw-card__body">
+            <p>Zwei, drei Exemplare des gewünschten Ergebnisses steuern Stil und Format zuverlässiger als eine Beschreibung. Dazu passt ein Gegenbeispiel mit dem Vermerk „so bitte nicht“.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Schreib den Text locker, aber seriös, nicht zu werblich.</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Schreib den Text im Stil der beiden Beispiele. [Beispiel 1] [Beispiel 2] So bitte nicht, zu werblich: [Gegenbeispiel]</p></figure>
+            </div>
+          </div>
+        </details>
+        <details class="pw-card">
+          <summary><strong>Prüfpfad vorgeben</strong><span>Neben dem Ergebnis auch den Arbeitsweg.</span></summary>
+          <div class="pw-card__body">
+            <p>Neben dem Ergebnis kannst du auch den Arbeitsprozess vorgeben. Bei Modellen, die vor der Antwort länger „nachdenken“ (oft Reasoning-Modelle genannt), lohnt es sich nach heutigem Stand oft, weniger den Lösungsweg und mehr klare Ziele und Prüfkriterien vorzugeben. Das kann sich mit neuen Modellen ändern; prüf es gegen die aktuelle Dokumentation des Anbieters.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Ist dieser Geschäftsplan realistisch?</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Prüfe in vier Schritten: erstens alle Annahmen auflisten, zweitens jede nach Plausibilität bewerten, drittens das Szenario mit 30 Prozent schlechteren Annahmen durchrechnen, viertens Gesamturteil mit den drei größten Risiken.</p></figure>
+            </div>
+          </div>
+        </details>
+        <details class="pw-card">
+          <summary><strong>Markierungen</strong><span>Anweisung, Kontext und Material trennen.</span></summary>
+          <div class="pw-card__body">
+            <p>Ohne klar benannte Blöcke kommentiert die KI den zu korrigierenden Text manchmal, statt ihn zu korrigieren. Definiere auch das Ausgabeformat genau, etwa eine Tabelle mit festen Spalten.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Kannst du das verbessern? Die Ergebnisse der Umfrage zeigen das die meisten Schüler...</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Korrigiere Rechtschreibung und Grammatik im Text zwischen den Markierungen. Gib nur den korrigierten Text zurück.
+&lt;text&gt; Die Ergebnisse der Umfrage zeigen das die meisten Schüler... &lt;/text&gt;</p></figure>
+            </div>
+          </div>
+        </details>
+        <details class="pw-card">
+          <summary><strong>Meta-Prompting</strong><span>Die KI den eigenen Prompt verbessern lassen.</span></summary>
+          <div class="pw-card__body">
+            <p>Wenn ein Ergebnis danebenliegt, lass das Modell herausfinden, welche Informationen gefehlt haben.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Nein, nicht so. Mach es besser.</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Analysiere, welche Informationen in meinem Prompt gefehlt haben, und schreibe eine verbesserte Version. Stelle mir vorher alle Fragen, deren Antworten du brauchst.</p></figure>
+            </div>
+          </div>
+        </details>
+        <details class="pw-card">
+          <summary><strong>Dialog in Phasen</strong><span>Erkunden, erzeugen, härten.</span></summary>
+          <div class="pw-card__body">
+            <p>Statt eines einzelnen Prompts ein Gespräch in Phasen planen. Hängt der Dialog fest, ist ein Neustart mit verbessertem Prompt meist schneller als die zehnte Korrekturschleife.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Schreib mir ein Referat über die Weimarer Republik.</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Erkunden: Stell mir Rückfragen und schlag drei Gliederungsvarianten vor.
+Erzeugen: Schreib den Entwurf zu Variante B.
+Härten: Greif deinen eigenen Entwurf an. Wo ist er angreifbar?</p></figure>
+            </div>
+          </div>
+        </details>
+        <details class="pw-card">
+          <summary><strong>Prompt-Bibliothek</strong><span>Gute Prompts aufheben und wiederverwenden.</span></summary>
+          <div class="pw-card__body">
+            <p>Notier jeden Prompt, der überraschend gut funktioniert hat, und mach daraus eine Vorlage für wiederkehrende Aufgaben. Nach einigen Monaten ist daraus ein eigenes Arbeitsmittel geworden.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Jedes Mal neu: Fass mir den Text zusammen.</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Vorlage „Zusammenfassung“: Fasse [Text] für [Zielgruppe] in [Länge] zusammen. Nenne zuerst die Kernaussage, dann drei Belege mit Fundstelle.</p></figure>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <h3 class="pw-group">Mit Dokumenten arbeiten und prüfen</h3>
+      <div class="pw-tech">
+        <details class="pw-card">
+          <summary><strong>Erst binden, dann fragen</strong><span>Das Modell auf das Material verpflichten.</span></summary>
+          <div class="pw-card__body">
+            <p>Das reduziert die Neigung, Wissenslücken mit Allgemeinwissen zu füllen. Bei langen Dokumenten erst eine Übersicht erstellen lassen, dann gezielt in die Abschnitte einsteigen; Anweisungen an den Anfang, die Kernfrage nach dem Material wiederholen.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Was steht im Vertrag zur Kündigung?</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Beantworte ausschließlich auf Basis des beigefügten Dokuments, kennzeichne jede nicht direkt belegbare Aussage als Interpretation und zitiere zu jeder Antwort die relevante Passage. Frage: Was steht im Vertrag zur Kündigung?</p></figure>
+            </div>
+          </div>
+        </details>
+        <details class="pw-card">
+          <summary><strong>Prüfen statt vertrauen</strong><span>Ergebnisse gegen das Original kontrollieren.</span></summary>
+          <div class="pw-card__body">
+            <p>Modelle erfinden mitunter Angaben, wo Wissen fehlt. Aus einer Stunde Lesearbeit werden so fünf Minuten Prüfarbeit, nicht null. Das Prüfen bleibt deine Aufgabe.</p>
+            <div class="t-compare__sides">
+              <figure class="t-compare__side t-compare__side--before"><figcaption>Schwächer</figcaption><p>Liste alle Fristen aus dem Vertrag auf. (Tabelle wird ungeprüft übernommen.)</p></figure>
+              <figure class="t-compare__side t-compare__side--after"><figcaption>Besser</figcaption><p>Erstelle eine Tabelle aller Fristen mit den Spalten Frist, Dauer und Fundstelle mit wörtlichem Zitat. (Danach jede Zeile im Original nachschlagen.)</p></figure>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="t-zone" id="rezepte" aria-labelledby="h-rezepte">
+      <div class="t-zone__head">
+        <h2 id="h-rezepte">Üben: Prompt-Rezepte als Lernkarten</h2>
+        <p class="t-zone__hint">Erst überlegen, wie das Rezept geht, dann umdrehen.</p>
+      </div>
+      <div class="t-surface">
+        <div id="deck"></div>
+        <noscript><p class="t-noscript">Die Lernkarten brauchen JavaScript. Die Techniken oben sind ohne lesbar.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone" id="quiz" aria-labelledby="h-quiz">
+      <div class="t-zone__head">
+        <h2 id="h-quiz">Selbsttest: Quiz</h2>
+        <p class="t-zone__hint">Zehn Fragen zum Prompting-Handwerk, jede mit Begründung.</p>
+      </div>
+      <div class="t-surface">
+        <div id="quizBox"></div>
+        <noscript><p class="t-noscript">Das Quiz braucht JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/ki-meistern.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Durchgespielte Praxisbeispiele zu jeder Zutat des Baukastens, von der Negativliste bis zur Prompt-Bibliothek, und sechs Prüf-Prompts zum Übernehmen stehen in den Kapiteln Prompt Engineering, Kontext und Qualitätssicherung von <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern: Das Praxishandbuch</a>. Englische Ausgabe: <a href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener">Mastering Artificial Intelligence</a>.</p>
           </div>
         </div>
       </div>
-      <div class="fcard-aktionen">
-        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
-        <button class="btn" id="btnKnown">Sitzt, nächste</button>
-        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
-        <span class="hint" id="restHint"></span>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/mitarbeit.html"><span class="t-related__img"><img src="/assets/previews/mitarbeit.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Mitarbeit und Referate</strong><span>Referate aufbauen, wie im Beispiel-Prompt</span></span></a></li>
+          <li><a href="/tools/klausurplaner.html"><span class="t-related__img"><img src="/assets/previews/klausurplaner.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Klausur-Planer</strong><span>Lernzeit bis zur Klausur in Phasen einteilen</span></span></a></li>
+          <li><a href="/tools/studienkompass.html"><span class="t-related__img"><img src="/assets/previews/studienkompass.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Studienkompass</strong><span>Informatik oder Wirtschaftsinformatik?</span></span></a></li>
+        </ul>
       </div>
-      <div class="deck-fertig" id="deckFertig" hidden>
-        <strong>Stapel geschafft.</strong>
-        <span id="fertigText"></span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Arbeiten mit Dokumenten und die Prüfroutine</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Erst binden, dann fragen</dt><dd>„Beantworte ausschließlich auf Basis des beigefügten Dokuments, kennzeichne jede nicht direkt belegbare Aussage als Interpretation und zitiere zu jeder Antwort die relevante Passage.“ Das reduziert die Neigung, Wissenslücken mit Allgemeinwissen zu füllen.</dd></div>
-        <div class="row"><dt>In Etappen arbeiten</dt><dd>Lange Dokumente nicht mit einer Frage bewerfen: erst eine strukturierte Übersicht erstellen lassen, dann gezielt in die relevanten Abschnitte einsteigen. Anweisungen an den Anfang, die Kernfrage nach dem Material wiederholen.</dd></div>
-        <div class="row"><dt>Prüfen statt vertrauen</dt><dd>Extraktionstabellen gegen das Original kontrollieren, nie blind übernehmen. Modelle erfinden, wo Wissen fehlt; die Prüfkompetenz ist der eigentliche Berufsvorteil.</dd></div>
-      </dl>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> Die sechs übernehmbaren Prüf-Prompts und die Prüfroutine eines Teams stehen im Qualitätssicherungs-Kapitel von <a href="https://www.amazon.de/dp/B0HF7SB955" rel="noopener">Künstliche Intelligenz Meistern</a>. Auf Englisch: <a href="https://www.amazon.de/dp/B0HG7KK8C3" rel="noopener">Mastering Artificial Intelligence</a>.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Quiz: Prompting-Handwerk verstanden?</h2>
-      <div id="quizBox" aria-live="polite"></div>
-      <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
+    </section>
   </div>
 </main>
 
@@ -121,82 +397,201 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/de/#publikationen">Zu den KI-Büchern</a></span>
     </div>
   </div>
 </footer>
 
 <script>
+// Kartenformat: [Vorderseite, Antwort, Beispiel, Notiz]
 const DECKS = {
   "Rezepte": {
     "Bessere Ergebnisse": [
-      ["Die Interview-Umkehr", "Statt Informationen zu liefern, lässt du dich befragen.", "Stelle mir nacheinander zehn Fragen, um alles zu erfahren, was du für ein überzeugendes Anschreiben brauchst, und schreibe es erst danach.", "Das Ergebnis ist persönlicher als jeder selbst formulierte Prompt."],
+      ["Die Interview-Umkehr", "Statt Informationen zu liefern, lässt du dich befragen.", "Stelle mir nacheinander zehn Fragen, um alles zu erfahren, was du für ein überzeugendes Anschreiben brauchst, und schreibe es erst danach.", "Das Ergebnis wird meist persönlicher als mit einem selbst formulierten Prompt."],
       ["Der Verständnistest", "Missverständnisse auffliegen lassen, bevor sie Arbeit kosten.", "Fasse in eigenen Worten zusammen, was ich von dir will, und nenne die Punkte, die unklar sind.", "Vor jeder komplexen Aufgabe."],
-      ["Die Rubrik zuerst", "Selbstbewertung einbauen.", "Entwickle vor dem Schreiben eine Bewertungsrubrik mit fünf Kriterien, schreibe dann den Text und benote und überarbeite ihn anschließend selbst anhand der Rubrik.", "Die Selbstbewertungsschleife hebt die Qualität messbar."],
-      ["Die Extremvarianten", "Echte Alternativen erzwingen.", "Drei Fassungen: eine konservative, eine gewagte und eine, die eine Regel bewusst bricht.", "Die beste Lösung liegt oft zwischen zwei Extremen."],
+      ["Die Rubrik zuerst", "Selbstbewertung einbauen.", "Entwickle vor dem Schreiben eine Bewertungsrubrik mit fünf Kriterien, schreibe dann den Text und benote und überarbeite ihn anschließend selbst anhand der Rubrik.", "Die Selbstbewertungsschleife verbessert die Qualität oft spürbar."],
+      ["Die Extremvarianten", "Echte Alternativen erzwingen.", "Drei Fassungen: eine konservative, eine gewagte und eine, die eine Regel bewusst bricht.", "Die passende Lösung liegt oft zwischen zwei Extremen."],
       ["Das Erklärlevel", "Eigene Verständnislücken sichtbar machen.", "Erkläre mir dieses Konzept dreimal: für einen Vorstand in drei Sätzen, für einen Fachkollegen, für einen Berufseinsteiger.", ""]
     ],
     "Analyse und Entscheidung": [
       ["Die Vorab-Obduktion (Premortem)", "Risiken finden, die die höfliche Risikoanalyse verfehlt.", "Nimm an, es ist ein Jahr später und das Projekt ist krachend gescheitert. Schreibe den internen Bericht, der die fünf wahrscheinlichsten Ursachen analysiert.", "Die Umkehr der Zeitperspektive zwingt zu einer konkreten Geschichte des Scheiterns."],
-      ["Die Optionsspreizung", "Aus der erstbesten Lösungsrichtung ausbrechen.", "Entwickle drei grundverschiedene Lösungsansätze auf unterschiedlichen Annahmen und benenne für jeden die Bedingungen, unter denen er der beste wäre.", "Anschlussfrage: Welche Informationen bräuchten wir, um zu entscheiden?"],
+      ["Die Optionsspreizung", "Aus der erstbesten Lösungsrichtung ausbrechen.", "Entwickle drei grundverschiedene Lösungsansätze auf unterschiedlichen Annahmen und benenne für jeden die Bedingungen, unter denen er am besten passt.", "Anschlussfrage: Welche Informationen bräuchten wir, um zu entscheiden?"],
       ["Advocatus Diaboli mit Beweislast", "Substanzielle Einwände von rhetorischem Rauschen trennen.", "Greife meine Position so stark wie möglich an und stütze jeden Angriff auf eine überprüfbare Tatsachenbehauptung oder ein konkretes Szenario.", ""],
-      ["Die Perspektivenrunde", "Interessenkonflikte aufdecken, bevor sie im Meeting explodieren.", "Kommentiere die Entscheidung nacheinander aus Sicht des Vertriebs, der IT, des Betriebsrats, eines langjährigen Kunden und eines Neukunden.", "Liefert nebenbei die Argumentationslinien fürs Meeting."],
-      ["Die Materialbindung", "Halluzinationen bei Dokumentarbeit eindämmen.", "Beantworte ausschließlich auf Basis des Dokuments, kennzeichne Interpretationen und zitiere zu jeder Antwort die Passage.", "Erst binden, dann fragen."]
+      ["Die Perspektivenrunde", "Interessenkonflikte aufdecken, bevor sie im Meeting aufbrechen.", "Kommentiere die Entscheidung nacheinander aus Sicht des Vertriebs, der IT, des Betriebsrats, eines langjährigen Kunden und eines Neukunden.", "Liefert nebenbei die Argumentationslinien fürs Meeting."],
+      ["Die Materialbindung", "Erfundene Angaben bei Dokumentarbeit eindämmen.", "Beantworte ausschließlich auf Basis des Dokuments, kennzeichne Interpretationen und zitiere zu jeder Antwort die Passage.", "Erst binden, dann fragen."]
     ]
   }
 };
 
 const QUIZ = [
-  {f: 'Gute Prompts müssen vor allem...', o: ['...möglichst lang sein', '...vollständig sein: Was, für wen, in welcher Form, woran gemessen', '...höflich formuliert sein'], r: 1, e: 'Länge ist nicht das Kriterium; die vier Fragen als Checkliste schon.'},
-  {f: '„Du bist ein Marketingexperte“ bewirkt wenig, weil...', o: ['...Modelle keine Rollen verstehen', '...die Rolle zu unspezifisch ist: Sie muss Wissen, Maßstäbe und Perspektive transportieren', '...Rollen verboten sind'], r: 1, e: 'Wert entsteht, wenn die Rolle einen Blickwinkel erzeugt, den du selbst schwer einnehmen kannst.'},
-  {f: 'Das zuverlässigste Instrument für Stil und Format?', o: ['Eine ausführliche Stilbeschreibung', 'Zwei bis drei Beispiele des gewünschten Ergebnisses', 'Großbuchstaben für wichtige Wörter'], r: 1, e: 'Modelle sind Mustervervollständiger; nichts definiert ein Muster wie Exemplare davon. Plus Gegenbeispiel.'},
-  {f: 'Reasoning-Modelle brauchen laut Faustregel...', o: ['...den detaillierten Lösungsweg', '...das Prüfschema, an dem sie die eigene Lösung messen', '...kürzere Prompts'], r: 1, e: 'Klassischen Modellen gibt man den Lösungsweg, Reasoning-Modellen Ziel und Bewertungskriterien.'},
-  {f: 'Die KI kommentiert den Text, den sie korrigieren sollte. Ursache?', o: ['Das Modell ist zu schwach', 'Anweisung und Material waren nicht klar getrennt', 'Der Text war zu lang'], r: 1, e: 'Markierungen lösen das: Material zwischen klar benannte Marker, Anweisung verweist darauf.'},
-  {f: 'Ein Dialog ist festgefahren, das Modell fällt in dieselben Fehler zurück. Du...', o: ['...korrigierst weiter, Hartnäckigkeit zahlt sich aus', '...startest neu mit verbessertem Ausgangsprompt', '...formulierst die Korrektur in Großbuchstaben'], r: 1, e: 'Der Neustart ist fast immer schneller als die zehnte Korrekturschleife.'},
-  {f: 'Was ist ein Premortem?', o: ['Eine Zusammenfassung nach Projektende', 'Die Analyse des fiktiven Scheiterns VOR der Entscheidung', 'Ein Prompt zum Löschen alter Chats'], r: 1, e: 'Das Modell muss eine konkrete Geschichte des Scheiterns konstruieren statt höflicher Bedenken.'},
-  {f: 'Bei der Arbeit mit einem Vertrag gilt zuerst:', o: ['Möglichst viele Fragen auf einmal stellen', 'Das Modell ausdrücklich auf das Material verpflichten und Belege verlangen', 'Das Dokument zusammenfassen lassen und löschen'], r: 1, e: 'Erst binden, dann fragen: kennzeichnen, zitieren, gegen das Original kontrollieren.'},
-  {f: 'Die Extraktionstabelle aus einem Vertrag...', o: ['...kann direkt übernommen werden', '...wird gegen das Original kontrolliert', '...ersetzt die juristische Prüfung'], r: 1, e: 'Aus einer Stunde Lesearbeit werden fünf Minuten Prüfarbeit, nicht null.'},
-  {f: 'Der wichtigste Rat zum Weiterlernen?', o: ['Einen teuren Kurs buchen', 'Eine persönliche Prompt-Sammlung anlegen und jeden überraschend guten Prompt notieren', 'Täglich neue Geheimformeln testen'], r: 1, e: 'Nach drei Monaten ist das ein Arbeitsmittel, das kein Kurs ersetzt.'}
+  {f: "Gute Prompts müssen vor allem...", o: ["...möglichst lang sein", "...vollständig sein: Was, für wen, in welcher Form, woran gemessen", "...höflich formuliert sein"], r: 1, e: "Länge ist nicht das Kriterium; die vier Fragen als Checkliste schon."},
+  {f: "„Du bist ein Marketingexperte“ bewirkt wenig, weil...", o: ["...Modelle keine Rollen verstehen", "...die Rolle zu unspezifisch ist: Sie muss Wissen, Maßstäbe und Perspektive transportieren", "...Rollen verboten sind"], r: 1, e: "Eine Rolle hilft, wenn sie einen Blickwinkel erzeugt, den du selbst schwer einnehmen kannst."},
+  {f: "Ein sehr zuverlässiges Instrument für Stil und Format?", o: ["Eine ausführliche Stilbeschreibung", "Zwei bis drei Beispiele des gewünschten Ergebnisses", "Großbuchstaben für wichtige Wörter"], r: 1, e: "Modelle vervollständigen Muster; Exemplare zeigen ein Muster klarer als jede Beschreibung. Dazu ein Gegenbeispiel."},
+  {f: "Was hilft bei Reasoning-Modellen nach heutiger Faustregel (Stand Oktober 2026)?", o: ["Den Lösungsweg Schritt für Schritt vorschreiben", "Ziel und Prüfschema vorgeben, an dem das Modell die eigene Lösung misst", "Möglichst kurze Prompts"], r: 1, e: "Als Faustregel gibt man klassischen Modellen eher den Lösungsweg, Reasoning-Modellen eher Ziel und Bewertungskriterien. Prüfe das gegen die aktuelle Dokumentation des Anbieters."},
+  {f: "Die KI kommentiert den Text, den sie korrigieren sollte. Ursache?", o: ["Das Modell ist zu schwach", "Anweisung und Material waren nicht klar getrennt", "Der Text war zu lang"], r: 1, e: "Markierungen lösen das: Material zwischen klar benannte Marker, Anweisung verweist darauf."},
+  {f: "Ein Dialog ist festgefahren, das Modell fällt in dieselben Fehler zurück. Du...", o: ["...korrigierst weiter, Hartnäckigkeit zahlt sich aus", "...startest neu mit verbessertem Ausgangsprompt", "...formulierst die Korrektur in Großbuchstaben"], r: 1, e: "Der Neustart ist meist schneller als die zehnte Korrekturschleife."},
+  {f: "Was ist ein Premortem?", o: ["Eine Zusammenfassung nach Projektende", "Die Analyse des fiktiven Scheiterns vor der Entscheidung", "Ein Prompt zum Löschen alter Chats"], r: 1, e: "Das Modell muss eine konkrete Geschichte des Scheiterns konstruieren statt höflicher Bedenken."},
+  {f: "Bei der Arbeit mit einem Vertrag gilt zuerst:", o: ["Möglichst viele Fragen auf einmal stellen", "Das Modell ausdrücklich auf das Material verpflichten und Belege verlangen", "Das Dokument zusammenfassen lassen und löschen"], r: 1, e: "Erst binden, dann fragen: kennzeichnen, zitieren, gegen das Original kontrollieren."},
+  {f: "Die Extraktionstabelle aus einem Vertrag...", o: ["...kann direkt übernommen werden", "...wird gegen das Original kontrolliert", "...ersetzt die juristische Prüfung"], r: 1, e: "Aus einer Stunde Lesearbeit werden fünf Minuten Prüfarbeit, nicht null."},
+  {f: "Welcher Rat hilft beim Weiterlernen?", o: ["Einen teuren Kurs buchen", "Eine persönliche Prompt-Sammlung anlegen und jeden überraschend guten Prompt notieren", "Täglich neue Geheimformeln testen"], r: 1, e: "Nach einigen Monaten ist das ein Arbeitsmittel, das auf deine eigenen Aufgaben zugeschnitten ist."}
 ];
 </script>
 <script src="/assets/trainer.js"></script>
 <script>
-const $$ = id => document.getElementById(id);
-$$("btnBauen").onclick = () => {
-  const teile = [];
-  const satz = t => /[.!?:…]$/.test(t) ? t : t + ".";
-  const rolle = $$("pbRolle").value.trim();
-  const aufgabe = $$("pbAufgabe").value.trim();
-  const ziel = $$("pbZielgruppe").value.trim();
-  const form = $$("pbForm").value.trim();
-  const qual = $$("pbQualitaet").value.trim();
-  const beispiel = $$("pbBeispiel").value.trim();
-  if (!aufgabe) { $$("pbHinweis").textContent = "Mindestens die Aufgabe ausfüllen."; return; }
-  $$("pbHinweis").textContent = "";
-  if (rolle) teile.push(satz(rolle));
-  teile.push(satz(aufgabe));
-  if (ziel) teile.push("Zielgruppe: " + satz(ziel));
-  if (form) teile.push("Form und Ton: " + satz(form));
-  if (qual) teile.push("Qualitätskriterien und Negativliste: " + satz(qual));
-  if (beispiel) teile.push("Orientiere dich an Aufbau und Tonlage des folgenden Beispiels:\n<beispiel>\n" + beispiel + "\n</beispiel>");
-  teile.push("Fasse zuerst in eigenen Worten zusammen, was ich von dir will, und nenne offene Fragen. Schreibe erst danach.");
-  const prompt = teile.join("\n\n");
-  const aus = $$("pbAusgabe");
-  aus.textContent = prompt;
-  aus.hidden = false;
-  $$("btnKopieren").hidden = false;
-};
-$$("btnKopieren").onclick = async () => {
-  try {
-    await navigator.clipboard.writeText($$("pbAusgabe").textContent);
-    $$("pbHinweis").textContent = "Kopiert.";
-  } catch (e) {
-    $$("pbHinweis").textContent = "Kopieren nicht möglich; markiere den Text von Hand.";
+(function () {
+  "use strict";
+  var T = window.PaviTools;
+  var $ = function (id) { return document.getElementById(id); };
+
+  PaviTools.deck("#deck", { decks: DECKS, storageKey: "karten" });
+  PaviTools.quiz("#quizBox", { fragen: QUIZ, storageKey: "quiz" });
+
+  /* ---------- Baukasten ---------- */
+  var FELDER = ["pbAufgabe", "pbZielgruppe", "pbForm", "pbQualitaet", "pbRolle", "pbBeispiel"];
+  var KERN = ["pbAufgabe", "pbZielgruppe", "pbForm", "pbQualitaet"];
+  var BEISPIEL = {
+    pbAufgabe: "Eine Gliederung für ein zehnminütiges Referat über die Weimarer Republik, mit drei Kernpunkten und einem Einstieg, der das Publikum neugierig macht",
+    pbZielgruppe: "Ein Geschichts-Leistungskurs mit Vorwissen aus dem Unterricht",
+    pbForm: "Stichpunkte statt Fließtext, höchstens eine Seite, nüchterner Ton",
+    pbQualitaet: "Keine Floskeln, keine erfundenen Zahlen oder Zitate, keine Weltlage-Einleitungen",
+    pbRolle: "Prüfe die Gliederung anschließend aus Sicht einer strengen Lehrkraft, die jede unbelegte Behauptung markiert",
+    pbBeispiel: ""
+  };
+  var SCHLUSS = "Fasse zuerst in eigenen Worten zusammen, was ich von dir will, und nenne offene Fragen. Schreibe erst danach.";
+  var ICON_COPY = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5A1.5 1.5 0 0 0 9 1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></svg>';
+  var ICON_OK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>';
+
+  var gespeichert = T.store.get("eingaben", null);
+  if (gespeichert) FELDER.forEach(function (id) { if (typeof gespeichert[id] === "string") $(id).value = gespeichert[id]; });
+
+  var fortschritt = T.progress($("pbProgress"), {
+    unit: "Fragen beantwortet", label: "Beantwortete Fragen", resetText: "Felder leeren",
+    onReset: function () {
+      FELDER.forEach(function (id) { $(id).value = ""; });
+      T.store.remove("eingaben");
+      zeichnen(true);
+      $("pbAufgabe").focus();
+      T.announce("Felder geleert.");
+    }
+  });
+
+  function satz(t) { return /[.!?:]$/.test(t) ? t : t + "."; }
+  function wert(id) { return $(id).value.trim(); }
+
+  function teile() {
+    var t = [];
+    var aufgabe = wert("pbAufgabe");
+    if (wert("pbRolle")) t.push({ q: "R", text: satz(wert("pbRolle")) });
+    if (aufgabe) t.push({ q: "1", text: satz(aufgabe) });
+    if (wert("pbZielgruppe")) t.push({ q: "2", text: "Zielgruppe: " + satz(wert("pbZielgruppe")) });
+    if (wert("pbForm")) t.push({ q: "3", text: "Form und Ton: " + satz(wert("pbForm")) });
+    if (wert("pbQualitaet")) t.push({ q: "4", text: "Qualitätskriterien und Negativliste: " + satz(wert("pbQualitaet")) });
+    if (wert("pbBeispiel")) t.push({ q: "B", text: "Orientiere dich an Aufbau und Tonlage des folgenden Beispiels:\n<beispiel>\n" + wert("pbBeispiel") + "\n</beispiel>" });
+    if (aufgabe) t.push({ q: "+", text: SCHLUSS });
+    return t;
   }
-  setTimeout(() => { $$("pbHinweis").textContent = ""; }, 2500);
-};
+
+  var vorher = {};
+  var promptText = "";
+  // Felder wachsen mit dem Inhalt
+  function hoehe(el) { el.style.height = "auto"; el.style.height = el.scrollHeight + 2 + "px"; }
+  function zeichnen(still) {
+    FELDER.forEach(function (id) { hoehe($(id)); });
+    var liste = teile();
+    var hatAufgabe = !!wert("pbAufgabe");
+    promptText = hatAufgabe ? liste.map(function (x) { return x.text; }).join("\n\n") : "";
+    var out = $("pbOut");
+    out.innerHTML = "";
+    var neu = {};
+    if (hatAufgabe) {
+      liste.forEach(function (x) {
+        var li = T.h("li", { "data-q": x.q }, [T.h("span", { "aria-hidden": "true", text: x.q }), T.h("p", { text: x.text })]);
+        if (!still && vorher[x.q] !== x.text && x.q !== "+") li.classList.add("is-new");
+        neu[x.q] = x.text;
+        out.appendChild(li);
+      });
+    }
+    vorher = neu;
+    $("pbLeer").hidden = hatAufgabe;
+    if (!hatAufgabe && liste.length) $("pbLeer").textContent = "Die erste Frage fehlt noch: Was genau soll entstehen? Ohne sie entsteht kein Prompt.";
+    else $("pbLeer").textContent = "Sobald du die erste Frage beantwortest, entsteht hier dein Prompt. Oder setz oben das Beispiel ein.";
+    var woerter = promptText ? promptText.split(/\s+/).filter(Boolean).length : 0;
+    $("pbMeta").textContent = woerter ? woerter + " Wörter" : "";
+    $("btnKopieren").disabled = !hatAufgabe;
+    var n = 0;
+    KERN.forEach(function (id) { if (wert(id)) n++; });
+    FELDER.forEach(function (id) { $(id).closest(".pw-field").classList.toggle("is-filled", !!wert(id)); });
+    fortschritt.set(n, KERN.length);
+    knopf(false);
+  }
+
+  function knopf(ok) {
+    var b = $("btnKopieren");
+    b.innerHTML = (ok ? ICON_OK : ICON_COPY) + "<span>" + (ok ? "Kopiert" : "Prompt kopieren") + "</span>";
+    b.classList.toggle("is-done", ok);
+  }
+
+  var speicherTimer = 0;
+  FELDER.forEach(function (id) {
+    $(id).addEventListener("input", function () {
+      zeichnen(false);
+      clearTimeout(speicherTimer);
+      speicherTimer = setTimeout(function () {
+        var s = {};
+        FELDER.forEach(function (f) { s[f] = $(f).value; });
+        T.store.set("eingaben", s);
+      }, 250);
+    });
+  });
+  $("pbBaukasten").addEventListener("submit", function (e) { e.preventDefault(); });
+
+  $("btnBeispiel").addEventListener("click", function () {
+    FELDER.forEach(function (id) { $(id).value = BEISPIEL[id]; });
+    var s = {};
+    FELDER.forEach(function (f) { s[f] = $(f).value; });
+    T.store.set("eingaben", s);
+    zeichnen(false);
+    T.announce("Beispiel eingesetzt. Der Prompt steht in der Vorschau.");
+  });
+
+  var msgTimer = 0;
+  function meldung(text) {
+    $("pbCopyMsg").textContent = text;
+    clearTimeout(msgTimer);
+    msgTimer = setTimeout(function () { $("pbCopyMsg").textContent = ""; knopf(false); }, 3200);
+  }
+  function markieren() {
+    var r = document.createRange();
+    r.selectNodeContents($("pbOut"));
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(r);
+  }
+  $("btnKopieren").addEventListener("click", function () {
+    if (!promptText) return;
+    var fertig = function () { knopf(true); meldung("Der Prompt liegt in der Zwischenablage."); };
+    var notfall = function () {
+      var ta = T.h("textarea", { class: "sr-only", "aria-hidden": "true" });
+      ta.value = promptText;
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      ta.remove();
+      if (ok) fertig();
+      else { markieren(); meldung("Kopieren war nicht möglich. Der Text ist markiert, kopiere ihn mit Strg+C."); }
+    };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(promptText).then(fertig, notfall);
+    else notfall();
+  });
+
+  var rz = 0;
+  window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { FELDER.forEach(function (id) { hoehe($(id)); }); }, 120); });
+  zeichnen(true);
+})();
 </script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

@@ -1,13 +1,44 @@
 <!doctype html>
-<html lang="de" style="--akzent:#5C8A3E;--akzent-tief:#33531F">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Textanalyse Englisch</title>
-<meta name="description" content="Operatoren und Stilmittel für das Englisch-Abitur: die drei Anforderungsbereiche, alle Aufgabenverben von name bis evaluate, die wichtigsten Stilmittel als Lernkarten und die goldene Analyse-Formel, nach dem Buch Englisch Meistern.">
+<title>Textanalyse Englisch: Operatoren, Belege und Wirkung</title>
+<meta name="description" content="Textanalyse für Englisch in der Oberstufe: an einem Beispiel Schritt für Schritt vom Operator über den Beleg zur Wirkung, ein schwächerer und ein verbesserter Absatz im Vergleich, Operatoren und Stilmittel als Lernkarten und ein Quiz. Nach dem Buch Englisch Meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/textanalyse-englisch.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+  /* Seitenlokal: Beispiel im Schrittbereich, gegliedert in Aufgabe, Auszug, Analyse-Satz */
+  .ta-ex + .ta-ex { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--paper-line); }
+  .ta-ex__label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; color: var(--ink-muted); margin-bottom: 4px; }
+  .ta-ex p, .ta-ex blockquote { margin: 0; max-width: none; }
+  .ta-ex blockquote { font-style: italic; }
+  .t-steps__note { min-height: 3.2em; }
+  .t-steps__note:not(:empty) { padding-top: 12px; border-top: 1px solid var(--paper-line); }
+  /* Seitenlokal: Anforderungsbereiche als drei Spalten */
+  .ta-afb { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+  .ta-afb > li { border: 1px solid var(--hairline); border-radius: 18px; padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 10px; }
+  .ta-afb h3 { font-size: 1.08rem; margin: 0; }
+  .ta-afb p { margin: 0; color: var(--fg-dim); font-size: 0.95rem; }
+  .ta-afb__ops { color: var(--mint) !important; font-size: 0.9rem !important; }
+  .ta-afb dl { margin: auto 0 0; padding-top: 12px; border-top: 1px solid var(--hairline); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; font-size: 0.88rem; }
+  .ta-afb dt { color: var(--fg-dim); }
+  .ta-afb dd { margin: 0; color: var(--fg); font-variant-numeric: tabular-nums; text-align: right; }
+  /* Seitenlokal: Listen in der Erklärung */
+  .ta-list { list-style: none; margin: 4px 0 14px; padding: 0; }
+  .ta-list li { display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); gap: 4px 18px; padding: 12px 0; border-top: 1px solid var(--hairline); }
+  .ta-list li:first-child { border-top: 0; padding-top: 4px; }
+  .ta-list b { color: var(--fg); font-weight: 650; }
+  .ta-more { margin-top: 36px; }
+  .ta-phrases { margin: 4px 0 14px; padding-left: 1.2em; display: grid; gap: 6px; }
+  .ta-phrases li { color: var(--fg); }
+  .ta-phrases li::marker { color: var(--leaf); }
+  @media (max-width: 880px) { .ta-afb { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .ta-list li { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
 
@@ -24,90 +55,203 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Textanalyse Englisch: Operatoren und Stilmittel</h1>
-    <p class="tool-lede">Ein inhaltlich brillanter Aufsatz auf die falsche Aufgabe bekommt trotzdem eine schlechte Note. Wer analyse schreibt, obwohl describe gemeint war, verliert Punkte unabhängig von Inhalt und Sprachkompetenz. Dieses Werkzeug trainiert die zwei Fundamente jeder Klausuranalyse: die Operatoren, die dir sagen, was genau zu tun ist, und die Stilmittel, mit denen du zeigst, wie ein Text seine Wirkung erzielt. Dazu die goldene Formel, mit der aus einer Benennung eine Analyse auf 14-Punkte-Niveau wird.</p>
-    <p class="tool-src">Dieser Trainer folgt den Kapiteln Operatoren und Stilmittel aus <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a>.</p>
-
-    <div class="panel">
-      <h2>Die drei Anforderungsbereiche</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Jede Klausur enthält Aufgaben aus allen drei Bereichen. Im Leistungskurs verteilen sich die Punkte typischerweise 25, 50 und 25 Prozent: Die mittlere Analyseaufgabe entscheidet am stärksten über die Gesamtnote.</p>
-      <dl class="ledger">
-        <div class="row"><dt>AFB I: Wiedergabe</dt><dd>Informationen aus dem Material wiedergeben, ohne Wertung oder Interpretation. Operatoren: name, list, describe, summarise, outline. Zeitbudget 5 bis 10 Minuten, sachlich und direkt, 3 bis 5 Sätze genügen meist.</dd></div>
-        <div class="row"><dt>AFB II: Analyse</dt><dd>Zusammenhänge erkennen, Strukturen analysieren, Wirkung erklären. Operatoren: analyse, examine, explain, compare, contrast, characterise. 20 bis 30 Minuten; Dreischritt aus Beobachtung, Beleg und Funktion.</dd></div>
-        <div class="row"><dt>AFB III: Wertung</dt><dd>Eigene Position entwickeln, Argumente bewerten, auf neue Kontexte übertragen. Operatoren: evaluate, assess, discuss, comment on, justify, take a stance. 25 bis 35 Minuten; These, Argumente, Gegenargument, Widerlegung, Fazit.</dd></div>
-      </dl>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> Das Operatoren-Kapitel in <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a> erklärt jeden Operator mit Beispielaufgaben und zeigt, wie du deine Antwort von Anfang an passend strukturierst.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Die goldene Analyse-Formel</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Der größte Fehler bei Stilmitteln: benennen, Beispiel nennen, aufhören. Das reicht für AFB I. Die Spitzennote verlangt den vollständigen Vierschritt aus Name, Zitat, Erklärung und Wirkung.</p>
-      <ol class="phasen">
-        <li><h3>Name + Zitat</h3><p>Stilmittel englisch benennen, Textstelle in Anführungszeichen mit Zeilenangabe zitieren.</p></li>
-        <li><h3>Erklärung</h3><p>Warum zählt dieser Ausdruck als Stilmittel? Was genau macht ihn zur Metapher oder Anapher?</p></li>
-        <li><h3>Wirkung</h3><p>Welche Emotion wird ausgelöst, welche Botschaft verstärkt? Warum genau dieses Mittel an dieser Stelle?</p></li>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Englisch</a></li>
+        <li><span aria-current="page">Textanalyse</span></li>
       </ol>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:18px">Der Unterschied am Churchill-Beispiel „We shall fight on the beaches, we shall fight on the landing grounds...“: Die schwache Analyse schreibt „The author uses anaphora“. Die starke Analyse erklärt, dass die wiederholte Struktur eine unaufhaltsame, kumulative Wucht aufbaut, die aus einer Liste möglicher Niederlagen eine Erklärung unbeugsamen Widerstands macht. Das ist oft der Unterschied zwischen 9 und 14 Punkten.</p>
-      <div class="cee-box"><strong>Muster-Formulierungen:</strong> The author employs ... (line X) to suggest / emphasise ... · By using ..., the author creates a sense of ... · The ... in line X serves to highlight / reinforce ... · Through the repetition of ..., the author builds / evokes ... Statt pauschal this creates emphasis präziser: this intensifies the emotional tone, this frames the issue as urgent, this undermines the speaker's credibility.</div>
-    </div>
+    </nav>
 
-    <div class="panel">
-      <h2>Operatoren und Stilmittel als Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Zwei Stapel: die Operatoren nach Anforderungsbereich und die Stilmittel in vier Kategorien. Erst selbst antworten, dann umdrehen. Pfeil rechts heißt „sitzt“, Pfeil links heißt „nochmal“.</p>
-      <div class="chip-row" id="deckRow"></div>
-      <div class="chip-row" id="catRow"></div>
-      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
-      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
-      <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button">
-          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
-            <div class="fc-etikett" id="fcKatV"></div>
-            <div class="fc-haupt" id="fcFrage"></div>
+    <header class="t-intro">
+      <div>
+        <h1>Textanalyse Englisch</h1>
+        <p class="t-goal">„The author uses anaphora“ benennt ein Stilmittel, analysiert es aber noch nicht. Hier übst du an einem Beispiel, was dazwischen fehlt: <strong>den Operator verstehen, den Beleg finden, die Wirkung erklären</strong>.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start=".t-steps__btn">Übung starten</a>
+          <a class="btn btn--ghost" href="#karten">Zu den Lernkarten</a>
+        </div>
+      </div>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>3</dt><dd>Schritte am Beispiel</dd></div>
+          <div><dt id="factCards">37</dt><dd>Karten</dd></div>
+          <div><dt>12</dt><dd>Quizfragen</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So gehst du vor">
+          <li><span><strong>Schritt für Schritt:</strong> Klick einen Schritt an, im Beispiel wird die passende Stelle markiert.</span></li>
+          <li><span><strong>Vergleichen:</strong> Was der verbesserte Absatz anders macht als der schwächere.</span></li>
+          <li><span><strong>Festigen:</strong> Operatoren und Stilmittel auf Lernkarten, danach das Quiz.</span></li>
+        </ol>
+      </div>
+    </header>
+
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Üben: In drei Schritten zur Analyse</h2>
+        <p class="t-zone__hint">Beispiel: Churchills Rede vom Juni 1940.</p>
+      </div>
+      <div class="t-surface">
+        <div class="t-steps" data-steps>
+          <ol class="t-steps__list">
+            <li><button class="t-steps__btn" data-step="1" data-note="analyse gehört zum Anforderungsbereich II: Stilmittel benennen, belegen und die Wirkung erklären. Lies auch, worauf sich die Aufgabe richtet. Hier ist die Wirkung auf das Publikum gefragt, keine Nacherzählung."><span>1</span><strong>Operator verstehen</strong><small>Was genau verlangt die Aufgabe, und worauf richtet sie sich?</small></button></li>
+            <li><button class="t-steps__btn" data-step="2" data-note="Benenne das Mittel auf Englisch und zitiere die Stelle in Anführungszeichen mit Zeilenangabe. Zitier kurz, nur die Wörter, an denen man das Mittel erkennt."><span>2</span><strong>Beleg finden</strong><small>Stilmittel benennen und die Stelle mit Zeilenangabe zitieren.</small></button></li>
+            <li><button class="t-steps__btn" data-step="3" data-note="Erkläre, was das Mittel beim Publikum auslöst und welche Botschaft es verstärkt. Genauer als this creates emphasis sind etwa: this intensifies the emotional tone, this frames the issue as urgent."><span>3</span><strong>Wirkung erklären</strong><small>Warum steht genau dieses Mittel an dieser Stelle?</small></button></li>
+          </ol>
+          <div>
+            <div class="t-steps__target" data-steps-target>
+              <div class="ta-ex">
+                <span class="ta-ex__label">Aufgabe</span>
+                <p lang="en"><mark data-step="1">Analyse</mark> the language of the extract and <mark data-step="1">its effect on the audience</mark>.</p>
+              </div>
+              <div class="ta-ex">
+                <span class="ta-ex__label">Auszug, Zeile 1</span>
+                <blockquote lang="en">"<mark data-step="2">We shall fight</mark> on the beaches, <mark data-step="2">we shall fight</mark> on the landing grounds..."</blockquote>
+              </div>
+              <div class="ta-ex">
+                <span class="ta-ex__label">Dein Analyse-Satz</span>
+                <p lang="en">Churchill employs <mark data-step="2">an anaphora: "we shall fight" (l. 1)</mark> opens each clause. <mark data-step="3">The repetition builds a cumulative force and turns a list of possible defeats into a declaration of unyielding resistance.</mark></p>
+              </div>
+              <p class="t-steps__note" data-steps-note aria-live="polite"></p>
+            </div>
           </div>
-          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
-            <div class="fc-etikett" id="fcKatR"></div>
-            <div class="fc-haupt" id="fcAntwort"></div>
-            <div class="fc-detail" id="fcDetail"></div>
-            <div class="fc-note" id="fcNote"></div>
+        </div>
+        <noscript><p class="t-noscript">Ohne JavaScript werden die Stellen im Beispiel nicht markiert. Die drei Schritte stehen links, das Beispiel rechts daneben.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone" id="vergleich" aria-labelledby="h-vergleich">
+      <div class="t-zone__head">
+        <h2 id="h-vergleich">Zwei Fassungen im Vergleich</h2>
+        <p class="t-zone__hint">Zeig auf eine Notiz, dann leuchten die Stellen in beiden Absätzen auf.</p>
+      </div>
+      <div class="t-surface">
+        <div data-compare>
+          <div class="t-compare__bar"><span class="t-label">Gleicher Gedanke, zwei Absätze</span></div>
+          <div class="t-compare__sides">
+            <figure class="t-compare__side t-compare__side--before">
+              <figcaption>Schwächer</figcaption>
+              <p lang="en">Churchill uses <mark class="t-diff" data-n="1">a lot of stylistic devices</mark>. <mark class="t-diff" data-n="2">For example, he uses anaphora.</mark> <mark class="t-diff" data-n="3">This creates emphasis.</mark></p>
+            </figure>
+            <figure class="t-compare__side t-compare__side--after">
+              <figcaption>Verbessert</figcaption>
+              <p lang="en">Churchill <mark class="t-diff" data-n="1">employs an anaphora</mark>: <mark class="t-diff" data-n="2">"we shall fight" (l. 1) opens each clause</mark>. <mark class="t-diff" data-n="3">The repetition builds a cumulative force and turns a list of possible defeats into a declaration of unyielding resistance.</mark></p>
+            </figure>
+          </div>
+          <ol class="t-compare__notes">
+            <li data-n="1">Ein Mittel genau benannt statt einer Sammelbehauptung. „a lot of“ passt außerdem nicht ins formelle Register.</li>
+            <li data-n="2">Ein Beleg mit Zitat und Zeilenangabe statt der bloßen Nennung des Fachbegriffs.</li>
+            <li data-n="3">Die Wirkung wird erklärt: Was macht die Wiederholung aus der Aufzählung? „This creates emphasis“ sagt dazu nichts.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-zone" id="karten" aria-labelledby="h-karten">
+      <div class="t-zone__head">
+        <h2 id="h-karten">Lernkarten: Operatoren und Stilmittel</h2>
+        <p class="t-zone__hint">Dein Fortschritt bleibt auf diesem Gerät gespeichert.</p>
+      </div>
+      <div class="t-surface">
+        <div id="deck"></div>
+        <noscript><p class="t-noscript">Die Lernkarten brauchen JavaScript. Die Anforderungsbereiche mit ihren Operatoren stehen unten unter „Erklärung“.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone" id="quiz" aria-labelledby="h-quiz">
+      <div class="t-zone__head">
+        <h2 id="h-quiz">Selbsttest: Quiz</h2>
+        <p class="t-zone__hint">Zwölf Fragen zu Operatoren und Stilmitteln.</p>
+      </div>
+      <div class="t-surface">
+        <div id="quizBox"></div>
+        <noscript><p class="t-noscript">Das Quiz braucht JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone reveal" id="erklaerung" aria-labelledby="h-erkl">
+      <div class="t-zone__head">
+        <h2 id="h-erkl">Erklärung: die drei Anforderungsbereiche</h2>
+      </div>
+      <ul class="ta-afb">
+        <li>
+          <h3>AFB I: Wiedergabe</h3>
+          <p>Informationen aus dem Material wiedergeben, ohne Wertung oder Interpretation. Sachlich und direkt, drei bis fünf Sätze genügen meist.</p>
+          <p class="ta-afb__ops" lang="en">name, list, describe, summarise, outline</p>
+          <dl><dt>Gewicht (Beispiel)</dt><dd>25 Prozent</dd><dt>Zeit (Richtwert)</dt><dd>5 bis 10 Min</dd></dl>
+        </li>
+        <li>
+          <h3>AFB II: Analyse</h3>
+          <p>Zusammenhänge erkennen, Strukturen analysieren, Wirkung erklären. Jede Beobachtung braucht einen Beleg und eine Funktion.</p>
+          <p class="ta-afb__ops" lang="en">analyse, examine, explain, compare, contrast, characterise</p>
+          <dl><dt>Gewicht (Beispiel)</dt><dd>50 Prozent</dd><dt>Zeit (Richtwert)</dt><dd>20 bis 30 Min</dd></dl>
+        </li>
+        <li>
+          <h3>AFB III: Wertung</h3>
+          <p>Eigene Position entwickeln, Argumente bewerten, auf neue Kontexte übertragen. Aufbau: These, Argumente, Gegenargument, Widerlegung, Fazit.</p>
+          <p class="ta-afb__ops" lang="en">evaluate, assess, discuss, comment on, justify, take a stance</p>
+          <dl><dt>Gewicht (Beispiel)</dt><dd>25 Prozent</dd><dt>Zeit (Richtwert)</dt><dd>25 bis 35 Min</dd></dl>
+        </li>
+      </ul>
+      <div class="t-note"><p><strong>Je nach Bundesland verschieden.</strong> Die Prozentwerte sind ein Beispiel für eine Verteilung im Leistungskurs, die Zeiten sind Richtwerte aus dem Buch. Wie deine Klausur gewichtet ist, hängt von Bundesland und Prüfungsformat ab. Prüf die Vorgaben deiner Schule.</p></div>
+
+      <div class="ta-more">
+        <details class="t-explain">
+          <summary>Formulierungen für Beleg und Wirkung</summary>
+          <div class="t-explain__body">
+            <ul class="ta-phrases" lang="en">
+              <li>The author employs ... (line X) to suggest / emphasise ...</li>
+              <li>By using ..., the author creates a sense of ...</li>
+              <li>The ... in line X serves to highlight / reinforce ...</li>
+              <li>Through the repetition of ..., the author builds / evokes ...</li>
+            </ul>
+            <p>Statt pauschal <span lang="en">this creates emphasis</span> genauer: <span lang="en">this intensifies the emotional tone</span>, <span lang="en">this frames the issue as urgent</span>, <span lang="en">this undermines the speaker's credibility</span>.</p>
+          </div>
+        </details>
+        <details class="t-explain">
+          <summary>Häufige Fehler in der Analyse</summary>
+          <div class="t-explain__body">
+            <ul class="ta-list">
+              <li><b>Describe statt analyse</b><span>Nur beschreiben, was passiert, reicht nicht. Analyse braucht Benennung, Beleg und Wirkung.</span></li>
+              <li><b>Compare ohne Kontrast</b><span>Compare schließt Gemeinsamkeiten und Unterschiede ein. Wer nur einen Aspekt behandelt, erfüllt die Aufgabe zur Hälfte.</span></li>
+              <li><b>Summarise mit Meinung</b><span>Beim Zusammenfassen ist deine Meinung nicht gefragt: neutral, komprimiert, eigene Worte.</span></li>
+              <li><b>Evaluate ohne Fazit</b><span>Eine Wertung braucht ein Schlussurteil, etwa: Overall, it can be concluded that...</span></li>
+              <li><b>Zu viele Stilmittel</b><span>Zehn behauptete Stilmittel in drei Zeilen machen eine Analyse unglaubwürdig. Wenige Mittel, gründlich analysiert, sagen mehr.</span></li>
+              <li><b>Verwechslungen</b><span>Ironie ist spielerisch, Sarkasmus verletzend. Die Antithese stellt Gegensätze in großer Struktur gegenüber, das Oxymoron presst sie in eine Wortverbindung wie deafening silence. Die Metapher ist punktuell, das Symbol kehrt wieder.</span></li>
+            </ul>
+          </div>
+        </details>
+        <details class="t-explain">
+          <summary>Bedienung und Speicherstand</summary>
+          <div class="t-explain__body">
+            <p>Die Schritte und die Notizen im Vergleich erreichst du mit <kbd>Tab</kbd>. Auf den Lernkarten dreht <kbd>Leertaste</kbd> die Karte, <kbd>&rarr;</kbd> heißt „sitzt“, <kbd>&larr;</kbd> heißt „nochmal“. Im Quiz wählst du mit <kbd>1</kbd> bis <kbd>3</kbd>.</p>
+            <p>Gespeichert werden nur die Karten, die bei dir sitzen, und dein bestes Quizergebnis, im Browser auf diesem Gerät. Nichts davon wird übertragen.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/1691857440" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/englisch-oberstufe.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Jeden Operator mit Beispielaufgaben und jedes Stilmittel mit abiturnahen Beispielen und Wirkungsvokabular erklären die Kapitel zu Operatoren und Stilmitteln in <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a>.</p>
           </div>
         </div>
       </div>
-      <div class="fcard-aktionen">
-        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
-        <button class="btn" id="btnKnown">Sitzt, nächste</button>
-        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
-        <span class="hint" id="restHint"></span>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/schreibwerkstatt-englisch.html"><span class="t-related__img"><img src="/assets/previews/schreibwerkstatt-englisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Schreibwerkstatt Englisch</strong><span>Die Analyse als ganzen Text aufbauen</span></span></a></li>
+          <li><a href="/tools/englisch.html"><span class="t-related__img"><img src="/assets/previews/englisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Englisch-Abitur-Trainer</strong><span>Grammatik und Konnektoren für saubere Sätze</span></span></a></li>
+          <li><a href="/tools/textanalyse-franzoesisch.html"><span class="t-related__img"><img src="/assets/previews/textanalyse-franzoesisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Textanalyse Französisch</strong><span>Operatoren und figures de style auf Französisch</span></span></a></li>
+        </ul>
       </div>
-      <div class="deck-fertig" id="deckFertig" hidden>
-        <strong>Stapel geschafft.</strong>
-        <span id="fertigText"></span>
-      </div>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> Zu jedem Stilmittel liefert <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a> Abitur-nahe Beispiele und das differenzierte Wirkungsvokabular, das deine Analyse sofort auf ein höheres Niveau hebt.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Die Fehler, die am meisten Punkte kosten</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Describe statt analyse</dt><dd>Nur beschreiben, was passiert, reicht nicht. Analyse braucht Benennung, Beleg und Wirkung.</dd></div>
-        <div class="row"><dt>Compare ohne Kontrast</dt><dd>Compare schließt Gemeinsamkeiten UND Unterschiede ein. Ein Aspekt allein bringt höchstens die halbe Punktzahl.</dd></div>
-        <div class="row"><dt>Summarise mit Meinung</dt><dd>Beim Zusammenfassen ist deine Meinung ausdrücklich nicht gefragt: neutral, komprimiert, eigene Worte.</dd></div>
-        <div class="row"><dt>Evaluate ohne Fazit</dt><dd>Eine Wertung ohne Schlussurteil ist unvollständig. Ende mit klarer Position: Overall, it can be concluded that...</dd></div>
-        <div class="row"><dt>Zu viele Stilmittel</dt><dd>Zehn behauptete Stilmittel in drei Zeilen zerstören die Glaubwürdigkeit. Drei präzise analysierte schlagen zehn erwähnte.</dd></div>
-        <div class="row"><dt>Verwechslungen</dt><dd>Ironie ist spielerisch, Sarkasmus verletzend. Die Antithese stellt Gegensätze in großer Struktur gegenüber, das Oxymoron presst sie in eine Wortverbindung wie deafening silence. Die Metapher ist punktuell, das Symbol kehrt wieder.</dd></div>
-      </dl>
-    </div>
-
-    <div class="panel">
-      <h2>Quiz: Analyse-Logik verstanden?</h2>
-      <div id="quizBox" aria-live="polite"></div>
-      <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
+    </section>
   </div>
 </main>
 
@@ -115,13 +259,14 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/textanalyse-franzoesisch.html">Zur Textanalyse Französisch</a></span>
     </div>
   </div>
 </footer>
 
 <script>
+// Kartenformat: [Vorderseite, Antwort, Beispiel, Notiz]
 const DECKS = {
   "Operatoren": {
     "AFB I: Wiedergabe": [
@@ -130,49 +275,49 @@ const DECKS = {
       ["summarise / sum up", "Inhalt in eigenen Worten komprimiert wiedergeben: keine Zitate, keine eigene Meinung.", "Summarise the main argument of the editorial.", "Die typische Mediationsaufgabe."]
     ],
     "AFB II: Analyse": [
-      ["analyse / examine", "Element in Bestandteile zerlegen, Funktion und Wirkung erklären: Stilmittel benennen, Funktion erklären, Wirkung beschreiben.", "Analyse the narrative perspective and its effect on the reader.", "Häufigster Fehler: nur beschreiben statt analysieren."],
+      ["analyse / examine", "Element in Bestandteile zerlegen, Funktion und Wirkung erklären: Stilmittel benennen, Funktion erklären, Wirkung beschreiben.", "Analyse the narrative perspective and its effect on the reader.", "Typischer Fehler: nur beschreiben statt analysieren."],
       ["explain / account for", "Ursachen, Gründe, Zusammenhänge erklären. Account for sucht gezielt nach den Gründen.", "Account for the rise of populism in Western democracies.", ""],
       ["compare / contrast", "Compare: Gemeinsamkeiten UND Unterschiede. Contrast: nur die Unterschiede.", "Compare the portrayal of the American Dream in the 1950s and today.", "Nur einen Aspekt behandeln ist der typische Fehler."],
       ["characterise / portray", "Wesentliche Merkmale herausarbeiten: direkte Charakterisierung (was gesagt wird) plus indirekte (Verhalten, Sprache, Reaktionen).", "Characterise the protagonist, focusing on her development.", ""],
       ["interpret", "Tiefere Bedeutung erklären: Sinn, Symbolik, implizite Botschaften. Geht über die reine Analyse hinaus.", "Interpret the title of the novel in the context of the plot.", ""]
     ],
     "AFB III: Wertung": [
-      ["evaluate / assess", "Kritisch abwägen: Argumente für und gegen, differenziert beurteilen, begründetes Urteil am Ende.", "Evaluate the impact of social media on political discourse.", "Nicht einfach gut oder schlecht: mehrschichtig."],
+      ["evaluate / assess", "Kritisch abwägen: Argumente für und gegen, differenziert beurteilen, begründetes Urteil am Ende.", "Evaluate the impact of social media on political discourse.", "Nicht einfach gut oder schlecht, sondern differenziert."],
       ["discuss", "Verschiedene Perspektiven präsentieren, verknüpfen, gewichten und eine eigene Position entwickeln.", "Discuss to what extent technology has improved our quality of life.", "Der offenste AFB-III-Operator."],
       ["comment on", "Auf eine These reagieren: zustimmen, widersprechen oder differenzieren. Persönlicher als evaluate.", "Comment on the author's view that AI will replace human creativity.", "Nicht mit einer Zusammenfassung verwechseln."],
-      ["justify / argue · take a stance", "Einen Standpunkt mit Belegen verteidigen beziehungsweise eine klar erkennbare eigene Position entwickeln.", "Argue for or against the introduction of a universal basic income.", "Die Meinung muss sich klar aus den Argumenten schälen."]
+      ["justify / argue / take a stance", "Einen Standpunkt mit Belegen verteidigen beziehungsweise eine klar erkennbare eigene Position entwickeln.", "Argue for or against the introduction of a universal basic income.", "Die Meinung muss sich klar aus den Argumenten ergeben."]
     ]
   },
   "Stilmittel": {
     "Lautlich": [
       ["Alliteration", "Mehrere Wörter beginnen mit demselben Laut.", "The cold, cruel climate created constant casualties.", "Wirkung: Rhythmus, Einprägsamkeit, betont den Anklang der Konzepte."],
       ["Assonance", "Wörter teilen denselben Vokalklang.", "Go slow over the old road.", "Wirkung: sanftes, melodisches Klangbild; harte Vokale erzeugen Dissonanz."],
-      ["Onomatopoeia", "Ein Wort klingt wie das, was es beschreibt.", "The bees buzzed. The clock ticked.", "Wirkung: Der Leser hört das Beschriebene fast physisch."],
+      ["Onomatopoeia", "Ein Wort klingt wie das, was es beschreibt.", "The bees buzzed. The clock ticked.", "Wirkung: Der Leser hört das Beschriebene fast."],
       ["Euphony / Cacophony", "Wohlklang beziehungsweise harter Missklang.", "The murmuring of innumerable bees. / The dark, dank, decaying dungeon.", "Euphony stützt positive Assoziationen, Cacophony verstärkt Unbehagen."]
     ],
     "Bildlich": [
       ["Metaphor", "Vergleich ohne like oder as: direktes Gleichsetzen zweier Bereiche.", "Life is a journey. All the world's a stage.", "Macht Abstraktes greifbar, lädt emotional auf."],
       ["Simile", "Expliziter Vergleich mit like oder as.", "He fought like a lion. As cold as ice.", "Weicher als die Metapher, mehr Interpretationsspielraum."],
       ["Personification", "Nicht-Menschliches erhält menschliche Eigenschaften.", "The wind whispered through the trees. Justice is blind.", "Spezialfall der Metapher; macht lebendig und emotional zugänglich."],
-      ["Synecdoche", "Teil steht für das Ganze oder umgekehrt.", "All hands on deck! (hands = sailors) · boots on the ground", "Schafft Prägnanz, betont einen Aspekt des Ganzen."],
-      ["Metonymy", "Ein eng assoziiertes Konzept ersetzt den Begriff.", "The White House announced... · The pen is mightier than the sword.", "Verdichtet Bedeutung in ein einziges Wort."],
-      ["Symbol", "Konkretes Objekt steht für eine abstrakte Idee.", "The green light in The Great Gatsby = hope, the American Dream.", "Anders als die Metapher wiederkehrend, trägt stabile Bedeutungsebene."]
+      ["Synecdoche", "Teil steht für das Ganze oder umgekehrt.", "All hands on deck! (hands = sailors); boots on the ground", "Schafft Prägnanz, betont einen Aspekt des Ganzen."],
+      ["Metonymy", "Ein eng assoziiertes Konzept ersetzt den Begriff.", "The White House announced... The pen is mightier than the sword.", "Verdichtet Bedeutung in ein einziges Wort."],
+      ["Symbol", "Konkretes Objekt steht für eine abstrakte Idee.", "The green light in The Great Gatsby = hope, the American Dream.", "Anders als die Metapher wiederkehrend, trägt eine stabile Bedeutungsebene."]
     ],
     "Rhetorisch-strukturell": [
-      ["Anaphora", "Wiederholung am Anfang aufeinanderfolgender Sätze.", "We shall fight on the beaches, we shall fight... (Churchill)", "Eindringlicher Rhythmus; Lieblingsmittel politischer Reden."],
+      ["Anaphora", "Wiederholung am Anfang aufeinanderfolgender Sätze.", "We shall fight on the beaches, we shall fight... (Churchill)", "Eindringlicher Rhythmus; häufig in politischen Reden."],
       ["Epistrophe", "Wiederholung am ENDE aufeinanderfolgender Einheiten.", "...of the people, by the people, for the people. (Lincoln)", "Nachdruck, Unausweichlichkeit, Vollständigkeit."],
       ["Antithesis", "Gegensätzliche Ideen in paralleler Struktur.", "It was the best of times, it was the worst of times. (Dickens)", "Dramatischer Kontrast, macht Aussagen prägnant."],
       ["Parallelism", "Gleiche grammatische Struktur mehrerer Satzglieder.", "I came, I saw, I conquered.", "Rhythmus und Ausgewogenheit."],
-      ["Chiasmus", "Umkehr der Wortfolge, ABBA-Struktur.", "Ask not what your country can do for you - ask what you can do for your country.", "Elegant, symmetrisch, fast aphoristisch."],
-      ["Climax / Anticlimax", "Aufsteigende Reihung; beim Anticlimax folgt ein absichtlich schwaches Schlusselement.", "war, famine, genocide - and a really bad haircut", "Climax erzeugt Spannung, Anticlimax Komik oder Satire."],
+      ["Chiasmus", "Umkehr der Wortfolge, ABBA-Struktur.", "Ask not what your country can do for you, ask what you can do for your country.", "Elegant, symmetrisch, fast aphoristisch."],
+      ["Climax / Anticlimax", "Aufsteigende Reihung; beim Anticlimax folgt ein absichtlich schwaches Schlusselement.", "war, famine, genocide, and a really bad haircut", "Climax erzeugt Spannung, Anticlimax Komik oder Satire."],
       ["Rhetorical Question", "Frage ohne erwartete Antwort.", "Is this the kind of world we want to leave for our children?", "Zwingt den Leser zur inneren Stellungnahme."]
     ],
     "Aussageweise": [
       ["Irony", "Das Gegenteil des Gesagten ist gemeint.", "What lovely weather! (bei starkem Regen)", "Kritische Distanz; von Sarkasmus unterscheiden: der ist verletzend und persönlich."],
       ["Hyperbole", "Absichtliche, massive Übertreibung.", "I have told you a million times.", "Verstärkt Emotion; komisch oder dramatisch."],
       ["Understatement / Litotes", "Absichtliche Untertreibung; Litotes verneint das Gegenteil.", "He is not entirely without talent. (= sehr talentiert)", "Britisches Understatement: Zurückhaltung und Eleganz."],
-      ["Euphemism", "Mildernder Ausdruck für ein Tabu-Thema.", "passed away · collateral damage · downsizing", "Zeigt, wie Sprache Wahrheiten verbirgt; wichtig in politischen Texten."],
-      ["Oxymoron", "Zwei gegensätzliche Begriffe kombiniert.", "bittersweet · deafening silence · open secret", "Paradoxer Spannungseffekt, macht Widersprüche sichtbar."],
+      ["Euphemism", "Mildernder Ausdruck für ein Tabu-Thema.", "passed away; collateral damage; downsizing", "Zeigt, wie Sprache Wahrheiten verbirgt; wichtig in politischen Texten."],
+      ["Oxymoron", "Zwei gegensätzliche Begriffe kombiniert.", "bittersweet; deafening silence; open secret", "Paradoxer Spannungseffekt, macht Widersprüche sichtbar."],
       ["Paradox", "Scheinbarer Widerspruch mit tieferer Wahrheit.", "Less is more. The more you know, the less you understand.", "Enthüllt verborgene Komplexität."],
       ["Allusion", "Indirekter Verweis auf Werk, Person oder Ereignis.", "His election campaign was his Waterloo.", "Setzt Vorwissen voraus, schafft Bedeutungstiefe."],
       ["Apostrophe", "Direkte Anrede an Abwesendes oder Abstraktes.", "O Death, where is thy sting?", "Leidenschaft und Unmittelbarkeit."]
@@ -181,21 +326,37 @@ const DECKS = {
 };
 
 const QUIZ = [
-  {f: 'Der Operator der Aufgabe ist analyse. Was wird erwartet?', o: ['Beschreiben, was im Text passiert', 'Element benennen, belegen und die Wirkung erklären', 'Die eigene Meinung begründen'], r: 1, e: 'Analyse braucht fast immer: Benennung, Beleg/Zitat, Erklärung der Wirkung.'},
-  {f: 'Wie verteilen sich die Punkte typischerweise im LK?', o: ['Gleichmäßig auf drei Aufgaben', 'AFB I 25%, AFB II 50%, AFB III 25%', 'AFB III zählt am meisten'], r: 1, e: 'Die mittlere Analyseaufgabe entscheidet am stärksten über die Gesamtnote.'},
-  {f: '„Compare the two characters“ verlangt...', o: ['...nur die Unterschiede', '...Gemeinsamkeiten und Unterschiede', '...eine Bewertung beider Figuren'], r: 1, e: 'Compare schließt immer beides ein; nur contrast beschränkt sich auf Unterschiede.'},
-  {f: 'Bei summarise gilt:', o: ['Eigene Meinung kurz anfügen', 'Neutral, komprimiert, eigene Worte, keine Zitate', 'Wichtige Sätze wörtlich übernehmen'], r: 1, e: 'Zusammenfassen ist AFB I: Wertung ist hier fehl am Platz.'},
-  {f: '„We shall fight on the beaches, we shall fight...“ ist...', o: ['...eine Epistrophe', '...eine Anapher', '...ein Chiasmus'], r: 1, e: 'Wiederholung am SATZANFANG ist die Anapher; am Satzende wäre es die Epistrophe.'},
-  {f: '„Deafening silence“ ist...', o: ['...eine Antithese', '...ein Oxymoron', '...ein Paradox'], r: 1, e: 'Zwei Widersprüche in enger Wortverbindung: Oxymoron. Die Antithese braucht größere Struktur.'},
-  {f: '„He is not entirely without talent“ ist...', o: ['...ein Euphemismus', '...eine Litotes', '...eine Hyperbel'], r: 1, e: 'Verneinung des Gegenteils statt direkter Aussage: die Litotes, eine Form des Understatements.'},
-  {f: '„The White House announced...“ ist...', o: ['...eine Synekdoche', '...eine Metonymie', '...ein Symbol'], r: 1, e: 'Ein eng assoziiertes Konzept (Gebäude) ersetzt den Begriff (Regierung): Metonymie.'},
-  {f: 'Was unterscheidet Ironie von Sarkasmus?', o: ['Nichts, die Begriffe sind austauschbar', 'Sarkasmus ist verletzend und persönlich, Ironie neutral oder leicht', 'Ironie kommt nur in Literatur vor'], r: 1, e: 'Im Zweifel prüfen: Wird eine Person direkt abgewertet? Dann Sarkasmus.'},
-  {f: 'Die stärkste Stilmittelanalyse...', o: ['...nennt möglichst viele Stilmittel', '...analysiert wenige Mittel in der Tiefe: Name, Zitat, Erklärung, Wirkung', '...verzichtet auf Zitate'], r: 1, e: 'Drei präzise analysierte Stilmittel schlagen zehn oberflächlich erwähnte.'},
-  {f: '„This creates emphasis“ ist als Wirkungsanalyse...', o: ['...völlig ausreichend', '...zu pauschal: präziser wäre this creates a sense of urgency...', '...falsch, Wirkung gehört nicht in die Analyse'], r: 1, e: 'Pauschalerklärungen sagen fast nichts; spezifiziere die Wirkung auf den Leser.'},
-  {f: '„Evaluate the effectiveness...“ endet idealerweise mit...', o: ['...einer offenen Frage', '...einem klaren eigenen Urteil: Overall, it can be concluded that...', '...einer Zusammenfassung des Textes'], r: 1, e: 'Evaluate ohne Fazit ist unvollständig: Die Wertung braucht ein Schlussurteil.'}
+  {f: "Der Operator der Aufgabe ist analyse. Was wird erwartet?", o: ["Beschreiben, was im Text passiert", "Element benennen, belegen und die Wirkung erklären", "Die eigene Meinung begründen"], r: 1, e: "Analyse braucht fast immer: Benennung, Beleg mit Zitat, Erklärung der Wirkung."},
+  {f: "Welcher Bereich hat in der Beispielverteilung 25, 50, 25 Prozent das größte Gewicht?", o: ["AFB I: Wiedergabe", "AFB II: Analyse", "AFB III: Wertung"], r: 1, e: "In dieser Beispielverteilung die Analyseaufgabe. Die tatsächliche Gewichtung hängt von Bundesland und Prüfungsformat ab."},
+  {f: "„Compare the two characters“ verlangt...", o: ["...nur die Unterschiede", "...Gemeinsamkeiten und Unterschiede", "...eine Bewertung beider Figuren"], r: 1, e: "Compare schließt immer beides ein; nur contrast beschränkt sich auf Unterschiede."},
+  {f: "Bei summarise gilt:", o: ["Eigene Meinung kurz anfügen", "Neutral, komprimiert, eigene Worte, keine Zitate", "Wichtige Sätze wörtlich übernehmen"], r: 1, e: "Zusammenfassen gehört zu AFB I: Wertung ist hier fehl am Platz."},
+  {f: "„We shall fight on the beaches, we shall fight...“ ist...", o: ["...eine Epistrophe", "...eine Anapher", "...ein Chiasmus"], r: 1, e: "Wiederholung am Satzanfang ist die Anapher; am Satzende wäre es die Epistrophe."},
+  {f: "„Deafening silence“ ist...", o: ["...eine Antithese", "...ein Oxymoron", "...ein Paradox"], r: 1, e: "Zwei Widersprüche in enger Wortverbindung: Oxymoron. Die Antithese braucht größere Struktur."},
+  {f: "„He is not entirely without talent“ ist...", o: ["...ein Euphemismus", "...eine Litotes", "...eine Hyperbel"], r: 1, e: "Verneinung des Gegenteils statt direkter Aussage: die Litotes, eine Form des Understatements."},
+  {f: "„The White House announced...“ ist...", o: ["...eine Synekdoche", "...eine Metonymie", "...ein Symbol"], r: 1, e: "Ein eng assoziiertes Konzept (Gebäude) ersetzt den Begriff (Regierung): Metonymie."},
+  {f: "Was unterscheidet Ironie von Sarkasmus?", o: ["Nichts, die Begriffe sind austauschbar", "Sarkasmus ist verletzend und persönlich, Ironie neutral oder leicht", "Ironie kommt nur in Literatur vor"], r: 1, e: "Im Zweifel prüfen: Wird eine Person direkt abgewertet? Dann Sarkasmus."},
+  {f: "Eine gründliche Stilmittelanalyse...", o: ["...nennt möglichst viele Stilmittel", "...analysiert wenige Mittel genau: Name, Zitat, Erklärung, Wirkung", "...verzichtet auf Zitate"], r: 1, e: "Wenige Mittel, gründlich analysiert, sagen mehr als viele, die nur erwähnt werden."},
+  {f: "„This creates emphasis“ ist als Wirkungsanalyse...", o: ["...völlig ausreichend", "...zu pauschal: genauer wäre etwa this creates a sense of urgency", "...falsch, Wirkung gehört nicht in die Analyse"], r: 1, e: "Pauschalerklärungen sagen fast nichts. Beschreib die Wirkung auf den Leser genauer."},
+  {f: "„Evaluate the effectiveness...“ endet mit...", o: ["...einer offenen Frage", "...einem klaren eigenen Urteil: Overall, it can be concluded that...", "...einer Zusammenfassung des Textes"], r: 1, e: "Evaluate ohne Fazit ist unvollständig: Die Wertung braucht ein Schlussurteil."}
 ];
 </script>
 <script src="/assets/trainer.js"></script>
+<script>
+  var taDeck = PaviTools.deck("#deck", { decks: DECKS, storageKey: "karten", deckLabel: "Stapel", catLabel: "Bereich" });
+  document.getElementById("factCards").textContent = String(taDeck.count());
+  PaviTools.quiz("#quizBox", { fragen: QUIZ, storageKey: "quiz" });
+  // Auf schmalen Bildschirmen steht das Beispiel unter den Schritten: nach dem Klick die markierte Stelle zeigen
+  document.querySelectorAll(".t-steps__btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (!window.matchMedia("(max-width: 880px)").matches) return;
+      setTimeout(function () {
+        var m = document.querySelector("[data-steps-target] mark.is-active");
+        if (m) m.scrollIntoView({ block: "center", behavior: PaviTools.reduced() ? "auto" : "smooth" });
+      }, 0);
+    });
+  });
+</script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

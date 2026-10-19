@@ -1,13 +1,113 @@
 <!doctype html>
-<html lang="de" style="--akzent:#2C7A72;--akzent-tief:#15505C">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Schreibwerkstatt Französisch</title>
-<meta name="description" content="Die vier Aufsatzformen des Französisch-Abiturs: Résumé, Analyse, Commentaire mit Thèse-Antithèse-Synthèse und die kreative Aufgabe, dazu die WO-Methode für Argumente und das Zeitmanagement der Klausur, nach dem Buch Französisch Meistern.">
+<title>Schreibwerkstatt Französisch: Aufbau, Wendungen und Checklisten für den Aufsatz</title>
+<meta name="description" content="Die vier Aufsatzformen des Französisch-Abiturs üben: Résumé, Analyse, Commentaire und création. Aufbau Teil für Teil mit Wendungen, Checklisten zum Abhaken, Zeitplan der Klausur, Lernkarten und Quiz, nach dem Buch Französisch Meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/schreibwerkstatt-franzoesisch.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+/* Seitenlokal: Aufsatz-Werkstatt (Aufbau mit Leiterbahn, Anteilsleiste, Zeitleiste) */
+.pg-modes { margin-bottom: 30px; }
+.pg-modes .t-seg { width: 100%; }
+.pg-modes .t-seg__btn { flex: 1 1 auto; justify-content: center; min-height: 44px; }
+
+.sw-panel__head { display: grid; gap: 6px; margin-bottom: 22px; }
+.sw-panel__head h3 { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin: 0; }
+.sw-panel__head p { margin: 0; color: var(--fg-dim); }
+.js .sw-panel__head h3 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sw-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr); gap: 28px 40px; align-items: start; }
+.sw-sub { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin-bottom: 6px; }
+.sw-sub .t-label { margin: 0; }
+.sw-checkcol { padding: 18px 20px 20px; border-radius: 18px; border: 1px solid var(--hairline); background: rgba(238, 244, 239, 0.025); }
+.sw-checkcol .t-label { margin-bottom: 4px; }
+
+/* Anteilsleiste (Commentaire, Zeitplan) */
+.pg-bar { display: flex; gap: 3px; height: 34px; margin: 4px 0 22px; }
+.pg-bar > span {
+  flex: var(--w) 1 0; min-width: 22px;
+  display: flex; align-items: center; gap: 6px; padding: 0 8px;
+  border-radius: 7px; overflow: hidden; white-space: nowrap;
+  font-size: 0.78rem; font-weight: 700; color: var(--ground);
+  background: rgba(143, 184, 119, var(--a, 0.6));
+}
+.pg-bar > span b { font-variant-numeric: tabular-nums; }
+.pg-bar > span i { font-style: normal; font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+.pg-bar > span:nth-child(2n) { --a: 0.85; }
+.pg-bar > span:nth-child(3n) { background: var(--mint); }
+.pg-scale { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--fg-dim); margin: 0 0 -16px; max-width: none; font-variant-numeric: tabular-nums; }
+
+/* Aufbau: Teile auf einer Leiterbahn mit Ringknoten */
+.sw-parts { list-style: none; margin: 0; padding: 0; position: relative; }
+.sw-parts::before { content: ""; position: absolute; left: 15px; top: 26px; bottom: 26px; width: 2px; background: linear-gradient(var(--leaf-deep), rgba(92, 138, 62, 0.25)); }
+.sw-part > summary {
+  list-style: none; cursor: pointer;
+  display: grid; grid-template-columns: 32px minmax(0, 1fr) 14px; gap: 14px; align-items: center;
+  min-height: 60px; padding: 8px 6px 8px 0; border-radius: 12px;
+}
+.sw-part > summary::-webkit-details-marker { display: none; }
+.sw-part > summary::after {
+  content: ""; width: 9px; height: 9px;
+  border-right: 2px solid var(--fg-dim); border-bottom: 2px solid var(--fg-dim);
+  transform: translateY(-3px) rotate(45deg);
+  transition: transform var(--dur-state) var(--ease-expo);
+}
+.sw-part[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+.sw-node {
+  position: relative; z-index: 1;
+  width: 32px; height: 32px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 2px solid var(--leaf-deep); background: var(--ground-raise);
+  font-size: 0.82rem; font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums;
+  transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out), color var(--dur-state) var(--ease-out);
+}
+.sw-part[open] .sw-node { background: var(--leaf); border-color: var(--leaf); color: var(--ground); }
+.sw-part > summary:hover .sw-node { border-color: var(--leaf); }
+.sw-part__name { display: block; font-weight: 650; font-size: 1.04rem; color: var(--fg); }
+.sw-part__meta { display: block; font-size: 0.88rem; color: var(--fg-dim); line-height: 1.45; }
+.sw-part__body { padding: 0 0 20px 46px; color: var(--fg-dim); font-size: 0.97rem; }
+.sw-part__body p { margin: 0 0 10px; }
+.sw-part::details-content { block-size: 0; overflow: clip; transition: block-size var(--dur-layout) var(--ease-expo), content-visibility var(--dur-layout) allow-discrete; }
+.sw-part[open]::details-content { block-size: auto; }
+.sw-phrases { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; }
+.sw-phrases li { padding: 9px 14px; border-radius: 10px; background: var(--paper); color: var(--ink); font-size: 0.96rem; line-height: 1.5; }
+.sw-phrases li::selection { background: var(--leaf-deep); color: var(--paper-bright); }
+.sw-tags { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.sw-tags li { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--hairline-strong); font-size: 0.86rem; color: var(--fg); }
+.sw-label { font-size: 0.8rem; font-weight: 650; letter-spacing: 0.04em; color: var(--fg-dim); margin: 14px 0 4px !important; }
+
+/* Zeitplan */
+.sw-time { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.sw-time li { display: grid; grid-template-columns: 32px minmax(9.5em, 0.4fr) minmax(0, 1fr); gap: 4px 16px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--hairline-soft); }
+.sw-time li > span:first-child { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; align-self: center; background: rgba(143, 184, 119, 0.22); color: var(--fg); font-size: 0.78rem; font-weight: 700; }
+.sw-time b { color: var(--fg); font-weight: 650; font-variant-numeric: tabular-nums; }
+.sw-time p { margin: 0; color: var(--fg-dim); font-size: 0.95rem; }
+.sw-time-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr); gap: 28px 40px; align-items: start; }
+
+.pg-def { margin: 6px 0 14px; }
+.pg-def > div { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 4px 28px; padding: 12px 0; border-top: 1px solid var(--hairline-soft); }
+.pg-def dt { color: var(--fg); font-weight: 650; }
+.pg-def dd { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) { .sw-part::details-content { transition: none; } }
+@media (max-width: 880px) {
+  .sw-grid, .sw-time-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .pg-modes .t-seg__btn { padding: 0 10px; font-size: 0.9rem; }
+  .pg-bar > span i { display: none; }
+  .pg-bar > span { justify-content: center; padding: 0 4px; }
+  .sw-part__body { padding-left: 30px; }
+  .sw-time li { grid-template-columns: 32px minmax(0, 1fr); }
+  .sw-time li p { grid-column: 2; }
+  .pg-def > div { grid-template-columns: 1fr; }
+  .sw-checkcol { padding: 14px 14px 16px; }
+}
+</style>
 </head>
 <body>
 
@@ -24,88 +124,361 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Schreibwerkstatt Französisch</h1>
-    <p class="tool-lede">Im Aufsatz kommt alles zusammen: Wortschatz, Grammatik, Konnektoren, Operatoren. Das französische Abitur kennt vier Aufsatzformen mit je eigener Logik: das Résumé, die Analyse, den Commentaire und die kreative Aufgabe. Wer die Strukturen verinnerlicht hat, schreibt unter Zeitdruck so souverän, als würde er eine geübte Choreographie tanzen. Diese Werkstatt gibt dir die Strukturen, die Wendungen für jeden Aufsatzteil, die WO-Methode für Argumente und das Zeitmanagement der Klausur.</p>
-    <p class="tool-src">Diese Werkstatt folgt dem Kapitel Schriftliche Textproduktion aus <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>.</p>
-
-    <div class="panel">
-      <h2>Die vier Aufsatzformen</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Das Résumé</dt><dd>Präsens, dritte Person, keine Zitate, keine Wertung, Längenvorgabe einhalten. Dreiteiler: Einstiegssatz mit Autor, Titel und Thema, Hauptteil mit Konnektoren (d'abord, par ailleurs, en conclusion), Abschluss mit Schlussfolgerung statt abruptem Ende.</dd></div>
-        <div class="row"><dt>Die Analyse</dt><dd>Fünf Säulen: Erzählperspektive, Struktur, Figurenkonstellation, sprachliche Mittel, Atmosphäre. Vier Teile: Einleitung mit problématique, knappe Inhaltsangabe, Hauptteil in zwei bis drei thematischen Abschnitten, Schluss mit Rückbezug auf die Leitfrage.</dd></div>
-        <div class="row"><dt>Der Commentaire</dt><dd>Die Krone des argumentativen Schreibens: dialektische Struktur aus Thèse, Antithèse und Synthèse. Die Synthèse ist kein Kompromiss, sondern eine neue Perspektive, die den Gegensatz überschreitet. Genau sie trennt die Spitzengruppe vom Durchschnitt.</dd></div>
-        <div class="row"><dt>La création</dt><dd>Brief, Tagebucheintrag, Dialog (mit Gedankenstrichen statt Anführungszeichen), Fortsetzung, Zeitungsartikel oder Rede. Textsortenkonventionen beachten, Perspektive und Zeitform konsequent halten, und: Auch kreative Texte werden primär sprachlich bewertet. Subjonctif und Konnektoren gehören auch hierhin.</dd></div>
-      </dl>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a> zeigt jede Aufsatzform mit vollständigem Beispieltext, vom 99-Wörter-Résumé bis zur Camus-Analyse auf 14-Punkte-Niveau.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Der Commentaire im Detail</h2>
-      <ol class="phasen">
-        <li><h3>Introduction</h3><p>10 bis 15 Prozent: amorce (eleganter Einstieg), Thema und These umreißen, problématique formulieren, Plan ankündigen: Nous verrons d'abord... puis... enfin...</p></li>
-        <li><h3>Thèse + Antithèse</h3><p>Je etwa 30 Prozent, ähnlich stark: je zwei bis drei Argumente mit Beispiel. Übergang: Toutefois, on peut objecter que...</p></li>
-        <li><h3>Synthèse + Conclusion</h3><p>Die neue Perspektive, die beide Pole überschreitet, dann Antwort auf die problématique und ouverture.</p></li>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Französisch</a></li>
+        <li><span aria-current="page">Schreibwerkstatt</span></li>
       </ol>
-      <div class="cee-box"><strong>Die WO-Methode für Argumente:</strong> Acht Perspektiven liefern dir zu jedem Thema binnen Minuten mehr Argumente, als du unterbringen kannst: wirtschaftlich, sozial, politisch, kulturell, ethisch, ökologisch, historisch, individuell. Jede Perspektive eine Frage: Welche wirtschaftlichen Aspekte? Welche sozialen? ...</div>
-    </div>
+    </nav>
 
-    <div class="panel">
-      <h2>Wendungen als Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Formulierungen für jeden Aufsatzteil, vom Résumé-Einstieg bis zur ouverture. Pfeil rechts heißt „sitzt“, Pfeil links heißt „nochmal“.</p>
-      <div class="chip-row" id="deckRow" style="display:none"></div>
-      <div class="chip-row" id="catRow"></div>
-      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
-      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
-      <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button">
-          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
-            <div class="fc-etikett" id="fcKatV"></div>
-            <div class="fc-haupt" id="fcFrage"></div>
+    <header class="t-intro">
+      <div>
+        <h1>Schreib&shy;werkstatt Französisch</h1>
+        <p class="t-goal">Wähle eine der vier Aufsatzformen des Französisch-Abiturs. Du siehst ihren Aufbau Teil für Teil mit passenden Wendungen und hakst danach ab, ob dein Text <strong>alles Nötige enthält</strong>.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start="#aufgabeWahl [aria-selected='true']">Übung starten</a>
+          <a class="btn btn--ghost" href="#zeitplan">Zeitplan der Klausur</a>
+        </div>
+      </div>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>4</dt><dd>Aufsatzformen</dd></div>
+          <div><dt>12</dt><dd>Karten mit Wendungen</dd></div>
+          <div><dt>10</dt><dd>Quizfragen</dd></div>
+          <div><dt>5</dt><dd>Schritte im Zeitplan</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So gehst du vor">
+          <li><span><strong>Aufgabe wählen:</strong> Résumé, Analyse, Commentaire oder création.</span></li>
+          <li><span><strong>Aufbau aufklappen:</strong> was in welchen Teil gehört, mit Wendungen.</span></li>
+          <li><span><strong>Checkliste abhaken</strong>, wenn dein Entwurf steht. Die Häkchen bleiben gespeichert.</span></li>
+        </ol>
+      </div>
+    </header>
+
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Üben: Aufsatz planen</h2>
+        <p class="t-zone__hint">Deine Häkchen bleiben auf diesem Gerät.</p>
+      </div>
+      <div class="t-surface">
+        <div class="pg-modes">
+          <span class="t-label" id="lblAufgabe">Aufgabe wählen</span>
+          <div class="t-seg" id="aufgabeWahl" data-seg data-seg-store="aufgabe" aria-labelledby="lblAufgabe">
+            <button class="t-seg__btn" data-value="resume" aria-controls="p-resume" aria-selected="true">Résumé</button>
+            <button class="t-seg__btn" data-value="analyse" aria-controls="p-analyse">Analyse</button>
+            <button class="t-seg__btn" data-value="commentaire" aria-controls="p-commentaire">Commentaire</button>
+            <button class="t-seg__btn" data-value="creation" aria-controls="p-creation">Création</button>
           </div>
-          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
-            <div class="fc-etikett" id="fcKatR"></div>
-            <div class="fc-haupt" id="fcAntwort"></div>
-            <div class="fc-detail" id="fcDetail"></div>
-            <div class="fc-note" id="fcNote"></div>
+        </div>
+
+        <!-- Résumé -->
+        <div id="p-resume" class="sw-panel">
+          <div class="sw-panel__head">
+            <h3>Résumé</h3>
+            <p>Den Inhalt eines Textes knapp wiedergeben: Präsens, dritte Person, keine Zitate, keine Wertung, Längenvorgabe einhalten.</p>
+          </div>
+          <div class="sw-grid">
+            <div>
+              <div class="sw-sub"><span class="t-label">Beispielaufbau</span></div>
+              <ol class="sw-parts">
+                <li><details class="sw-part" open><summary><span class="sw-node">1</span><span><span class="sw-part__name">Einstiegssatz</span><span class="sw-part__meta">Autor, Titel, Textsorte und Thema in einem Satz</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Der erste Satz ordnet den Text ein, bevor du den Inhalt wiedergibst.</p>
+                    <p class="sw-label">Wendungen</p>
+                    <ul class="sw-phrases" lang="fr"><li>« Dans le texte ci-dessus, X traite de... »</li><li>« L'article, publié dans ... en ..., aborde la question de... »</li><li>« L'extrait, tiré de l'œuvre ... de l'auteur ..., met en scène... »</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">2</span><span><span class="sw-part__name">Hauptteil</span><span class="sw-part__meta">Kerninhalt, verknüpft mit Konnektoren</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Gib den Kerninhalt im Präsens und in der dritten Person wieder, auch wenn das Original in der Vergangenheit oder in der Ich-Form steht: <span lang="fr">Camus écrit que...</span>, nicht <span lang="fr">a écrit</span>. Keine Zitate, keine Wertung.</p>
+                    <p class="sw-label">Konnektoren</p>
+                    <ul class="sw-phrases" lang="fr"><li>d'abord</li><li>par ailleurs</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">3</span><span><span class="sw-part__name">Abschluss</span><span class="sw-part__meta">Schlussfolgerung statt abruptem Ende</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Der letzte Satz fasst die Aussage des Textes zusammen. Achte auf die Längenvorgabe: Bei „en environ 100 mots“ sind es 90 bis 110 Wörter.</p>
+                    <p class="sw-label">Konnektor</p>
+                    <ul class="sw-phrases" lang="fr"><li>en conclusion</li></ul>
+                  </div></details></li>
+              </ol>
+            </div>
+            <div class="sw-checkcol">
+              <span class="t-label">Checkliste für dein Résumé</span>
+              <ul class="t-check" data-checklist="resume">
+                <li><label><input type="checkbox"><span>Der Einstiegssatz nennt Autor, Titel, Textsorte und Thema.</span></label></li>
+                <li><label><input type="checkbox"><span>Durchgehend Präsens, auch bei Texten in der Vergangenheit.</span></label></li>
+                <li><label><input type="checkbox"><span>Dritte Person, auch wenn das Original in der Ich-Form steht.</span></label></li>
+                <li><label><input type="checkbox"><span>Keine Zitate.</span></label></li>
+                <li><label><input type="checkbox"><span>Keine eigene Wertung.</span></label></li>
+                <li><label><input type="checkbox"><span>Längenvorgabe eingehalten. <small>Bei „en environ 100 mots“: 90 bis 110 Wörter.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Der Schluss zieht eine Schlussfolgerung.</span></label></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analyse -->
+        <div id="p-analyse" class="sw-panel">
+          <div class="sw-panel__head">
+            <h3>Analyse</h3>
+            <p>Einen Text systematisch untersuchen, entlang von fünf Säulen und mit Textzitaten als Beleg.</p>
+          </div>
+          <div class="sw-grid">
+            <div>
+              <div class="sw-sub"><span class="t-label">Beispielaufbau</span></div>
+              <ol class="sw-parts">
+                <li><details class="sw-part" open><summary><span class="sw-node">1</span><span><span class="sw-part__name">Einleitung</span><span class="sw-part__meta">mit problématique und Plan</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Die problématique ist die Leitfrage, die den ganzen Aufsatz trägt. Du formulierst sie hier und beantwortest sie im Schluss.</p>
+                    <p class="sw-label">Wendungen</p>
+                    <ul class="sw-phrases" lang="fr"><li>« Cela nous amène à nous demander dans quelle mesure... »</li><li>« Le sujet qui nous est proposé soulève une question essentielle... »</li><li>« Nous nous interrogerons d'abord sur ... puis sur ... enfin sur ... »</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">2</span><span><span class="sw-part__name">Knappe Inhaltsangabe</span><span class="sw-part__meta">nur das, was die Analyse braucht</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Ordne den Auszug kurz ein, ohne die Analyse vorwegzunehmen.</p>
+                    <p class="sw-label">Wendung</p>
+                    <ul class="sw-phrases" lang="fr"><li>« L'extrait, tiré de l'œuvre ... de l'auteur ..., met en scène... »</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">3</span><span><span class="sw-part__name">Hauptteil</span><span class="sw-part__meta">zwei bis drei thematische Abschnitte</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Arbeite die fünf Säulen systematisch durch und belege jede Aussage mit einem Textzitat.</p>
+                    <ul class="sw-tags"><li>Erzählperspektive</li><li>Struktur</li><li>Figurenkonstellation</li><li>sprachliche Mittel</li><li>Atmosphäre</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">4</span><span><span class="sw-part__name">Schluss</span><span class="sw-part__meta">Rückbezug auf die Leitfrage</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Beantworte die problématique aus der Einleitung.</p>
+                    <p class="sw-label">Wendungen</p>
+                    <ul class="sw-phrases" lang="fr"><li>« Pour conclure, il apparaît que... »</li><li>« En définitive, on peut affirmer que... »</li></ul>
+                  </div></details></li>
+              </ol>
+            </div>
+            <div class="sw-checkcol">
+              <span class="t-label">Checkliste für deine Analyse</span>
+              <ul class="t-check" data-checklist="analyse">
+                <li><label><input type="checkbox"><span>Die Einleitung formuliert eine problématique.</span></label></li>
+                <li><label><input type="checkbox"><span>Die Inhaltsangabe ist knapp.</span></label></li>
+                <li><label><input type="checkbox"><span>Der Hauptteil hat zwei bis drei thematische Abschnitte.</span></label></li>
+                <li><label><input type="checkbox"><span>Alle fünf Säulen sind geprüft. <small>Erzählperspektive, Struktur, Figurenkonstellation, sprachliche Mittel, Atmosphäre</small></span></label></li>
+                <li><label><input type="checkbox"><span>Jede Aussage ist mit einem Textzitat belegt.</span></label></li>
+                <li><label><input type="checkbox"><span>Der Schluss beantwortet die Leitfrage.</span></label></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Commentaire -->
+        <div id="p-commentaire" class="sw-panel">
+          <div class="sw-panel__head">
+            <h3>Commentaire</h3>
+            <p>Argumentativ schreiben in dialektischer Struktur: Thèse, Antithèse, Synthèse.</p>
+          </div>
+          <div class="sw-grid">
+            <div>
+              <div class="sw-sub"><span class="t-label">Beispielaufbau mit Anteilen am Text</span></div>
+              <div class="pg-bar" aria-hidden="true">
+                <span style="--w:15"><b>1</b><i>Intro</i></span>
+                <span style="--w:30"><b>2</b><i>Thèse</i></span>
+                <span style="--w:30"><b>3</b><i>Antithèse</i></span>
+                <span style="--w:25"><b>4</b><i>Synthèse</i></span>
+              </div>
+              <ol class="sw-parts">
+                <li><details class="sw-part" open><summary><span class="sw-node">1</span><span><span class="sw-part__name">Introduction</span><span class="sw-part__meta">10 bis 15 Prozent des Textes</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Ein Einstieg (amorce), Thema und These umreißen, die problématique formulieren, den Plan ankündigen.</p>
+                    <p class="sw-label">Wendungen</p>
+                    <ul class="sw-phrases" lang="fr"><li>« Cela nous amène à nous demander dans quelle mesure... »</li><li>« Nous verrons d'abord... puis... enfin... »</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">2</span><span><span class="sw-part__name">Thèse</span><span class="sw-part__meta">etwa 30 Prozent, zwei bis drei Argumente mit Beispiel</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Jedes Argument braucht ein konkretes Beispiel. Argumente findest du mit der WO-Methode: acht Perspektiven, je eine Frage, etwa „Welche wirtschaftlichen Aspekte hat das Thema?“</p>
+                    <ul class="sw-tags"><li>wirtschaftlich</li><li>sozial</li><li>politisch</li><li>kulturell</li><li>ethisch</li><li>ökologisch</li><li>historisch</li><li>individuell</li></ul>
+                    <p class="sw-label">Wendungen</p>
+                    <ul class="sw-phrases" lang="fr"><li>« Un premier argument en faveur de cette thèse réside dans le fait que... »</li><li>« À l'appui de cette idée, on peut évoquer... »</li><li>« Cette position se justifie par... »</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">3</span><span><span class="sw-part__name">Antithèse</span><span class="sw-part__meta">etwa 30 Prozent, ähnlich stark wie die Thèse</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Markiere den Übergang zur Gegenposition deutlich. Beide Teile sollten ähnlich viel Gewicht haben.</p>
+                    <p class="sw-label">Wendungen</p>
+                    <ul class="sw-phrases" lang="fr"><li>« Toutefois, on peut objecter que... »</li><li>« Toutefois, cette position mérite d'être nuancée. »</li><li>« Néanmoins, on peut légitimement objecter que... »</li><li>« Or, cette thèse présente certaines limites. »</li><li>« Cependant, plusieurs arguments s'opposent à cette vision. »</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">4</span><span><span class="sw-part__name">Synthèse und Conclusion</span><span class="sw-part__meta">der Rest: neue Perspektive, Antwort, ouverture</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Die Synthèse ist kein Kompromiss, sondern eine neue Perspektive, die den Gegensatz überschreitet. Danach beantwortest du die problématique und schließt mit einer ouverture, dem Blick auf einen weiterführenden Aspekt.</p>
+                    <p class="sw-label">Wendungen für die Synthèse</p>
+                    <ul class="sw-phrases" lang="fr"><li>« En définitive, ces deux positions ne sont pas inconciliables. »</li><li>« Il convient de dépasser cette opposition apparente... »</li><li>« Force est de reconnaître que la vérité se situe entre les deux... »</li></ul>
+                    <p class="sw-label">Wendungen für die Conclusion</p>
+                    <ul class="sw-phrases" lang="fr"><li>« Pour conclure, il apparaît que... »</li><li>« Cette analyse nous invite à réfléchir à... »</li></ul>
+                  </div></details></li>
+              </ol>
+            </div>
+            <div class="sw-checkcol">
+              <span class="t-label">Checkliste für deinen Commentaire</span>
+              <ul class="t-check" data-checklist="commentaire">
+                <li><label><input type="checkbox"><span>Die Einleitung hat amorce, problématique und Plan.</span></label></li>
+                <li><label><input type="checkbox"><span>Argumente mit der WO-Methode gesammelt.</span></label></li>
+                <li><label><input type="checkbox"><span>Thèse und Antithèse sind ähnlich stark, je zwei bis drei Argumente mit Beispiel.</span></label></li>
+                <li><label><input type="checkbox"><span>Der Übergang zur Antithèse ist markiert.</span></label></li>
+                <li><label><input type="checkbox"><span>Die Synthèse bringt eine neue Perspektive, keinen bloßen Kompromiss.</span></label></li>
+                <li><label><input type="checkbox"><span>Die Conclusion beantwortet die problématique und endet mit einer ouverture.</span></label></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Création -->
+        <div id="p-creation" class="sw-panel">
+          <div class="sw-panel__head">
+            <h3>Création</h3>
+            <p>Brief, Tagebucheintrag, Dialog, Fortsetzung, Zeitungsartikel oder Rede. Auch kreative Texte werden vor allem sprachlich bewertet.</p>
+          </div>
+          <div class="sw-grid">
+            <div>
+              <div class="sw-sub"><span class="t-label">Beispielaufbau</span></div>
+              <ol class="sw-parts">
+                <li><details class="sw-part" open><summary><span class="sw-node">1</span><span><span class="sw-part__name">Textsorte bestimmen</span><span class="sw-part__meta">Was genau verlangt die Aufgabe?</span></span></summary>
+                  <div class="sw-part__body">
+                    <ul class="sw-tags"><li>Brief</li><li>Tagebucheintrag</li><li>Dialog</li><li>Fortsetzung</li><li>Zeitungsartikel</li><li>Rede</li></ul>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">2</span><span><span class="sw-part__name">Konventionen der Textsorte</span><span class="sw-part__meta">Form gehört zur Bewertung</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Halte die Konventionen der gewählten Textsorte ein. In französischen Dialogen markiert ein Gedankenstrich (tiret) den Sprecherwechsel, keine Anführungszeichen wie im Deutschen.</p>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">3</span><span><span class="sw-part__name">Perspektive und Zeitform</span><span class="sw-part__meta">einmal wählen, dann durchhalten</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Bleib bei der gewählten Erzählperspektive und Zeitform, vom ersten bis zum letzten Satz.</p>
+                  </div></details></li>
+                <li><details class="sw-part"><summary><span class="sw-node">4</span><span><span class="sw-part__name">Sprachlich genau schreiben</span><span class="sw-part__meta">Subjonctif und Konnektoren gehören auch hierhin</span></span></summary>
+                  <div class="sw-part__body">
+                    <p>Kreative Texte werden vor allem nach sprachlichen Kriterien bewertet. Nutze die Konnektoren und Wendungen aus den anderen Aufsatzformen auch hier.</p>
+                  </div></details></li>
+              </ol>
+            </div>
+            <div class="sw-checkcol">
+              <span class="t-label">Checkliste für deine création</span>
+              <ul class="t-check" data-checklist="creation">
+                <li><label><input type="checkbox"><span>Die Textsorte ist auf den ersten Blick erkennbar.</span></label></li>
+                <li><label><input type="checkbox"><span>Die Konventionen der Textsorte sind eingehalten. <small>Im Dialog: tiret statt Anführungszeichen.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Die Perspektive bleibt gleich.</span></label></li>
+                <li><label><input type="checkbox"><span>Die Zeitform bleibt gleich.</span></label></li>
+                <li><label><input type="checkbox"><span>Subjonctif und Konnektoren sind eingesetzt.</span></label></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <noscript><p class="t-noscript">Ohne JavaScript stehen alle vier Aufsatzformen untereinander. Abhaken geht, gespeichert wird dann nichts. Lernkarten und Quiz brauchen JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone" id="zeitplan" aria-labelledby="h-zeit">
+      <div class="t-zone__head">
+        <h2 id="h-zeit">Zeitplan der Klausur</h2>
+        <p class="t-zone__hint">Ein Schema für eine fünfstündige LK-Klausur. Passe es an deine Klausurdauer an.</p>
+      </div>
+      <div class="t-surface">
+        <p class="pg-scale" aria-hidden="true"><span>Beginn</span><span>nach 5 Stunden</span></p>
+        <div class="pg-bar" aria-hidden="true" style="margin-top:22px">
+          <span style="--w:10"><b>1</b></span>
+          <span style="--w:30"><b>2</b><i>Lesen</i></span>
+          <span style="--w:20"><b>3</b><i>Plan</i></span>
+          <span style="--w:210"><b>4</b><i>Schreiben, strikt nach Plan</i></span>
+          <span style="--w:30"><b>5</b><i>Korrektur</i></span>
+        </div>
+        <div class="sw-time-grid">
+          <ol class="sw-time" aria-label="Zeitplan einer fünfstündigen Klausur">
+            <li><span>1</span><b>5 bis 10 Minuten</b><p>Aufgaben lesen, Operatoren markieren, Längenangaben und Anforderungsbereiche klären.</p></li>
+            <li><span>2</span><b>20 bis 30 Minuten</b><p>Text aktiv lesen: Schlüsselstellen markieren, Stilmittel erkennen, Argumente sammeln.</p></li>
+            <li><span>3</span><b>15 bis 20 Minuten</b><p>Plan: Einleitung, Hauptteile und Schluss in Stichpunkten, je Hauptteil Argumente und Belege.</p></li>
+            <li><span>4</span><b>3 bis 3,5 Stunden</b><p>Schreiben, strikt nach Plan, mit wechselnden Konnektoren.</p></li>
+            <li><span>5</span><b>20 bis 30 Minuten</b><p>Endkontrolle statt neuem Inhalt. Die typischen Fehlerquellen stehen rechts.</p></li>
+          </ol>
+          <div class="sw-checkcol">
+            <span class="t-label">Endkontrolle: die typischen Fehlerquellen</span>
+            <ul class="t-check" data-checklist="endkontrolle">
+              <li><label><input type="checkbox"><span>Subjonctif nach que</span></label></li>
+              <li><label><input type="checkbox"><span>Logik der Si-Sätze</span></label></li>
+              <li><label><input type="checkbox"><span>Angleichung der Partizipien</span></label></li>
+              <li><label><input type="checkbox"><span>Akzente</span></label></li>
+              <li><label><input type="checkbox"><span>Falsche Freunde</span></label></li>
+            </ul>
           </div>
         </div>
       </div>
-      <div class="fcard-aktionen">
-        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
-        <button class="btn" id="btnKnown">Sitzt, nächste</button>
-        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
-        <span class="hint" id="restHint"></span>
-      </div>
-      <div class="deck-fertig" id="deckFertig" hidden>
-        <strong>Stapel geschafft.</strong>
-        <span id="fertigText"></span>
-      </div>
-    </div>
+    </section>
 
-    <div class="panel">
-      <h2>Zeitmanagement in der Klausur</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Das bewährte Schema für eine fünfstündige LK-Klausur; passe es an deine Klausurdauer an. Die letzten 30 Minuten gehören der Endkontrolle, nicht neuem Inhalt.</p>
-      <dl class="ledger">
-        <div class="row"><dt>5 bis 10 Minuten</dt><dd>Aufgaben lesen, Operatoren markieren, Längenangaben und Anforderungsbereiche klären.</dd></div>
-        <div class="row"><dt>20 bis 30 Minuten</dt><dd>Text aktiv lesen: Schlüsselstellen markieren, Stilmittel identifizieren, Argumente sammeln.</dd></div>
-        <div class="row"><dt>15 bis 20 Minuten</dt><dd>Plan: Einleitung, Hauptteile und Schluss in Stichpunkten, je Hauptteil Argumente und Belege.</dd></div>
-        <div class="row"><dt>3 bis 3,5 Stunden</dt><dd>Schreiben, strikt nach Plan, mit Konnektoren-Variation.</dd></div>
-        <div class="row"><dt>20 bis 30 Minuten</dt><dd>Korrektur der typischen Fehlerquellen: Subjonctif nach que, Si-Satz-Logik, Partizip-Angleichung, Akzente, falsche Freunde.</dd></div>
-      </dl>
-      <div class="buch-tipp">
-        <span><strong>Der nächste Schritt:</strong> Operatoren und figures de style für den Analyseteil trainierst du in der <a href="/tools/textanalyse-franzoesisch.html">Textanalyse Französisch</a>, die Grammatik der Bestnote im <a href="/tools/franzoesisch.html">Französisch-Abitur-Trainer</a>.</span>
+    <section class="t-zone" id="karten" aria-labelledby="h-karten">
+      <div class="t-zone__head">
+        <h2 id="h-karten">Wendungen als Lernkarten</h2>
+        <p class="t-zone__hint">Vom Résumé-Einstieg bis zur ouverture.</p>
       </div>
-    </div>
+      <div class="t-surface">
+        <div id="deck"></div>
+        <noscript><p class="t-noscript">Die Lernkarten brauchen JavaScript. Dieselben Wendungen stehen oben im Beispielaufbau.</p></noscript>
+      </div>
+    </section>
 
-    <div class="panel">
-      <h2>Quiz: Aufsatzformen verstanden?</h2>
-      <div id="quizBox" aria-live="polite"></div>
-      <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
+    <section class="t-zone" id="quiz" aria-labelledby="h-quiz">
+      <div class="t-zone__head">
+        <h2 id="h-quiz">Selbsttest: Quiz</h2>
+        <p class="t-zone__hint">Zehn Fragen zu den Aufsatzformen.</p>
+      </div>
+      <div class="t-surface">
+        <div id="quizBox"></div>
+        <noscript><p class="t-noscript">Das Quiz braucht JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone reveal" id="erklaerung" aria-labelledby="h-erkl">
+      <div class="t-zone__head">
+        <h2 id="h-erkl">Erklärung</h2>
+      </div>
+      <details class="t-explain">
+        <summary>Die vier Aufsatzformen auf einen Blick</summary>
+        <div class="t-explain__body">
+          <dl class="pg-def">
+            <div><dt>Résumé</dt><dd>Präsens, dritte Person, keine Zitate, keine Wertung, Längenvorgabe einhalten. Einstiegssatz mit Autor, Titel und Thema, Hauptteil mit Konnektoren (d'abord, par ailleurs, en conclusion), Abschluss mit Schlussfolgerung statt abruptem Ende.</dd></div>
+            <div><dt>Analyse</dt><dd>Fünf Säulen: Erzählperspektive, Struktur, Figurenkonstellation, sprachliche Mittel, Atmosphäre. Vier Teile: Einleitung mit problématique, knappe Inhaltsangabe, Hauptteil in zwei bis drei thematischen Abschnitten, Schluss mit Rückbezug auf die Leitfrage.</dd></div>
+            <div><dt>Commentaire</dt><dd>Argumentatives Schreiben in dialektischer Struktur aus Thèse, Antithèse und Synthèse. Die Synthèse ist kein Kompromiss, sondern eine neue Perspektive, die den Gegensatz überschreitet.</dd></div>
+            <div><dt>Création</dt><dd>Brief, Tagebucheintrag, Dialog, Fortsetzung, Zeitungsartikel oder Rede. Textsortenkonventionen beachten, Perspektive und Zeitform konsequent halten. Auch kreative Texte werden vor allem sprachlich bewertet.</dd></div>
+          </dl>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Die WO-Methode: Argumente aus acht Perspektiven</summary>
+        <div class="t-explain__body">
+          <p>Acht Perspektiven helfen dir, zu jedem Thema schnell Argumente zu finden: wirtschaftlich, sozial, politisch, kulturell, ethisch, ökologisch, historisch, individuell.</p>
+          <p>Zu jeder Perspektive stellst du eine Frage: Welche wirtschaftlichen Aspekte hat das Thema? Welche sozialen? Und so weiter. Die stärksten Antworten werden zu Argumenten für Thèse oder Antithèse.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Bedienung und was gespeichert wird</summary>
+        <div class="t-explain__body">
+          <p>Die Aufgaben wechselst du mit Klick oder mit den Pfeiltasten im Umschalter. Jeder Aufsatzteil klappt per Klick, <kbd>Enter</kbd> oder <kbd>Leertaste</kbd> auf.</p>
+          <p>Gespeichert werden nur die gewählte Aufgabe, deine Häkchen, welche Karten sitzen und dein bestes Quizergebnis, im Speicher deines Browsers auf diesem Gerät. „Zurücksetzen“ unter jeder Checkliste löscht ihre Häkchen.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/franzoesisch.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Jede Aufsatzform mit vollständigem Beispieltext, vom 99-Wörter-Résumé bis zur Camus-Analyse, steht im Kapitel „Schriftliche Textproduktion“ von <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/textanalyse-franzoesisch.html"><span class="t-related__img"><img src="/assets/previews/textanalyse-franzoesisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Textanalyse Französisch</strong><span>Operatoren und figures de style für den Analyseteil</span></span></a></li>
+          <li><a href="/tools/franzoesisch.html"><span class="t-related__img"><img src="/assets/previews/franzoesisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Französisch-Abitur-Trainer</strong><span>Subjonctif, Si-Sätze und Konnektoren als Lernkarten</span></span></a></li>
+          <li><a href="/tools/schreibwerkstatt-englisch.html"><span class="t-related__img"><img src="/assets/previews/schreibwerkstatt-englisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Schreibwerkstatt Englisch</strong><span>Aufbau von Analyse, Erörterung und Sprachmittlung</span></span></a></li>
+        </ul>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -113,56 +486,90 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/schreibwerkstatt-englisch.html">Zur Schreibwerkstatt Englisch</a></span>
     </div>
   </div>
 </footer>
 
 <script>
+// Kartenformat: [Vorderseite, Antwort, Beispiel, Notiz]
 const DECKS = {
   "Wendungen": {
     "Résumé-Einstieg": [
-      ["Den Text im ersten Satz identifizieren?", "« Dans le texte ci-dessus, X traite de... » · « L'article, publié dans ... en ..., aborde la question de... »", "", "Autor, Titel, Textsorte und Thema in einem Satz."],
+      ["Den Text im ersten Satz identifizieren?", "« Dans le texte ci-dessus, X traite de... » / « L'article, publié dans ... en ..., aborde la question de... »", "", "Autor, Titel, Textsorte und Thema in einem Satz."],
       ["Einen Auszug einordnen?", "« L'extrait, tiré de l'œuvre ... de l'auteur ..., met en scène... »", "", ""]
     ],
     "Introduction": [
-      ["Die problématique formulieren?", "« Cela nous amène à nous demander dans quelle mesure... » · « Le sujet qui nous est proposé soulève une question essentielle... »", "", "Die Leitfrage strukturiert den ganzen Aufsatz."],
+      ["Die problématique formulieren?", "« Cela nous amène à nous demander dans quelle mesure... » / « Le sujet qui nous est proposé soulève une question essentielle... »", "", "Die Leitfrage strukturiert den ganzen Aufsatz."],
       ["Den Plan ankündigen?", "« Nous nous interrogerons d'abord sur ... puis sur ... enfin sur ... »", "", ""]
     ],
     "Thèse": [
       ["Das erste Argument einführen?", "« Un premier argument en faveur de cette thèse réside dans le fait que... »", "", ""],
-      ["Ein Argument stützen?", "« À l'appui de cette idée, on peut évoquer... » · « Cette position se justifie par... »", "", "Jedes Argument braucht ein konkretes Beispiel."]
+      ["Ein Argument stützen?", "« À l'appui de cette idée, on peut évoquer... » / « Cette position se justifie par... »", "", "Jedes Argument braucht ein konkretes Beispiel."]
     ],
     "Antithèse": [
-      ["Den Übergang zur Gegenposition markieren?", "« Toutefois, cette position mérite d'être nuancée. » · « Néanmoins, on peut légitimement objecter que... »", "", "Beide Teile müssen ähnlich stark sein."],
-      ["Grenzen einer These benennen?", "« Or, cette thèse présente certaines limites. » · « Cependant, plusieurs arguments s'opposent à cette vision. »", "", ""]
+      ["Den Übergang zur Gegenposition markieren?", "« Toutefois, cette position mérite d'être nuancée. » / « Néanmoins, on peut légitimement objecter que... »", "", "Beide Teile sollten ähnlich stark sein."],
+      ["Grenzen einer These benennen?", "« Or, cette thèse présente certaines limites. » / « Cependant, plusieurs arguments s'opposent à cette vision. »", "", ""]
     ],
     "Synthèse": [
-      ["Die Pole zusammenführen?", "« En définitive, ces deux positions ne sont pas inconciliables. » · « Il convient de dépasser cette opposition apparente... »", "", "Die Synthèse ist der Bestnoten-Teil: kein bloßes „beide haben recht“."],
-      ["Die eigene höhere Perspektive formulieren?", "« Force est de reconnaître que la vérité se situe entre les deux... »", "", ""]
+      ["Die Pole zusammenführen?", "« En définitive, ces deux positions ne sont pas inconciliables. » / « Il convient de dépasser cette opposition apparente... »", "", "Die Synthèse ist mehr als ein bloßes „beide haben recht“."],
+      ["Eine eigene, übergeordnete Perspektive formulieren?", "« Force est de reconnaître que la vérité se situe entre les deux... »", "", ""]
     ],
     "Conclusion": [
-      ["Den Aufsatz schließen?", "« Pour conclure, il apparaît que... » · « En définitive, on peut affirmer que... »", "", ""],
+      ["Den Aufsatz schließen?", "« Pour conclure, il apparaît que... » / « En définitive, on peut affirmer que... »", "", ""],
       ["Die ouverture setzen?", "« Cette analyse nous invite à réfléchir à... »", "", "Der Blick auf einen weiterführenden Aspekt als letzter Satz."]
     ]
   }
 };
 
 const QUIZ = [
-  {f: 'In welcher Zeitform steht das Résumé?', o: ['In der Zeitform des Originals', 'Immer im Präsens', 'Im Passé composé'], r: 1, e: 'Auch bei Vergangenheitstexten: Camus écrit que..., nicht a écrit.'},
-  {f: 'Der Originaltext ist in der Ich-Form. Dein Résumé...', o: ['...übernimmt die Ich-Form', '...steht in der dritten Person: Le narrateur se sent seul', '...wechselt zwischen beiden'], r: 1, e: 'Dritte Person ist Pflicht, ebenso wie der Verzicht auf Zitate und Wertungen.'},
-  {f: '„En environ 100 mots“ und du schreibst 200. Das Ergebnis?', o: ['Bonuspunkte für Ausführlichkeit', 'Eine verfehlte Aufgabe, selbst bei brillantem Inhalt', 'Kein Unterschied'], r: 1, e: 'Die Längenvorgabe ist verbindlich: 90 bis 110 Wörter.'},
-  {f: 'Die fünf Säulen der Analyse sind...', o: ['Einleitung, These, Argumente, Beispiele, Schluss', 'Erzählperspektive, Struktur, Figuren, sprachliche Mittel, Atmosphäre', 'Wortschatz, Grammatik, Stil, Inhalt, Form'], r: 1, e: 'Systematisch durcharbeiten und jede Aussage mit Textzitat belegen.'},
-  {f: 'Die Synthèse im Commentaire ist...', o: ['...eine Zusammenfassung beider Teile', '...eine neue Perspektive, die den Gegensatz überschreitet', '...ein Kompromiss: beide haben recht'], r: 1, e: 'Wer nur Pro und Contra aufzählt, schreibt Durchschnitt; die echte Synthese landet in der Spitzengruppe.'},
-  {f: 'Was ist die problématique?', o: ['Das Problem des Protagonisten', 'Die Leitfrage, die den Aufsatz strukturiert', 'Die schwierigste Vokabel des Textes'], r: 1, e: 'Sie wird in der Einleitung formuliert und im Schluss beantwortet.'},
-  {f: 'Die WO-Methode liefert...', o: ['...Wörter für den Wortschatz', '...Argumente über acht Perspektiven von Wirtschaft bis Individuum', '...die richtige Reihenfolge der Absätze'], r: 1, e: 'Wirtschaft, Soziales, Politik, Kultur, Ethik, Ökologie, Geschichte, Individuum.'},
-  {f: 'Französische Dialoge in der création verwenden...', o: ['...Anführungszeichen wie im Deutschen', '...Gedankenstriche für den Sprecherwechsel', '...kursive Schrift'], r: 1, e: 'Textsortenkonventionen sind Teil der Bewertung.'},
-  {f: 'Die größte Gefahr bei kreativen Aufgaben?', o: ['Zu viel Fantasie', 'Sprachliche Eleganz vernachlässigen: auch hier zählen Subjonctif und Konnektoren', 'Zu lange Texte'], r: 1, e: 'Kreative Texte werden primär nach sprachlichen Kriterien bewertet.'},
-  {f: 'Die letzten 30 Minuten der Klausur sind für...', o: ['...einen zusätzlichen Absatz', '...die Endkontrolle: Subjonctif, Si-Sätze, Partizipien, Akzente', '...das Abschreiben ins Reine'], r: 1, e: 'Ein gut korrigierter Aufsatz schlägt einen längeren, fehlerhaften.'}
+  {f: "In welcher Zeitform steht das Résumé?", o: ["In der Zeitform des Originals", "Immer im Präsens", "Im Passé composé"], r: 1, e: "Auch bei Texten in der Vergangenheit: Camus écrit que..., nicht a écrit."},
+  {f: "Der Originaltext steht in der Ich-Form. Dein Résumé...", o: ["...übernimmt die Ich-Form", "...steht in der dritten Person: Le narrateur se sent seul", "...wechselt zwischen beiden"], r: 1, e: "Dritte Person ist Pflicht, ebenso der Verzicht auf Zitate und Wertungen."},
+  {f: "„En environ 100 mots“, und du schreibst 200. Was folgt daraus?", o: ["Pluspunkte für Ausführlichkeit", "Die Aufgabe ist verfehlt, auch bei gutem Inhalt", "Kein Unterschied"], r: 1, e: "Die Längenvorgabe ist verbindlich: 90 bis 110 Wörter."},
+  {f: "Die fünf Säulen der Analyse sind...", o: ["Einleitung, These, Argumente, Beispiele, Schluss", "Erzählperspektive, Struktur, Figuren, sprachliche Mittel, Atmosphäre", "Wortschatz, Grammatik, Stil, Inhalt, Form"], r: 1, e: "Systematisch durcharbeiten und jede Aussage mit einem Textzitat belegen."},
+  {f: "Die Synthèse im Commentaire ist...", o: ["...eine Zusammenfassung beider Teile", "...eine neue Perspektive, die den Gegensatz überschreitet", "...ein Kompromiss: beide haben recht"], r: 1, e: "Wer nur Pro und Contra aufzählt, bleibt beim Gegensatz stehen. Die Synthèse führt darüber hinaus."},
+  {f: "Was ist die problématique?", o: ["Das Problem des Protagonisten", "Die Leitfrage, die den Aufsatz strukturiert", "Die schwierigste Vokabel des Textes"], r: 1, e: "Sie steht in der Einleitung und wird im Schluss beantwortet."},
+  {f: "Die WO-Methode liefert...", o: ["...Wörter für den Wortschatz", "...Argumente aus acht Perspektiven, von Wirtschaft bis Individuum", "...die richtige Reihenfolge der Absätze"], r: 1, e: "Wirtschaft, Soziales, Politik, Kultur, Ethik, Ökologie, Geschichte, Individuum."},
+  {f: "Französische Dialoge in der création verwenden...", o: ["...Anführungszeichen wie im Deutschen", "...Gedankenstriche für den Sprecherwechsel", "...kursive Schrift"], r: 1, e: "Textsortenkonventionen sind Teil der Bewertung."},
+  {f: "Was wird bei kreativen Aufgaben oft unterschätzt?", o: ["Die Fantasie", "Die sprachliche Genauigkeit: Auch hier zählen Subjonctif und Konnektoren", "Die Länge des Textes"], r: 1, e: "Kreative Texte werden vor allem nach sprachlichen Kriterien bewertet."},
+  {f: "Wofür sind die letzten 20 bis 30 Minuten der Klausur da?", o: ["Für einen zusätzlichen Absatz", "Für die Endkontrolle: Subjonctif, Si-Sätze, Partizipien, Akzente", "Zum Abschreiben ins Reine"], r: 1, e: "Ein sorgfältig korrigierter Text bringt meist mehr als ein zusätzlicher Absatz mit Fehlern."}
 ];
 </script>
 <script src="/assets/trainer.js"></script>
+<script>
+(function () {
+  "use strict";
+  var T = window.PaviTools;
+  T.segment("#aufgabeWahl");
+  T.deck("#deck", { decks: DECKS, storageKey: "karten", catLabel: "Aufsatzteil", frontHint: "Erst die Wendung auf Französisch sagen, dann umdrehen." });
+  T.quiz("#quizBox", { fragen: QUIZ, storageKey: "quiz" });
+
+  // Je Aufgabe: alle Teile auf- oder zuklappen
+  document.querySelectorAll(".sw-panel").forEach(function (panel) {
+    var parts = panel.querySelectorAll(".sw-part");
+    var sub = panel.querySelector(".sw-sub");
+    if (!sub || parts.length < 2) return;
+    var b = T.h("button", { type: "button", class: "t-iconbtn" });
+    function label() {
+      var allOpen = Array.prototype.every.call(parts, function (d) { return d.open; });
+      b.textContent = allOpen ? "Alle zuklappen" : "Alle Teile öffnen";
+      b.setAttribute("aria-expanded", allOpen ? "true" : "false");
+      return allOpen;
+    }
+    b.addEventListener("click", function () {
+      var open = !label();
+      parts.forEach(function (d) { d.open = open; });
+      label();
+      T.announce(open ? "Alle Teile geöffnet." : "Alle Teile zugeklappt.");
+    });
+    parts.forEach(function (d) { d.addEventListener("toggle", label); });
+    sub.appendChild(b);
+    label();
+  });
+})();
+</script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

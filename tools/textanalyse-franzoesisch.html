@@ -1,13 +1,42 @@
 <!doctype html>
-<html lang="de" style="--akzent:#2C7A72;--akzent-tief:#15505C">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Textanalyse Französisch</title>
-<meta name="description" content="Operatoren und figures de style für das Französisch-Abitur: alle Aufgabenverben von résumer bis discuter, die wichtigsten Stilmittel als Lernkarten und die Drei-Schritt-Methode der Analyse, nach dem Buch Französisch Meistern.">
+<title>Textanalyse Französisch: Operatoren, figures de style und Résumé</title>
+<meta name="description" content="Textanalyse für Französisch in der Oberstufe: Schritt für Schritt vom Operator über den Beleg zur Wirkung, ein schwächerer und ein verbesserter Absatz im Vergleich, ein Résumé-Check, Operatoren und figures de style als Lernkarten und ein Quiz. Nach dem Buch Französisch Meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/textanalyse-franzoesisch.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+  /* Seitenlokal: Beispiel im Schrittbereich, gegliedert in Aufgabe, Auszug, Analyse-Satz */
+  .ta-ex + .ta-ex { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--paper-line); }
+  .ta-ex__label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; color: var(--ink-muted); margin-bottom: 4px; }
+  .ta-ex p, .ta-ex blockquote { margin: 0; max-width: none; }
+  .ta-ex blockquote { font-style: italic; }
+  .t-steps__note { min-height: 3.2em; }
+  .t-steps__note:not(:empty) { padding-top: 12px; border-top: 1px solid var(--paper-line); }
+  /* Seitenlokal: Résumé-Check neben seiner Kurzregel */
+  .ta-resume { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 20px 40px; align-items: start; }
+  .ta-resume h3 { font-size: 1.2rem; margin: 0 0 10px; }
+  .ta-resume p { color: var(--fg-dim); margin: 0 0 10px; }
+  /* Seitenlokal: Anforderungsbereiche als drei Spalten */
+  .ta-afb { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+  .ta-afb > li { border: 1px solid var(--hairline); border-radius: 18px; padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 10px; }
+  .ta-afb h3 { font-size: 1.08rem; margin: 0; }
+  .ta-afb p { margin: 0; color: var(--fg-dim); font-size: 0.95rem; }
+  .ta-afb__ops { color: var(--mint) !important; font-size: 0.9rem !important; }
+  .ta-afb dl { margin: auto 0 0; padding-top: 12px; border-top: 1px solid var(--hairline); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; font-size: 0.88rem; }
+  .ta-afb dt { color: var(--fg-dim); }
+  .ta-afb dd { margin: 0; color: var(--fg); font-variant-numeric: tabular-nums; text-align: right; }
+  .ta-more { margin-top: 36px; }
+  .ta-phrases { margin: 4px 0 14px; padding-left: 1.2em; display: grid; gap: 6px; }
+  .ta-phrases li { color: var(--fg); }
+  .ta-phrases li::marker { color: var(--leaf); }
+  @media (max-width: 880px) { .ta-afb, .ta-resume { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
 
@@ -24,89 +53,234 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Textanalyse Französisch: Operatoren und figures de style</h1>
-    <p class="tool-lede">Eine Klausur wird nicht danach bewertet, was du geschrieben hast, sondern danach, wie sehr es mit dem übereinstimmt, was du schreiben solltest. Die Operatoren sind der Kompass dieser Übereinstimmung: analyser, commenter, résumer verlangen grundverschiedene Antworten. Und wer in der Analyse schreibt „der Autor verwendet schöne Sprache“, verschenkt die Note; wer schreibt „l'auteur a recours à une anaphore qui souligne l'urgence de son propos“, zeigt Spitzenniveau. Hier trainierst du beides: alle Operatoren nach Anforderungsbereich und die wichtigsten Stilmittel mit ihrer Wirkung.</p>
-    <p class="tool-src">Dieser Trainer folgt den Kapiteln Operatoren und Stilmittel aus <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>.</p>
-
-    <div class="panel">
-      <h2>Die drei Anforderungsbereiche</h2>
-      <dl class="ledger">
-        <div class="row"><dt>AFB I: Reproduktion</dt><dd>Wiedergabe und Verständnis: résumer, présenter, décrire, citer, relever, nommer. Etwa 30 bis 40 Prozent der Klausur. Keine Wertung, keine Analyse.</dd></div>
-        <div class="row"><dt>AFB II: Reorganisation</dt><dd>Analyse und Strukturierung: analyser, expliquer, caractériser, comparer, mettre en relation, structurer. Etwa 40 bis 50 Prozent. Jede Aussage mit Textzitat belegen.</dd></div>
-        <div class="row"><dt>AFB III: Reflexion</dt><dd>Wertung, Diskussion, kreative Produktion: commenter, discuter, évaluer, prendre position, imaginer. Etwa 20 bis 30 Prozent, entscheidet oft über die Bestnote.</dd></div>
-      </dl>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:18px">Klausur-Strategie in vier Schritten: Operator markieren und übersetzen, auf das Subjekt der Aufgabe achten (analysez la relation verlangt die Beziehung, nicht die Personen einzeln), Eingrenzungen wie „en vous appuyant sur le texte“ ernst nehmen, und den Anforderungsbereich wirklich abdecken.</p>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> Das Operatoren-Kapitel in <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a> erklärt alle 28 Operatoren mit Beispielaufgaben samt korrekter Interpretation und erwarteter Länge.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Die Drei-Schritt-Methode der Stilmittelanalyse</h2>
-      <ol class="phasen">
-        <li><h3>Identifier</h3><p>Das Stilmittel mit seinem französischen Namen benennen: On observe une anaphore.</p></li>
-        <li><h3>Citer</h3><p>Die konkrete Textstelle belegen: ...comme le montre la répétition du mot « paix » aux lignes 5, 7 et 9.</p></li>
-        <li><h3>Interpréter</h3><p>Die Wirkung im Kontext erläutern: Cette anaphore souligne l'urgence du message.</p></li>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Französisch</a></li>
+        <li><span aria-current="page">Textanalyse</span></li>
       </ol>
-      <div class="cee-box"><strong>Typische Analyse-Formulierungen:</strong> L'auteur a recours à ... · On observe une ... aux lignes ... · Ce procédé stylistique permet de ... · Cette image souligne / met en évidence / traduit ... · Cette répétition / antithèse / hyperbole renforce l'idée que ... · Le champ lexical de ... contribue à ...</div>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:18px">Die Spitzenanalyse erkennt nicht ein einzelnes Stilmittel, sondern die Verflechtung mehrerer zu einem Gesamteindruck, und schließt mit einer Synthese. Ein Stilmittel zu erkennen ist eine Wahrnehmungsleistung; seine Wirkung zu erklären ist eine Denkleistung. Erst die zweite bringt die Spitzennote.</p>
-    </div>
+    </nav>
 
-    <div class="panel">
-      <h2>Operatoren und Stilmittel als Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Zwei Stapel: die Operatoren nach Anforderungsbereich, die figures de style in sechs Kategorien. Pfeil rechts heißt „sitzt“, Pfeil links heißt „nochmal“.</p>
-      <div class="chip-row" id="deckRow"></div>
-      <div class="chip-row" id="catRow"></div>
-      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
-      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
-      <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button">
-          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
-            <div class="fc-etikett" id="fcKatV"></div>
-            <div class="fc-haupt" id="fcFrage"></div>
+    <header class="t-intro">
+      <div>
+        <h1>Textanalyse Französisch</h1>
+        <p class="t-goal">Analyser, commenter und résumer verlangen drei verschiedene Antworten. An einer Anapher übst du, wie aus einer Beobachtung eine belegte Analyse wird: <strong>Operator verstehen, Beleg finden, Wirkung erklären</strong>. Dein Résumé prüfst du danach an einer Checkliste.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start=".t-steps__btn">Übung starten</a>
+          <a class="btn btn--ghost" href="#resume">Zum Résumé-Check</a>
+        </div>
+      </div>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>3</dt><dd>Schritte am Beispiel</dd></div>
+          <div><dt>6</dt><dd>Résumé-Regeln</dd></div>
+          <div><dt id="factCards">37</dt><dd>Karten</dd></div>
+          <div><dt>12</dt><dd>Quizfragen</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So gehst du vor">
+          <li><span><strong>Schritt für Schritt:</strong> Klick einen Schritt an, im Beispiel wird die passende Stelle markiert.</span></li>
+          <li><span><strong>Vergleichen und prüfen:</strong> zwei Absätze nebeneinander, dann dein Résumé an der Checkliste.</span></li>
+          <li><span><strong>Festigen:</strong> Operatoren und figures de style auf Lernkarten, danach das Quiz.</span></li>
+        </ol>
+      </div>
+    </header>
+
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Üben: In drei Schritten zur Analyse</h2>
+        <p class="t-zone__hint">Beispiel: François Hollande, 2012.</p>
+      </div>
+      <div class="t-surface">
+        <div class="t-steps" data-steps>
+          <ol class="t-steps__list">
+            <li><button class="t-steps__btn" data-step="1" data-note="analyser gehört zum Anforderungsbereich II: Bestandteile zerlegen, ihr Zusammenwirken zeigen und jede Aussage belegen. Lies auch das Subjekt der Aufgabe (hier: les procédés stylistiques) und nimm Eingrenzungen wie « en vous appuyant sur le texte » ernst."><span>1</span><strong>Operator verstehen</strong><small>Was verlangt die Aufgabe, worauf richtet sie sich, was grenzt sie ein?</small></button></li>
+            <li><button class="t-steps__btn" data-step="2" data-note="Identifier und citer: das Stilmittel mit seinem französischen Namen benennen, etwa On observe une anaphore, und die Stelle kurz in « ... » mit Zeilenangabe belegen."><span>2</span><strong>Beleg finden</strong><small>Identifier und citer: benennen, dann die Stelle zitieren.</small></button></li>
+            <li><button class="t-steps__btn" data-step="3" data-note="Interpréter: die Wirkung im Kontext erläutern. Wendungen wie souligne, met en évidence oder renforce l'idée que verbinden das Mittel mit seiner Wirkung."><span>3</span><strong>Wirkung erklären</strong><small>Interpréter: Was bewirkt das Mittel an dieser Stelle?</small></button></li>
+          </ol>
+          <div>
+            <div class="t-steps__target" data-steps-target>
+              <div class="ta-ex">
+                <span class="ta-ex__label">Aufgabe</span>
+                <p lang="fr"><mark data-step="1">Analysez</mark> <mark data-step="1">les procédés stylistiques</mark> de l'extrait <mark data-step="1">en vous appuyant sur le texte</mark>.</p>
+              </div>
+              <div class="ta-ex">
+                <span class="ta-ex__label">Auszug, Zeile 1</span>
+                <blockquote lang="fr">« <mark data-step="2">Moi, président</mark>, je ne nommerai pas... <mark data-step="2">Moi, président</mark>... »</blockquote>
+              </div>
+              <div class="ta-ex">
+                <span class="ta-ex__label">Dein Analyse-Satz</span>
+                <p lang="fr"><mark data-step="2">On observe une anaphore : « Moi, président » ouvre chaque phrase (l. 1)</mark>. <mark data-step="3">Cette anaphore renforce le message en martelant l'idée principale.</mark></p>
+              </div>
+              <p class="t-steps__note" data-steps-note aria-live="polite"></p>
+            </div>
           </div>
-          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
-            <div class="fc-etikett" id="fcKatR"></div>
-            <div class="fc-haupt" id="fcAntwort"></div>
-            <div class="fc-detail" id="fcDetail"></div>
-            <div class="fc-note" id="fcNote"></div>
+        </div>
+        <noscript><p class="t-noscript">Ohne JavaScript werden die Stellen im Beispiel nicht markiert. Die drei Schritte stehen links, das Beispiel rechts daneben.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone" id="vergleich" aria-labelledby="h-vergleich">
+      <div class="t-zone__head">
+        <h2 id="h-vergleich">Zwei Fassungen im Vergleich</h2>
+        <p class="t-zone__hint">Zeig auf eine Notiz, dann leuchten die Stellen in beiden Absätzen auf.</p>
+      </div>
+      <div class="t-surface">
+        <div data-compare>
+          <div class="t-compare__bar"><span class="t-label">Gleicher Gedanke, zwei Absätze</span></div>
+          <div class="t-compare__sides">
+            <figure class="t-compare__side t-compare__side--before">
+              <figcaption>Schwächer</figcaption>
+              <p lang="fr">Dans cet extrait, l'auteur utilise <mark class="t-diff" data-n="1">un beau langage</mark>. <mark class="t-diff" data-n="2">Il répète souvent des mots.</mark> <mark class="t-diff" data-n="3">C'est très efficace.</mark></p>
+            </figure>
+            <figure class="t-compare__side t-compare__side--after">
+              <figcaption>Verbessert</figcaption>
+              <p lang="fr">Dans cet extrait, l'auteur a recours à <mark class="t-diff" data-n="1">une anaphore</mark> : <mark class="t-diff" data-n="2">« Moi, président » ouvre chaque phrase (l. 1)</mark>. <mark class="t-diff" data-n="3">Cette répétition renforce le message en martelant l'idée principale.</mark></p>
+            </figure>
+          </div>
+          <ol class="t-compare__notes">
+            <li data-n="1">Das Stilmittel mit seinem Namen statt eines Pauschalurteils über „schöne Sprache“.</li>
+            <li data-n="2">Ein Beleg in « ... » mit Zeilenangabe statt der vagen Beobachtung, dass sich etwas wiederholt.</li>
+            <li data-n="3">Die Wirkung wird benannt. „C'est très efficace“ wertet nur und erklärt nichts.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-zone" id="resume" aria-labelledby="h-resume">
+      <div class="t-zone__head">
+        <h2 id="h-resume">Résumé prüfen</h2>
+        <p class="t-zone__hint">Deine Haken bleiben auf diesem Gerät gespeichert.</p>
+      </div>
+      <div class="t-surface ta-resume">
+        <div>
+          <h3>Résumer heißt: knapp und neutral wiedergeben</h3>
+          <p>Das Résumé gehört zum Anforderungsbereich I und folgt festen Regeln. Leg deinen Entwurf neben diese Liste und hake ab, was er erfüllt.</p>
+          <p>Ein Einstieg, der passt: <span lang="fr">« Dans ce texte, l'auteur traite de... »</span></p>
+        </div>
+        <div>
+          <ul class="t-check" data-checklist="resume" data-unit="Regeln erfüllt">
+            <li><label><input type="checkbox"><span>Präsens, auch wenn das Original im Passé composé steht. <small lang="fr">Camus écrit que...</small></span></label></li>
+            <li><label><input type="checkbox"><span>Dritte Person, auch bei Ich-Texten. <small><span lang="fr">Le narrateur se sent seul</span> statt <span lang="fr">Je me sens seul</span>.</small></span></label></li>
+            <li><label><input type="checkbox"><span>Keine Zitate, alles in eigenen Worten.</span></label></li>
+            <li><label><input type="checkbox"><span>Keine Wertung. <small><span lang="fr">malheureusement</span> oder <span lang="fr">il a raison</span> gehören nicht hinein.</small></span></label></li>
+            <li><label><input type="checkbox"><span>Auf ein Drittel bis ein Viertel des Originals gekürzt.</span></label></li>
+            <li><label><input type="checkbox"><span>Längenvorgabe eingehalten. <small>„Environ 100 mots“ heißt 90 bis 110 Wörter.</small></span></label></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-zone" id="karten" aria-labelledby="h-karten">
+      <div class="t-zone__head">
+        <h2 id="h-karten">Lernkarten: Operatoren und figures de style</h2>
+        <p class="t-zone__hint">Dein Fortschritt bleibt auf diesem Gerät gespeichert.</p>
+      </div>
+      <div class="t-surface">
+        <div id="deck"></div>
+        <noscript><p class="t-noscript">Die Lernkarten brauchen JavaScript. Die Anforderungsbereiche mit ihren Operatoren stehen unten unter „Erklärung“.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone" id="quiz" aria-labelledby="h-quiz">
+      <div class="t-zone__head">
+        <h2 id="h-quiz">Selbsttest: Quiz</h2>
+        <p class="t-zone__hint">Zwölf Fragen zu Operatoren und Stilmitteln.</p>
+      </div>
+      <div class="t-surface">
+        <div id="quizBox"></div>
+        <noscript><p class="t-noscript">Das Quiz braucht JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone reveal" id="erklaerung" aria-labelledby="h-erkl">
+      <div class="t-zone__head">
+        <h2 id="h-erkl">Erklärung: die drei Anforderungsbereiche</h2>
+      </div>
+      <ul class="ta-afb">
+        <li>
+          <h3>AFB I: Reproduktion</h3>
+          <p>Wiedergabe und Verständnis. Keine Wertung, keine Analyse.</p>
+          <p class="ta-afb__ops" lang="fr">résumer, présenter, décrire, citer, relever, nommer</p>
+          <dl><dt>Anteil (Beispiel)</dt><dd>etwa 30 bis 40 Prozent</dd></dl>
+        </li>
+        <li>
+          <h3>AFB II: Reorganisation</h3>
+          <p>Analyse und Strukturierung. Jede Aussage mit Textzitat belegen.</p>
+          <p class="ta-afb__ops" lang="fr">analyser, expliquer, caractériser, comparer, mettre en relation, structurer</p>
+          <dl><dt>Anteil (Beispiel)</dt><dd>etwa 40 bis 50 Prozent</dd></dl>
+        </li>
+        <li>
+          <h3>AFB III: Reflexion</h3>
+          <p>Wertung, Diskussion, kreative Produktion.</p>
+          <p class="ta-afb__ops" lang="fr">commenter, discuter, évaluer, prendre position, imaginer</p>
+          <dl><dt>Anteil (Beispiel)</dt><dd>etwa 20 bis 30 Prozent</dd></dl>
+        </li>
+      </ul>
+      <div class="t-note"><p><strong>Je nach Bundesland verschieden.</strong> Die Anteile sind ein Beispiel aus dem Buch. Wie deine Klausur gewichtet ist, hängt von Bundesland und Prüfungsformat ab. Prüf die Vorgaben deiner Schule.</p></div>
+
+      <div class="ta-more">
+        <details class="t-explain">
+          <summary>Die Aufgabe lesen: vier Schritte vor dem Schreiben</summary>
+          <div class="t-explain__body">
+            <ol class="ta-phrases">
+              <li>Operator markieren und übersetzen.</li>
+              <li>Auf das Subjekt der Aufgabe achten: <span lang="fr">analysez la relation</span> verlangt die Beziehung, nicht die Personen einzeln.</li>
+              <li>Eingrenzungen wie <span lang="fr">« en vous appuyant sur le texte »</span> ernst nehmen. Sie gehören zur Aufgabe.</li>
+              <li>Den Anforderungsbereich wirklich abdecken: <span lang="fr">relever</span> heißt heraussuchen und zitieren, nicht interpretieren.</li>
+            </ol>
+          </div>
+        </details>
+        <details class="t-explain">
+          <summary>Formulierungen für die Analyse</summary>
+          <div class="t-explain__body">
+            <ul class="ta-phrases" lang="fr">
+              <li>L'auteur a recours à ...</li>
+              <li>On observe une ... aux lignes ...</li>
+              <li>Ce procédé stylistique permet de ...</li>
+              <li>Cette image souligne / met en évidence / traduit ...</li>
+              <li>Cette répétition / antithèse / hyperbole renforce l'idée que ...</li>
+              <li>Le champ lexical de ... contribue à ...</li>
+            </ul>
+          </div>
+        </details>
+        <details class="t-explain">
+          <summary>Von einem Stilmittel zum Gesamteindruck</summary>
+          <div class="t-explain__body">
+            <p>Ein Stilmittel zu erkennen ist eine Wahrnehmungsleistung, seine Wirkung zu erklären eine Denkleistung. Auf die zweite kommt es in der Analyse an.</p>
+            <p>Eine gründliche Analyse zeigt außerdem, wie mehrere Stilmittel zusammen einen Gesamteindruck erzeugen, und schließt mit einer Synthese.</p>
+          </div>
+        </details>
+        <details class="t-explain">
+          <summary>Bedienung und Speicherstand</summary>
+          <div class="t-explain__body">
+            <p>Die Schritte, die Notizen im Vergleich und die Checkliste erreichst du mit <kbd>Tab</kbd>. Auf den Lernkarten dreht <kbd>Leertaste</kbd> die Karte, <kbd>&rarr;</kbd> heißt „sitzt“, <kbd>&larr;</kbd> heißt „nochmal“. Im Quiz wählst du mit <kbd>1</kbd> bis <kbd>3</kbd>.</p>
+            <p>Gespeichert werden nur deine Haken im Résumé-Check, die Karten, die bei dir sitzen, und dein bestes Quizergebnis, im Browser auf diesem Gerät. Nichts davon wird übertragen.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/franzoesisch.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p><a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a> erklärt alle 28 Operatoren mit Beispielaufgaben und erwarteter Länge und zeigt zu jeder Figur Beispiele von Corneille bis Hollande sowie eine vollständige Beispielanalyse.</p>
           </div>
         </div>
       </div>
-      <div class="fcard-aktionen">
-        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
-        <button class="btn" id="btnKnown">Sitzt, nächste</button>
-        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
-        <span class="hint" id="restHint"></span>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/schreibwerkstatt-franzoesisch.html"><span class="t-related__img"><img src="/assets/previews/schreibwerkstatt-franzoesisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Schreibwerkstatt Französisch</strong><span>Résumé, Analyse und Commentaire als ganzen Text aufbauen</span></span></a></li>
+          <li><a href="/tools/franzoesisch.html"><span class="t-related__img"><img src="/assets/previews/franzoesisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Französisch-Abitur-Trainer</strong><span>Grammatik und Konnektoren für den Aufsatz</span></span></a></li>
+          <li><a href="/tools/textanalyse-englisch.html"><span class="t-related__img"><img src="/assets/previews/textanalyse-englisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Textanalyse Englisch</strong><span>Operatoren und Stilmittel auf Englisch</span></span></a></li>
+        </ul>
       </div>
-      <div class="deck-fertig" id="deckFertig" hidden>
-        <strong>Stapel geschafft.</strong>
-        <span id="fertigText"></span>
-      </div>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a> zeigt zu jeder Figur berühmte Beispiele von Corneille bis Hollande und eine vollständige Beispielanalyse auf 14-Punkte-Niveau.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Das Résumé: die unterschätzte Punktequelle</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Der wichtigste AFB-I-Operator, und einer der am häufigsten verpatzten. Die Regeln sind nicht verhandelbar:</p>
-      <dl class="ledger">
-        <div class="row"><dt>Präsens</dt><dd>Immer, auch wenn der Originaltext im Passé composé steht: Camus écrit que...</dd></div>
-        <div class="row"><dt>Dritte Person</dt><dd>Auch bei Ich-Texten: Le narrateur se sent seul statt Je me sens seul.</dd></div>
-        <div class="row"><dt>Keine Zitate, keine Wertung</dt><dd>Alles in eigenen Worten; malheureusement und il a raison haben hier nichts zu suchen.</dd></div>
-        <div class="row"><dt>Längenvorgabe</dt><dd>„Environ 100 mots“ heißt 90 bis 110. Ein brillantes Résumé mit 200 Wörtern ist eine verfehlte Aufgabe.</dd></div>
-        <div class="row"><dt>Relever heißt heraussuchen</dt><dd>Nicht interpretieren: Textstellen identifizieren und zitieren. Die Analyse folgt in der nächsten Teilaufgabe.</dd></div>
-      </dl>
-    </div>
-
-    <div class="panel">
-      <h2>Quiz: Operatoren sicher deuten</h2>
-      <div id="quizBox" aria-live="polite"></div>
-      <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
+    </section>
   </div>
 </main>
 
@@ -114,43 +288,44 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/textanalyse-englisch.html">Zur Textanalyse Englisch</a></span>
     </div>
   </div>
 </footer>
 
 <script>
+// Kartenformat: [Vorderseite, Antwort, Beispiel, Notiz]
 const DECKS = {
   "Operatoren": {
     "AFB I: Reproduktion": [
-      ["résumer", "Inhalt knapp und objektiv wiedergeben: Präsens, dritte Person, keine Zitate, keine Wertung, auf ein Drittel bis ein Viertel kürzen.", "« Dans ce texte, l'auteur traite de... »", "Der wichtigste Operator des ersten Anforderungsbereichs."],
+      ["résumer", "Inhalt knapp und objektiv wiedergeben: Präsens, dritte Person, keine Zitate, keine Wertung, auf ein Drittel bis ein Viertel kürzen.", "« Dans ce texte, l'auteur traite de... »", "Ein zentraler Operator des ersten Anforderungsbereichs."],
       ["présenter / décrire", "Vorstellen beziehungsweise systematisch beschreiben, ohne zu werten: vom Allgemeinen zum Detail, vom Vordergrund zum Hintergrund.", "", "Typisch für Bildbeschreibungen vor der eigentlichen Analyse."],
-      ["citer / relever", "Wörtlich zitieren beziehungsweise Textstellen heraussuchen. Relever heißt NICHT interpretieren.", "Zitate immer in « ... », möglichst kurz.", "Lange Zitate signalisieren, dass du das Relevante nicht erkennst."],
+      ["citer / relever", "Wörtlich zitieren beziehungsweise Textstellen heraussuchen. Relever heißt NICHT interpretieren.", "Zitate immer in « ... », möglichst kurz.", "Kurze Zitate zeigen, dass du das Relevante erkannt hast."],
       ["nommer / identifier", "Elemente knapp benennen, ohne Erklärung.", "Nommez les personnages principaux.", "Kein ausgearbeiteter Aufsatz nötig."]
     ],
     "AFB II: Reorganisation": [
-      ["analyser", "In Bestandteile zerlegen und ihr Zusammenwirken zeigen: Erzählperspektive, Struktur, Figuren, sprachliche Mittel, Atmosphäre. Jede Aussage belegen.", "« L'auteur a recours à ... pour ... »", "Der am häufigsten missverstandene Operator: Analyse ist weder Wiedergabe noch Wertung."],
+      ["analyser", "In Bestandteile zerlegen und ihr Zusammenwirken zeigen: Erzählperspektive, Struktur, Figuren, sprachliche Mittel, Atmosphäre. Jede Aussage belegen.", "« L'auteur a recours à ... pour ... »", "Oft missverstanden: Analyse ist weder Wiedergabe noch Wertung."],
       ["expliquer", "Das Warum herausarbeiten: Ursachen, Hintergründe, Zusammenhänge.", "« Cela s'explique par le fait que ... »", ""],
       ["caractériser", "Wesentliche Eigenschaften erfassen: direkte plus indirekte Charakterisierung (Handlungen, Sprache, Reaktionen anderer).", "", ""],
-      ["comparer", "Strukturiert vergleichen anhand vorab definierter Kriterien.", "« Tandis que X ..., Y ... » · « À la différence de ... »", "Erst Kriterien festlegen (Herkunft, Motive, Entwicklung), dann systematisch durchgehen."],
-      ["mettre en relation / structurer", "Dokumente in tiefe Verbindung setzen (ergänzen sie sich, widersprechen sie sich?) beziehungsweise die innere Gliederung herausarbeiten.", "", "Anspruchsvoller als schlichtes comparer."]
+      ["comparer", "Strukturiert vergleichen anhand vorab definierter Kriterien.", "« Tandis que X ..., Y ... »; « À la différence de ... »", "Erst Kriterien festlegen (Herkunft, Motive, Entwicklung), dann systematisch durchgehen."],
+      ["mettre en relation / structurer", "Dokumente in Verbindung setzen (ergänzen sie sich, widersprechen sie sich?) beziehungsweise die innere Gliederung herausarbeiten.", "", "Anspruchsvoller als schlichtes comparer."]
     ],
     "AFB III: Reflexion": [
-      ["commenter", "Kritisch kommentieren mit Pro UND Contra, dialektisch aufgebaut, am Ende eigene Position.", "« Néanmoins, on peut objecter que... » · « Il convient de nuancer... »", "Einseitig kommentieren signalisiert fehlende Differenzierung."],
+      ["commenter", "Kritisch kommentieren mit Pro UND Contra, dialektisch aufgebaut, am Ende eigene Position.", "« Néanmoins, on peut objecter que... »; « Il convient de nuancer... »", "Ein einseitiger Kommentar wirkt undifferenziert."],
       ["discuter", "Streitfrage dialektisch erörtern: Thèse, Antithèse, Synthèse.", "", "Die Synthèse ist kein Kompromiss, sondern eine neue Perspektive."],
       ["évaluer / juger", "Anhand definierter Kriterien bewerten: erst Kriterien benennen, dann systematisch anwenden.", "", ""],
       ["prendre position / justifier", "Von Anfang an klar Position beziehen und mit Argumenten stützen; Gegenargumente kennen und entkräften.", "", "Ohne entkräftete Gegenargumente wirkt die Position naiv."],
-      ["imaginer / rédiger", "Kreativ in eine Situation hineinversetzen: Brief, Dialog, Fortsetzung. Perspektive, Ton und Stil des Originals konsequent halten.", "", "Sprachliche Eleganz zählt auch im kreativen Modus."]
+      ["imaginer / rédiger", "Kreativ in eine Situation hineinversetzen: Brief, Dialog, Fortsetzung. Perspektive, Ton und Stil des Originals konsequent halten.", "", "Sprachliche Sorgfalt zählt auch im kreativen Modus."]
     ]
   },
   "Figures de style": {
     "Bildhaft": [
-      ["la métaphore", "Bedeutungsübertragung ohne Vergleichswort.", "« Le temps est de l'argent » · « l'aube de la civilisation »", "Das häufigste Stilmittel; verdichtet, macht Abstraktes greifbar."],
+      ["la métaphore", "Bedeutungsübertragung ohne Vergleichswort.", "« Le temps est de l'argent »; « l'aube de la civilisation »", "Sehr verbreitet; verdichtet, macht Abstraktes greifbar."],
       ["la comparaison", "Vergleich mit comme, tel, pareil à, semblable à.", "« Il est fort comme un lion »", "Anschaulicher und transparenter als die Metapher."],
-      ["la personnification", "Unbelebtes erhält menschliche Eigenschaften.", "« Le vent murmure dans les arbres » · « La ville dort encore »", "Typisch für Lyrik und Naturbeschreibungen."],
+      ["la personnification", "Unbelebtes erhält menschliche Eigenschaften.", "« Le vent murmure dans les arbres »; « La ville dort encore »", "Typisch für Lyrik und Naturbeschreibungen."],
       ["l'allégorie", "Erweiterte Personifikation: ein abstrakter Begriff wird zur Figur.", "La Justice mit der Waage, La Liberté auf den Barrikaden", "Macht philosophische Konzepte erfahrbar."],
-      ["la synesthésie", "Verbindung verschiedener Sinneseindrücke.", "« une voix chaude » · « un parfum criard »", "Wirkt poetisch, intensiviert die Sinneserfahrung."]
+      ["la synesthésie", "Verbindung verschiedener Sinneseindrücke.", "« une voix chaude »; « un parfum criard »", "Wirkt poetisch, intensiviert die Sinneserfahrung."]
     ],
     "Wiederholung": [
       ["l'anaphore", "Wiederholung am Anfang aufeinanderfolgender Sätze.", "« Moi, président, je ne nommerai pas... Moi, président... » (Hollande 2012)", "« L'anaphore renforce le message en martelant l'idée principale. »"],
@@ -160,45 +335,61 @@ const DECKS = {
     ],
     "Gegensatz": [
       ["l'antithèse", "Gegenüberstellung inhaltlich gegensätzlicher Aussagen.", "« Je vis, je meurs » (Louise Labé)", "Zwingt den Leser, beide Pole gleichzeitig zu denken."],
-      ["l'oxymore", "Zwei direkte Widersprüche in einer Wendung.", "« cette obscure clarté » (Corneille) · « un silence assourdissant »", "Bricht die logische Erwartung des Lesers."],
-      ["le chiasme", "Kreuzstellung nach dem Schema ABBA.", "« Il faut manger pour vivre, et non vivre pour manger. » (Molière)", "Besonders elegant; beliebt in Aphorismen."],
+      ["l'oxymore", "Zwei direkte Widersprüche in einer Wendung.", "« cette obscure clarté » (Corneille); « un silence assourdissant »", "Bricht die logische Erwartung des Lesers."],
+      ["le chiasme", "Kreuzstellung nach dem Schema ABBA.", "« Il faut manger pour vivre, et non vivre pour manger. » (Molière)", "Elegant; beliebt in Aphorismen."],
       ["le parallélisme", "Gleiche syntaktische Struktur in Folge.", "« Nous voulons des droits ; nous voulons des libertés ; ... »", "Rhythmus und Klarheit; typisch für Reden und Manifeste."]
     ],
     "Quantität": [
-      ["l'hyperbole", "Bewusste Übertreibung.", "« J'ai mille choses à te dire » · « il pleut des cordes »", "Emotionale Verstärkung oder Ironie."],
+      ["l'hyperbole", "Bewusste Übertreibung.", "« J'ai mille choses à te dire »; « il pleut des cordes »", "Emotionale Verstärkung oder Ironie."],
       ["la litote", "Bewusste Untertreibung: mehr gemeint als gesagt.", "« Va, je ne te hais point » (Corneille) = Ich liebe dich.", "Typisches Element des gehobenen Französisch."],
-      ["l'euphémisme", "Mildere Umschreibung eines Tabus.", "« Il nous a quittés » statt « il est mort »", "Kann rücksichtsvoll oder manipulativ-verschleiernd sein."]
+      ["l'euphémisme", "Mildere Umschreibung eines Tabus.", "« Il nous a quittés » statt « il est mort »", "Kann rücksichtsvoll oder verschleiernd sein."]
     ],
     "Bedeutungsverschiebung": [
       ["l'ironie / le sarcasme", "Das Gegenteil des Gemeinten; Sarkasmus ist die bissige, verletzende Variante.", "« Quel beau temps ! » im Wolkenbruch", "Voltaires Candide: ironische Demontage des Optimismus."],
-      ["la métonymie", "Ersetzung durch einen verwandten Begriff.", "« L'Élysée a annoncé... » · « lire Camus » · « boire un verre »", "Ort für Institution, Autor für Werk, Behälter für Inhalt."],
-      ["la synecdoque", "Teil steht für das Ganze.", "« une voile à l'horizon » · « les blouses blanches »", "Sonderform der Metonymie."],
-      ["la périphrase", "Umschreibende Wendung statt eines Wortes.", "« la ville lumière » · « le roi des animaux » · « l'astre du jour »", "Wirkt literarisch-gehoben."]
+      ["la métonymie", "Ersetzung durch einen verwandten Begriff.", "« L'Élysée a annoncé... »; « lire Camus »; « boire un verre »", "Ort für Institution, Autor für Werk, Behälter für Inhalt."],
+      ["la synecdoque", "Teil steht für das Ganze.", "« une voile à l'horizon »; « les blouses blanches »", "Sonderform der Metonymie."],
+      ["la périphrase", "Umschreibende Wendung statt eines Wortes.", "« la ville lumière »; « le roi des animaux »; « l'astre du jour »", "Wirkt literarisch-gehoben."]
     ],
     "Frage und Anruf": [
       ["la question rhétorique", "Frage, deren Antwort bereits implizit ist.", "« Comment ne pas être indigné par cette situation ? »", "Lenkt den Leser auf eine vorgegebene Antwort."],
       ["l'apostrophe", "Direkte Anrede an Abwesendes oder Abstraktes.", "« Ô temps, suspends ton vol ! » (Lamartine)", "Typisch für die romantische Lyrik."],
-      ["l'exclamation", "Starke Emotion in markierter Satzform.", "« Quelle injustice ! » · « Que la vie est belle ! »", "Indikator für die emotionale Beteiligung des Sprechers."]
+      ["l'exclamation", "Starke Emotion in markierter Satzform.", "« Quelle injustice ! »; « Que la vie est belle ! »", "Zeigt die emotionale Beteiligung des Sprechers."]
     ]
   }
 };
 
 const QUIZ = [
-  {f: '« Résumez le texte en environ 100 mots. » Was ist verlangt?', o: ['Zusammenfassung mit kurzem eigenen Fazit', 'Objektive Wiedergabe: Präsens, dritte Person, ohne Zitate, 90-110 Wörter', 'Die wichtigsten Sätze wörtlich zitieren'], r: 1, e: 'Die Längenangabe ist verbindlich, Wertung und Zitate sind tabu.'},
-  {f: '„Relevez les éléments qui montrent la solitude du personnage“ verlangt...', o: ['...eine Analyse der Einsamkeit', '...die Textstellen heraussuchen und zitieren', '...eine Charakterisierung der Figur'], r: 1, e: 'Relever heißt heraussuchen, nicht interpretieren. Die Analyse folgt in der nächsten Teilaufgabe.'},
-  {f: 'Was unterscheidet eine Analyse von einer Wiedergabe?', o: ['Die Analyse ist länger', 'Die Analyse zeigt, wie Bestandteile zusammenwirken und welche Wirkung entsteht', 'Die Analyse enthält die eigene Meinung'], r: 1, e: 'Analyse ist weder Inhaltswiedergabe noch persönliche Wertung.'},
-  {f: 'Die Struktur von discuter ist...', o: ['...Pro-Argumente, dann Fazit', '...Thèse, Antithèse, Synthèse', '...Einleitung, Hauptteil, Schluss ohne Vorgabe'], r: 1, e: 'Die dialektische Struktur; die Synthèse überschreitet beide Pole, statt nur zu vermitteln.'},
-  {f: '« Va, je ne te hais point » ist...', o: ['...ein Euphemismus', '...eine Litote', '...eine Hyperbel'], r: 1, e: 'Die berühmteste französische Untertreibung: Gemeint ist „Ich liebe dich“.'},
-  {f: '« L’Élysée a annoncé... » ist...', o: ['...eine Synekdoche', '...eine Metonymie', '...eine Allegorie'], r: 1, e: 'Ort steht für Institution: der Präsident. Die Synekdoche wäre Teil für Ganzes.'},
-  {f: '« Cette obscure clarté » (Corneille) ist...', o: ['...eine Antithese', '...ein Oxymoron', '...eine Synästhesie'], r: 1, e: 'Zwei direkte Widersprüche in einer engen Wendung: das Oxymoron.'},
-  {f: '« Moi, président, je ne nommerai pas... Moi, président... » ist...', o: ['...ein Parallelismus', '...eine Anapher', '...eine Epipher'], r: 1, e: 'Wiederholung am Satzanfang: die Anapher, Hollandes berühmtes Beispiel von 2012.'},
-  {f: 'Eine gute Stilmittelanalyse besteht aus...', o: ['...Benennen des Stilmittels', '...identifier, citer, interpréter', '...möglichst vielen Fachbegriffen'], r: 1, e: 'Die Drei-Schritt-Methode: benennen, belegen, Wirkung erläutern.'},
-  {f: '„Analysez la relation entre les deux personnages“ verlangt...', o: ['...beide Personen einzeln charakterisieren', '...die spezifische Beziehung analysieren', '...die Handlung zusammenfassen'], r: 1, e: 'Das Subjekt der Aufgabe genau lesen: die Beziehung, nicht die Personen einzeln.'},
-  {f: '« Il faut manger pour vivre, et non vivre pour manger » ist...', o: ['...ein Chiasmus', '...eine Gradation', '...eine Periphrase'], r: 0, e: 'Kreuzstellung ABBA: manger und vivre in umgekehrter Reihenfolge.'},
-  {f: 'Eingrenzungen wie « en vous appuyant sur le texte » sind...', o: ['...optionale Hinweise', '...verbindlicher Teil der Aufgabe', '...nur für den Leistungskurs relevant'], r: 1, e: 'Wer sie ignoriert, bekommt Abzüge: Sie gehören zur Aufgabenstellung.'}
+  {f: "« Résumez le texte en environ 100 mots. » Was ist verlangt?", o: ["Zusammenfassung mit kurzem eigenen Fazit", "Objektive Wiedergabe: Präsens, dritte Person, ohne Zitate, 90 bis 110 Wörter", "Die wichtigsten Sätze wörtlich zitieren"], r: 1, e: "Die Längenangabe ist verbindlich, Wertung und Zitate gehören nicht hinein."},
+  {f: "„Relevez les éléments qui montrent la solitude du personnage“ verlangt...", o: ["...eine Analyse der Einsamkeit", "...die Textstellen heraussuchen und zitieren", "...eine Charakterisierung der Figur"], r: 1, e: "Relever heißt heraussuchen, nicht interpretieren. Die Analyse folgt in der nächsten Teilaufgabe."},
+  {f: "Was unterscheidet eine Analyse von einer Wiedergabe?", o: ["Die Analyse ist länger", "Die Analyse zeigt, wie Bestandteile zusammenwirken und welche Wirkung entsteht", "Die Analyse enthält die eigene Meinung"], r: 1, e: "Analyse ist weder Inhaltswiedergabe noch persönliche Wertung."},
+  {f: "Die Struktur von discuter ist...", o: ["...Pro-Argumente, dann Fazit", "...Thèse, Antithèse, Synthèse", "...Einleitung, Hauptteil, Schluss ohne Vorgabe"], r: 1, e: "Die dialektische Struktur; die Synthèse überschreitet beide Pole, statt nur zu vermitteln."},
+  {f: "« Va, je ne te hais point » ist...", o: ["...ein Euphemismus", "...eine Litote", "...eine Hyperbel"], r: 1, e: "Corneilles bekannte Untertreibung: Gemeint ist „Ich liebe dich“."},
+  {f: "« L'Élysée a annoncé... » ist...", o: ["...eine Synekdoche", "...eine Metonymie", "...eine Allegorie"], r: 1, e: "Ort steht für Institution: der Präsident. Die Synekdoche wäre Teil für Ganzes."},
+  {f: "« Cette obscure clarté » (Corneille) ist...", o: ["...eine Antithese", "...ein Oxymoron", "...eine Synästhesie"], r: 1, e: "Zwei direkte Widersprüche in einer engen Wendung: das Oxymoron."},
+  {f: "« Moi, président, je ne nommerai pas... Moi, président... » ist...", o: ["...ein Parallelismus", "...eine Anapher", "...eine Epipher"], r: 1, e: "Wiederholung am Satzanfang: die Anapher, hier aus Hollandes Wahlkampf 2012."},
+  {f: "Eine Stilmittelanalyse besteht aus...", o: ["...dem Benennen des Stilmittels", "...identifier, citer, interpréter", "...möglichst vielen Fachbegriffen"], r: 1, e: "Benennen, belegen, Wirkung erläutern: erst alle drei Schritte machen eine Analyse."},
+  {f: "„Analysez la relation entre les deux personnages“ verlangt...", o: ["...beide Personen einzeln charakterisieren", "...die Beziehung zwischen ihnen analysieren", "...die Handlung zusammenfassen"], r: 1, e: "Das Subjekt der Aufgabe genau lesen: die Beziehung, nicht die Personen einzeln."},
+  {f: "« Il faut manger pour vivre, et non vivre pour manger » ist...", o: ["...ein Chiasmus", "...eine Gradation", "...eine Periphrase"], r: 0, e: "Kreuzstellung ABBA: manger und vivre in umgekehrter Reihenfolge."},
+  {f: "Eingrenzungen wie « en vous appuyant sur le texte » sind...", o: ["...optionale Hinweise", "...verbindlicher Teil der Aufgabe", "...nur für den Leistungskurs relevant"], r: 1, e: "Sie gehören zur Aufgabenstellung. Wer sie übergeht, beantwortet die Aufgabe nur teilweise."}
 ];
 </script>
 <script src="/assets/trainer.js"></script>
+<script>
+  var taDeck = PaviTools.deck("#deck", { decks: DECKS, storageKey: "karten", deckLabel: "Stapel", catLabel: "Bereich" });
+  document.getElementById("factCards").textContent = String(taDeck.count());
+  PaviTools.quiz("#quizBox", { fragen: QUIZ, storageKey: "quiz" });
+  // Auf schmalen Bildschirmen steht das Beispiel unter den Schritten: nach dem Klick die markierte Stelle zeigen
+  document.querySelectorAll(".t-steps__btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (!window.matchMedia("(max-width: 880px)").matches) return;
+      setTimeout(function () {
+        var m = document.querySelector("[data-steps-target] mark.is-active");
+        if (m) m.scrollIntoView({ block: "center", behavior: PaviTools.reduced() ? "auto" : "smooth" });
+      }, 0);
+    });
+  });
+</script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

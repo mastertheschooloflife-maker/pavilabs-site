@@ -1,13 +1,59 @@
 <!doctype html>
-<html lang="de" style="--akzent:#5C8A3E;--akzent-tief:#33531F">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Schreibwerkstatt Englisch</title>
-<meta name="description" content="Klausurtexte und Sprachmittlung für das Englisch-Abitur: der 5-Minuten-Plan, die PEEL-Struktur, starke Einleitungen, formelles Register und der Mediations-Workflow, nach dem Buch Englisch Meistern.">
+<title>Schreibwerkstatt Englisch: Aufbau für Analyse, Erörterung und Sprachmittlung</title>
+<meta name="description" content="Schreiben im Englisch-Abitur: Aufgabe wählen, den Beispielaufbau Abschnitt für Abschnitt ansehen und vor der Abgabe eine Checkliste abhaken. Für Analyse, Erörterung, kreatives Schreiben und Sprachmittlung, dazu Formulierungen als Lernkarten und ein Quiz. Nach dem Buch Englisch Meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/schreibwerkstatt-englisch.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+  /* Seitenlokal: Ablauf in drei Stationen (Aufgabe, Aufbau, Checkliste) */
+  .sw-stage + .sw-stage { margin-top: 34px; padding-top: 30px; border-top: 1px solid var(--hairline); }
+  .sw-stage__head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .sw-stage__head h3 { font-size: 1.15rem; margin: 0; }
+  .sw-stage__num {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1.5px solid var(--leaf); color: var(--fg);
+    font-size: 0.85rem; font-weight: 700;
+  }
+  .sw-stage__hint { margin: -6px 0 16px 44px; color: var(--fg-dim); font-size: 0.93rem; }
+  html:not(.js) .sw-pick { display: none; }
+  .sw-panel__title { font-size: 1rem; margin: 0 0 6px; color: var(--mint); }
+  html.js .sw-panel__title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .sw-panel + .sw-panel { margin-top: 28px; }
+  html.js .sw-panel + .sw-panel { margin-top: 0; }
+  .sw-panel:focus { outline: none; }
+  /* Seitenlokal: Gliederung als aufklappbare Abschnitte mit Nummer */
+  .sw-outline { counter-reset: sw; }
+  .sw-outline .t-explain > summary { justify-content: flex-start; gap: 14px; }
+  .sw-outline .t-explain > summary::before {
+    counter-increment: sw; content: counter(sw);
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: rgba(143, 184, 119, 0.16); color: var(--fg);
+    font-size: 0.8rem; font-weight: 700;
+  }
+  .sw-outline .t-explain > summary::after { margin-left: auto; }
+  .sw-outline .t-explain[open] > summary::before { background: var(--leaf); color: var(--ground); }
+  .sw-outline summary small { font-weight: 400; font-size: 0.9rem; color: var(--fg-dim); }
+  .sw-outline .t-explain__body { padding-left: 44px; }
+  .sw-phrase { margin: 10px 0 0; padding: 12px 16px; border-radius: 12px; background: var(--paper-bright); color: var(--ink); font-size: 0.97rem; line-height: 1.6; }
+  .sw-phrase b { display: block; font-size: 0.75rem; letter-spacing: 0.03em; color: var(--leaf-ink); margin-bottom: 2px; }
+  .sw-miss { margin: 10px 0 0; font-size: 0.93rem; }
+  .sw-miss b { color: var(--danger); font-weight: 650; }
+  .sw-checks { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 32px; align-items: start; }
+  .sw-checks h4 { font-size: 0.95rem; margin: 0 0 8px; color: var(--fg); }
+  @media (max-width: 880px) { .sw-checks { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) {
+    .sw-outline .t-explain__body { padding-left: 4px; }
+    .sw-stage__hint { margin-left: 0; }
+  }
+</style>
 </head>
 <body>
 
@@ -24,107 +70,309 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Schreibwerkstatt Englisch</h1>
-    <p class="tool-lede">Schreiben ist die Kernkompetenz des Englisch-Abiturs: Analysen, Erörterungen, kreative Texte und Sprachmittlung, alles unter Zeitdruck auf 14-Punkte-Niveau. Wer ein klares System hat, spart Klausurzeit und schreibt besser. Dieses Werkzeug gibt dir das System: den 5-Minuten-Plan, den Aufbau jedes argumentativen Textes von Hook bis Fazit, die PEEL-Struktur für jeden Absatz, das formelle Register und den Workflow für die Sprachmittlung.</p>
-    <p class="tool-src">Diese Werkstatt folgt den Kapiteln Schriftliche Textproduktion und Sprachmittlung aus <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a>.</p>
-
-    <div class="panel">
-      <h2>Der 5-Minuten-Plan</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Der häufigste Klausurfehler: sofort losschreiben. Das Ergebnis biegt nach der Hälfte in eine andere Richtung ab. Fünf Minuten Planung sparen zehn Minuten Schreiben.</p>
-      <ol class="phasen">
-        <li><h3>Operator + Thema</h3><p>Operator markieren: Analyse, Erörterung oder kreatives Schreiben? Die zentrale Fragestellung in einem Satz.</p></li>
-        <li><h3>Argumente + Reihenfolge</h3><p>3 bis 4 Stichpunkte, als Schlagwörter. Dann ordnen: steigern, nicht abschwächen.</p></li>
-        <li><h3>Fazit antizipieren</h3><p>Die Kernthese in einem Satz formulieren, bevor du anfängst. Wer ohne Plan schreibt, schreibt zweimal.</p></li>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Englisch</a></li>
+        <li><span aria-current="page">Schreibwerkstatt</span></li>
       </ol>
-    </div>
+    </nav>
 
-    <div class="panel">
-      <h2>Aufbau: Einleitung, PEEL, Schluss</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Einleitung</dt><dd>Drei bis fünf Sätze: Hook, Kontext, Thesis Statement. Starke Hooks: eine aktuelle Zahl, eine provokante Frage, ein Zitat oder ein Szenario. Nie „In this essay I will discuss...“: Das ist eine Ankündigung, kein Argument.</dd></div>
-        <div class="row"><dt>Thesis Statement</dt><dd>Der letzte Satz der Einleitung: spezifisch, argumentativ und angreifbar. Nicht „This essay discusses climate change“, sondern eine Position, der jemand widersprechen könnte.</dd></div>
-        <div class="row"><dt>PEEL-Absätze</dt><dd>Point (Hauptgedanke in einem Satz), Evidence (Beispiel, Statistik, Zitat), Explanation (wie stützt der Beleg den Punkt?), Link (Verbindung zur These oder zum nächsten Absatz). Die Explanation lassen viele weg: Genau dort liegen die Punkte.</dd></div>
-        <div class="row"><dt>Schluss</dt><dd>Synthese auf höherem Niveau, klare Position, Ausblick. Kein neues Argument, kein „It is difficult to say...“.</dd></div>
-        <div class="row"><dt>Erörterung auf AFB III</dt><dd>These, Argument 1, Argument 2, Gegenargument, Widerlegung, Fazit. Das eingeräumte und entkräftete Gegenargument hebt dich auf Bestnoten-Niveau.</dd></div>
-      </dl>
-      <div class="cee-box"><strong>Coherence und Cohesion:</strong> Jeder Absatz verfolgt genau eine Hauptidee (coherence); Konnektoren, Pronomen und wiederaufgenommene Schlüsselbegriffe verknüpfen sprachlich (cohesion). Wiederhole zentrale Schlüsselwörter gezielt, statt zwanghaft Synonyme zu suchen.</div>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a> zeigt die PEEL-Struktur an vollständigen Beispielabsätzen und die spezifischen Anforderungen aller drei Texttypen, vom Discussion Essay bis zum inneren Monolog.</span>
+    <header class="t-intro">
+      <div>
+        <h1>Schreibwerkstatt Englisch</h1>
+        <p class="t-goal">Du hast eine Analyse, eine Erörterung, einen kreativen Text oder eine Sprachmittlung vor dir? Wähl die Aufgabe, sieh dir den Aufbau Abschnitt für Abschnitt an und <strong>hake vor der Abgabe ab, was dein Text erfüllt</strong>.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start=".sw-pick .t-seg__btn[aria-selected='true']">Übung starten</a>
+          <a class="btn btn--ghost" href="#karten">Formulierungen üben</a>
+        </div>
       </div>
-    </div>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>4</dt><dd>Aufgabentypen</dd></div>
+          <div><dt>6</dt><dd>Prüfpunkte vor der Abgabe</dd></div>
+          <div><dt id="factCards">12</dt><dd>Karten</dd></div>
+          <div><dt>10</dt><dd>Quizfragen</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So gehst du vor">
+          <li><span><strong>Aufgabe wählen:</strong> Analyse, Erörterung, kreatives Schreiben oder Sprachmittlung.</span></li>
+          <li><span><strong>Aufbau ansehen:</strong> Jeder Abschnitt klappt auf, mit Formulierung und typischem Fehler.</span></li>
+          <li><span><strong>Checkliste abhaken:</strong> Die Haken bleiben auf diesem Gerät gespeichert.</span></li>
+        </ol>
+      </div>
+    </header>
 
-    <div class="panel">
-      <h2>Sprachmittlung: der Workflow</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Sprachmittlung ist kein Übersetzen. Du vermittelst den Kerninhalt adressatengerecht, verdichtet und in natürlichem Englisch. Du darfst kürzen, du musst auswählen, und der Adressat bestimmt Ton und Register.</p>
-      <ol class="phasen">
-        <li><h3>Adressat klären</h3><p>Für wen schreibe ich, was macht die Person mit der Information, wie formell ist der Rahmen?</p></li>
-        <li><h3>Verstehen + auswählen</h3><p>Zweimal lesen, vier bis fünf Kernpunkte markieren, Irrelevantes streichen.</p></li>
-        <li><h3>Englisch denken</h3><p>Stichpunkte auf Englisch, dann Fließtext, dann revidieren: Klingt es natürlich? Stimmt das Register?</p></li>
-      </ol>
-      <dl class="ledger">
-        <div class="row"><dt>Die teuersten Fehler</dt><dd>Satz für Satz übersetzen, Kerninformationen auslassen, Nicht-Dagewesenes hinzufügen, ganze Sätze zitieren, falsches Register, Germanismen wie „It was decided by the government that...“.</dd></div>
-        <div class="row"><dt>Wort fehlt?</dt><dd>Paraphrasieren (ein klarer Satz schlägt eine falsche Übersetzung), Oberbegriff nutzen (Fernweh: a longing for distant places) oder weglassen, wenn es den Inhalt nicht verfälscht.</dd></div>
-        <div class="row"><dt>Training</dt><dd>Wöchentlich einen deutschen Zeitungsartikel (200 bis 400 Wörter) für einen definierten Adressaten in 10 bis 15 Minuten zusammenfassen, danach auf Natürlichkeit und Register prüfen.</dd></div>
-      </dl>
-    </div>
-
-    <div class="panel">
-      <h2>Formulierungen als Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Drei Kategorien: Analyse-Phrasen, Mediations-Phrasen und die Register-Upgrades, die Umgangssprache durch Klausurenglisch ersetzen.</p>
-      <div class="chip-row" id="deckRow" style="display:none"></div>
-      <div class="chip-row" id="catRow"></div>
-      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
-      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
-      <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button">
-          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
-            <div class="fc-etikett" id="fcKatV"></div>
-            <div class="fc-haupt" id="fcFrage"></div>
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Üben: Aufbau deiner Aufgabe</h2>
+        <p class="t-zone__hint">Deine Auswahl und deine Haken bleiben auf diesem Gerät gespeichert.</p>
+      </div>
+      <div class="t-surface">
+        <div class="sw-stage sw-pick">
+          <div class="sw-stage__head"><span class="sw-stage__num" aria-hidden="true">1</span><h3 id="h-wahl">Aufgabe wählen</h3></div>
+          <div class="t-seg" data-seg data-seg-store="aufgabe" aria-labelledby="h-wahl">
+            <button class="t-seg__btn" data-value="analyse" aria-controls="p-analyse" aria-selected="true">Analyse</button>
+            <button class="t-seg__btn" data-value="eroerterung" aria-controls="p-eroerterung">Erörterung</button>
+            <button class="t-seg__btn" data-value="kreativ" aria-controls="p-kreativ">Kreatives Schreiben</button>
+            <button class="t-seg__btn" data-value="mediation" aria-controls="p-mediation">Sprachmittlung</button>
           </div>
-          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
-            <div class="fc-etikett" id="fcKatR"></div>
-            <div class="fc-haupt" id="fcAntwort"></div>
-            <div class="fc-detail" id="fcDetail"></div>
-            <div class="fc-note" id="fcNote"></div>
+        </div>
+
+        <div class="sw-stage">
+          <div class="sw-stage__head"><span class="sw-stage__num" aria-hidden="true">2</span><h3>Beispielaufbau ansehen</h3></div>
+          <p class="sw-stage__hint">Klapp einen Abschnitt auf, um zu sehen, was hineingehört.</p>
+
+          <div class="sw-panel" id="p-analyse">
+            <h4 class="sw-panel__title">Analyse</h4>
+            <div class="sw-outline">
+              <details class="t-explain" open>
+                <summary><span>Planen <small>fünf Minuten, bevor du schreibst</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Operator markieren und die Fragestellung in einem Satz fassen. Drei bis vier Stichpunkte als Schlagwörter sammeln und so ordnen, dass sie sich steigern. Die Kernthese in einem Satz festhalten, bevor du anfängst.</p>
+                  <p class="sw-miss"><b>Typischer Fehler:</b> sofort losschreiben. Der Text biegt dann oft nach der Hälfte in eine andere Richtung ab.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Einleitung <small>Hook, Kontext, Thesis Statement</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Drei bis fünf Sätze. Der letzte Satz ist das Thesis Statement: spezifisch, argumentativ und angreifbar.</p>
+                  <p class="sw-miss"><b>Typischer Fehler:</b> „In this essay I will discuss...“ kündigt nur an und ist noch kein Argument.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Hauptteil <small>ein PEEL-Absatz pro Gedanke</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Point (Hauptgedanke in einem Satz), Evidence (Zitat mit Zeilenangabe), Explanation (Wirkung des Belegs), Link (Verbindung zur These oder zum nächsten Absatz). Analysen stehen im Present Tense.</p>
+                  <p class="sw-phrase" lang="en"><b lang="de">Formulierung</b>By using ..., the author creates a sense of ... The diction suggests / implies / conveys ...</p>
+                  <p class="sw-miss"><b>Typischer Fehler:</b> die Explanation weglassen. Erst sie verbindet den Beleg mit deinem Punkt.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Schluss <small>Synthese und klare Position</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Die Ergebnisse auf einer höheren Ebene zusammenführen und eine klare Position beziehen.</p>
+                  <p class="sw-miss"><b>Typischer Fehler:</b> ein neues Argument im Schluss oder ein ausweichendes „It is difficult to say...“.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="sw-panel" id="p-eroerterung">
+            <h4 class="sw-panel__title">Erörterung</h4>
+            <div class="sw-outline">
+              <details class="t-explain" open>
+                <summary><span>Einleitung <small>Hook, Kontext, These</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Als Hook eignen sich eine aktuelle Zahl, eine provokante Frage, ein Zitat oder ein Szenario. Danach der Kontext und als letzter Satz das Thesis Statement.</p>
+                  <p class="sw-miss"><b>Typischer Fehler:</b> eine These, der niemand widersprechen kann, etwa „This essay discusses climate change“.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Argument 1 <small>als PEEL-Absatz</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Point, Evidence (Beispiel, Statistik oder Zitat), Explanation, Link. Ein Absatz verfolgt genau eine Hauptidee.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Argument 2 <small>stärker als das erste</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Wieder als PEEL-Absatz. Ordne die Argumente so, dass sie sich steigern und nicht abschwächen.</p>
+                  <p class="sw-phrase" lang="en"><b lang="de">Formulierung</b>Furthermore, ... Moreover, ...</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Gegenargument <small>fair einräumen</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Den stärksten Einwand sachlich darstellen, ohne ihn kleinzureden.</p>
+                  <p class="sw-phrase" lang="en"><b lang="de">Formulierung</b>Admittedly, ... It cannot be denied that ...</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Widerlegung <small>den Einwand entkräften</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Erst das eingeräumte und entkräftete Gegenargument bringt die Erörterung auf das Niveau von Anforderungsbereich III.</p>
+                  <p class="sw-phrase" lang="en"><b lang="de">Formulierung</b>Nevertheless, ... However, the evidence points elsewhere.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Fazit <small>Position und Ausblick</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Synthese, klare Position, Ausblick. Kein neues Argument.</p>
+                  <p class="sw-phrase" lang="en"><b lang="de">Formulierung</b>On balance, ... I would argue that ...</p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="sw-panel" id="p-kreativ">
+            <h4 class="sw-panel__title">Kreatives Schreiben</h4>
+            <div class="sw-outline">
+              <details class="t-explain" open>
+                <summary><span>Aufgabe klären <small>Operator und Textsorte</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Operator und Textsorte markieren und die Kernidee deines Textes in einem Satz festhalten.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Stichpunkte sammeln <small>drei bis vier, steigernd</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Drei bis vier Stichpunkte als Schlagwörter, dann so ordnen, dass sie sich steigern.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Ende festlegen <small>bevor du anfängst</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Wenn das Ende feststeht, weißt du beim Schreiben, worauf jeder Absatz hinführt.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Schreiben <small>eine Hauptidee pro Absatz</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Jeder Absatz verfolgt eine Hauptidee (coherence). Konnektoren, Pronomen und wiederaufgenommene Schlüsselbegriffe verbinden die Absätze (cohesion).</p>
+                  <p class="sw-miss"><b>Typischer Fehler:</b> zwanghaft Synonyme suchen. Wichtige Schlüsselwörter darfst du gezielt wiederholen.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Endkontrolle <small>roter Faden und Zeichensetzung</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Roter Faden, Zeichensetzung, Apostrophe, Großschreibung. Die Checkliste unten hilft dabei.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="sw-panel" id="p-mediation">
+            <h4 class="sw-panel__title">Sprachmittlung</h4>
+            <div class="sw-outline">
+              <details class="t-explain" open>
+                <summary><span>Adressat klären <small>für wen, wozu, wie formell</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Für wen schreibst du, was macht die Person mit der Information, wie formell ist der Rahmen? Der Adressat bestimmt Ton und Register.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Verstehen und auswählen <small>vier bis fünf Kernpunkte</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Den Text zweimal lesen, vier bis fünf Kernpunkte markieren, Irrelevantes streichen. Du darfst kürzen und musst auswählen.</p>
+                  <p class="sw-miss"><b>Typischer Fehler:</b> Kerninformationen auslassen oder etwas hinzufügen, das nicht im Text steht.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Englisch denken <small>erst Stichpunkte, dann Fließtext</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Stichpunkte direkt auf Englisch notieren, nicht Satz für Satz übersetzen. Fehlt dir ein Wort, paraphrasier es, nimm einen Oberbegriff (Fernweh: <span lang="en">a longing for distant places</span>) oder lass es weg, wenn das den Inhalt nicht verfälscht.</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Schreiben <small>auf den Text verweisen, für den Adressaten einordnen</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Verweise auf den Ausgangstext und ordne den Inhalt für deinen Adressaten ein.</p>
+                  <p class="sw-phrase" lang="en"><b lang="de">Formulierung</b>According to the text, ... The key message is that ... To put it in simpler terms, ...</p>
+                </div>
+              </details>
+              <details class="t-explain">
+                <summary><span>Revidieren <small>natürlich und im richtigen Register?</small></span></summary>
+                <div class="t-explain__body">
+                  <p>Lies den Text noch einmal mit zwei Fragen: Klingt es natürlich? Stimmt das Register?</p>
+                  <p class="sw-miss"><b>Typischer Fehler:</b> Germanismen wie „It was decided by the government that...“. Natürlicher: The government decided to...</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <noscript><p class="t-noscript">Ohne JavaScript stehen alle vier Aufgaben untereinander. Die Abschnitte klappen trotzdem auf.</p></noscript>
+        </div>
+
+        <div class="sw-stage">
+          <div class="sw-stage__head"><span class="sw-stage__num" aria-hidden="true">3</span><h3>Vor der Abgabe abhaken</h3></div>
+          <p class="sw-stage__hint">Die Endkontrolle für die letzten 90 Sekunden, für jede Aufgabe gleich.</p>
+          <ul class="t-check" data-checklist="abgabe" data-unit="geprüft">
+            <li><label><input type="checkbox"><span>Einleitung und Schluss direkt hintereinander gelesen. <small>Beide tragen dieselbe These.</small></span></label></li>
+            <li><label><input type="checkbox"><span>Erste und letzte Sätze jedes Absatzes geprüft. <small>Der rote Faden ist sichtbar.</small></span></label></li>
+            <li><label><input type="checkbox"><span>Analysen stehen im Present Tense. <small>The author argues, nicht argued.</small></span></label></li>
+            <li><label><input type="checkbox"><span>Keine Kontraktionen, keine Umgangssprache. <small>do not statt don't, children statt kids.</small></span></label></li>
+            <li><label><input type="checkbox"><span>Jede Behauptung hat einen Beleg, jeder Absatz beginnt mit einem passenden Konnektor.</span></label></li>
+            <li><label><input type="checkbox"><span>Zeichensetzung, Apostrophe, Großschreibung und anspruchsvolle Wörter kontrolliert.</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-zone" id="karten" aria-labelledby="h-karten">
+      <div class="t-zone__head">
+        <h2 id="h-karten">Formulierungen als Lernkarten</h2>
+        <p class="t-zone__hint">Analyse, Sprachmittlung und formelles Register.</p>
+      </div>
+      <div class="t-surface">
+        <div id="deck"></div>
+        <noscript><p class="t-noscript">Die Lernkarten brauchen JavaScript. Einige Formulierungen stehen oben in den aufklappbaren Abschnitten.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone" id="quiz" aria-labelledby="h-quiz">
+      <div class="t-zone__head">
+        <h2 id="h-quiz">Selbsttest: Quiz</h2>
+        <p class="t-zone__hint">Zehn Fragen zu Aufbau, Register und Sprachmittlung.</p>
+      </div>
+      <div class="t-surface">
+        <div id="quizBox"></div>
+        <noscript><p class="t-noscript">Das Quiz braucht JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone reveal" id="erklaerung" aria-labelledby="h-erkl">
+      <div class="t-zone__head">
+        <h2 id="h-erkl">Erklärung</h2>
+      </div>
+      <details class="t-explain">
+        <summary>Warum fünf Minuten planen?</summary>
+        <div class="t-explain__body">
+          <p>Mit Plan weißt du, wohin der Text führt, und musst nicht mitten im Schreiben umsteuern. Der Plan besteht aus drei Teilen: Operator und Thema klären, Argumente sammeln und ordnen, das Fazit vorab in einem Satz formulieren.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Coherence und Cohesion</summary>
+        <div class="t-explain__body">
+          <p>Coherence heißt: Jeder Absatz verfolgt genau eine Hauptidee. Cohesion heißt: Konnektoren, Pronomen und wiederaufgenommene Schlüsselbegriffe verknüpfen die Sätze sprachlich.</p>
+          <p>Wiederhole wichtige Schlüsselwörter gezielt, statt zwanghaft nach Synonymen zu suchen.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Sprachmittlung ist kein Übersetzen</summary>
+        <div class="t-explain__body">
+          <p>Du vermittelst den Kerninhalt adressatengerecht, verdichtet und in natürlichem Englisch. Satz für Satz zu übersetzen oder ganze Sätze zu zitieren verfehlt die Aufgabe.</p>
+          <p><strong>Zum Trainieren:</strong> Fass einmal pro Woche einen deutschen Zeitungsartikel (200 bis 400 Wörter) in 10 bis 15 Minuten für einen festgelegten Adressaten auf Englisch zusammen. Prüf danach, ob es natürlich klingt und das Register stimmt.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Bedienung und Speicherstand</summary>
+        <div class="t-explain__body">
+          <p>Die Aufgaben wechselst du mit den Pfeiltasten, sobald die Auswahl den Fokus hat. Abschnitte öffnest du mit <kbd>Enter</kbd> oder <kbd>Leertaste</kbd>. Auf den Lernkarten dreht <kbd>Leertaste</kbd> die Karte, <kbd>&rarr;</kbd> heißt „sitzt“, <kbd>&larr;</kbd> heißt „nochmal“.</p>
+          <p>Gespeichert werden deine gewählte Aufgabe, die Haken der Checkliste, die Karten, die sitzen, und dein bestes Quizergebnis, im Browser auf diesem Gerät. Nichts davon wird übertragen.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/1691857440" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/englisch-oberstufe.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Vollständige Mustertexte, die PEEL-Struktur an Beispielabsätzen und die Anforderungen der Texttypen vom Discussion Essay bis zum inneren Monolog stehen in den Kapiteln zu schriftlicher Textproduktion und Sprachmittlung in <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a>.</p>
           </div>
         </div>
       </div>
-      <div class="fcard-aktionen">
-        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
-        <button class="btn" id="btnKnown">Sitzt, nächste</button>
-        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
-        <span class="hint" id="restHint"></span>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/textanalyse-englisch.html"><span class="t-related__img"><img src="/assets/previews/textanalyse-englisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Textanalyse Englisch</strong><span>Operator, Beleg und Wirkung an einem Beispiel</span></span></a></li>
+          <li><a href="/tools/englisch.html"><span class="t-related__img"><img src="/assets/previews/englisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Englisch-Abitur-Trainer</strong><span>Grammatik und Konnektoren auf Lernkarten</span></span></a></li>
+          <li><a href="/tools/klausurplaner.html"><span class="t-related__img"><img src="/assets/previews/klausurplaner.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Klausur-Planer</strong><span>Aus Klausurdatum und Themen einen Tagesplan erstellen</span></span></a></li>
+        </ul>
       </div>
-      <div class="deck-fertig" id="deckFertig" hidden>
-        <strong>Stapel geschafft.</strong>
-        <span id="fertigText"></span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Die letzten 90 Sekunden</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Endkontrolle vor der Abgabe. Hake ab, was du geprüft hast:</p>
-      <ul class="check-liste" id="checkListe">
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Einleitung und Schluss direkt hintereinander gelesen: Beide tragen dieselbe These.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Erste und letzte Sätze jedes Absatzes geprüft: Der rote Faden ist sichtbar.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Analysen stehen im Present Tense: The author argues, nicht argued.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Keine Kontraktionen, keine Umgangssprache: do not statt don't, children statt kids.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Jede Behauptung hat einen Beleg; jeder Absatz beginnt mit einem passenden Konnektor.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Zeichensetzung, Apostrophe, Großschreibung und anspruchsvolle Wörter kontrolliert.</span></button></li>
-      </ul>
-      <p class="check-stand" id="checkStand" role="status"></p>
-      <div class="buch-tipp">
-        <span><strong>Der nächste Schritt:</strong> Operatoren und Stilmittel für den Analyseteil trainierst du in der <a href="/tools/textanalyse-englisch.html">Textanalyse Englisch</a>; die vollständigen Mustertexte und den Übungsplan findest du in <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a>.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Quiz: Schreiblogik verstanden?</h2>
-      <div id="quizBox" aria-live="polite"></div>
-      <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
+    </section>
   </div>
 </main>
 
@@ -132,63 +380,57 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/schreibwerkstatt-franzoesisch.html">Zur Schreibwerkstatt Französisch</a></span>
     </div>
   </div>
 </footer>
 
 <script>
+// Kartenformat: [Vorderseite, Antwort, Beispiel, Notiz]
 const DECKS = {
   "Formulierungen": {
-    "Analyse-Phrasen": [
-      ["Ton und Absicht des Autors benennen?", "The author employs a ... tone in order to ... · The diction suggests / implies / conveys ...", "", "Analysen immer im Present Tense."],
-      ["Wirkung eines Mittels beschreiben?", "By using ..., the author creates a sense of ... · The structural choice to ... serves to ...", "", ""],
+    "Analyse": [
+      ["Ton und Absicht des Autors benennen?", "The author employs a ... tone in order to ... The diction suggests / implies / conveys ...", "", "Analysen immer im Present Tense."],
+      ["Wirkung eines Mittels beschreiben?", "By using ..., the author creates a sense of ... The structural choice to ... serves to ...", "", ""],
       ["Eine Deutung vorsichtig formulieren?", "This can be interpreted as a deliberate attempt to ...", "", "Zeigt analytische Distanz statt Behauptung."]
     ],
-    "Mediations-Phrasen": [
-      ["Auf den Ausgangstext verweisen?", "The article states that... · According to the text... · The author points out that...", "", "Signalisiert sinngemäße Vermittlung statt Übersetzung."],
-      ["Den Kern verdichten?", "In essence, the text conveys that... · The key message is that...", "", ""],
-      ["Für den Adressaten einordnen?", "To put it in simpler terms... · While the original text focuses on..., the key point for you is...", "", "Adressatenbezug ist ein eigenes Bewertungskriterium."]
+    "Sprachmittlung": [
+      ["Auf den Ausgangstext verweisen?", "The article states that... According to the text... The author points out that...", "", "Zeigt, dass du sinngemäß vermittelst und nicht übersetzt."],
+      ["Den Kern verdichten?", "In essence, the text conveys that... The key message is that...", "", ""],
+      ["Für den Adressaten einordnen?", "To put it in simpler terms... While the original text focuses on..., the key point for you is...", "", "Der Adressatenbezug ist ein eigenes Bewertungskriterium."]
     ],
-    "Register-Upgrades": [
-      ["Besser als: a lot of", "a considerable number of · numerous", "", "Umgangssprache kostet in jeder Klausur Punkte."],
-      ["Besser als: good / bad", "beneficial, advantageous / detrimental, harmful", "", ""],
-      ["Besser als: big / small", "significant, substantial / minor, negligible", "", ""],
-      ["Besser als: I think", "I would argue · it can be argued · one might contend", "", "Akademische Distanz statt Alltagston."],
-      ["Besser als: but / also / because", "however, nevertheless · furthermore, moreover · due to, owing to", "", "Konnektoren signalisieren die Funktion des Absatzes."],
-      ["Besser als: kids / stuff", "children, young people · der Begriff, um den es konkret geht", "", "Keine Kontraktionen, keine Ausrufesätze."]
+    "Register": [
+      ["Formeller als: a lot of", "a considerable number of; numerous", "", "Umgangssprache passt nicht ins Klausurregister."],
+      ["Formeller als: good / bad", "beneficial, advantageous / detrimental, harmful", "", ""],
+      ["Formeller als: big / small", "significant, substantial / minor, negligible", "", ""],
+      ["Formeller als: I think", "I would argue; it can be argued; one might contend", "", "Akademische Distanz statt Alltagston."],
+      ["Formeller als: but / also / because", "however, nevertheless; furthermore, moreover; due to, owing to", "", "Konnektoren zeigen die Funktion des Absatzes."],
+      ["Formeller als: kids / stuff", "children, young people; der Begriff, um den es konkret geht", "", "Keine Kontraktionen, keine Ausrufesätze."]
     ]
   }
 };
 
 const QUIZ = [
-  {f: 'Was kommt VOR dem ersten geschriebenen Satz?', o: ['Die Einleitung', 'Der 5-Minuten-Plan: Operator, Thema, Argumente, Reihenfolge, Fazit', 'Das Durchlesen aller Aufgaben'], r: 1, e: 'Wer ohne Plan schreibt, schreibt zweimal; fünf Minuten Planung sparen zehn Minuten Schreiben.'},
-  {f: 'Ein gutes Thesis Statement ist...', o: ['...neutral und vorsichtig', '...spezifisch, argumentativ und angreifbar', '...eine Ankündigung: In this essay I will...'], r: 1, e: 'Jemand muss anderer Meinung sein können, sonst ist es keine These.'},
-  {f: 'Wofür steht PEEL?', o: ['Plan, Essay, Edit, Language', 'Point, Evidence, Explanation, Link', 'Position, Example, Evaluation, Logic'], r: 1, e: 'Die Struktur jedes Hauptteilabsatzes; die Explanation wird am häufigsten vergessen.'},
-  {f: 'Was gehört NICHT in den Schluss?', o: ['Eine Synthese auf höherem Niveau', 'Ein neues Argument', 'Die klare eigene Position'], r: 1, e: 'Der Schluss bringt die Argumentation auf den Punkt; neue Argumente wirken planlos.'},
-  {f: 'Was hebt eine Erörterung auf AFB-III-Niveau?', o: ['Mehr Argumente für die eigene Seite', 'Ein eingeräumtes und entkräftetes Gegenargument', 'Ein längeres Fazit'], r: 1, e: 'Perspektivenübernahme: die stärksten Einwände fair darstellen und argumentativ entkräften.'},
-  {f: 'Sprachmittlung bedeutet...', o: ['...Satz für Satz präzise übersetzen', '...den Kerninhalt adressatengerecht und verdichtet vermitteln', '...den Text im Original zitieren und kommentieren'], r: 1, e: 'Du darfst kürzen und musst auswählen; der Adressat bestimmt Ton und Register.'},
-  {f: 'Dir fehlt das englische Wort für ein deutsches Konzept. Du...', o: ['...lässt den ganzen Absatz weg', '...paraphrasierst es in einem klaren Satz', '...schreibst das deutsche Wort kursiv'], r: 1, e: 'Besser ein klarer Satz als eine falsche Übersetzung.'},
-  {f: '„It was decided by the government that...“ ist...', o: ['...besonders formell und gut', '...ein typischer Germanismus', '...die korrekte Mediationsphrase'], r: 1, e: 'Klingt nach umgestellter deutscher Vorlage; natürlicher: The government decided to...'},
-  {f: 'In welcher Zeit stehen Textanalysen?', o: ['Past Tense', 'Present Tense', 'Present Perfect'], r: 1, e: 'The author argues, nicht argued: einer der häufigsten Flüchtigkeitsfehler.'},
-  {f: 'Was prüfst du in den letzten 90 Sekunden zuerst?', o: ['Die Rechtschreibung im Hauptteil', 'Einleitung und Schluss hintereinander: Tragen beide dieselbe These?', 'Die Wortzahl'], r: 1, e: 'Dort zeigt sich, ob der Text logisch geführt ist; danach die Absatzübergänge.'}
+  {f: "Was kommt VOR dem ersten geschriebenen Satz?", o: ["Die Einleitung", "Der Plan: Operator, Thema, Argumente, Reihenfolge, Fazit", "Das Durchlesen aller Aufgaben"], r: 1, e: "Mit Plan weißt du, wohin der Text führt, und musst nicht mitten im Schreiben umsteuern."},
+  {f: "Ein gutes Thesis Statement ist...", o: ["...neutral und vorsichtig", "...spezifisch, argumentativ und angreifbar", "...eine Ankündigung: In this essay I will..."], r: 1, e: "Jemand muss anderer Meinung sein können, sonst ist es keine These."},
+  {f: "Wofür steht PEEL?", o: ["Plan, Essay, Edit, Language", "Point, Evidence, Explanation, Link", "Position, Example, Evaluation, Logic"], r: 1, e: "Die Struktur jedes Hauptteilabsatzes; die Explanation wird am häufigsten vergessen."},
+  {f: "Was gehört NICHT in den Schluss?", o: ["Eine Synthese auf höherem Niveau", "Ein neues Argument", "Die klare eigene Position"], r: 1, e: "Der Schluss bringt die Argumentation auf den Punkt; neue Argumente wirken planlos."},
+  {f: "Was hebt eine Erörterung auf AFB-III-Niveau?", o: ["Mehr Argumente für die eigene Seite", "Ein eingeräumtes und entkräftetes Gegenargument", "Ein längeres Fazit"], r: 1, e: "Perspektivenübernahme: die stärksten Einwände fair darstellen und argumentativ entkräften."},
+  {f: "Sprachmittlung bedeutet...", o: ["...Satz für Satz präzise übersetzen", "...den Kerninhalt adressatengerecht und verdichtet vermitteln", "...den Text im Original zitieren und kommentieren"], r: 1, e: "Du darfst kürzen und musst auswählen; der Adressat bestimmt Ton und Register."},
+  {f: "Dir fehlt das englische Wort für ein deutsches Konzept. Du...", o: ["...lässt den ganzen Absatz weg", "...paraphrasierst es in einem klaren Satz", "...schreibst das deutsche Wort kursiv"], r: 1, e: "Ein klarer Satz ist besser als eine falsche Übersetzung."},
+  {f: "„It was decided by the government that...“ ist...", o: ["...besonders formell und gut", "...ein typischer Germanismus", "...die korrekte Mediationsphrase"], r: 1, e: "Klingt nach umgestellter deutscher Vorlage; natürlicher: The government decided to..."},
+  {f: "In welcher Zeit stehen Textanalysen?", o: ["Past Tense", "Present Tense", "Present Perfect"], r: 1, e: "The author argues, nicht argued: ein häufiger Flüchtigkeitsfehler."},
+  {f: "Was prüfst du in den letzten 90 Sekunden zuerst?", o: ["Die Rechtschreibung im Hauptteil", "Einleitung und Schluss hintereinander: Tragen beide dieselbe These?", "Die Wortzahl"], r: 1, e: "Dort zeigt sich, ob der Text logisch geführt ist; danach die Absatzübergänge."}
 ];
 </script>
 <script src="/assets/trainer.js"></script>
 <script>
-const $$ = id => document.getElementById(id);
-const items = document.querySelectorAll("#checkListe .check-item");
-function checkStand() {
-  const ok = document.querySelectorAll("#checkListe .check-item.ok").length;
-  $$("checkStand").style.setProperty("--anteil", String(Math.round((ok / items.length) * 100)));
-  $$("checkStand").textContent = ok === items.length
-    ? "Alle " + items.length + " Punkte geprüft. Jetzt kannst du abgeben."
-    : ok + " von " + items.length + " Punkten geprüft.";
-}
-items.forEach(b => b.addEventListener("click", () => { const an = b.classList.toggle("ok"); b.setAttribute("aria-pressed", an); checkStand(); }));
-checkStand();
+  var swDeck = PaviTools.deck("#deck", { decks: DECKS, storageKey: "karten", catLabel: "Bereich" });
+  document.getElementById("factCards").textContent = String(swDeck.count());
+  PaviTools.quiz("#quizBox", { fragen: QUIZ, storageKey: "quiz" });
 </script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

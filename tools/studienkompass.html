@@ -3,11 +3,93 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Studienkompass</title>
-<meta name="description" content="Informatik oder Wirtschaftsinformatik? Zwölf Fragen zeigen, welches Studium besser zu deiner Denkweise passt, abgeleitet aus den Studienkompass-Büchern von Pavisanth Pathmarajah.">
+<title>Studienkompass: Informatik oder Wirtschaftsinformatik?</title>
+<meta name="description" content="Informatik oder Wirtschaftsinformatik? Zwölf Situationen aus Studium und Beruf, je zwei Antworten. Die Auswertung zeigt deine Tendenz mit Balken und listet, welche Antworten in welche Richtung zeigten. Eine Orientierung, keine Studienberatung.">
+<link rel="canonical" href="https://pavilabs.de/tools/studienkompass.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+/* Studienwahl-Check: seitenlokale Ergänzungen zum Grundsystem (gleich im Duales-Studium-Check) */
+.ck { min-height: 380px; scroll-margin-top: 96px; }
+.ck [hidden] { display: none !important; }
+.ck:focus { outline: none; }
+.ck-start { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px 44px; align-items: start; }
+.ck-start h3 { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin: 0 0 10px; }
+.ck-start p { color: var(--fg-dim); }
+.ck-start .t-actions { margin-top: 20px; }
+.ck-poles { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ck-poles li { padding: 16px 18px; border-radius: 16px; border: 1px solid var(--hairline); }
+.ck-poles strong { color: var(--fg); margin-bottom: 4px; }
+.ck-poles span { display: block; color: var(--fg-dim); font-size: 0.93rem; line-height: 1.5; }
+.ck-poles strong { display: flex; align-items: center; gap: 10px; }
+.ck-poles strong::before { content: ""; width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.ck-poles li[data-dir="a"] strong::before { background: var(--leaf); }
+.ck-poles li[data-dir="b"] strong::before { background: var(--petrol); }
+
+.ck-q__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 8px; }
+.ck-q__count { font-size: 0.9rem; color: var(--fg-dim); font-variant-numeric: tabular-nums; }
+.ck-q h3 { font-size: clamp(1.2rem, 2.4vw, 1.5rem); line-height: 1.35; margin: 26px 0 18px; max-width: 46ch; }
+.ck-q h3:focus { outline: none; }
+.ck-q h3:focus-visible { outline: 2px solid var(--mint); outline-offset: 6px; }
+.ck-q .t-opt { min-height: 64px; padding-top: 14px; padding-bottom: 14px; }
+.ck-q .t-opt.is-chosen { background: rgba(143, 184, 119, 0.14); border-color: var(--leaf); }
+.ck-q .t-opt.is-chosen::before { background: var(--leaf); border-color: var(--leaf); color: var(--ground); }
+.ck-q__nav { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+.ck-q__nav .t-kbd-hint { margin: 0 0 0 auto; }
+
+.ck-res__head { display: grid; gap: 6px; margin-bottom: 22px; }
+.ck-res__head h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0; }
+.ck-res__head p { margin: 0; color: var(--fg-dim); }
+.ck-bars { display: grid; gap: 16px; margin: 0 0 8px; }
+.ck-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 14px; align-items: baseline; }
+.ck-bar__name { font-weight: 700; color: var(--fg); }
+.ck-bar__val { font-size: 0.92rem; color: var(--fg-dim); font-variant-numeric: tabular-nums; }
+.ck-bar__val strong { color: var(--fg); }
+.ck-bar__track { grid-column: 1 / -1; position: relative; height: 14px; border-radius: 999px; background: rgba(238, 244, 239, 0.08); overflow: hidden; }
+.ck-bar__fill {
+  position: absolute; inset: 0; border-radius: inherit;
+  transform-origin: left; transform: scaleX(var(--p, 0));
+  transition: transform 900ms var(--ease-expo);
+}
+.ck-bar[data-dir="a"] .ck-bar__fill { background: linear-gradient(90deg, var(--leaf-deep), var(--leaf)); }
+.ck-bar[data-dir="b"] .ck-bar__fill { background: linear-gradient(90deg, var(--petrol-glow), var(--petrol)); }
+.ck-bar__mark { position: absolute; top: -3px; bottom: -3px; width: 2px; left: calc(var(--m) * 100%); background: var(--hairline-strong); }
+.ck-scale { font-size: 0.84rem; color: var(--fg-dim); margin: 6px 0 0; }
+
+.ck-text { margin-top: 26px; }
+.ck-text p { color: var(--fg-dim); }
+.ck-text p:first-child { color: var(--fg); }
+
+.ck-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
+.ck-list section { border-radius: 18px; border: 1px solid var(--hairline); padding: 18px 18px 8px; }
+.ck-list h4 { font-size: 1rem; margin: 0 0 6px; display: flex; align-items: center; gap: 10px; }
+.ck-list h4::before { content: ""; width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.ck-list section[data-dir="a"] h4::before { background: var(--leaf); }
+.ck-list section[data-dir="b"] h4::before { background: var(--petrol); }
+.ck-list ol { list-style: none; margin: 0; padding: 0; }
+.ck-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: start; padding: 12px 0; border-top: 1px solid var(--hairline); }
+.ck-list li:first-child { border-top: 0; }
+.ck-list li small { display: block; color: var(--fg-dim); font-size: 0.84rem; line-height: 1.45; margin-bottom: 3px; }
+.ck-list li p { margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--fg); }
+.ck-list li .t-iconbtn { font-size: 0.84rem; padding: 0 12px; }
+.ck-list .ck-none { color: var(--fg-dim); font-size: 0.93rem; padding: 10px 0 14px; }
+
+.ck-res__actions { margin-top: 28px; }
+.ck-saved { margin: 12px 0 0; font-size: 0.9rem; color: var(--fg-dim); min-height: 1.4em; }
+
+@media (max-width: 880px) {
+  .ck-start, .ck-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .ck-q__nav .t-kbd-hint { margin-left: 0; }
+  .ck-list section { padding: 14px 14px 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ck-bar__fill { transition: none; }
+}
+</style>
 </head>
 <body>
 
@@ -24,25 +106,105 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Studienkompass: Informatik oder Wirtschaftsinformatik?</h1>
-    <p class="tool-lede">Wer zwischen Informatik und Wirtschaftsinformatik schwankt, bekommt oft die falsche Auskunft: Das eine sei „richtiges Programmieren", das andere ein Kompromiss für Unentschlossene. Beides stimmt nicht. Die beiden Fächer stellen unterschiedliche Grundfragen, und welche dich auf Dauer trägt, lässt sich herausfinden. Dieser Kompass stellt dir zwölf Situationen aus Studium und Berufsalltag vor, jeweils mit zwei ehrlichen Antworten. Am Ende bekommst du keine Schublade, sondern eine begründete Tendenz samt dem, was sie für deinen nächsten Schritt bedeutet.</p>
-    <p class="tool-src">Abgeleitet aus den kommenden Büchern „Informatik Meistern: Der große Studienkompass“ und „Wirtschaftsinformatik Meistern: Der Studien- und Karrierekompass“ von Pavisanth Pathmarajah (in Vorbereitung).</p>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Studienwahl</a></li>
+        <li><span aria-current="page">Studienkompass</span></li>
+      </ol>
+    </nav>
 
-    <div class="panel" id="quizPanel">
-      <h2 id="qTitel">Zwölf Fragen, ehrlich beantwortet</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem" id="qIntro">Es gibt keine richtigen Antworten, nur passende. Wähle die Aussage, die dich besser beschreibt, nicht die, die besser klingt.</p>
-      <div id="qBox"></div>
-      <button class="btn" id="btnStart">Starten</button>
-    </div>
+    <header class="t-intro">
+      <div>
+        <h1>Studienkompass</h1>
+        <p class="t-goal"><strong>Informatik oder Wirtschaftsinformatik?</strong> Informatik fragt, wie man ein Problem präzise genug für eine Maschine beschreibt. Wirtschaftsinformatik fragt, wie Menschen, Prozesse und Technik in Organisationen zusammenwirken. Zwölf Situationen zeigen dir, welche Frage dich mehr reizt.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start="#ckStart">Check starten</a>
+          <a class="btn btn--ghost" href="#erklaerung">Wie die Auswertung entsteht</a>
+        </div>
+      </div>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>12</dt><dd>Situationen</dd></div>
+          <div><dt>2</dt><dd>Antworten je Frage</dd></div>
+          <div><dt>ca. 5</dt><dd>Minuten</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So läuft der Check">
+          <li><span><strong>Situation lesen</strong> und die Antwort wählen, die dich besser beschreibt.</span></li>
+          <li><span><strong>Zurückgehen</strong> und ändern kannst du jederzeit.</span></li>
+          <li><span><strong>Auswertung:</strong> Balken je Richtung und die Liste, welche Antwort wohin zählte.</span></li>
+        </ol>
+      </div>
+    </header>
 
-    <div class="panel" id="ergebnisPanel" hidden>
-      <h2 id="eTitel"></h2>
-      <div id="eBalken"></div>
-      <div id="eText" style="color:var(--cream-dim)"></div>
-      <button class="btn btn--ghost no-print" id="btnNochmal">Noch einmal durchgehen</button>
-    </div>
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Der Check</h2>
+        <p class="t-zone__hint">Deine Antworten bleiben im Browser. Speichern ist freiwillig und nur auf diesem Gerät.</p>
+      </div>
+      <div class="t-surface ck" id="check" tabindex="-1">
+        <div class="ck-start">
+          <div>
+            <h3>Zwölf Fragen, ehrlich beantwortet</h3>
+            <p>Es gibt keine richtigen Antworten, nur passende. Wähle die Aussage, die dich besser beschreibt, nicht die, die besser klingt. Keins der beiden Fächer ist ein Kompromiss für Unentschlossene; sie stellen unterschiedliche Grundfragen.</p>
+            <div class="t-note"><p><strong>Eine Orientierung, keine Studienberatung.</strong> Zwölf Fragen machen deine eigene Tendenz sichtbar. Für die Entscheidung helfen die Studienberatung der Hochschulen und die Berufsberatung der Agentur für Arbeit.</p></div>
+            <noscript><p class="t-noscript">Der Check braucht JavaScript. Was die beiden Fächer unterscheidet, steht unten unter „Erklärung“.</p></noscript>
+          </div>
+          <ul class="ck-poles" aria-label="Die beiden Richtungen">
+            <li data-dir="a"><strong>Informatik</strong><span>Wie beschreibt man ein Problem so präzise, dass eine Maschine es ausführen kann?</span></li>
+            <li data-dir="b"><strong>Wirtschaftsinformatik</strong><span>Wie wirken Menschen, Prozesse und Technik in Organisationen zusammen?</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-zone reveal" id="erklaerung" aria-labelledby="h-erkl">
+      <div class="t-zone__head">
+        <h2 id="h-erkl">Erklärung</h2>
+      </div>
+      <details class="t-explain">
+        <summary>Wie die Auswertung entsteht</summary>
+        <div class="t-explain__body">
+          <p>Jede Frage hat eine Antwort, die eher zur Informatik passt, und eine, die eher zur Wirtschaftsinformatik passt. Jede deiner Antworten zählt einen Punkt für ihre Richtung. Die Reihenfolge der beiden Antworten wird gemischt, damit du nicht nach Position wählst.</p>
+          <p>Ab 8 von 12 Punkten für eine Richtung (zwei Drittel) zeigt die Auswertung eine Tendenz. Liegen beide näher beieinander, lautet das Ergebnis „offen“. Die Liste in der Auswertung zeigt jede Antwort mit ihrer Frage, damit du nachvollziehen kannst, woher das Ergebnis kommt.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Was die beiden Fächer unterscheidet</summary>
+        <div class="t-explain__body">
+          <p>Wer zwischen Informatik und Wirtschaftsinformatik schwankt, hört oft, das eine sei „richtiges Programmieren“ und das andere ein Kompromiss. Beides stimmt nicht. <strong>Informatik</strong> fragt, wie man ein Problem so genau beschreibt, dass ein Mensch es versteht und eine Maschine es ausführen kann: Abstraktion, Logik, Datenorganisation, Komplexität. <strong>Wirtschaftsinformatik</strong> fragt, wie Menschen, Prozesse und Technik in Organisationen zusammenwirken: Anforderungen erheben, Prozesse verbessern, zwischen Fachbereich und IT übersetzen.</p>
+          <p>Beide Fächer teilen sich ein technisches Fundament. An vielen Hochschulen kannst du die Richtung nach den ersten Semestern noch schärfen.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Was gespeichert wird</summary>
+        <div class="t-explain__body">
+          <p>Nichts, solange du nicht auf „Ergebnis speichern“ drückst. Dann liegen deine zwölf Antworten im Speicher deines Browsers auf diesem Gerät, damit du das Ergebnis später wieder öffnen kannst. „Gespeichertes Ergebnis löschen“ entfernt sie. Übertragen wird nichts.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/lernen.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Die Fragen stammen aus den Büchern „Informatik Meistern: Der große Studienkompass“ und „Wirtschaftsinformatik Meistern: Der Studien- und Karrierekompass“, beide in Vorbereitung. Bis dahin steht die Lern- und Prüfungsmethodik fürs Studium in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a>.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/duales-studium-check.html"><span class="t-related__img"><img src="/assets/previews/duales-studium-check.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Duales-Studium-Check</strong><span>Dual oder klassisch studieren?</span></span></a></li>
+          <li><a href="/tools/prompt-werkstatt.html"><span class="t-related__img"><img src="/assets/previews/prompt-werkstatt.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Prompt-Werkstatt</strong><span>Sprachmodelle gezielt anleiten, ein Thema beider Fächer</span></span></a></li>
+          <li><a href="/tools/klausurplaner.html"><span class="t-related__img"><img src="/assets/previews/klausurplaner.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Klausur-Planer</strong><span>Vorbereitung auf eine Prüfung in Phasen planen</span></span></a></li>
+        </ul>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -50,85 +212,275 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
-      <span><a href="/de/">pavilabs.de</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/tools/duales-studium-check.html">Zum Duales-Studium-Check</a></span>
     </div>
   </div>
 </footer>
 
 <script>
-const FRAGEN = [
-  {t: "Ein System funktioniert nicht. Was reizt dich mehr?", a: "Den Fehler bis auf die Ebene von Algorithmus und Datenstruktur zurückzuverfolgen, bis ich genau weiß, warum er auftritt.", b: "Herauszufinden, an welcher Stelle im Arbeitsablauf das System die Menschen im Unternehmen im Stich lässt."},
-  {t: "Welcher Satz beschreibt dich eher?", a: "Ich will verstehen, wie man ein Problem so präzise beschreibt, dass eine Maschine es ausführen kann.", b: "Ich will verstehen, warum Organisationen an Technik scheitern, die eigentlich funktioniert."},
-  {t: "Mathematik im Studium ist für dich...", a: "...ein Kerngebiet, in das ich bereit bin, richtig Zeit zu investieren: Logik, Beweise, Komplexität.", b: "...ein Werkzeug, das ich beherrschen will, soweit es Analysen und Entscheidungen trägt."},
-  {t: "Ein Nachmittag, der dir Spaß machen würde:", a: "Einen eigenen kleinen Interpreter, ein Spiel oder ein Datenstruktur-Experiment programmieren, einfach weil es geht.", b: "Den Bestellprozess eines Onlinehändlers aufzeichnen und herausfinden, wo er Zeit, Geld und Nerven kostet."},
-  {t: "Welches Lob würde dich mehr freuen?", a: "„Dein Code ist sauber, effizient und durchdacht.“", b: "„Durch deine Analyse haben Fachabteilung und IT zum ersten Mal dasselbe Bild.“"},
-  {t: "Beim Wort „Projekt“ denkst du zuerst an...", a: "...das Bauen: Architektur, Implementierung, Tests, ein lauffähiges System.", b: "...das Ganze: Anforderungen, Beteiligte, Budget, Einführung und was die Nutzer am Ende damit tun."},
-  {t: "Du liest einen Artikel über ein Sprachmodell. Deine erste Frage:", a: "Wie funktioniert das im Inneren, vom Training bis zur Inferenz?", b: "Wie führt man so etwas in einem Unternehmen mit 900 Beschäftigten verantwortlich ein?"},
-  {t: "Ein schlechter Geschäftsprozess wird digitalisiert. Deine Reaktion:", a: "Spannend wird es für mich bei der technischen Umsetzung, der Prozess ist Sache der Fachabteilung.", b: "Erst den Prozess reparieren: Ein schlechter Prozess wird durch Software nicht gut, er wird nur schneller schlecht."},
-  {t: "Womit willst du im Beruf eher zu tun haben?", a: "Softwareentwicklung, Systemarchitektur, KI-Entwicklung, IT-Security in der Tiefe.", b: "Requirements Engineering, IT-Projektmanagement, Business Analytics, Product Ownership, Enterprise-Architektur."},
-  {t: "In einer Besprechung mit Nicht-Technikern...", a: "...bin ich am stärksten, wenn ich danach wieder in Ruhe am System arbeiten kann.", b: "...blühe ich auf: Zwischen Fachbereich und IT zu übersetzen ist genau mein Terrain."},
-  {t: "Was wäre für dich das bessere Wahlmodul?", a: "Theoretische Informatik, Compilerbau oder maschinelles Lernen in der Tiefe.", b: "Digitale Transformation, E-Commerce-Plattformen oder IT-Governance."},
-  {t: "Dein Anspruch an Verständnis:", a: "Ich will jedes technische Konzept bis zum Grund durchdringen, auch wenn es dauert.", b: "Ich will genug Tiefe, um Entscheidungen zu tragen, und den Blick für das System aus Menschen, Prozessen und Technik."}
-];
-
-const $ = id => document.getElementById(id);
-let idx = 0, punkteA = 0, punkteB = 0, sperre = 0;
-
-function mischen(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
-
-$("btnStart").onclick = () => { idx = 0; punkteA = 0; punkteB = 0; $("btnStart").hidden = true; $("qIntro").hidden = true; $("ergebnisPanel").hidden = true; zeigeFrage(); };
-$("btnNochmal").onclick = () => { $("btnStart").click(); $("quizPanel").scrollIntoView({behavior: "smooth", block: "start"}); };
-
-function zeigeFrage() {
-  const box = $("qBox");
-  if (idx >= FRAGEN.length) { zeigeErgebnis(); return; }
-  const q = FRAGEN[idx];
-  $("qTitel").textContent = "Frage " + (idx + 1) + " von " + FRAGEN.length;
-  box.innerHTML = `<div class="quiz-balken" style="margin-top:14px"><div style="width:${Math.round((idx / FRAGEN.length) * 100)}%"></div></div><div class="quiz-frage">${q.t}</div>`;
-  const optionen = mischen([{txt: q.a, wert: "a"}, {txt: q.b, wert: "b"}]);
-  for (const o of optionen) {
-    const b = document.createElement("button");
-    b.className = "quiz-opt";
-    b.textContent = o.txt;
-    b.onclick = () => { if (Date.now() < sperre) return; sperre = Date.now() + 400; if (o.wert === "a") punkteA++; else punkteB++; idx++; zeigeFrage(); };
-    box.appendChild(b);
-  }
-}
-
-function zeigeErgebnis() {
-  $("qBox").innerHTML = "";
-  $("qTitel").textContent = "Zwölf Fragen, ehrlich beantwortet";
-  $("qIntro").hidden = false;
-  $("btnStart").hidden = false;
-  $("btnStart").textContent = "Noch einmal starten";
-
-  const gesamt = punkteA + punkteB;
-  const anteilA = Math.round((punkteA / gesamt) * 100);
-  const anteilB = 100 - anteilA;
-  let titel, text;
-  const bücher = `<p style="margin-top:18px">Zur Vertiefung: Beide Studienkompass-Bücher erscheinen in Kürze. Bis dahin findest du die Lern- und Prüfungsmethodik in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener" style="color:var(--gold)">Lernen meistern</a>, und wie KI in Studium und Beruf hineinspielt, in den <a href="/de/#publikationen" style="color:var(--gold)">KI-Büchern von PaviLabs</a>.</p>`;
-
-  if (anteilA >= 65) {
-    titel = "Deine Tendenz: Informatik";
-    text = `<p>Dich zieht die Grundfrage der Informatik an: Wie beschreibt man ein Problem so genau, dass ein Mensch es versteht und eine Maschine es ausführen kann. Abstraktion, Modellbildung, Logik, Datenorganisation und Komplexitätsdenken sind genau die Disziplinen, die ein Informatikstudium belohnt. Wichtig für den Start: Das Studium belohnt nicht die, die am schnellsten tippen, sondern die, die sauber denken, hartnäckig analysieren und Grundlagen ernst nehmen.</p><p>Drei Gewohnheiten gelten als beste Vorbereitung: regelmäßig kleine Programme schreiben, mathematische Argumente ernst nehmen und jedes Konzept so erklären können, dass es jemand ohne Vorwissen versteht.</p>`;
-  } else if (anteilB >= 65) {
-    titel = "Deine Tendenz: Wirtschaftsinformatik";
-    text = `<p>Dein Terrain ist die Lücke, in der viele Technik-Einführungen scheitern: Die Technik wird erklärt, die Organisation bleibt im Dunkeln. Genau diese Lücke ist das Zuhause der Wirtschaftsinformatik. Prozesse erkennen und verbessern, Anforderungen sauber erheben, zwischen Fachbereich und IT übersetzen, Daten zu Entscheidungen machen: Das ist kein halbes Informatikstudium, sondern ein eigenes Fach mit eigener Grundfrage.</p><p>Und falls dich jemand fragt, ob du dich nur nicht entscheiden konntest: Das ist die falsche Frage. Das Gefühl, zwischen zwei Welten zu stehen, verschwindet an dem Tag, an dem du am ersten echten Fall arbeitest und beide Seiten brauchst.</p>`;
-  } else {
-    titel = "Deine Tendenz: offen, mit gutem Grund";
-    text = `<p>Du bewegst dich nahe der Mitte, und das ist ein brauchbares Ergebnis: Beide Fächer teilen sich ein technisches Fundament, und an vielen Hochschulen kannst du nach den ersten Semestern noch die Richtung schärfen. Entscheidend ist, welche Grundfrage dich länger trägt: das präzise Durchdringen von Systemen (Informatik) oder das Zusammenspiel von Menschen, Prozessen und Technik in Organisationen (Wirtschaftsinformatik).</p><p>Ein praktischer Test: Nimm dir ein Wochenende für ein kleines Programmierprojekt und eines für die Analyse eines realen Prozesses, etwa wie deine Schule oder dein Betrieb etwas organisiert. Welches Wochenende dir schneller verging, ist ein ehrlicheres Signal als jeder Fragebogen.</p>`;
-  }
-
-  $("eTitel").textContent = titel;
-  $("eBalken").innerHTML = `
-    <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:var(--cream-dim)"><span>Informatik ${anteilA}%</span><span>Wirtschaftsinformatik ${anteilB}%</span></div>
-    <div class="ergebnis-balken"><div style="width:${anteilA}%"></div></div>`;
-  $("eText").innerHTML = text + bücher + `<p style="font-size:0.85rem;color:var(--cream-dim);margin-top:14px">Zwölf Fragen ersetzen keine Studienberatung; sie machen deine eigene Tendenz sichtbar. Deine Antworten bleiben im Browser und werden nirgendwohin übertragen.</p>`;
-  $("ergebnisPanel").hidden = false;
-  $("ergebnisPanel").scrollIntoView({behavior: "smooth", block: "start"});
-}
+const CHECK = {
+  richtungen: {
+    a: { name: "Informatik", kurz: "Informatik" },
+    b: { name: "Wirtschaftsinformatik", kurz: "Wirtschaftsinformatik" }
+  },
+  fragen: [
+    {t: "Ein System funktioniert nicht. Was reizt dich mehr?", a: "Den Fehler bis auf die Ebene von Algorithmus und Datenstruktur zurückzuverfolgen, bis ich genau weiß, warum er auftritt.", b: "Herauszufinden, an welcher Stelle im Arbeitsablauf das System die Menschen im Unternehmen im Stich lässt."},
+    {t: "Welcher Satz beschreibt dich eher?", a: "Ich will verstehen, wie man ein Problem so präzise beschreibt, dass eine Maschine es ausführen kann.", b: "Ich will verstehen, warum Organisationen an Technik scheitern, die eigentlich funktioniert."},
+    {t: "Mathematik im Studium ist für dich...", a: "...ein Kerngebiet, in das ich bereit bin, richtig Zeit zu investieren: Logik, Beweise, Komplexität.", b: "...ein Werkzeug, das ich beherrschen will, soweit es Analysen und Entscheidungen trägt."},
+    {t: "Ein Nachmittag, der dir Spaß machen würde:", a: "Einen eigenen kleinen Interpreter, ein Spiel oder ein Datenstruktur-Experiment programmieren, einfach weil es geht.", b: "Den Bestellprozess eines Onlinehändlers aufzeichnen und herausfinden, wo er Zeit, Geld und Nerven kostet."},
+    {t: "Welches Lob würde dich mehr freuen?", a: "„Dein Code ist sauber, effizient und durchdacht.“", b: "„Durch deine Analyse haben Fachabteilung und IT zum ersten Mal dasselbe Bild.“"},
+    {t: "Beim Wort „Projekt“ denkst du zuerst an...", a: "...das Bauen: Architektur, Implementierung, Tests, ein lauffähiges System.", b: "...das Ganze: Anforderungen, Beteiligte, Budget, Einführung und was die Nutzer am Ende damit tun."},
+    {t: "Du liest einen Artikel über ein Sprachmodell. Deine erste Frage:", a: "Wie funktioniert das im Inneren, vom Training bis zur Inferenz?", b: "Wie führt man so etwas in einem Unternehmen mit 900 Beschäftigten verantwortlich ein?"},
+    {t: "Ein schlechter Geschäftsprozess wird digitalisiert. Deine Reaktion:", a: "Spannend wird es für mich bei der technischen Umsetzung, der Prozess ist Sache der Fachabteilung.", b: "Erst den Prozess reparieren: Ein schlechter Prozess wird durch Software nicht gut, er wird nur schneller schlecht."},
+    {t: "Womit willst du im Beruf eher zu tun haben?", a: "Softwareentwicklung, Systemarchitektur, KI-Entwicklung, IT-Security in der Tiefe.", b: "Requirements Engineering, IT-Projektmanagement, Business Analytics, Product Ownership, Enterprise-Architektur."},
+    {t: "In einer Besprechung mit Nicht-Technikern...", a: "...bin ich am stärksten, wenn ich danach wieder in Ruhe am System arbeiten kann.", b: "...blühe ich auf: Zwischen Fachbereich und IT zu übersetzen ist genau mein Terrain."},
+    {t: "Was wäre für dich das bessere Wahlmodul?", a: "Theoretische Informatik, Compilerbau oder maschinelles Lernen in der Tiefe.", b: "Digitale Transformation, E-Commerce-Plattformen oder IT-Governance."},
+    {t: "Dein Anspruch an Verständnis:", a: "Ich will jedes technische Konzept bis zum Grund durchdringen, auch wenn es dauert.", b: "Ich will genug Tiefe, um Entscheidungen zu tragen, und den Blick für das System aus Menschen, Prozessen und Technik."}
+  ],
+  ergebnis: {
+    a: {
+      titel: "Deine Tendenz: Informatik",
+      text: [
+        "Dich zieht die Grundfrage der Informatik an: Wie beschreibt man ein Problem so genau, dass ein Mensch es versteht und eine Maschine es ausführen kann? Abstraktion, Modellbildung, Logik, Datenorganisation und Komplexitätsdenken prägen das Informatikstudium.",
+        "Für den Start zählt weniger Tipptempo als sauberes Denken, hartnäckiges Analysieren und der Ernst bei den Grundlagen. Drei Gewohnheiten helfen bei der Vorbereitung: regelmäßig kleine Programme schreiben, mathematische Argumente ernst nehmen und jedes Konzept so erklären können, dass es jemand ohne Vorwissen versteht."
+      ]
+    },
+    b: {
+      titel: "Deine Tendenz: Wirtschaftsinformatik",
+      text: [
+        "Dein Terrain ist die Lücke, an der viele Technik-Einführungen scheitern: Die Technik wird erklärt, die Organisation bleibt im Dunkeln. In dieser Lücke arbeitet die Wirtschaftsinformatik. Prozesse erkennen und verbessern, Anforderungen sauber erheben, zwischen Fachbereich und IT übersetzen, Daten zu Entscheidungen machen: Das ist ein eigenes Fach mit eigener Grundfrage, kein halbes Informatikstudium.",
+        "Falls dich jemand fragt, ob du dich nur nicht entscheiden konntest: Spätestens beim ersten echten Fall brauchst du beide Seiten, Fachbereich und IT."
+      ]
+    },
+    offen: {
+      titel: "Deine Tendenz: offen, mit gutem Grund",
+      text: [
+        "Du bewegst dich nahe der Mitte, und das ist ein brauchbares Ergebnis: Beide Fächer teilen sich ein technisches Fundament, und an vielen Hochschulen kannst du nach den ersten Semestern noch die Richtung schärfen. Wichtig ist, welche Grundfrage dich länger trägt: das präzise Durchdringen von Systemen (Informatik) oder das Verhältnis von Menschen, Prozessen und Technik in Organisationen (Wirtschaftsinformatik).",
+        "Ein praktischer Test: Nimm dir ein Wochenende für ein kleines Programmierprojekt und eines für die Analyse eines realen Prozesses, etwa wie deine Schule oder dein Betrieb etwas organisiert. Welches Wochenende dir schneller verging, sagt mehr als jeder Fragebogen."
+      ]
+    }
+  },
+  hinweis: "Eine Orientierung, keine Studienberatung. Die Auswertung zeigt nur, wie du diese zwölf Situationen beantwortet hast. Für die Entscheidung helfen die Studienberatung der Hochschulen und die Berufsberatung der Agentur für Arbeit."
+};
 </script>
+<script src="/assets/trainer.js"></script>
+<script>
+/* Studienwahl-Check: 12 Fragen, Zurück, Auswertung mit Balken und Beitragsliste, Speichern auf dem Gerät.
+   Gleicher Code im Duales-Studium-Check; die Inhalte stehen in CHECK. */
+(function () {
+  "use strict";
+  var T = window.PaviTools;
+  var h = T.h;
+  var box = document.getElementById("check");
+  var F = CHECK.fragen, R = CHECK.richtungen, N = F.length;
+  var SCHWELLE = 2 / 3;
+  var antworten = [], reihen = [], idx = 0, ausAuswertung = false, sperre = 0;
+  var startHTML = box.innerHTML;
+
+  function neueReihen() { reihen = F.map(function () { return Math.random() < 0.5 ? ["a", "b"] : ["b", "a"]; }); }
+
+  function fokus(el) { if (!el) return; if (!el.hasAttribute("tabindex")) el.tabIndex = -1; el.focus({ preventScroll: true }); }
+  function insBild() {
+    var r = box.getBoundingClientRect();
+    if (r.top < 70 || r.top > window.innerHeight * 0.4) box.scrollIntoView({ behavior: T.reduced() ? "auto" : "smooth", block: "start" });
+  }
+
+  function gespeichert() { return T.store.get("ergebnis", null); }
+  function datum(ts) {
+    var d = new Date(ts);
+    return d.getDate() + "." + (d.getMonth() + 1) + "." + d.getFullYear();
+  }
+
+  /* ---------- Start ---------- */
+  function start() {
+    box.innerHTML = startHTML;
+    var ziel = box.querySelector(".ck-start > div");
+    var acts = h("div", { class: "t-actions" });
+    acts.appendChild(h("button", { type: "button", class: "btn btn--primary", id: "ckStart", text: "Check starten", onclick: function () { beginnen(); } }));
+    var s = gespeichert();
+    if (s && s.antworten && s.antworten.length === N) {
+      acts.appendChild(h("button", { type: "button", class: "btn btn--ghost", text: "Gespeichertes Ergebnis vom " + datum(s.zeit) + " öffnen", onclick: function () {
+        antworten = s.antworten.slice(); reihen = s.reihen && s.reihen.length === N ? s.reihen.slice() : F.map(function () { return ["a", "b"]; });
+        auswertung(true);
+      } }));
+    }
+    var note = ziel.querySelector(".t-note");
+    ziel.insertBefore(acts, note);
+  }
+
+  function beginnen() {
+    antworten = []; neueReihen(); idx = 0; ausAuswertung = false;
+    frage(true);
+  }
+
+  /* ---------- Frage ---------- */
+  function frage(fokusieren) {
+    var q = F[idx];
+    box.innerHTML = "";
+    var body = h("div", { class: "ck-q t-quiz__body" });
+    var top = h("div", { class: "ck-q__top" });
+    var pe = h("div", { style: "flex:1 1 240px" });
+    top.appendChild(pe);
+    body.appendChild(top);
+    var beantwortet = antworten.filter(function (x) { return x; }).length;
+    T.progress(pe, { unit: "beantwortet", label: "Fortschritt im Check", resetText: "Neu starten", onReset: function () {
+      beginnen(); T.announce("Check neu gestartet.");
+    } }).set(beantwortet, N);
+
+    var qid = "ckq" + idx;
+    body.appendChild(h("p", { class: "ck-q__count", text: "Frage " + (idx + 1) + " von " + N }));
+    var hd = h("h3", { id: qid, tabindex: "-1", text: q.t });
+    body.appendChild(hd);
+    var grp = h("div", { class: "t-opts", role: "group", "aria-labelledby": qid });
+    reihen[idx].forEach(function (k) {
+      var gewaehlt = antworten[idx] === k;
+      var b = h("button", { type: "button", class: "t-opt" + (gewaehlt ? " is-chosen" : ""), "aria-pressed": gewaehlt ? "true" : "false", text: q[k] });
+      b.addEventListener("click", function () { waehlen(k); });
+      grp.appendChild(b);
+    });
+    body.appendChild(grp);
+
+    var nav = h("div", { class: "ck-q__nav" });
+    if (idx > 0) nav.appendChild(h("button", { type: "button", class: "t-iconbtn", html: T.icon.left + "<span>Zurück</span>", onclick: function () { idx--; frage(true); } }));
+    if (antworten[idx] && !ausAuswertung) {
+      var naechste = idx + 1 < N ? "Weiter" : "Zur Auswertung";
+      nav.appendChild(h("button", { type: "button", class: "t-iconbtn", html: "<span>" + naechste + "</span>" + T.icon.right, onclick: function () { weiter(); } }));
+    }
+    if (ausAuswertung) nav.appendChild(h("button", { type: "button", class: "t-iconbtn", html: "<span>Zurück zur Auswertung</span>" + T.icon.right, onclick: function () { auswertung(false); } }));
+    nav.appendChild(h("p", { class: "t-deck__meta t-kbd-hint", html: "Tastatur: <kbd>1</kbd> oder <kbd>2</kbd> wählt eine Antwort." }));
+    body.appendChild(nav);
+    box.appendChild(body);
+    T.announce("Frage " + (idx + 1) + " von " + N + ". " + q.t);
+    if (fokusieren) { insBild(); fokus(hd); }
+  }
+
+  function waehlen(k) {
+    if (Date.now() < sperre) return;
+    sperre = Date.now() + 350;
+    antworten[idx] = k;
+    if (ausAuswertung) { auswertung(false); return; }
+    weiter();
+  }
+  function weiter() {
+    var offen = -1;
+    for (var i = 0; i < N; i++) if (!antworten[i]) { offen = i; break; }
+    if (idx + 1 < N) { idx++; frage(true); }
+    else if (offen >= 0) { idx = offen; frage(true); }
+    else auswertung(false);
+  }
+
+  /* ---------- Auswertung ---------- */
+  function auswertung(ausSpeicher) {
+    ausAuswertung = true;
+    var n = { a: 0, b: 0 };
+    antworten.forEach(function (k) { n[k]++; });
+    var art = n.a / N >= SCHWELLE ? "a" : n.b / N >= SCHWELLE ? "b" : "offen";
+    var erg = CHECK.ergebnis[art];
+    box.innerHTML = "";
+    var body = h("div", { class: "ck-res t-quiz__body" });
+
+    var head = h("div", { class: "ck-res__head" });
+    var titel = h("h3", { tabindex: "-1", text: erg.titel });
+    head.appendChild(titel);
+    head.appendChild(h("p", { text: n.a + " deiner " + N + " Antworten sprechen für " + R.a.kurz + ", " + n.b + " für " + R.b.kurz + "." }));
+    body.appendChild(head);
+
+    var bars = h("div", { class: "ck-bars", role: "list", "aria-label": "Punkte je Richtung" });
+    var fills = [];
+    ["a", "b"].forEach(function (k) {
+      var anteil = Math.round(n[k] / N * 100);
+      var bar = h("div", { class: "ck-bar", "data-dir": k, role: "listitem" });
+      bar.appendChild(h("span", { class: "ck-bar__name", text: R[k].name }));
+      bar.appendChild(h("span", { class: "ck-bar__val", html: "<strong>" + n[k] + "</strong> von " + N + " (" + anteil + " %)" }));
+      var tr = h("div", { class: "ck-bar__track", "aria-hidden": "true" });
+      var fill = h("div", { class: "ck-bar__fill" });
+      tr.appendChild(fill);
+      tr.appendChild(h("span", { class: "ck-bar__mark", style: "--m:" + SCHWELLE.toFixed(4) }));
+      bar.appendChild(tr);
+      bars.appendChild(bar);
+      fills.push([fill, n[k] / N]);
+    });
+    body.appendChild(bars);
+    body.appendChild(h("p", { class: "ck-scale", text: "Der Strich markiert 8 von 12 Punkten. Ab dort zeigt die Auswertung eine Tendenz." }));
+
+    body.appendChild(h("div", { class: "t-note" }, [h("p", { text: CHECK.hinweis })]));
+
+    var text = h("div", { class: "ck-text" });
+    erg.text.forEach(function (t) { text.appendChild(h("p", { text: t })); });
+    body.appendChild(text);
+
+    var liste = h("div", { class: "ck-list" });
+    ["a", "b"].forEach(function (k) {
+      var sec = h("section", { "data-dir": k, "aria-labelledby": "ckl-" + k });
+      var zahl = antworten.filter(function (x) { return x === k; }).length;
+      sec.appendChild(h("h4", { id: "ckl-" + k, text: "Für " + R[k].kurz + " sprachen " + (zahl === 1 ? "diese Antwort" : "diese " + zahl + " Antworten") }));
+      var ol = h("ol");
+      F.forEach(function (q, i) {
+        if (antworten[i] !== k) return;
+        var li = h("li");
+        li.appendChild(h("div", null, [h("small", { text: "Frage " + (i + 1) + ": " + q.t }), h("p", { text: q[k] })]));
+        li.appendChild(h("button", { type: "button", class: "t-iconbtn", "aria-label": "Antwort zu Frage " + (i + 1) + " ändern", text: "Ändern", onclick: function () { idx = i; frage(true); } }));
+        ol.appendChild(li);
+      });
+      sec.appendChild(ol);
+      if (!zahl) sec.appendChild(h("p", { class: "ck-none", text: "Keine." }));
+      liste.appendChild(sec);
+    });
+    body.appendChild(liste);
+
+    var acts = h("div", { class: "t-actions ck-res__actions" });
+    var saved = h("p", { class: "ck-saved", role: "status" });
+    var bSave = h("button", { type: "button", class: "btn btn--primary" });
+    var bDel = h("button", { type: "button", class: "btn btn--ghost" , text: "Gespeichertes Ergebnis löschen" });
+    function speicherStand() {
+      var s = gespeichert();
+      var gleich = s && s.antworten && s.antworten.join("") === antworten.join("");
+      bSave.textContent = gleich ? "Gespeichert" : "Ergebnis speichern";
+      bSave.disabled = !!gleich;
+      bDel.hidden = !s;
+      return s;
+    }
+    bSave.addEventListener("click", function () {
+      T.store.set("ergebnis", { antworten: antworten.slice(), reihen: reihen.slice(), zeit: Date.now() });
+      speicherStand();
+      saved.textContent = "Gespeichert am " + datum(Date.now()) + ", nur auf diesem Gerät.";
+    });
+    bDel.addEventListener("click", function () {
+      T.store.remove("ergebnis");
+      speicherStand();
+      saved.textContent = "Gespeichertes Ergebnis gelöscht.";
+      bSave.focus();
+    });
+    acts.appendChild(bSave);
+    acts.appendChild(h("button", { type: "button", class: "btn btn--ghost", html: T.icon.restart + "<span>Neu starten</span>", onclick: function () { beginnen(); } }));
+    acts.appendChild(bDel);
+    body.appendChild(acts);
+    body.appendChild(saved);
+    var s0 = speicherStand();
+    if (ausSpeicher && s0) saved.textContent = "Gespeichertes Ergebnis vom " + datum(s0.zeit) + ".";
+
+    box.appendChild(body);
+    // Balken wachsen nach dem Einfügen auf ihren Wert
+    requestAnimationFrame(function () { requestAnimationFrame(function () { fills.forEach(function (f) { f[0].style.setProperty("--p", f[1].toFixed(4)); }); }); });
+    T.announce(erg.titel + ". " + n.a + " Punkte für " + R.a.kurz + ", " + n.b + " für " + R.b.kurz + ".");
+    insBild();
+    fokus(titel);
+  }
+
+  /* ---------- Tastatur ---------- */
+  box.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var opts = box.querySelectorAll(".ck-q .t-opt");
+    if (!opts.length) return;
+    var n = parseInt(e.key, 10);
+    if (n >= 1 && n <= opts.length) { e.preventDefault(); opts[n - 1].click(); }
+  });
+
+  start();
+})();
+</script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

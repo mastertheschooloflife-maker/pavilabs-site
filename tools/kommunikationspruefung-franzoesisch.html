@@ -1,15 +1,130 @@
 <!doctype html>
-<html lang="de" style="--akzent:#2C7A72;--akzent-tief:#15505C">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kommunikationsprüfung Französisch</title>
-<meta name="description" content="Die Kommunikationsprüfung Französisch in der Oberstufe bis zu 15 Punkten trainieren: die drei Prüfungsphasen, das offizielle Bewertungsraster, Redemittel für Monolog, Dialog und Prüfergespräch, Szenario-Training mit Timer, nach dem Buch Französisch Meistern.">
+<title>Kommunikationsprüfung Französisch: Redemittel, Szenarien mit Timer, Checkliste</title>
+<meta name="description" content="Die Kommunikationsprüfung Französisch in der Oberstufe üben: Redemittel nach Gesprächsfunktion als Lernkarten, Szenarien mit Timer für Vorbereitung, Monolog, Dialog und Prüfergespräch, dazu eine Checkliste. Bewertungsraster als Beispiel, nach dem Buch Französisch Meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/kommunikationspruefung-franzoesisch.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+/* Seitenlokal: Szenario-Übung mit Phasen (Kommunikationsprüfung) */
+.pg-lead { color: var(--fg-dim); font-size: 0.97rem; margin: 0 0 22px; }
+.pg-modes { margin-bottom: 28px; }
+.pg-modes .t-seg { width: 100%; }
+.pg-modes .t-seg__btn { flex: 1 1 auto; justify-content: center; min-height: 44px; }
+
+.kom-top { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: flex-end; justify-content: space-between; margin-bottom: 22px; }
+.kom-top > div { flex: 1 1 420px; min-width: 0; }
+.kom-top > .btn { flex: none; }
+.kom-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 28px 36px; align-items: start; }
+.kom-col { display: grid; gap: 22px; min-width: 0; }
+
+.kom-card {
+  background: var(--paper-bright); color: var(--ink);
+  border-radius: 20px;
+  padding: clamp(20px, 3vw, 30px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.25), 0 30px 60px -32px rgba(0, 0, 0, 0.75);
+}
+.kom-card__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: 0.8rem; font-weight: 650; letter-spacing: 0.03em; color: var(--leaf-ink); }
+.kom-card__meta span:last-child { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.kom-card__text { font-size: clamp(1.12rem, 2.1vw, 1.36rem); font-weight: 700; line-height: 1.42; margin: 14px 0 16px; max-width: none; text-wrap: pretty; }
+.kom-card__task { margin: 0; padding-top: 14px; border-top: 1px solid var(--paper-line); color: var(--ink-muted); font-size: 0.96rem; max-width: none; }
+.kom-card__task strong { color: var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .kom-card.is-new, .kom-hint.is-new, .kom-answer.is-new { animation: t-rise var(--dur-state) var(--ease-expo); }
+}
+
+/* Phasenleiste: Ringknoten auf einer Leiterbahn */
+.ph-steps { --n: 3; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); }
+.ph-step { position: relative; min-width: 0; }
+.ph-step + .ph-step::before, .ph-step + .ph-step::after {
+  content: ""; position: absolute; top: 21px; height: 2px;
+  left: calc(-50% + 16px); right: calc(50% + 16px);
+  background: var(--hairline);
+}
+.ph-step + .ph-step::after { background: var(--leaf); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-layout) var(--ease-expo); }
+.ph-step.is-active::after, .ph-step.is-done::after { transform: scaleX(1); }
+.ph-step__btn {
+  width: 100%; min-height: 72px; padding: 12px 4px 8px;
+  display: grid; justify-items: center; align-content: start; gap: 5px;
+  border: 0; border-radius: 12px; background: none;
+  color: var(--fg-dim); font: inherit; text-align: center; cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.ph-step__btn:hover { color: var(--fg); }
+.ph-step__node {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--hairline-strong); background: var(--ground-raise);
+  transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out), transform var(--dur-state) var(--ease-expo);
+}
+.is-active .ph-step__node { background: var(--leaf); border-color: var(--leaf); transform: scale(1.1); }
+.is-done .ph-step__node { border-color: var(--leaf); background: radial-gradient(circle, var(--leaf) 0 3px, var(--ground-raise) 3.5px); }
+.ph-step__name { font-weight: 650; font-size: 0.9rem; line-height: 1.3; overflow-wrap: anywhere; hyphens: manual; }
+.is-active .ph-step__name { color: var(--fg); }
+.ph-step__time { font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .ph-step::after, .ph-step__node { transition: none !important; } }
+
+.kom-timer { min-height: 200px; }
+.kom-hint { padding-top: 18px; border-top: 1px solid var(--hairline); }
+.kom-hint h3 { font-size: 1.05rem; margin: 0 0 6px; }
+.kom-hint p { margin: 0; color: var(--fg-dim); font-size: 0.96rem; }
+.kom-phrases { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.kom-phrases li { padding: 6px 12px; border-radius: 10px; background: rgba(238, 244, 239, 0.06); border: 1px solid var(--hairline); font-size: 0.92rem; color: var(--fg); }
+
+.kom-dur > summary { list-style: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; cursor: pointer; color: var(--fg-dim); font-size: 0.92rem; font-weight: 600; }
+.kom-dur > summary::-webkit-details-marker { display: none; }
+.kom-dur > summary::after { content: ""; width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform var(--dur-state) var(--ease-expo); }
+.kom-dur[open] > summary::after { transform: translateY(2px) rotate(-135deg); }
+.kom-dur > summary:hover { color: var(--fg); }
+.kom-dur__rows { display: grid; gap: 6px; margin: 6px 0 4px; }
+.kom-dur__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 4px 0; border-top: 1px solid var(--hairline-soft); font-size: 0.93rem; }
+.kom-step { display: inline-flex; align-items: center; gap: 4px; }
+.kom-step output { min-width: 4.4em; text-align: center; font-variant-numeric: tabular-nums; color: var(--fg); }
+.kom-dur small { display: block; color: var(--fg-dim); font-size: 0.85rem; margin-top: 6px; }
+
+.kom-exam { padding-top: 18px; border-top: 1px solid var(--hairline); }
+.kom-exam__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 12px; }
+.kom-exam__head h3 { font-size: 1.05rem; margin: 0; }
+.kom-q { font-size: 1.12rem; font-weight: 700; color: var(--fg); margin: 0 0 12px; }
+.kom-answer { margin-top: 12px; padding: 14px 18px; border-radius: 14px; background: rgba(238, 244, 239, 0.05); border: 1px solid var(--hairline); color: var(--fg-dim); font-size: 0.95rem; }
+.kom-answer p { margin: 0; }
+.kom-answer p + p { margin-top: 6px; }
+.kom-answer strong { color: var(--mint); font-weight: 650; }
+
+.kom-after { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 36px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--hairline); }
+.kom-after h3 { font-size: 1.02rem; margin: 0 0 8px; }
+.kom-after ul { margin: 0; padding-left: 1.1em; color: var(--fg-dim); font-size: 0.95rem; }
+.kom-after p { color: var(--fg-dim); font-size: 0.95rem; margin: 0 0 10px; }
+.kom-prompt { margin: 0 0 12px; padding: 14px 16px; border-radius: 12px; background: var(--ground-deep); border: 1px solid var(--hairline); font-family: var(--f-mono); font-size: 0.86rem; line-height: 1.6; color: var(--fg); overflow-wrap: anywhere; }
+.kom-done { color: var(--mint) !important; font-weight: 650; }
+#p-check .t-check, #p-check .t-check__status { max-width: 800px; }
+
+.pg-def { margin: 6px 0 14px; }
+.pg-def > div { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 4px 28px; padding: 12px 0; border-top: 1px solid var(--hairline-soft); }
+.pg-def dt { color: var(--fg); font-weight: 650; }
+.pg-def dd { margin: 0; }
+.pg-sz { margin: 0; padding-left: 1.3em; }
+.pg-sz li { padding: 8px 0; }
+.pg-sz li p { margin: 0; }
+.pg-sz li p + p { font-size: 0.93rem; }
+.pg-sz b { color: var(--fg); font-weight: 650; }
+
+@media (max-width: 880px) {
+  .kom-grid, .kom-after { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .pg-modes .t-seg__btn { padding: 0 10px; font-size: 0.88rem; }
+  .pg-def > div { grid-template-columns: 1fr; }
+  .ph-step__name { font-size: 0.82rem; }
+  .kom-top .btn { width: 100%; justify-content: center; }
+}
+</style>
 </head>
-<body>
+<body data-lang="fr">
 
 <header class="site-head">
   <div class="pill">
@@ -24,156 +139,251 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Kommunikationsprüfung Französisch</h1>
-    <p class="tool-lede">Die Kommunikationsprüfung testet etwas anderes als das mündliche Abitur: nicht die Analyse eines Textes, sondern spontanes, lebendiges Französisch in einer realen Situation. Reagieren, verhandeln, höflich widersprechen, einen Kompromiss aushandeln. Wer sich darauf wie auf eine Textanalyse vorbereitet, scheitert an der falschen Stelle. Diese Seite enthält alles für die volle Punktzahl: die drei Prüfungsphasen, das offizielle Bewertungsraster, die Redemittel für jede Gesprächsfunktion, Szenarien zum Üben und die 15-Punkte-Checkliste.</p>
-    <p class="tool-src">Dieser Trainer folgt dem Kapitel zur Kommunikationsprüfung aus <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>. Die sprachübergreifende Methodik der mündlichen Vorbereitung vertieft <a href="https://www.amazon.de/dp/1074147715" rel="noopener">Englisch Meistern: Umfassende Vorbereitung für mündliche Prüfungen</a>.</p>
-
-    <div class="panel">
-      <h2>Die drei Phasen der Prüfung</h2>
-      <ol class="phasen">
-        <li>
-          <h3>Monolog</h3>
-          <p>Etwa 5 Minuten zu einem persönlichen Thema: dein Engagement, deine Pläne nach dem Bac, eine prägende Erfahrung.</p>
-        </li>
-        <li>
-          <h3>Dialog</h3>
-          <p>Das Herzstück: Rollenspiel oder Diskussion mit einem Mitschüler, meist mit dem Ziel eines Kompromisses.</p>
-        </li>
-        <li>
-          <h3>Prüfergespräch</h3>
-          <p>Der Prüfer steigt mit weiterführenden Fragen ein. Die anspruchsvollste Phase, weil nichts davon planbar ist.</p>
-        </li>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Französisch</a></li>
+        <li><span aria-current="page">Kommunikationsprüfung</span></li>
       </ol>
-      <p style="color:var(--cream-dim);font-size:0.88rem;max-width:58ch;margin-top:14px">Der Rahmen je nach Bundesland: meist Paar- oder Gruppenprüfung mit bis zu drei, vier Prüflingen, die getrennt bewertet werden. Die Teile hängen thematisch zusammen, eine Aufwärmphase zählt nicht in die Note. In den amtlichen Rastern heißen die zwei bewerteten Teile „Zusammenhängendes Sprechen“ (Monolog) und „An Gesprächen teilnehmen“ (Dialog und Prüfergespräch).</p>
-    </div>
+    </nav>
 
-    <div class="panel">
-      <h2>So wird bewertet</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Das Buch nennt fünf Kernkompetenzen, die amtlichen GeR-basierten Raster (Zielniveau B2 mit C1-Anteilen) bündeln sie in kommunikative Strategie und sprachliche Mittel. Beides zusammen ergibt dein Trainingsprofil.</p>
-      <dl class="ledger">
-        <div class="row"><dt>Spontanität</dt><dd>Keine lange Vorbereitungszeit: Aufgabe lesen, denken, loslegen. Auswendig aufgesagte Sätze fallen sofort auf.</dd></div>
-        <div class="row"><dt>Interaktion</dt><dd>Auf den Partner eingehen, Argumente aufgreifen oder widerlegen, Fragen stellen. Keine Solovorstellung.</dd></div>
-        <div class="row"><dt>Pragmatische Kompetenz</dt><dd>Das richtige Register: tu oder vous, vertraut oder formell, der Situation angemessen.</dd></div>
-        <div class="row"><dt>Strategien</dt><dd>Fehlende Wörter paraphrasieren, höflich nachfragen, Pausen füllen. Souveräner Umgang mit Unsicherheit wird bewertet.</dd></div>
-        <div class="row"><dt>Aussprache und Sprachfluss</dt><dd>Akzentfrei erwartet niemand. Verständlich und flüssig schon: Wer alle drei Sätze stockt, verliert Flusspunkte.</dd></div>
-      </dl>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch;margin-top:22px">Die Zielmarke für 15 Punkte, so wie die Raster die Spitzennote beschreiben:</p>
-      <dl class="ledger">
-        <div class="row"><dt>Nahezu notizenfrei</dt><dd>Der Monolog kommt fast ohne Blick auf die Stichworte aus.</dd></div>
-        <div class="row"><dt>Differenzierter Wortschatz</dt><dd>Variabel statt repetitiv: cependant statt immer mais, abgestufte Meinungen, präzise Verben.</dd></div>
-        <div class="row"><dt>Nahezu fehlerfreie Kommunikation</dt><dd>Fehler stören das Verständnis nie; der Subjonctif nach den Pflicht-Auslösern sitzt.</dd></div>
-        <div class="row"><dt>Durchgängiger Partnerkontakt</dt><dd>Flexibles, unbeschwertes Eingehen auf Partner und Prüfer, situationsangemessen bis zum Schluss.</dd></div>
-      </dl>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> Wie du jede dieser Kompetenzen einzeln trainierst und woran Prüfer die Stufen festmachen, steht im Prüfungskapitel von <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a>.</span>
+    <header class="t-intro">
+      <div>
+        <h1>Kommunikations&shy;prüfung Französisch</h1>
+        <p class="t-goal">Anders als bei der Textanalyse zählt hier spontanes Französisch: reagieren, verhandeln, höflich widersprechen, einen Kompromiss finden. Du übst <strong>Redemittel</strong> auf Karten, spielst <strong>Szenarien mit Timer</strong> durch und hakst ab, was sitzt.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start="#modusWahl [aria-selected='true']">Übung starten</a>
+          <a class="btn btn--ghost" href="#ueben" data-mode="szenario" data-start="#szDraw">Direkt ein Szenario ziehen</a>
+        </div>
       </div>
-    </div>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>16</dt><dd>Karten</dd></div>
+          <div><dt>11</dt><dd>Szenarien</dd></div>
+          <div><dt>4</dt><dd>Phasen mit Timer</dd></div>
+          <div><dt>12</dt><dd>Quizfragen</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So läuft eine Übung">
+          <li><span><strong>Redemittel trainieren:</strong> Wendung laut sagen, dann die Karte umdrehen.</span></li>
+          <li><span><strong>Szenario starten:</strong> Der Timer führt durch Vorbereitung, Monolog, Dialog und Prüfergespräch.</span></li>
+          <li><span><strong>Checkliste ansehen:</strong> abhaken, was sitzt. Der Rest ist dein Trainingsplan.</span></li>
+        </ol>
+      </div>
+    </header>
 
-    <div class="panel">
-      <h2>Phase 1: Der Monolog</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Typische Aufträge aus dem Buch: Parlez de votre engagement personnel pour l'environnement. · Présentez vos projets après le bac. · Racontez une expérience qui vous a marqué(e). Bereite die Themenfelder vor, nicht die Sätze.</p>
-      <div class="cee-box"><strong>Die Mikrostruktur starker Beiträge: Aussage, Beleg, Erklärung.</strong> Erst die These (Pour ma part, je dirais que...), dann ein konkretes Beispiel (Pour illustrer mon propos, prenons l'exemple de...), dann die Erklärung, warum das Beispiel die These trägt. So wird aus Meinung Argumentation, im Monolog wie im Dialog.</div>
-      <p style="color:var(--cream-dim);font-size:0.88rem;max-width:58ch;margin-top:14px">Stichworte statt Sätze: Wer ausformuliert, liest ab, und die Spitzennote verlangt den nahezu notizenfreien Vortrag.</p>
-    </div>
-
-    <div class="panel">
-      <h2>Redemittel nach Gesprächsfunktion</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Erst überlegen, wie du die Funktion ausdrücken würdest, dann umdrehen. Pfeil rechts heißt „sitzt“, Pfeil links heißt „nochmal“. Jede Funktion mit drei bis fünf Wendungen im Schlaf zu können ist die halbe Prüfung.</p>
-      <div class="chip-row" id="deckRow" style="display:none"></div>
-      <div class="chip-row" id="catRow"></div>
-      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
-      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
-      <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button">
-          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
-            <div class="fc-etikett" id="fcKatV"></div>
-            <div class="fc-haupt" id="fcFrage"></div>
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Üben: Gespräch trainieren</h2>
+        <p class="t-zone__hint">Fortschritt, Häkchen und Zeiten bleiben auf diesem Gerät.</p>
+      </div>
+      <div class="t-surface">
+        <div class="pg-modes">
+          <span class="t-label" id="lblModus">Übungsart</span>
+          <div class="t-seg" id="modusWahl" data-seg data-seg-store="modus" aria-labelledby="lblModus">
+            <button class="t-seg__btn" data-value="redemittel" aria-controls="p-redemittel" aria-selected="true">Redemittel trainieren</button>
+            <button class="t-seg__btn" data-value="szenario" aria-controls="p-szenario">Szenario starten</button>
+            <button class="t-seg__btn" data-value="check" aria-controls="p-check">Checkliste ansehen</button>
           </div>
-          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
-            <div class="fc-etikett" id="fcKatR"></div>
-            <div class="fc-haupt" id="fcAntwort"></div>
-            <div class="fc-detail" id="fcDetail"></div>
-            <div class="fc-note" id="fcNote"></div>
+        </div>
+
+        <div id="p-redemittel">
+          <p class="pg-lead">Wähle eine Gesprächsfunktion, sag die Wendung laut und dreh dann um. Ziel sind drei bis fünf Wendungen pro Funktion, die ohne Nachdenken kommen. Achte beim Verhandeln auf Subjonctif-Auslöser wie à condition que und pour que.</p>
+          <div id="deck"></div>
+          <noscript><p class="t-noscript">Die Lernkarten und der Szenario-Timer brauchen JavaScript. Checkliste, Szenarien und Erklärungen sind ohne lesbar.</p></noscript>
+        </div>
+
+        <div id="p-szenario">
+          <div class="kom-top">
+            <div>
+              <span class="t-label" id="lblFormat">Prüfungsformat</span>
+              <div class="t-chips" id="szFormate" role="group" aria-labelledby="lblFormat"></div>
+            </div>
+            <button type="button" class="btn btn--ghost" id="szDraw">Anderes Szenario ziehen</button>
+          </div>
+
+          <div class="kom-grid">
+            <div class="kom-col">
+              <article class="kom-card" id="szCard" aria-live="polite" aria-atomic="true">
+                <div class="kom-card__meta"><span id="szTyp">Szenario</span><span id="szNr"></span></div>
+                <p class="kom-card__text" id="szText" lang="fr">Die Szenarien stehen unten in der Erklärung als Liste.</p>
+                <p class="kom-card__task" id="szTask"></p>
+              </article>
+
+              <div class="kom-exam">
+                <div class="kom-exam__head">
+                  <h3>Prüferfrage</h3>
+                  <button type="button" class="t-iconbtn" id="exDraw">Prüferfrage ziehen</button>
+                </div>
+                <p class="kom-q" id="exQ">Zieh im Prüfergespräch eine Frage, wie Prüfer sie stellen, und antworte in der vous-Form.</p>
+                <button type="button" class="t-iconbtn" id="exShow" aria-expanded="false" aria-controls="exAnswer" hidden>Antwortmuster zeigen</button>
+                <div class="kom-answer" id="exAnswer" hidden></div>
+              </div>
+            </div>
+
+            <div class="kom-col">
+              <ol class="ph-steps" id="phSteps" aria-label="Phasen der Übung"></ol>
+              <div class="kom-timer" id="szTimer"></div>
+              <div class="kom-hint" id="phHint" aria-live="polite"></div>
+              <details class="kom-dur">
+                <summary>Dauer der Phasen anpassen</summary>
+                <div class="kom-dur__rows" id="durRows"></div>
+                <small>Übungswerte, keine Prüfungsvorgabe. Wie lange die Teile dauern, regelt dein Bundesland.</small>
+              </details>
+            </div>
+          </div>
+
+          <div class="kom-after">
+            <div>
+              <h3>Nach jeder Runde besprechen</h3>
+              <ul>
+                <li>Wer hat das Gespräch geleitet?</li>
+                <li>Waren die Sprechanteile im Gleichgewicht?</li>
+                <li>Wurde jede Meinung begründet?</li>
+                <li>Gab es echte Nachfragen?</li>
+              </ul>
+            </div>
+            <div>
+              <h3>So übst du regelmäßig</h3>
+              <p>Sprecht nur Französisch, auch wenn Worte fehlen: umschreiben statt ins Deutsche wechseln. Ohne Partner übernimmt ein KI-Chat die Gegenrolle.</p>
+              <p>Das Buch empfiehlt, drei Monate vor der Prüfung zweimal pro Woche 20 Minuten mit einem festen Partner zu üben, möglichst auf ähnlichem oder leicht höherem Niveau.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="p-check">
+          <p class="pg-lead">Zusammengestellt aus Buch, Rastern und Praxis. Hake ab, was bei dir schon sitzt. Was offen bleibt, ist dein Plan für die nächsten Wochen.</p>
+          <ul class="t-check" data-checklist="pruefung" data-unit="sitzen">
+            <li><label><input type="checkbox"><span>Ich kenne die drei Phasen und weiß, dass Monolog, Dialog und Prüfergespräch unterschiedlich trainiert werden.</span></label></li>
+            <li><label><input type="checkbox"><span>Zu jedem Themenfeld meines Kurses kann ich drei Minuten frei sprechen, nur mit Stichworten.</span></label></li>
+            <li><label><input type="checkbox"><span>Für jede Gesprächsfunktion habe ich drei Wendungen parat. <small>Zustimmen, widersprechen, nachfragen, vorschlagen, verhandeln.</small></span></label></li>
+            <li><label><input type="checkbox"><span>Jeder Beitrag folgt Aussage, Beleg, Erklärung statt bloßer Behauptung.</span></label></li>
+            <li><label><input type="checkbox"><span>Die Höflichkeitswendungen sitzen. <small lang="fr">Excusez-moi de vous interrompre, Si je peux me permettre, Pourriez-vous répéter</small></span></label></li>
+            <li><label><input type="checkbox"><span>Fehlt ein Wort, umschreibe ich es auf Französisch, ohne den Fluss zu verlieren.</span></label></li>
+            <li><label><input type="checkbox"><span>Der Subjonctif nach den Pflicht-Auslösern kommt automatisch. <small>il faut que, pour que, bien que, à condition que</small></span></label></li>
+            <li><label><input type="checkbox"><span>Seit mindestens einem Monat übe ich zweimal pro Woche 20 Minuten Rollenspiele mit festem Partner.</span></label></li>
+            <li><label><input type="checkbox"><span>Das Register sitzt: tu im Schülerdialog, vous und Höflichkeitsformen im Prüfergespräch.</span></label></li>
+            <li><label><input type="checkbox"><span>Die sechs typischen Fauxpas aus der Erklärung erkenne ich, bevor ich in einen davon rutsche.</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-zone" id="quiz" aria-labelledby="h-quiz">
+      <div class="t-zone__head">
+        <h2 id="h-quiz">Selbsttest: Quiz</h2>
+        <p class="t-zone__hint">Zwölf Fragen zu Phasen, Strategien und Register.</p>
+      </div>
+      <div class="t-surface">
+        <div id="quizBox"></div>
+        <noscript><p class="t-noscript">Das Quiz braucht JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone reveal" id="erklaerung" aria-labelledby="h-erkl">
+      <div class="t-zone__head">
+        <h2 id="h-erkl">Erklärung</h2>
+        <p class="t-zone__hint">Zum Nachlesen, wenn eine Karte oder Frage hakt.</p>
+      </div>
+
+      <details class="t-explain">
+        <summary>Die drei Phasen der Prüfung</summary>
+        <div class="t-explain__body">
+          <dl class="pg-def">
+            <div><dt>Monolog</dt><dd>Etwa fünf Minuten zu einem persönlichen Thema: dein Engagement, deine Pläne nach dem Bac, eine prägende Erfahrung. Typische Aufträge: <span lang="fr">Parlez de votre engagement personnel pour l'environnement. Présentez vos projets après le bac. Racontez une expérience qui vous a marqué(e).</span></dd></div>
+            <div><dt>Dialog</dt><dd>Der Kern der Prüfung: Rollenspiel oder Diskussion mit einem Mitschüler, meist mit dem Ziel eines Kompromisses.</dd></div>
+            <div><dt>Prüfergespräch</dt><dd>Der Prüfer steigt mit weiterführenden Fragen ein. Diese Phase lässt sich am wenigsten planen.</dd></div>
+          </dl>
+          <p>Bereite Themenfelder vor, nicht Sätze. Wer ausformuliert, liest ab. Stichworte reichen.</p>
+          <p><strong>Aussage, Beleg, Erklärung:</strong> erst die These (<span lang="fr">Pour ma part, je dirais que...</span>), dann ein konkretes Beispiel (<span lang="fr">Pour illustrer mon propos, prenons l'exemple de...</span>), dann die Erklärung, warum das Beispiel die These trägt. So wird aus einer Meinung ein Argument, im Monolog wie im Dialog.</p>
+          <p>Meist ist es eine Paar- oder Gruppenprüfung mit bis zu drei oder vier Prüflingen, die getrennt bewertet werden. Die Teile hängen thematisch zusammen, eine Aufwärmphase zählt nicht in die Note. In den amtlichen Rastern heißen die zwei bewerteten Teile „Zusammenhängendes Sprechen“ (Monolog) und „An Gesprächen teilnehmen“ (Dialog und Prüfergespräch).</p>
+        </div>
+      </details>
+
+      <details class="t-explain">
+        <summary>Bewertungsraster: ein Beispiel, kein Standard</summary>
+        <div class="t-explain__body">
+          <div class="t-note"><p><strong>Je nach Bundesland verschieden.</strong> Ablauf, Dauer, Gewichtung und Raster legt jedes Bundesland selbst fest. Die Angaben hier orientieren sich an Vorgaben aus NRW und Hessen. Prüf die Vorgaben deiner Schule.</p></div>
+          <p style="margin-top:16px">Das Buch nennt fünf Kernkompetenzen. Die GeR-basierten Raster (Zielniveau B2 mit C1-Anteilen) bündeln sie in kommunikative Strategie und sprachliche Mittel.</p>
+          <dl class="pg-def">
+            <div><dt>Spontanität</dt><dd>Keine lange Vorbereitungszeit: Aufgabe lesen, denken, loslegen. Auswendig aufgesagte Sätze fallen auf.</dd></div>
+            <div><dt>Interaktion</dt><dd>Auf den Partner eingehen, Argumente aufgreifen oder widerlegen, Fragen stellen. Keine Solovorstellung.</dd></div>
+            <div><dt>Pragmatische Kompetenz</dt><dd>Das passende Register: tu oder vous, vertraut oder formell, je nach Situation.</dd></div>
+            <div><dt>Strategien</dt><dd>Fehlende Wörter umschreiben, höflich nachfragen, Pausen füllen. Auch der Umgang mit Unsicherheit wird bewertet.</dd></div>
+            <div><dt>Aussprache und Sprachfluss</dt><dd>Akzentfrei erwartet niemand. Verständlich und flüssig schon: Häufiges Stocken geht in die Bewertung des Sprachflusses ein.</dd></div>
+          </dl>
+          <p>So beschreiben diese Raster die höchste Stufe:</p>
+          <dl class="pg-def">
+            <div><dt>Nahezu notizenfrei</dt><dd>Der Monolog kommt fast ohne Blick auf die Stichworte aus.</dd></div>
+            <div><dt>Differenzierter Wortschatz</dt><dd>Abwechslung statt Wiederholung: cependant statt immer mais, abgestufte Meinungen, genaue Verben.</dd></div>
+            <div><dt>Nahezu fehlerfreie Kommunikation</dt><dd>Fehler stören das Verständnis nicht, der Subjonctif nach den Pflicht-Auslösern sitzt.</dd></div>
+            <div><dt>Durchgängiger Partnerkontakt</dt><dd>Flexibles Eingehen auf Partner und Prüfer, passend zur Situation bis zum Schluss.</dd></div>
+          </dl>
+        </div>
+      </details>
+
+      <details class="t-explain">
+        <summary>Sechs typische Fauxpas</summary>
+        <div class="t-explain__body">
+          <dl class="pg-def">
+            <div><dt>Auswendig abspulen</dt><dd>Bereite Themen vor, nicht Sätze. Erkennbar aufgesagte Texte wirken unecht und gehen auf Kosten der Spontanität.</dd></div>
+            <div><dt>Den Partner korrigieren</dt><dd>Reagiere auf den Inhalt. Die Sprache deines Partners bewertet der Prüfer getrennt.</dd></div>
+            <div><dt>Dominieren oder verstummen</dt><dd>Prüfer achten auf das Gleichgewicht der Sprechanteile. Wer dem Partner kein Wort lässt, schadet sich selbst.</dd></div>
+            <div><dt>Ins Deutsche wechseln</dt><dd>Auch unter Stress nicht. Lieber unperfekt umschreiben.</dd></div>
+            <div><dt>Lange Pausen</dt><dd>Lange Stille unterbricht den Sprachfluss. Füll sie: <span lang="fr">Eh bien, réfléchissons... En fait, ce qui me vient à l'esprit, c'est...</span></dd></div>
+            <div><dt>Den Prüfer übersehen</dt><dd>In Phase drei ist der Prüfer dein Gesprächspartner: Blickkontakt, Aufmerksamkeit, echtes Eingehen auf seine Fragen.</dd></div>
+          </dl>
+        </div>
+      </details>
+
+      <details class="t-explain">
+        <summary>Alle Szenarien als Liste</summary>
+        <div class="t-explain__body">
+          <ol class="pg-sz" id="szListe">
+            <li data-format="Rollenspiel" data-title="Reiseplanung"><p lang="fr" data-text>Vous êtes deux amis qui doivent décider où passer les vacances. L'un veut aller en montagne, l'autre à la plage.</p><p data-task>Diskutiert Vor- und Nachteile und findet einen Kompromiss. Nutzt mindestens einen Vorschlag mit „Et si on...?“</p></li>
+            <li data-format="Rollenspiel" data-title="Studienwahl"><p lang="fr" data-text>Après le bac : l'un de vous veut étudier par passion, l'autre privilégie la sécurité financière. Qu'est-ce qui compte le plus ?</p><p data-task>Hört einander zu, greift Argumente auf (Tu as mentionné...) und formuliert am Ende eine gemeinsame Einsicht.</p></li>
+            <li data-format="Rollenspiel" data-title="Wohnsituation"><p lang="fr" data-text>Après le bac, vous hésitez : colocation dans une grande ville ou studio dans une petite ville ?</p><p data-task>Jeder nennt zwei Argumente, dann verhandelt ihr: Je suis prêt(e) à faire des concessions sur...</p></li>
+            <li data-format="Rollenspiel" data-title="Praktikum oder Job"><p lang="fr" data-text>Cet été : un stage non payé mais intéressant ou un job d'été bien payé mais monotone ?</p><p data-task>Wägt mit D'un côté... de l'autre côté... ab und begründet eure gemeinsame Empfehlung.</p></li>
+            <li data-format="Diskussion" data-title="Lifestyle"><p lang="fr" data-text>Faut-il devenir végétarien pour protéger le climat ?</p><p data-task>Meinungen abgestuft äußern, mindestens eine Konzession pro Person, dann ein gemeinsames Fazit.</p></li>
+            <li data-format="Diskussion" data-title="Gesellschaft"><p lang="fr" data-text>Faut-il supprimer l'argent liquide ? L'un défend la thèse, l'autre l'attaque.</p><p data-task>Höflich widersprechen (Je ne suis pas tout à fait de cet avis...), nach der Hälfte die Rollen tauschen.</p></li>
+            <li data-format="Diskussion" data-title="Gesellschaft"><p lang="fr" data-text>Les réseaux sociaux sont-ils bons ou mauvais pour la démocratie ?</p><p data-task>Differenziert statt absolut: Cela dépend en grande partie de... Mindestens ein konkretes Beispiel pro Person.</p></li>
+            <li data-format="Diskussion" data-title="Schule"><p lang="fr" data-text>Faut-il introduire l'uniforme scolaire dans les écoles allemandes ?</p><p data-task>Baut eine Konzession ein (C'est un argument intéressant, mais...) und schließt mit einem gemeinsamen Fazit.</p></li>
+            <li data-format="Diskussion" data-title="Schule"><p lang="fr" data-text>Faut-il supprimer le redoublement ? Et combien de devoirs sont raisonnables ?</p><p data-task>Jede Behauptung braucht Beleg und Erklärung. Fasst am Ende beide Positionen fair zusammen.</p></li>
+            <li data-format="Diskussion" data-title="Politik"><p lang="fr" data-text>Faut-il abaisser l'âge du droit de vote à 16 ans ?</p><p data-task>Einer beginnt mit einem kurzen Monolog von einer Minute, dann offene Diskussion mit echten Nachfragen.</p></li>
+            <li data-format="Prüfergespräch" data-title="Rollen tauschen"><p lang="fr" data-text>L'un de vous joue l'examinateur et pose des questions : Comment cela se passerait-il chez vous ? Que feriez-vous personnellement ? Quels sont les avantages des deux options ?</p><p data-task>Wer geprüft wird, antwortet mit den Mustern aus den Lernkarten, in der vous-Form. Dann tauscht ihr die Rollen.</p></li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="t-explain">
+        <summary>Bedienung und was gespeichert wird</summary>
+        <div class="t-explain__body">
+          <p>Karten: <kbd>Leertaste</kbd> dreht um, <kbd>&rarr;</kbd> heißt „sitzt“, <kbd>&larr;</kbd> heißt „nochmal“. Auf dem Handy tippst du zum Umdrehen und wischst nach rechts oder links. Die Übungsarten wechselst du mit den Pfeiltasten im Umschalter.</p>
+          <p>Gespeichert werden nur die gewählte Übungsart, welche Karten sitzen, deine Häkchen, die Phasendauern und dein bestes Quizergebnis, im Speicher deines Browsers auf diesem Gerät. Nichts davon wird übertragen.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/franzoesisch.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Wie du jede Kompetenz einzeln trainierst und woran Prüfer die Stufen festmachen, zeigt das Prüfungskapitel von <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>, mit Beispieldialogen und Themenfeldern.</p>
           </div>
         </div>
       </div>
-      <div class="fcard-aktionen">
-        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
-        <button class="btn" id="btnKnown">Sitzt, nächste</button>
-        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
-        <span class="hint" id="restHint"></span>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/franzoesisch.html"><span class="t-related__img"><img src="/assets/previews/franzoesisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Französisch-Abitur-Trainer</strong><span>Subjonctif, Si-Sätze und Konnektoren als Lernkarten</span></span></a></li>
+          <li><a href="/tools/kommunikationspruefung-englisch.html"><span class="t-related__img"><img src="/assets/previews/kommunikationspruefung-englisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Kommunikationsprüfung Englisch</strong><span>Dieselbe Prüfungsform auf Englisch</span></span></a></li>
+          <li><a href="/tools/pruefungscoach.html"><span class="t-related__img"><img src="/assets/previews/pruefungscoach.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Prüfungscoach</strong><span>Atemübung und ein Plan für den Blackout</span></span></a></li>
+        </ul>
       </div>
-      <div class="deck-fertig" id="deckFertig" hidden>
-        <strong>Stapel geschafft.</strong>
-        <span id="fertigText"></span>
-      </div>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> Zu jeder Funktion zeigt <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern</a>, wie die Wendungen im Gesprächsfluss sitzen, inklusive der Subjonctif-Fallen wie à condition que und pour que mitten im Verhandeln.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Szenario-Training mit Timer</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Das Buch empfiehlt: drei Monate vor der Prüfung zweimal pro Woche 20 Minuten mit einem festen Partner üben, idealerweise auf ähnlichem oder leicht höherem Niveau. Zieh ein Szenario, stellt den Timer und sprecht nur Französisch, auch wenn Worte fehlen: paraphrasieren statt ins Deutsche wechseln. Ohne Partner übernimmt ein KI-Chat die Gegenrolle.</p>
-      <div class="szenario-box" id="szBox">
-        <div class="sz-rolle" id="szTyp"></div>
-        <div class="sz-text" id="szText"></div>
-        <div class="sz-auftrag" id="szAuftrag"></div>
-      </div>
-      <div class="timer-zeile">
-        <span class="timer-anzeige" id="timerAnzeige" role="timer">05:00</span>
-        <select class="feld-select" id="timerDauer" aria-label="Dauer" style="width:auto">
-          <option value="180">3 Minuten</option>
-          <option value="300" selected>5 Minuten</option>
-          <option value="600">10 Minuten</option>
-        </select>
-        <button class="btn" id="btnTimer">Start</button>
-        <button class="btn btn--ghost" id="btnTimerReset">Zurücksetzen</button>
-        <button class="btn btn--ghost" id="btnSzenario">Neues Szenario</button>
-      </div>
-      <p style="color:var(--cream-dim);font-size:0.88rem;max-width:58ch;margin-top:16px">Feedback-Fragen nach jeder Runde: Wer hat das Gespräch geleitet? Waren die Sprechanteile im Gleichgewicht? Wurde jede Meinung begründet? Gab es echte Nachfragen?</p>
-    </div>
-
-    <div class="panel">
-      <h2>Die Fauxpas, die Prüfer sofort registrieren</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Auswendig abspulen</dt><dd>Bereite Themen vor, nicht Sätze. Erkennbar aufgesagte Texte wirken unecht und kosten Spontanitätspunkte.</dd></div>
-        <div class="row"><dt>Den Partner korrigieren</dt><dd>Ein schwerer Fauxpas. Reagiere auf den Inhalt; die Sprache deines Partners bewertet der Prüfer separat.</dd></div>
-        <div class="row"><dt>Dominieren oder verstummen</dt><dd>Prüfer achten auf das Gleichgewicht der Sprechanteile. Wer dem Partner kein Wort lässt, schadet sich selbst.</dd></div>
-        <div class="row"><dt>Ins Deutsche wechseln</dt><dd>Niemals, auch nicht unter Stress. Lieber unperfekt paraphrasieren.</dd></div>
-        <div class="row"><dt>Lange Pausen</dt><dd>Stille tötet den Sprachfluss. Fülle sie: Eh bien, réfléchissons... · En fait, ce qui me vient à l'esprit, c'est...</dd></div>
-        <div class="row"><dt>Den Prüfer übersehen</dt><dd>In Phase drei ist der Prüfer dein Gesprächspartner: Blickkontakt, Aufmerksamkeit, echtes Eingehen auf seine Fragen.</dd></div>
-      </dl>
-    </div>
-
-    <div class="panel">
-      <h2>Dein Weg zu 15 Punkten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Die Checkliste aus Buch, Rastern und Praxis. Hake ab, was bereits sitzt; der Rest ist dein Trainingsplan.</p>
-      <ul class="check-liste" id="checkListe">
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Ich kenne die drei Phasen und weiß, dass Monolog, Dialog und Prüfergespräch unterschiedlich trainiert werden.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Zu jedem Themenfeld meines Kurses kann ich drei Minuten frei sprechen, nur mit Stichworten.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Für jede Gesprächsfunktion (zustimmen, widersprechen, nachfragen, vorschlagen, verhandeln) habe ich drei Wendungen parat.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Jeder Beitrag folgt Aussage, Beleg, Erklärung statt bloßer Behauptung.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Die Höflichkeitswendungen sitzen: Excusez-moi de vous interrompre, Si je peux me permettre, Pourriez-vous répéter.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Paraphrasieren statt Deutsch: Fehlt ein Wort, umschreibe ich es, ohne den Fluss zu verlieren.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Subjonctif nach den Pflicht-Auslösern (il faut que, pour que, bien que, à condition que) kommt automatisch.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Seit mindestens einem Monat übe ich zweimal pro Woche 20 Minuten Rollenspiele mit festem Partner.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Register sitzt: tu im Schülerdialog, vous und Höflichkeitsformen im Prüfergespräch.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Die sechs Fauxpas oben lösen bei mir einen inneren Alarm aus, bevor ich in einen davon rutsche.</span></button></li>
-      </ul>
-      <p class="check-stand" id="checkStand" role="status"></p>
-      <div class="buch-tipp">
-        <span><strong>Der letzte Schritt:</strong> Dieses Werkzeug gibt dir das Gerüst; die Tiefe kommt aus dem vollständigen Prüfungskapitel mit Beispieldialogen und Themenfeldern in <a href="https://www.amazon.de/dp/B0H41R2YWZ" rel="noopener">Französisch Meistern: Das Handbuch für die Oberstufe</a>. Für Grammatik und Konnektoren: der <a href="/tools/franzoesisch.html">Französisch-Abitur-Trainer</a>.</span>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Quiz: Prüfungslogik verstanden?</h2>
-      <div id="quizBox" aria-live="polite"></div>
-      <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
+    </section>
   </div>
 </main>
 
@@ -181,133 +391,264 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
-      <span><a href="/tools/kommunikationspruefung-englisch.html">Zur englischen Kommunikationsprüfung</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/tools/kommunikationspruefung-englisch.html">Zur Kommunikationsprüfung Englisch</a></span>
     </div>
   </div>
 </footer>
 
 <script>
+// Prüferfragen: Frage, Antwortmuster, Erklärung. Werden für Karten und Szenario-Übung genutzt.
+const PRUEFER = [
+  ["Comment cela se passerait-il dans votre famille ?", "Chez nous, par exemple, ... Ce qui montre que...", "Transfer ins Persönliche: ein konkretes Beispiel aus deinem Alltag, dann zurück zum Thema. Phase drei geht über die Dialogsituation hinaus: persönlich, aktuell, wertend."],
+  ["Que feriez-vous personnellement ?", "Personnellement, je choisirais... parce que...", "Eigene Position im Conditionnel mit Begründung. Das Conditionnel zeigt dabei auch dein Grammatikniveau."],
+  ["Quels sont les avantages de chacune des deux options ?", "D'un côté..., de l'autre côté..., mais tout bien considéré...", "Strukturiert abwägen: Die Frage lädt zu einer differenzierten Antwort ein."]
+];
+
+// Kartenformat: [Vorderseite, Antwort, Beispiel, Notiz]
 const DECKS = {
   "Redemittel": {
     "Monolog eröffnen": [
-      ["Den Monolog strukturiert beginnen?", "J'aimerais commencer par... · Permettez-moi de présenter... · Pour ma part, je dirais que...", "", "Der Monolog ist persönlich gefärbt: deine Welt, auf Französisch."],
-      ["Einen Punkt veranschaulichen?", "Pour illustrer mon propos, prenons l'exemple de... · Ce qui me frappe le plus, c'est...", "", "Ein konkretes Beispiel trägt mehr als drei Behauptungen."]
+      ["Den Monolog strukturiert beginnen?", "J'aimerais commencer par... / Permettez-moi de présenter... / Pour ma part, je dirais que...", "", "Der Monolog ist persönlich gefärbt: deine Welt, auf Französisch."],
+      ["Einen Punkt veranschaulichen?", "Pour illustrer mon propos, prenons l'exemple de... / Ce qui me frappe le plus, c'est...", "", "Ein konkretes Beispiel trägt mehr als drei Behauptungen."]
     ],
     "Zustimmen": [
-      ["Volle Zustimmung ausdrücken?", "Je suis tout à fait d'accord avec toi. · Je partage entièrement ton point de vue. · Effectivement, c'est un bon argument.", "", "Tu as raison de dire que... greift das Argument des Partners konkret auf."]
+      ["Volle Zustimmung ausdrücken?", "Je suis tout à fait d'accord avec toi. / Je partage entièrement ton point de vue. / Effectivement, c'est un bon argument.", "", "Tu as raison de dire que... greift das Argument des Partners konkret auf."]
     ],
     "Höflich widersprechen": [
-      ["Widersprechen, ohne unhöflich zu sein?", "Je ne suis pas tout à fait de cet avis. · C'est un argument intéressant, mais... · Je comprends ton point de vue, néanmoins...", "", "Permets-moi de te contredire sur ce point ist die eleganteste Eröffnung."]
+      ["Widersprechen, ohne unhöflich zu sein?", "Je ne suis pas tout à fait de cet avis. / C'est un argument intéressant, mais... / Je comprends ton point de vue, néanmoins...", "", "Permets-moi de te contredire sur ce point ist eine höfliche Eröffnung."]
     ],
     "Nachfragen": [
-      ["Präzisierung oder Beispiel erbitten?", "Pourrais-tu préciser ce que tu entends par...? · Qu'est-ce que tu veux dire exactement ? · Tu pourrais donner un exemple concret ?", "", "Nachfragen zeigt Interaktionskompetenz, keine Schwäche."],
-      ["Beim Prüfer höflich nachhaken?", "Pardonnez-moi, je n'ai pas bien saisi... · Pourriez-vous répéter, s'il vous plaît ?", "", "Im Prüfergespräch gilt vous, im Schülerdialog meist tu."]
+      ["Präzisierung oder Beispiel erbitten?", "Pourrais-tu préciser ce que tu entends par... ? / Qu'est-ce que tu veux dire exactement ? / Tu pourrais donner un exemple concret ?", "", "Nachfragen zeigt Interaktionskompetenz, keine Schwäche."],
+      ["Beim Prüfer höflich nachhaken?", "Pardonnez-moi, je n'ai pas bien saisi... / Pourriez-vous répéter, s'il vous plaît ?", "", "Im Prüfergespräch gilt vous, im Schülerdialog meist tu."]
     ],
     "Vorschlagen und verhandeln": [
-      ["Vorschläge ins Gespräch bringen?", "Et si on essayait de...? · Que dirais-tu de...? · Je propose qu'on... · On pourrait peut-être envisager de...", "", "Offene Vorschläge laden den Partner ein, statt ihn zu überfahren."],
-      ["Einen Kompromiss aushandeln?", "Trouvons un compromis : tu fais X, je fais Y. · Je suis prêt(e) à faire des concessions sur... · À condition que..., je serais d'accord pour...", "", "à condition que verlangt den Subjonctif."]
+      ["Vorschläge ins Gespräch bringen?", "Et si on essayait de... ? / Que dirais-tu de... ? / Je propose qu'on... / On pourrait peut-être envisager de...", "", "Offene Vorschläge laden den Partner ein, statt ihn zu überfahren."],
+      ["Einen Kompromiss aushandeln?", "Trouvons un compromis : tu fais X, je fais Y. / Je suis prêt(e) à faire des concessions sur... / À condition que..., je serais d'accord pour...", "", "à condition que verlangt den Subjonctif."]
     ],
     "Höflichkeit zeigen": [
-      ["Höflich unterbrechen?", "Excusez-moi de vous interrompre, mais... · Si je peux me permettre...", "", "Französische Höflichkeit ist Teil der Bewertung: kulturelle Kompetenz."],
-      ["Respektvoll eine andere Sicht ankündigen?", "Avec tout le respect que je vous dois...", "", "Formell und elegant, besonders im Prüfergespräch."]
+      ["Höflich unterbrechen?", "Excusez-moi de vous interrompre, mais... / Si je peux me permettre...", "", "Höflichkeitsformen gehören zur pragmatischen Kompetenz."],
+      ["Respektvoll eine andere Sicht ankündigen?", "Avec tout le respect que je vous dois...", "", "Formell und höflich, passend für das Prüfergespräch."]
     ],
     "Zeit gewinnen": [
-      ["Nachdenkpausen elegant füllen?", "Voilà une question intéressante... · Laissez-moi réfléchir un instant... · C'est une question complexe à laquelle on peut répondre de plusieurs façons.", "", "Stille wirkt unsicher; gefüllte Pausen wirken nachdenklich."],
-      ["Die Frage des Prüfers spiegeln?", "Si je vous comprends bien, vous me demandez si...", "", "Spiegeln verschafft Zeit und zeigt Verständnis zugleich."]
+      ["Nachdenkpausen füllen?", "Voilà une question intéressante... / Laissez-moi réfléchir un instant... / C'est une question complexe à laquelle on peut répondre de plusieurs façons.", "", "Stille wirkt unsicher, gefüllte Pausen wirken nachdenklich."],
+      ["Die Frage des Prüfers spiegeln?", "Si je vous comprends bien, vous me demandez si...", "", "Spiegeln verschafft Zeit und zeigt zugleich, dass du verstanden hast."]
     ],
-    "Prüferfragen kontern": [
-      ["Der Prüfer fragt: Comment cela se passerait-il dans votre famille ?", "Der Transfer ins Persönliche: ein konkretes Beispiel aus deinem Alltag, dann zurück zum Thema.", "Chez nous, par exemple, ... Ce qui montre que...", "Phase drei geht über die Dialogsituation hinaus: persönlich, aktuell, wertend."],
-      ["Der Prüfer fragt: Que feriez-vous personnellement ?", "Eigene Position mit Conditionnel und Begründung: Personnellement, je choisirais... parce que...", "", "Das Conditionnel zeigt hier zugleich Grammatikniveau."],
-      ["Der Prüfer fragt: Quels sont les avantages de chacune des deux options ?", "Strukturiert abwägen: D'un côté..., de l'autre côté..., mais tout bien considéré...", "", "Die Abwägungsfrage ist die Einladung zur differenzierten Antwort."]
-    ],
+    "Prüferfragen kontern": PRUEFER.map(function (p) { return ["Der Prüfer fragt: „" + p[0] + "“", p[1], p[2], ""]; }),
     "Differenziert antworten": [
-      ["Im Prüfergespräch differenzieren?", "À mon avis, tout dépend du contexte... · Cela dépend en grande partie de... · Plusieurs perspectives sont possibles. D'abord...", "", "Differenzierung schlägt Schwarz-Weiß-Antworten."]
+      ["Im Prüfergespräch differenzieren?", "À mon avis, tout dépend du contexte... / Cela dépend en grande partie de... / Plusieurs perspectives sont possibles. D'abord...", "", "Eine differenzierte Antwort zeigt mehr als Schwarz oder Weiß."]
     ]
   }
 };
 
 const QUIZ = [
-  {f: 'Aus welchen drei Phasen besteht die Kommunikationsprüfung typischerweise?', o: ['Diktat, Übersetzung, Aufsatz', 'Monolog, Dialog mit Mitschüler, Diskussion mit dem Prüfer', 'Hörverstehen, Leseverstehen, Grammatiktest'], r: 1, e: 'In den amtlichen Rastern: Zusammenhängendes Sprechen plus An Gesprächen teilnehmen.'},
-  {f: 'Was beschreibt die Spitzennote im monologischen Teil?', o: ['Der Text wird fehlerfrei abgelesen', 'Der Vortrag kommt nahezu ohne Notizen aus', 'Der Monolog dauert möglichst lange'], r: 1, e: 'Nahezu notizenfrei: Stichworte statt ausformulierter Sätze machen das möglich.'},
-  {f: 'Dein Partner macht einen Grammatikfehler. Du...', o: ['...korrigierst ihn dezent', '...reagierst nur auf den Inhalt', '...machst eine kurze Pause, damit er es merkt'], r: 1, e: 'Korrigieren ist der klassische Fauxpas; die Sprache des Partners bewertet der Prüfer separat.'},
-  {f: 'Dir fehlt mitten im Satz ein Wort. Was tust du?', o: ['Kurz ins Deutsche wechseln', 'Paraphrasieren und weitersprechen', 'Den Satz abbrechen und schweigen'], r: 1, e: 'Paraphrasieren ist eine bewertete Strategie; der Deutsch-Wechsel ist tabu.'},
-  {f: 'Der Prüfer stellt eine unerwartete Frage. Deine erste Reaktion?', o: ['Sofort irgendetwas sagen', 'Voilà une question intéressante... und kurz ordnen', 'Um eine andere Frage bitten'], r: 1, e: 'Zeitgewinnungsfloskeln füllen die Pause und wirken souverän statt unsicher.'},
-  {f: '„À condition que...“ verlangt...', o: ['...den Indikativ', '...den Subjonctif', '...das Conditionnel'], r: 1, e: 'À condition que tu sois d’accord: Subjonctif, auch mitten im Verhandeln.'},
-  {f: 'Was wird NICHT erwartet?', o: ['Verständlichkeit und Sprachfluss', 'Akzentfreies Französisch', 'Eingehen auf den Partner'], r: 1, e: 'Akzentfreiheit erwartet kein Prüfer; Verständlichkeit und Fluss zählen.'},
-  {f: 'Die beste Vorbereitung laut Buch?', o: ['Alle Redemittel auswendig, dann allein üben', 'Drei Monate lang zweimal pro Woche Rollenspiele mit festem Partner', 'Eine Nacht vor der Prüfung intensiv wiederholen'], r: 1, e: 'Regelmäßige Rollenspiele zu den typischen Themen schlagen jede Last-Minute-Vorbereitung.'},
-  {f: 'Welche Anrede im Prüfergespräch?', o: ['tu, das wirkt natürlicher', 'vous, mit höflichen Wendungen', 'Gemischt, je nach Stimmung'], r: 1, e: 'Pragmatische Kompetenz heißt auch: Register und Anrede der Situation anpassen.'},
-  {f: '„Que feriez-vous personnellement ?“ beantwortest du am stärksten mit...', o: ['Je ne sais pas.', 'Personnellement, je choisirais... parce que...', 'C’est une bonne question.'], r: 1, e: 'Position plus Begründung im Conditionnel: Inhalt und Grammatikniveau in einem Satz.'},
-  {f: 'Woran erkennen Prüfer die Spitzennote im Dialog?', o: ['Am längsten Redeanteil', 'Am durchgängig gehaltenen Kontakt zum Gesprächspartner', 'An möglichst vielen Fachbegriffen'], r: 1, e: 'Flexibles, unbeschwertes Eingehen auf den Partner, situationsangemessen bis zum Schluss.'},
-  {f: 'Dein Partner schweigt plötzlich. Was tust du?', o: ['Seinen Teil mit übernehmen', 'Ihm mit einer offenen Frage das Wort geben: Et toi, qu’est-ce que tu en penses ?', 'Den Prüfer ansehen und warten'], r: 1, e: 'Den Partner einzubeziehen zeigt Diskurskompetenz und rettet das Gleichgewicht der Sprechanteile.'}
+  {f: "Aus welchen drei Phasen besteht die Kommunikationsprüfung typischerweise?", o: ["Diktat, Übersetzung, Aufsatz", "Monolog, Dialog mit Mitschüler, Gespräch mit dem Prüfer", "Hörverstehen, Leseverstehen, Grammatiktest"], r: 1, e: "In den amtlichen Rastern: Zusammenhängendes Sprechen und An Gesprächen teilnehmen."},
+  {f: "Wie beschreiben viele Raster die höchste Stufe im Monolog?", o: ["Der Text wird fehlerfrei abgelesen", "Der Vortrag kommt nahezu ohne Notizen aus", "Der Monolog dauert möglichst lange"], r: 1, e: "Nahezu notizenfrei: Stichworte statt ausformulierter Sätze machen das möglich."},
+  {f: "Dein Partner macht einen Grammatikfehler. Du...", o: ["...korrigierst ihn dezent", "...reagierst nur auf den Inhalt", "...machst eine kurze Pause, damit er es merkt"], r: 1, e: "Korrigieren ist ein typischer Fauxpas. Die Sprache des Partners bewertet der Prüfer getrennt."},
+  {f: "Dir fehlt mitten im Satz ein Wort. Was tust du?", o: ["Kurz ins Deutsche wechseln", "Umschreiben und weitersprechen", "Den Satz abbrechen und schweigen"], r: 1, e: "Umschreiben ist eine bewertete Strategie. Ins Deutsche zu wechseln solltest du vermeiden."},
+  {f: "Der Prüfer stellt eine unerwartete Frage. Deine erste Reaktion?", o: ["Sofort irgendetwas sagen", "Voilà une question intéressante... und kurz ordnen", "Um eine andere Frage bitten"], r: 1, e: "Solche Wendungen füllen die Pause und wirken überlegt statt unsicher."},
+  {f: "„À condition que...“ verlangt...", o: ["...den Indikativ", "...den Subjonctif", "...das Conditionnel"], r: 1, e: "À condition que tu sois d'accord: Subjonctif, auch mitten im Verhandeln."},
+  {f: "Was wird NICHT erwartet?", o: ["Verständlichkeit und Sprachfluss", "Akzentfreies Französisch", "Eingehen auf den Partner"], r: 1, e: "Akzentfreiheit erwartet niemand. Verständlichkeit und Fluss zählen."},
+  {f: "Welche Vorbereitung empfiehlt das Buch?", o: ["Alle Redemittel auswendig lernen, dann allein üben", "Drei Monate lang zweimal pro Woche Rollenspiele mit festem Partner", "Eine Nacht vor der Prüfung intensiv wiederholen"], r: 1, e: "Regelmäßige Rollenspiele zu den typischen Themen bringen mehr als eine Last-Minute-Vorbereitung."},
+  {f: "Welche Anrede passt im Prüfergespräch?", o: ["tu, das wirkt natürlicher", "vous, mit höflichen Wendungen", "Gemischt, je nach Stimmung"], r: 1, e: "Pragmatische Kompetenz heißt auch: Register und Anrede der Situation anpassen."},
+  {f: "„Que feriez-vous personnellement ?“ beantwortest du am besten mit...", o: ["Je ne sais pas.", "Personnellement, je choisirais... parce que...", "C'est une bonne question."], r: 1, e: "Position plus Begründung im Conditionnel: Inhalt und Grammatik in einem Satz."},
+  {f: "Was beschreiben viele Raster für die höchste Stufe im Dialog?", o: ["Den längsten Redeanteil", "Den durchgängig gehaltenen Kontakt zum Gesprächspartner", "Möglichst viele Fachbegriffe"], r: 1, e: "Flexibles Eingehen auf den Partner, passend zur Situation bis zum Schluss."},
+  {f: "Dein Partner schweigt plötzlich. Was tust du?", o: ["Seinen Teil mit übernehmen", "Ihm mit einer offenen Frage das Wort geben: Et toi, qu'est-ce que tu en penses ?", "Den Prüfer ansehen und warten"], r: 1, e: "Wer den Partner einbezieht, zeigt Gesprächskompetenz und hält die Sprechanteile im Gleichgewicht."}
+];
+
+// Phasen der Szenario-Übung. Dauer in Minuten sind Übungswerte und lassen sich anpassen.
+const PHASEN = [
+  {label: "Vor­be­rei­tung", min: 2, text: "Aufgabe lesen, kurz ordnen, loslegen. Bereite Themen vor, nicht Sätze, und notier nur Stichworte.", rm: ["Aussage: Was ist meine These?", "Beleg: Welches konkrete Beispiel?", "Erklärung: Warum trägt das Beispiel die These?"], de: true},
+  {label: "Monolog", min: 5, text: "Etwa fünf Minuten zu deiner Position oder einem persönlichen Thema. Sprich frei nach Stichworten.", rm: ["J'aimerais commencer par...", "Pour ma part, je dirais que...", "Pour illustrer mon propos, prenons l'exemple de..."]},
+  {label: "Dialog", min: 5, text: "Geh auf deinen Partner ein, greif Argumente auf, frag nach. Meist ist ein Kompromiss das Ziel. Im Schülerdialog gilt meist tu.", rm: ["Je ne suis pas tout à fait de cet avis.", "Et si on essayait de... ?", "Je suis prêt(e) à faire des concessions sur..."]},
+  {label: "Prüfer­gespräch", min: 3, text: "Der Prüfer fragt weiter: persönlich, aktuell, wertend. Antworte mit vous und höflichen Wendungen. Zieh dafür eine Prüferfrage.", rm: ["Voilà une question intéressante...", "Si je vous comprends bien, vous me demandez si...", "Personnellement, je choisirais... parce que..."]}
 ];
 </script>
 <script src="/assets/trainer.js"></script>
 <script>
-const SZENARIEN = [
-  {typ: "Rollenspiel: Reiseplanung", text: "Vous êtes deux amis qui doivent décider où passer les vacances. L'un veut aller en montagne, l'autre à la plage.", auftrag: "Diskutiert Vor- und Nachteile und findet einen Kompromiss. Nutzt mindestens einen Vorschlag mit „Et si on...?“"},
-  {typ: "Rollenspiel: Studienwahl", text: "Après le bac : l'un de vous veut étudier par passion, l'autre privilégie la sécurité financière. Qu'est-ce qui compte le plus ?", auftrag: "Hört einander zu, greift Argumente auf (Tu as mentionné...) und formuliert am Ende eine gemeinsame Einsicht."},
-  {typ: "Rollenspiel: Wohnsituation", text: "Après le bac, vous hésitez : colocation dans une grande ville ou studio dans une petite ville ?", auftrag: "Jeder nennt zwei Argumente, dann verhandelt ihr: Je suis prêt(e) à faire des concessions sur..."},
-  {typ: "Rollenspiel: Praktikum oder Job", text: "Cet été : un stage non payé mais intéressant ou un job d'été bien payé mais monotone ?", auftrag: "Wägt mit D'un côté... de l'autre côté... ab und begründet eure gemeinsame Empfehlung."},
-  {typ: "Diskussion: Lifestyle", text: "Faut-il devenir végétarien pour protéger le climat ?", auftrag: "Meinungen abgestuft äußern, mindestens eine Konzession pro Person, dann ein gemeinsames Fazit."},
-  {typ: "Diskussion: Gesellschaft", text: "Faut-il supprimer l'argent liquide ? L'un défend la thèse, l'autre l'attaque.", auftrag: "Höflich widersprechen (Je ne suis pas tout à fait de cet avis...), nach der Hälfte Rollen tauschen."},
-  {typ: "Diskussion: Gesellschaft", text: "Les réseaux sociaux sont-ils bons ou mauvais pour la démocratie ?", auftrag: "Differenziert statt absolut: Cela dépend en grande partie de... Mindestens ein konkretes Beispiel pro Person."},
-  {typ: "Diskussion: Schule", text: "Faut-il introduire l'uniforme scolaire dans les écoles allemandes ?", auftrag: "Baut eine Konzession ein (C'est un argument intéressant, mais...) und schließt mit einem gemeinsamen Fazit."},
-  {typ: "Diskussion: Schule", text: "Faut-il supprimer le redoublement ? Et combien de devoirs sont raisonnables ?", auftrag: "Jede Behauptung braucht Beleg und Erklärung. Fasst am Ende beide Positionen fair zusammen."},
-  {typ: "Diskussion: Politik", text: "Faut-il abaisser l'âge du droit de vote à 16 ans ?", auftrag: "Einer beginnt mit einem kurzen Monolog (1 Minute), dann offene Diskussion mit echten Nachfragen."},
-  {typ: "Prüfergespräch simulieren", text: "L'un de vous joue l'examinateur et pose des questions : Comment cela se passerait-il chez vous ? Que feriez-vous personnellement ? Quels sont les avantages des deux options ?", auftrag: "Der Prüfling antwortet mit den Kontermustern aus den Lernkarten (vous-Form!), dann Rollentausch."}
-];
-const $$ = id => document.getElementById(id);
-let szIdx = -1;
-function neuesSzenario() {
-  let i; do { i = Math.floor(Math.random() * SZENARIEN.length); } while (i === szIdx && SZENARIEN.length > 1);
-  szIdx = i;
-  const s = SZENARIEN[i];
-  $$("szTyp").textContent = s.typ;
-  $$("szText").textContent = s.text;
-  $$("szAuftrag").textContent = s.auftrag;
-}
-let timerRest = 300, timerLauf = null;
-function timerAnzeigen() {
-  const m = String(Math.floor(timerRest / 60)).padStart(2, "0");
-  const s = String(timerRest % 60).padStart(2, "0");
-  $$("timerAnzeige").textContent = m + ":" + s;
-}
-$$("timerDauer").onchange = () => { timerRest = parseInt($$("timerDauer").value, 10); timerAnzeigen(); };
-$$("btnTimer").onclick = () => {
-  if (timerLauf) { clearInterval(timerLauf); timerLauf = null; $$("btnTimer").textContent = "Weiter"; $$("timerAnzeige").classList.remove("laeuft"); return; }
-  $$("btnTimer").textContent = "Pause";
-  timerAnzeigen();
-  $$("timerAnzeige").classList.add("laeuft");
-  timerLauf = setInterval(() => {
-    timerRest--;
-    timerAnzeigen();
-    if (timerRest <= 0) {
-      clearInterval(timerLauf); timerLauf = null;
-      $$("timerAnzeige").textContent = "Temps !";
-      $$("btnTimer").textContent = "Start";
-      $$("timerAnzeige").classList.remove("laeuft");
-      timerRest = parseInt($$("timerDauer").value, 10);
-    }
-  }, 1000);
-};
-$$("btnTimerReset").onclick = () => { if (timerLauf) { clearInterval(timerLauf); timerLauf = null; } timerRest = parseInt($$("timerDauer").value, 10); timerAnzeigen(); $$("btnTimer").textContent = "Start"; $$("timerAnzeige").classList.remove("laeuft"); };
-$$("btnSzenario").onclick = neuesSzenario;
-neuesSzenario();
-timerAnzeigen();
+(function () {
+  "use strict";
+  var T = window.PaviTools;
+  var $ = function (id) { return document.getElementById(id); };
+  var LANG = document.body.getAttribute("data-lang") || "en";
 
-// 15-Punkte-Checkliste
-const items = document.querySelectorAll("#checkListe .check-item");
-function checkStand() {
-  const ok = document.querySelectorAll("#checkListe .check-item.ok").length;
-  $$("checkStand").style.setProperty("--anteil", String(Math.round((ok / items.length) * 100)));
-  $$("checkStand").textContent = ok === items.length
-    ? "Alle " + items.length + " Punkte sitzen. Jetzt entscheidet nur noch die Übungsroutine."
-    : ok + " von " + items.length + " Punkten sitzen.";
-}
-items.forEach(b => b.addEventListener("click", () => { const an = b.classList.toggle("ok"); b.setAttribute("aria-pressed", an); checkStand(); }));
-checkStand();
+  /* ---------- Modus ---------- */
+  var modus = T.segment("#modusWahl");
+  document.querySelectorAll("a[data-mode]").forEach(function (a) {
+    a.addEventListener("click", function () { modus.set(a.getAttribute("data-mode")); });
+  });
+  // Die Lernkarten hören auf Leertaste und Pfeile auf der ganzen Seite. Ist ihr Bereich ausgeblendet, sollen sie das nicht.
+  window.addEventListener("keydown", function (e) {
+    if (e.target !== document.body || !$("p-redemittel").hidden) return;
+    if (e.key === " " || e.key === "ArrowLeft" || e.key === "ArrowRight") e.stopPropagation();
+  }, true);
+
+  /* ---------- Lernkarten und Quiz ---------- */
+  T.deck("#deck", { decks: DECKS, storageKey: "karten", catLabel: "Gesprächsfunktion", frontHint: "Erst laut sagen, dann umdrehen." });
+  T.quiz("#quizBox", { fragen: QUIZ, storageKey: "quiz" });
+
+  /* ---------- Szenarien ---------- */
+  var SZ = Array.prototype.map.call(document.querySelectorAll("#szListe > li"), function (li, i) {
+    return { nr: i + 1, f: li.getAttribute("data-format"), t: li.getAttribute("data-title"), text: li.querySelector("[data-text]").textContent, task: li.querySelector("[data-task]").textContent };
+  });
+  var formats = ["Alle"];
+  SZ.forEach(function (s) { if (formats.indexOf(s.f) < 0) formats.push(s.f); });
+  var filter = "Alle", current = null;
+
+  function chips() {
+    var box = $("szFormate");
+    box.innerHTML = "";
+    formats.forEach(function (f) {
+      var n = f === "Alle" ? SZ.length : SZ.filter(function (s) { return s.f === f; }).length;
+      var b = T.h("button", { type: "button", class: "t-chip", "aria-pressed": f === filter ? "true" : "false" }, [T.h("span", { text: f }), T.h("span", { class: "t-chip__count", text: String(n) })]);
+      b.addEventListener("click", function () { filter = f; chips(); draw(); });
+      box.appendChild(b);
+    });
+  }
+  function draw() {
+    var pool = SZ.filter(function (s) { return filter === "Alle" || s.f === filter; });
+    var rest = pool.length > 1 ? pool.filter(function (s) { return s !== current; }) : pool;
+    current = rest[Math.floor(Math.random() * rest.length)];
+    var card = $("szCard");
+    $("szTyp").textContent = current.f + ": " + current.t;
+    $("szNr").textContent = "Szenario " + current.nr + " von " + SZ.length;
+    $("szText").textContent = current.text;
+    $("szTask").innerHTML = "";
+    $("szTask").appendChild(T.h("strong", { text: "Auftrag: " }));
+    $("szTask").appendChild(document.createTextNode(current.task));
+    card.classList.remove("is-new"); void card.offsetWidth; card.classList.add("is-new");
+    if ($("kiPrompt")) $("kiPrompt").textContent = "Let us have a conversation about this situation: \"" + current.text + "\" Take a different position from mine and challenge my arguments.";
+    if (run) run.go(0, false);
+  }
+  $("szDraw").addEventListener("click", draw);
+
+  /* ---------- Prüferfragen ---------- */
+  var exLast = -1;
+  $("exDraw").addEventListener("click", function () {
+    var i;
+    do { i = Math.floor(Math.random() * PRUEFER.length); } while (i === exLast && PRUEFER.length > 1);
+    exLast = i;
+    $("exQ").textContent = PRUEFER[i][0];
+    $("exShow").hidden = false;
+    $("exShow").setAttribute("aria-expanded", "false");
+    $("exShow").textContent = "Antwortmuster zeigen";
+    var a = $("exAnswer");
+    a.hidden = true; a.innerHTML = "";
+    a.appendChild(T.h("p", null, [T.h("strong", { text: "Muster: " }), T.h("span", { lang: LANG, text: PRUEFER[i][1] })]));
+    a.appendChild(T.h("p", { text: PRUEFER[i][2] }));
+    T.announce("Prüferfrage: " + PRUEFER[i][0]);
+  });
+  $("exShow").addEventListener("click", function () {
+    var open = $("exAnswer").hidden;
+    $("exAnswer").hidden = !open;
+    $("exShow").setAttribute("aria-expanded", open ? "true" : "false");
+    $("exShow").textContent = open ? "Antwortmuster ausblenden" : "Antwortmuster zeigen";
+    if (open) { var a = $("exAnswer"); a.classList.remove("is-new"); void a.offsetWidth; a.classList.add("is-new"); }
+  });
+
+  /* ---------- KI-Auftrag kopieren ---------- */
+  if ($("kiCopy")) $("kiCopy").addEventListener("click", function () {
+    var text = $("kiPrompt").textContent;
+    function ok() { T.announce("Auftrag kopiert."); $("kiCopy").textContent = "Kopiert"; setTimeout(function () { $("kiCopy").textContent = "Auftrag kopieren"; }, 1800); }
+    function fallback() {
+      var ta = T.h("textarea", { class: "sr-only" }); ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); ok(); } catch (e) { T.announce("Kopieren nicht möglich. Markier den Text von Hand."); }
+      ta.remove();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+  });
+
+  /* ---------- Phasen mit Timer ---------- */
+  var saved = T.store.get("dauer", null);
+  if (Array.isArray(saved) && saved.length === PHASEN.length) PHASEN.forEach(function (p, i) { var m = Number(saved[i]); if (m >= 1 && m <= 15) p.min = m; });
+
+  function hint(i, finished) {
+    var box = $("phHint"), p = PHASEN[i];
+    box.innerHTML = "";
+    if (finished) {
+      box.appendChild(T.h("h3", { class: "kom-done", text: "Runde beendet" }));
+      box.appendChild(T.h("p", { text: "Geht jetzt die Fragen unten durch. Für eine neue Runde zieh ein Szenario oder wähl oben eine Phase." }));
+    } else {
+      box.appendChild(T.h("h3", { text: "Jetzt: " + p.label }));
+      box.appendChild(T.h("p", { text: p.text }));
+      var ul = T.h("ul", { class: "kom-phrases", "aria-label": p.de ? "Leitfragen" : "Passende Redemittel" });
+      p.rm.forEach(function (r) { ul.appendChild(T.h("li", { lang: p.de ? null : LANG, text: r })); });
+      box.appendChild(ul);
+    }
+    box.classList.remove("is-new"); void box.offsetWidth; box.classList.add("is-new");
+  }
+
+  function phaseRun(cfg) {
+    var cur = 0, timer = null, finished = false, steps = cfg.steps;
+    function drawSteps(focusIdx) {
+      steps.innerHTML = "";
+      steps.style.setProperty("--n", cfg.phases.length);
+      cfg.phases.forEach(function (p, i) {
+        var done = finished || i < cur, active = !finished && i === cur;
+        var b = T.h("button", { type: "button", class: "ph-step__btn", "aria-current": active ? "step" : null,
+          "aria-label": "Phase " + (i + 1) + " von " + cfg.phases.length + ": " + p.label + ", " + p.min + " Minuten" + (active ? ", aktuell" : done ? ", erledigt" : "") }, [
+          T.h("span", { class: "ph-step__node", "aria-hidden": "true" }),
+          T.h("span", { class: "ph-step__name", "aria-hidden": "true", text: p.label }),
+          T.h("span", { class: "ph-step__time", "aria-hidden": "true", text: p.min + " Min" })
+        ]);
+        b.addEventListener("click", function () { go(i, false, true); });
+        steps.appendChild(T.h("li", { class: "ph-step" + (done ? " is-done" : active ? " is-active" : "") }, [b]));
+      });
+      if (focusIdx != null && steps.children[focusIdx]) steps.children[focusIdx].firstChild.focus();
+    }
+    function mount(autostart) {
+      var focusIn = cfg.host.contains(document.activeElement);
+      if (timer) timer.reset();
+      var el = T.h("div");
+      cfg.host.innerHTML = "";
+      cfg.host.appendChild(el);
+      var p = cfg.phases[cur];
+      timer = T.timer(el, { seconds: p.min * 60, label: p.label, doneText: p.label + " beendet.", onDone: next });
+      if (autostart) timer.start();
+      if (focusIn) { var b = el.querySelector(".btn--primary"); if (b) b.focus(); }
+    }
+    function next() {
+      if (cur < cfg.phases.length - 1) {
+        cur++; drawSteps(); mount(true); cfg.onPhase(cur, false);
+        T.announce("Nächste Phase: " + cfg.phases[cur].label + ", " + cfg.phases[cur].min + " Minuten.");
+      } else {
+        finished = true; drawSteps(); cfg.onPhase(cur, true);
+        T.announce(cfg.doneText);
+      }
+    }
+    function go(i, autostart, focusStep) { cur = i; finished = false; drawSteps(focusStep ? i : null); mount(autostart); cfg.onPhase(cur, false); }
+    go(0, false);
+    return {
+      go: go,
+      refresh: function () { drawSteps(); if (!cfg.host.querySelector(".t-timer.is-running")) mount(false); }
+    };
+  }
+
+  var run = null;
+  chips();
+  draw();
+  run = phaseRun({ steps: $("phSteps"), host: $("szTimer"), phases: PHASEN, onPhase: hint, doneText: "Runde beendet. Zeit für das Feedback." });
+
+  /* ---------- Dauer anpassen ---------- */
+  var rows = $("durRows");
+  PHASEN.forEach(function (p, i) {
+    var out = T.h("output", { "aria-live": "polite", text: p.min + " Min" });
+    function change(d) {
+      var m = Math.min(15, Math.max(1, p.min + d));
+      if (m === p.min) return;
+      p.min = m; out.textContent = m + " Min";
+      T.store.set("dauer", PHASEN.map(function (x) { return x.min; }));
+      run.refresh();
+    }
+    var minus = T.h("button", { type: "button", class: "t-iconbtn", "aria-label": p.label + " eine Minute kürzer", html: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg>' });
+    var plus = T.h("button", { type: "button", class: "t-iconbtn", "aria-label": p.label + " eine Minute länger", html: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg>' });
+    minus.addEventListener("click", function () { change(-1); });
+    plus.addEventListener("click", function () { change(1); });
+    rows.appendChild(T.h("div", { class: "kom-dur__row" }, [T.h("span", { text: p.label }), T.h("span", { class: "kom-step" }, [minus, out, plus])]));
+  });
+})();
 </script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

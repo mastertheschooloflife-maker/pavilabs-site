@@ -3,11 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Klausur-Planer</title>
-<meta name="description" content="Erstellt aus Klausurdatum und Themenliste einen konkreten Vorbereitungsplan nach dem 14-Tage-Zyklus aus dem Buch Lernen meistern: Wissensdiagnose, Lernzettel 2.0, Active Recall und Übungsklausur.">
+<title>Klausur-Planer: Tagesplan bis zur Klausur</title>
+<meta name="description" content="Aus Klausurdatum und Themen entsteht sofort ein Tagesplan in vier Phasen: Wissensdiagnose, Verstehen, Abruf üben, Festigen. Mit Kalenderansicht, Abhaken, Druck und Kalenderdatei. Nach dem Buch Lernen meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/klausurplaner.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
 </head>
 <body>
 
@@ -24,32 +26,145 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Klausur-Planer</h1>
-    <p class="tool-lede">Die meisten Klausuren scheitern nicht am Lernstoff, sondern am Vorgehen: zu spät begonnen, nur wiedergelesen statt aktiv abgerufen, und am Ende fehlt die eine Nacht Schlaf, die mehr wert gewesen wäre als jede weitere Lernstunde. Dieser Planer nimmt dir die Planung ab. Du trägst Klausurdatum und Themen ein und bekommst einen Tagesplan, der dem bewährten Zyklus aus dem Buch folgt: erst ehrlich herausfinden, was du wirklich kannst, dann verstehen und strukturieren, dann unter echten Bedingungen anwenden. Am Ende gehst du ruhiger in die Prüfung, weil du genau weißt, wo du stehst.</p>
-    <p class="tool-src">Aus dem Buch <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a>, Kapitel „Klausuren richtig vorbereiten“.</p>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Lernen und KI</a></li>
+        <li><span aria-current="page">Klausur-Planer</span></li>
+      </ol>
+    </nav>
 
-    <div class="panel no-print">
-      <h2>Dein Plan</h2>
-      <label class="feld" for="fach">Fach oder Klausurthema</label>
-      <input type="text" id="fach" placeholder="z. B. Geschichte: Weimarer Republik">
-      <label class="feld" for="datum">Klausurdatum</label>
-      <input type="date" id="datum">
-      <label class="feld" for="themen">Themen der Klausur (eins pro Zeile)</label>
-      <textarea class="feld-area" id="themen" placeholder="Versailler Vertrag&#10;Hyperinflation 1923&#10;Goldene Zwanziger&#10;Scheitern der Republik"></textarea>
-      <button class="btn" id="btnPlan">Plan erstellen</button>
-      <span id="warnung" role="status" style="display:block;margin-top:10px;color:var(--gold);font-size:0.92rem"></span>
-    </div>
-
-    <div id="planBox" hidden>
-      <div class="panel">
-        <h2 id="planTitel"></h2>
-        <p id="planHinweis" style="color:var(--cream-dim);font-size:0.95rem"></p>
-        <div id="planTage"></div>
-        <button class="btn no-print" onclick="window.print()">Plan drucken oder als PDF sichern</button>
+    <header class="t-intro">
+      <div>
+        <h1>Klausur-Planer</h1>
+        <p class="t-goal">Trag Klausurdatum und Themen ein. Der Planer verteilt die Tage davor auf vier Phasen und zeigt dir sofort, was an welchem Tag dran ist.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start="#datum">Plan erstellen</a>
+          <a class="btn btn--ghost" href="#methode">Wie der Plan entsteht</a>
+        </div>
       </div>
-    </div>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>4</dt><dd>Phasen</dd></div>
+          <div><dt>14</dt><dd>Tage höchstens</dd></div>
+          <div><dt>.ics</dt><dd>für deinen Kalender</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So gehst du vor">
+          <li><span><strong>Datum und Themen</strong> eintragen, der Plan rechnet mit.</span></li>
+          <li><span><strong>Jeden Tag abhaken</strong>, was erledigt ist. Der Stand bleibt auf diesem Gerät.</span></li>
+          <li><span><strong>Drucken</strong> oder als Termine in deinen Kalender übernehmen.</span></li>
+        </ol>
+      </div>
+    </header>
+
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Dein Plan</h2>
+        <p class="t-zone__hint">Alles wird in deinem Browser berechnet, nichts wird übertragen.</p>
+      </div>
+
+      <div class="kp-layout">
+        <form class="t-surface kp-form" id="kpForm" novalidate>
+          <label class="kp-field">
+            <span class="t-label">Fach oder Klausurthema</span>
+            <input type="text" id="fach" autocomplete="off" placeholder="z. B. Geschichte: Weimarer Republik">
+          </label>
+          <label class="kp-field">
+            <span class="t-label">Klausurdatum</span>
+            <input type="date" id="datum" aria-describedby="datumHinweis">
+          </label>
+          <p class="kp-error" id="datumHinweis" role="alert"></p>
+          <label class="kp-field">
+            <span class="t-label">Themen, eins pro Zeile</span>
+            <textarea class="feld-area" id="themen" rows="5" placeholder="Versailler Vertrag&#10;Hyperinflation 1923&#10;Kultur der Zwanzigerjahre&#10;Scheitern der Republik"></textarea>
+          </label>
+          <div class="t-actions kp-form__actions">
+            <button type="submit" class="btn btn--primary">Plan anzeigen</button>
+            <button type="button" class="btn btn--ghost" id="btnBeispiel">Beispiel einsetzen</button>
+            <button type="button" class="t-iconbtn" id="btnLeeren">Felder leeren</button>
+          </div>
+          <noscript><p class="t-noscript">Der Planer braucht JavaScript. Die Methode dahinter steht weiter unten, damit kannst du den Plan auch von Hand anlegen.</p></noscript>
+        </form>
+
+        <div class="t-surface kp-preview" id="kpPreview" aria-labelledby="kpTitel">
+          <div class="kp-preview__head">
+            <div>
+              <span class="kp-badge" id="kpBadge">Beispiel</span>
+              <h3 id="kpTitel">Vorbereitungsplan</h3>
+            </div>
+            <p class="kp-summary" id="kpSummary" aria-live="polite"></p>
+          </div>
+          <div class="kp-cal" id="kpCal" aria-hidden="true"></div>
+          <ul class="kp-legend" id="kpLegend"></ul>
+          <div class="kp-next" id="kpNext"></div>
+        </div>
+      </div>
+
+      <div class="kp-plan" id="kpPlan">
+        <div class="kp-plan__head">
+          <h3>Tag für Tag</h3>
+          <div class="t-actions">
+            <button type="button" class="btn btn--ghost btn--small" id="btnDruck">Drucken oder als PDF sichern</button>
+            <button type="button" class="btn btn--ghost btn--small" id="btnIcs">In den Kalender (.ics)</button>
+          </div>
+        </div>
+        <div id="kpProgress"></div>
+        <ol class="kp-days" id="kpDays"></ol>
+      </div>
+    </section>
+
+    <section class="t-zone reveal" id="methode" aria-labelledby="h-methode">
+      <div class="t-zone__head">
+        <h2 id="h-methode">Wie der Plan entsteht</h2>
+        <p class="t-zone__hint">Nach dem Kapitel „Klausuren richtig vorbereiten“ aus Lernen meistern.</p>
+      </div>
+      <ol class="kp-method">
+        <li style="--ph:var(--ph-diag)"><h3>Wissensdiagnose</h3><p>Am ersten Tag schreibst du alle Themen auf und testest dich ohne Unterlagen. So siehst du, wo die größten Lücken sind, und gibst ihnen die meiste Zeit.</p></li>
+        <li style="--ph:var(--ph-verst)"><h3>Verstehen</h3><p>Unterlagen zu, Mindmap aus dem Gedächtnis zeichnen, dann mit den Quellen vergleichen. Nur die Lücken wandern auf den Lernzettel: vorne Schlüsselwörter, hinten die Erklärung.</p></li>
+        <li style="--ph:var(--ph-abruf)"><h3>Abruf üben</h3><p>Du fragst dich mit den Lernzetteln ab und schreibst eine eigene Übungsklausur mit drei bis fünf Kernfragen, mit Zeitlimit und ohne Hilfsmittel.</p></li>
+        <li style="--ph:var(--ph-fest)"><h3>Festigen und Vortag</h3><p>Nur noch wiederholen, was in der Übungsklausur gehakt hat, nichts Neues anfangen. Am Vortag ein kurzer Überblick, dann abschalten.</p></li>
+      </ol>
+
+      <details class="t-explain">
+        <summary>Was passiert, wenn weniger als 14 Tage bleiben?</summary>
+        <div class="t-explain__body">
+          <p>Der Planer staucht die Phasen, die Reihenfolge bleibt gleich. Bei drei Tagen sind das zum Beispiel Diagnose, ein Tag Verstehen und der Vortag. Liegt die Klausur weiter weg, beginnt der Plan 14 Tage vorher; bis dahin reicht es, im Unterricht mitzuarbeiten und Mitschriften sauber zu halten.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Warum abfragen statt wiederlesen?</summary>
+        <div class="t-explain__body">
+          <p>Beim Wiederlesen wirkt vieles vertraut, auch wenn du es in der Klausur nicht selbst formulieren könntest. Wer sich selbst abfragt, merkt das früher. Dass Abrufübungen das Behalten stärken, zeigt zum Beispiel die Studie von Roediger und Karpicke (2006), „Test-Enhanced Learning“.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Was gespeichert wird</summary>
+        <div class="t-explain__body">
+          <p>Deine Eingaben und die abgehakten Aufgaben liegen im Speicher deines Browsers auf diesem Gerät. „Felder leeren“ löscht beides. Die Kalenderdatei entsteht ebenfalls in deinem Browser.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/lernen.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Den Zyklus mit allen Schritten und Beispielen beschreibt das Kapitel „Klausuren richtig vorbereiten“ in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a>.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/pruefungscoach.html"><span class="t-related__img"><img src="/assets/previews/pruefungscoach.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Prüfungscoach</strong><span>Atemübung und ein Plan für den Blackout</span></span></a></li>
+          <li><a href="/tools/mitarbeit.html"><span class="t-related__img"><img src="/assets/previews/mitarbeit.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Mitarbeit und Referate</strong><span>Cornell-Mitschriften, die später zum Lernzettel werden</span></span></a></li>
+        </ul>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -57,116 +172,304 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/de/">pavilabs.de</a></span>
     </div>
   </div>
 </footer>
 
+<script src="/assets/trainer.js"></script>
 <script>
-const $ = id => document.getElementById(id);
-const TAGE = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"];
-
-function fmt(d) {
-  return TAGE[d.getDay()] + ", " + d.getDate().toString().padStart(2, "0") + "." + (d.getMonth() + 1).toString().padStart(2, "0") + ".";
-}
-
-$("btnPlan").onclick = () => {
-  const fach = $("fach").value.trim() || "deine Klausur";
-  const datumWert = $("datum").value;
-  const themen = $("themen").value.split("\n").map(t => t.trim()).filter(Boolean);
-  const warn = $("warnung");
-  warn.textContent = "";
-  if (!datumWert) { warn.textContent = "Bitte zuerst das Klausurdatum wählen."; return; }
-  const klausur = new Date(datumWert + "T12:00:00");
-  const heute = new Date(); heute.setHours(12, 0, 0, 0);
-  const tageBis = Math.round((klausur - heute) / 86400000);
-  if (tageBis < 1) { warn.textContent = "Das Datum liegt in der Vergangenheit oder ist heute. Bitte ein kommendes Datum wählen."; return; }
-
-  const span = Math.min(tageBis, 14);
-  const start = new Date(klausur); start.setDate(klausur.getDate() - span);
-  const themenListe = themen.length ? themen : ["alle Klausurthemen"];
-  const proTag = (liste, lernTage) => {
-    const chunks = Array.from({length: lernTage}, () => []);
-    liste.forEach((t, i) => chunks[i % lernTage].push(t));
-    return chunks;
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var T = window.PaviTools;
+  var TAGE = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+  var KURZ = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+  var MONATE = ["Jan.", "Feb.", "März", "Apr.", "Mai", "Juni", "Juli", "Aug.", "Sept.", "Okt.", "Nov.", "Dez."];
+  var PHASEN = {
+    diag:    { name: "Wissensdiagnose", kurz: "D" },
+    verst:   { name: "Verstehen",       kurz: "V" },
+    abruf:   { name: "Abruf üben",      kurz: "A" },
+    fest:    { name: "Festigen",        kurz: "F" },
+    vortag:  { name: "Vortag",          kurz: "R" },
+    klausur: { name: "Klausur",         kurz: "K" }
   };
+  var BEISPIEL = { fach: "Geschichte: Weimarer Republik", themen: "Versailler Vertrag\nHyperinflation 1923\nKultur der Zwanzigerjahre\nScheitern der Republik", tage: 12 };
 
-  const tage = [];
-  for (let i = 0; i < span; i++) {
-    const d = new Date(start); d.setDate(start.getDate() + i);
-    const rest = span - i;
-    let phase, aufgaben;
-    if (rest === 1) {
-      phase = "Vortag";
-      aufgaben = [
-        "Kurzer Überblick am Vormittag, danach bewusst abschalten.",
-        "Früh schlafen: Eine Nacht zu wenig Schlaf kostet mehr Punkte als eine Stunde weniger Lernen bringt."
-      ];
-    } else if (i === 0) {
-      phase = "Phase 0: Wissensdiagnose";
-      aufgaben = [
-        "Alle Themen aufschreiben und zu jedem notieren: Was könnte gefragt werden?",
-        "Selbsttest ohne Unterlagen: Welche Fragen kannst du jetzt schon beantworten?",
-        "Ehrliche Karte deiner Wissenslage anlegen: Was fließt, was stockt, wo bist du blank?",
-        "Lernzeit verteilen: Die größten Lücken bekommen die meiste Zeit."
-      ];
-    } else if (rest >= Math.ceil(span * 0.45)) {
-      phase = "Absorptionsphase: Verstehen und strukturieren";
-      aufgaben = [
-        "Lernzettel 2.0 statt Abschreiben: Unterlagen zuklappen, Mindmap aus dem Gedächtnis zeichnen, erst dann mit den Quellen vergleichen.",
-        "Nur die Lücken aus dem Vergleich in den Lernzettel aufnehmen.",
-        "Lernzettel für Active Recall formatieren: vorne Schlüsselwörter, hinten die Erklärung."
-      ];
-    } else if (rest === 2 && span >= 5) {
-      phase = "Konsolidierung";
-      aufgaben = [
-        "Nur noch die Stellen wiederholen, die in der Übungsklausur gestockt haben.",
-        "Letzte Runde Active Recall über alle Lernzettel.",
-        "Nichts Neues mehr anfangen."
-      ];
-    } else {
-      phase = "Anwendungsphase: Abruf unter Druck";
-      aufgaben = [
-        "Active Recall über die bisherigen Lernzettel: erst abrufen, dann nachschauen.",
-        "Eine eigene Übungsklausur erstellen: 3 bis 5 Kernfragen mit Operatoren (beschreibe, erkläre, analysiere, bewerte).",
-        "Die Übungsklausur unter Realbedingungen schreiben: Zeitlimit, keine Hilfsmittel, mit Stift.",
-        "Danach korrigieren und analysieren: Wo waren Lücken, wo war das Zeitmanagement schwach?"
-      ];
+  function mittag(d) { var x = new Date(d); x.setHours(12, 0, 0, 0); return x; }
+  function plusTage(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+  function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  function fmt(d) { return TAGE[d.getDay()] + ", " + d.getDate() + ". " + MONATE[d.getMonth()]; }
+  function parse(v) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || ""); return m ? new Date(+m[1], +m[2] - 1, +m[3], 12) : null; }
+
+  /* ---------- Plan berechnen ---------- */
+  function berechne(fach, klausur, themen) {
+    var heute = mittag(new Date());
+    var tageBis = Math.round((klausur - heute) / 86400000);
+    var span = Math.min(tageBis, 14);
+    var start = plusTage(klausur, -span);
+    var liste = themen.length ? themen : ["alle Klausurthemen"];
+    var tage = [];
+    for (var i = 0; i < span; i++) {
+      var d = plusTage(start, i), rest = span - i, ph, auf;
+      if (rest === 1) {
+        ph = "vortag";
+        auf = ["Am Vormittag ein kurzer Überblick über die Lernzettel, danach bewusst abschalten.",
+               "Tasche packen und früh schlafen gehen. Ausgeschlafen rufst du Gelerntes meist leichter ab als nach einer zusätzlichen Lernstunde am Abend."];
+      } else if (i === 0) {
+        ph = "diag";
+        auf = ["Alle Themen aufschreiben und zu jedem notieren, was gefragt werden könnte.",
+               "Selbsttest ohne Unterlagen: Welche Fragen kannst du jetzt schon beantworten?",
+               "Jedes Thema einordnen: sitzt, stockt oder fehlt.",
+               "Die meiste Zeit bekommen die Themen, die fehlen."];
+      } else if (rest >= Math.ceil(span * 0.45)) {
+        ph = "verst";
+        auf = ["Unterlagen zu, Mindmap aus dem Gedächtnis zeichnen, dann mit den Quellen vergleichen.",
+               "Nur die Lücken aus dem Vergleich auf den Lernzettel übernehmen.",
+               "Lernzettel zum Abfragen anlegen: vorne Schlüsselwörter, hinten die Erklärung."];
+      } else if (rest === 2 && span >= 5) {
+        ph = "fest";
+        auf = ["Nur wiederholen, was in der Übungsklausur gehakt hat.",
+               "Eine letzte Runde Abfragen über alle Lernzettel.",
+               "Nichts Neues mehr anfangen."];
+      } else {
+        ph = "abruf";
+        auf = ["Mit den Lernzetteln abfragen: erst antworten, dann nachsehen.",
+               "Eine eigene Übungsklausur entwerfen: drei bis fünf Kernfragen mit Operatoren wie beschreibe, erkläre, beurteile.",
+               "Die Übungsklausur mit Zeitlimit und ohne Hilfsmittel schreiben.",
+               "Danach korrigieren: Lag es am Wissen, an der Struktur oder an der Zeit?"];
+      }
+      tage.push({ d: d, ph: ph, auf: auf.slice() });
     }
-    tage.push({d, phase, aufgaben});
+    var verst = tage.filter(function (t) { return t.ph === "verst"; });
+    if (verst.length) {
+      var chunks = verst.map(function () { return []; });
+      liste.forEach(function (t, i) { chunks[i % verst.length].push(t); });
+      verst.forEach(function (t, i) { if (chunks[i].length) t.auf.unshift("Heute dran: " + chunks[i].join(", ")); });
+    } else if (tage.length) {
+      tage[0].auf.unshift("Deine Themen, nach Lücken sortiert: " + liste.join(", "));
+    }
+    tage.push({ d: klausur, ph: "klausur", auf: [
+      "Kurz vorher nur noch die Gliederung im Kopf durchgehen, keine neuen Themen.",
+      "Nach der Rückgabe die Fehler sortieren: Wissen, Struktur oder Zeit. Das ist der Startpunkt für die nächste Klausur."
+    ] });
+    var hinweis = tageBis > 14
+      ? "Die Klausur ist in " + tageBis + " Tagen. Der Plan beginnt am " + fmt(tage[0].d) + ", bis dahin reicht aktives Mitarbeiten im Unterricht."
+      : tageBis === 14 ? "14 Tage, alle vier Phasen in voller Länge."
+      : tageBis === 1 ? "Die Klausur ist morgen. Der Plan beschränkt sich auf den Vortag."
+      : "Noch " + tageBis + " Tage. Die Phasen sind gestaucht, die Reihenfolge bleibt.";
+    return { fach: fach, tage: tage, hinweis: hinweis, tageBis: tageBis };
   }
 
-  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const absorptionsTage = tage.filter(t => t.phase.startsWith("Absorption"));
-  const chunks = proTag(themenListe, Math.max(absorptionsTage.length, 1));
-  absorptionsTage.forEach((t, i) => {
-    if (chunks[i] && chunks[i].length) t.aufgaben.unshift("Heutige Themen: " + chunks[i].map(esc).join(", "));
+  /* ---------- Zustand ---------- */
+  var gespeichert = T.store.get("eingaben", null);
+  var checks = T.store.get("erledigt", {}) || {};
+  var plan = null, beispiel = true;
+
+  function eingaben() {
+    return {
+      fach: $("fach").value.trim(),
+      datum: $("datum").value,
+      themen: $("themen").value.split("\n").map(function (t) { return t.trim(); }).filter(Boolean)
+    };
+  }
+
+  function fehler(msg) {
+    $("datumHinweis").textContent = msg || "";
+    $("datum").setAttribute("aria-invalid", msg ? "true" : "false");
+  }
+
+  function aktualisieren(scrollen) {
+    var e = eingaben();
+    T.store.set("eingaben", { fach: $("fach").value, datum: $("datum").value, themen: $("themen").value });
+    var klausur = parse(e.datum);
+    fehler("");
+    beispiel = false;
+    if (!e.datum) {
+      beispiel = true;
+    } else if (!klausur) {
+      fehler("Das Datum ist nicht lesbar. Wähle es bitte im Kalenderfeld aus.");
+      beispiel = true;
+    } else if (Math.round((klausur - mittag(new Date())) / 86400000) < 1) {
+      fehler("Das Datum liegt heute oder in der Vergangenheit. Wähle ein Datum ab morgen.");
+      beispiel = true;
+    }
+    if (beispiel) {
+      plan = berechne(BEISPIEL.fach, plusTage(mittag(new Date()), BEISPIEL.tage), BEISPIEL.themen.split("\n"));
+    } else {
+      plan = berechne(e.fach || "deine Klausur", klausur, e.themen);
+    }
+    zeichnen();
+    if (scrollen) $("kpPlan").scrollIntoView({ behavior: T.reduced() ? "auto" : "smooth", block: "start" });
+  }
+
+  /* ---------- Darstellung ---------- */
+  var fortschritt = T.progress($("kpProgress"), { unit: "Aufgaben erledigt", label: "Erledigte Aufgaben", resetText: "Häkchen entfernen", onReset: function () {
+    plan.tage.forEach(function (t) { t.auf.forEach(function (a, i) { delete checks[iso(t.d) + "|" + i]; }); });
+    T.store.set("erledigt", checks);
+    zeichnen();
+    T.announce("Alle Häkchen entfernt.");
+  } });
+
+  function zeichnen() {
+    var heute = iso(mittag(new Date()));
+    $("kpBadge").hidden = !beispiel;
+    $("kpTitel").textContent = (beispiel ? "So sieht ein Plan aus: " : "Plan für ") + plan.fach;
+    $("kpSummary").textContent = beispiel
+      ? "Trag dein Klausurdatum ein, dann rechnet der Planer mit deinen Angaben."
+      : plan.hinweis;
+    $("btnIcs").disabled = beispiel;
+    $("btnDruck").disabled = beispiel;
+    $("kpPlan").classList.toggle("is-example", beispiel);
+
+    // Kalender
+    var cal = $("kpCal");
+    cal.innerHTML = "";
+    ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].forEach(function (k) { cal.appendChild(T.h("span", { class: "kp-cal__wd", text: k })); });
+    var erster = plan.tage[0].d;
+    for (var i = 0; i < (erster.getDay() + 6) % 7; i++) cal.appendChild(T.h("span", { class: "kp-cal__pad" }));
+    plan.tage.forEach(function (t, n) {
+      var c = T.h("span", { class: "kp-cal__day ph-" + t.ph + (iso(t.d) === heute ? " is-today" : ""), style: "--i:" + n });
+      c.appendChild(T.h("b", { text: String(t.d.getDate()) }));
+      c.appendChild(T.h("i", { text: PHASEN[t.ph].kurz }));
+      cal.appendChild(c);
+    });
+
+    // Legende
+    var leg = $("kpLegend");
+    leg.innerHTML = "";
+    var da = {};
+    plan.tage.forEach(function (t) { da[t.ph] = true; });
+    Object.keys(PHASEN).forEach(function (k) {
+      if (!da[k]) return;
+      leg.appendChild(T.h("li", { class: "ph-" + k }, [T.h("span", { "aria-hidden": "true", text: PHASEN[k].kurz }), PHASEN[k].name]));
+    });
+
+    // Nächster Lerntag
+    var naechster = plan.tage.filter(function (t) { return iso(t.d) >= heute; })[0] || plan.tage[0];
+    var nx = $("kpNext");
+    nx.innerHTML = "";
+    nx.appendChild(T.h("p", { class: "kp-next__label", text: iso(naechster.d) === heute ? "Heute" : "Erster Lerntag: " + fmt(naechster.d) }));
+    nx.appendChild(T.h("p", { class: "kp-next__phase ph-" + naechster.ph, text: PHASEN[naechster.ph].name }));
+    var ul = T.h("ul");
+    naechster.auf.slice(0, 3).forEach(function (a) { ul.appendChild(T.h("li", { text: a })); });
+    nx.appendChild(ul);
+
+    // Tag für Tag
+    var box = $("kpDays");
+    box.innerHTML = "";
+    var gesamt = 0, erledigt = 0;
+    plan.tage.forEach(function (t) {
+      var li = T.h("li", { class: "kp-day ph-" + t.ph + (iso(t.d) === heute ? " is-today" : "") });
+      var kopf = T.h("div", { class: "kp-day__head" });
+      kopf.appendChild(T.h("span", { class: "kp-day__date", text: fmt(t.d) }));
+      kopf.appendChild(T.h("span", { class: "kp-day__phase", text: PHASEN[t.ph].name + (iso(t.d) === heute ? ", heute" : "") }));
+      li.appendChild(kopf);
+      var liste = T.h("ul", { class: "t-check" });
+      t.auf.forEach(function (a, i) {
+        var k = iso(t.d) + "|" + i;
+        var cb = T.h("input", { type: "checkbox", disabled: beispiel ? true : null });
+        cb.checked = !beispiel && !!checks[k];
+        gesamt++; if (cb.checked) erledigt++;
+        cb.addEventListener("change", function () {
+          if (cb.checked) checks[k] = true; else delete checks[k];
+          T.store.set("erledigt", checks);
+          zaehlen();
+        });
+        liste.appendChild(T.h("li", null, [T.h("label", null, [cb, T.h("span", { text: a })])]));
+      });
+      li.appendChild(liste);
+      box.appendChild(li);
+    });
+    fortschritt.set(erledigt, gesamt);
+    $("kpProgress").hidden = beispiel;
+  }
+
+  function zaehlen() {
+    var boxes = $("kpDays").querySelectorAll('input[type="checkbox"]');
+    var n = 0;
+    boxes.forEach(function (b) { if (b.checked) n++; });
+    fortschritt.set(n, boxes.length);
+  }
+
+  /* ---------- Export ---------- */
+  function icsText(s) { return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n"); }
+  function falten(line) {
+    var out = [], rest = line;
+    while (rest.length > 60) { out.push(rest.slice(0, 60)); rest = " " + rest.slice(60); }
+    out.push(rest);
+    return out.join("\r\n");
+  }
+  function ymd(d) { return iso(d).replace(/-/g, ""); }
+  function ics() {
+    var jetzt = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+    var z = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//PaviLabs//Klausur-Planer//DE", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+    plan.tage.forEach(function (t, n) {
+      z.push("BEGIN:VEVENT");
+      z.push("UID:" + ymd(t.d) + "-" + n + "-" + Math.random().toString(36).slice(2, 8) + "@pavilabs.de");
+      z.push("DTSTAMP:" + jetzt);
+      z.push("DTSTART;VALUE=DATE:" + ymd(t.d));
+      z.push("DTEND;VALUE=DATE:" + ymd(plusTage(t.d, 1)));
+      z.push(falten("SUMMARY:" + icsText(PHASEN[t.ph].name + ": " + plan.fach)));
+      z.push(falten("DESCRIPTION:" + icsText(t.auf.map(function (a) { return "- " + a; }).join("\n"))));
+      z.push("TRANSP:TRANSPARENT");
+      z.push("END:VEVENT");
+    });
+    z.push("END:VCALENDAR");
+    return z.join("\r\n") + "\r\n";
+  }
+  $("btnIcs").addEventListener("click", function () {
+    if (beispiel) return;
+    var blob = new Blob([ics()], { type: "text/calendar;charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = T.h("a", { href: url, download: "klausurplan-" + (plan.fach.toLowerCase().replace(/[^a-z0-9äöüß]+/g, "-").replace(/^-|-$/g, "") || "plan") + ".ics" });
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+    T.announce("Kalenderdatei erstellt.");
   });
-  if (!absorptionsTage.length && tage.length) {
-    tage[0].aufgaben.unshift("Deine Themen, nach Lücken priorisiert: " + themenListe.map(esc).join(", "));
-  }
+  $("btnDruck").addEventListener("click", function () { window.print(); });
 
-  $("planTitel").textContent = "Vorbereitungsplan für " + fach;
-  $("planHinweis").textContent = tageBis > 14
-    ? "Die Klausur liegt " + tageBis + " Tage entfernt. Der strukturierte 14-Tage-Zyklus beginnt am " + fmt(tage[0].d) + "; bis dahin reicht es, den Stoff im Unterricht aktiv mitzunehmen."
-    : (tageBis < 14 ? "Bis zur Klausur bleiben " + tageBis + " Tage. Der Plan staucht den 14-Tage-Zyklus entsprechend; die Reihenfolge der Phasen bleibt gleich." : "14 Tage, zwei komplette Durchgänge: einmal verstehen und strukturieren, einmal festigen und anwenden.");
-  const box = $("planTage");
-  box.innerHTML = "";
-  for (const t of tage) {
-    const el = document.createElement("div");
-    el.className = "plan-tag";
-    el.innerHTML = `<div><span class="pt-datum">${fmt(t.d)}</span><span class="pt-phase">${t.phase}</span></div><ul>${t.aufgaben.map(a => `<li>${a}</li>`).join("")}</ul>`;
-    box.appendChild(el);
+  /* ---------- Formular ---------- */
+  var timer = 0;
+  ["fach", "datum", "themen"].forEach(function (id) {
+    $(id).addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(function () { aktualisieren(false); }, 160); });
+  });
+  $("datum").addEventListener("change", function () { aktualisieren(false); });
+  $("kpForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!$("datum").value) { fehler("Bitte wähle zuerst das Klausurdatum."); $("datum").focus(); return; }
+    aktualisieren(true);
+  });
+  $("btnBeispiel").addEventListener("click", function () {
+    $("fach").value = BEISPIEL.fach;
+    $("datum").value = iso(plusTage(mittag(new Date()), BEISPIEL.tage));
+    $("themen").value = BEISPIEL.themen;
+    aktualisieren(false);
+    T.announce("Beispiel eingesetzt.");
+  });
+  $("btnLeeren").addEventListener("click", function () {
+    $("fach").value = ""; $("datum").value = ""; $("themen").value = "";
+    checks = {};
+    T.store.remove("eingaben"); T.store.remove("erledigt");
+    aktualisieren(false);
+    $("fach").focus();
+    T.announce("Felder und Häkchen gelöscht.");
+  });
+
+  var morgen = iso(plusTage(mittag(new Date()), 1));
+  $("datum").min = morgen;
+  if (gespeichert) {
+    $("fach").value = gespeichert.fach || "";
+    $("datum").value = gespeichert.datum || "";
+    $("themen").value = gespeichert.themen || "";
   }
-  const ende = document.createElement("div");
-  ende.className = "plan-tag";
-  ende.innerHTML = `<div><span class="pt-datum">${fmt(klausur)}</span><span class="pt-phase">Klausurtag</span></div><ul><li>Du hast unter Druck geübt, also kannst du unter Druck abrufen.</li><li>Nach der Rückgabe: Klausur analysieren. Welche Fehlerart war es, Wissen, Struktur oder Zeit? Das ist der Startpunkt für den nächsten Zyklus.</li></ul>`;
-  box.appendChild(ende);
-  $("planBox").hidden = false;
-  $("planBox").scrollIntoView({behavior: "smooth", block: "start"});
-};
+  aktualisieren(false);
+})();
 </script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

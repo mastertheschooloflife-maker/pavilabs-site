@@ -1,13 +1,176 @@
 <!doctype html>
-<html lang="de" style="--akzent:#C9A75B;--akzent-tief:#7A5F26">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mitarbeit und Referate</title>
-<meta name="description" content="Die mündliche Note strategisch verbessern: Halo-Effekt, die 15-Minuten-Vorbereitungsroutine, die PREP-Methode für Unterrichtsbeiträge, Cornell-Mitschriften und die Struktur unvergesslicher Referate, nach dem Buch Lernen meistern.">
+<title>Mitarbeit und Referate: PREP, Cornell, 15-Minuten-Vorbereitung, Referatsaufbau</title>
+<meta name="description" content="Methoden für den Unterricht üben: Wortbeiträge nach PREP bauen, Cornell-Mitschriften abdecken und abfragen, die 15-Minuten-Vorbereitung am Vorabend mit Timer und die Redezeit eines Referats aufteilen. Mit Übungskarten, Quiz und Faustregeln zur mündlichen Note, nach dem Buch Lernen meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/mitarbeit.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+/* Seitenlokal: Methoden-Werkbank (PREP-Baukasten, Routine mit Phasen, Cornell-Seite, Referat-Taktung) */
+.pg-lead { color: var(--fg-dim); font-size: 0.97rem; margin: 0 0 22px; }
+.pg-modes { margin-bottom: 28px; }
+.pg-modes .t-seg { width: 100%; }
+.pg-modes .t-seg__btn { flex: 1 1 auto; justify-content: center; min-height: 44px; }
+.mw-panel-title { font-size: 1.2rem; margin: 0 0 6px; }
+.js .mw-panel-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.mw-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px 36px; align-items: start; }
+
+/* PREP-Baukasten */
+.mw-fields { display: grid; gap: 14px; }
+.mw-field { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; align-items: start; }
+.mw-key {
+  width: 36px; height: 36px; margin-top: 22px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 2px solid var(--leaf-deep); color: var(--fg);
+  font-weight: 750; font-size: 0.92rem;
+  transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out), color var(--dur-state) var(--ease-out);
+}
+.mw-field.is-filled .mw-key { background: var(--leaf); border-color: var(--leaf); color: var(--ground); }
+.mw-field .t-label { margin-bottom: 4px; }
+.mw-field textarea.feld-area { min-height: 64px; margin: 0; }
+.mw-field textarea:focus-visible { outline-offset: 1px; }
+.mw-preview {
+  background: var(--paper-bright); color: var(--ink);
+  border-radius: 20px; padding: clamp(20px, 3vw, 28px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.25), 0 30px 60px -32px rgba(0, 0, 0, 0.75);
+}
+.mw-preview h3 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: var(--leaf-ink); margin: 0 0 12px; }
+.mw-say { font-size: 1.08rem; line-height: 1.7; margin: 0; max-width: none; }
+.mw-say span { border-radius: 4px; padding: 1px 2px; transition: background-color var(--dur-state) var(--ease-out); }
+.mw-say span[data-k="R"] { background: rgba(143, 184, 119, 0.2); }
+.mw-say span[data-k="E"] { background: rgba(157, 187, 192, 0.32); }
+.mw-say .is-empty { color: var(--ink-muted); font-style: italic; background: none !important; }
+.mw-status { list-style: none; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--paper-line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; font-size: 0.88rem; color: var(--ink-muted); }
+.mw-status li { display: flex; align-items: center; gap: 8px; }
+.mw-status li::before { content: ""; flex: none; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--paper-line); transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out); }
+.mw-status li.is-on { color: var(--ink); }
+.mw-status li.is-on::before { border-color: var(--leaf-ink); background: radial-gradient(circle, var(--leaf-ink) 0 2.5px, transparent 3px); }
+.mw-preview ::selection { background: var(--leaf-deep); color: var(--paper-bright); }
+
+/* Phasenleiste: Ringknoten auf einer Leiterbahn */
+.ph-steps { --n: 3; list-style: none; margin: 0 0 18px; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); }
+.ph-step { position: relative; min-width: 0; }
+.ph-step + .ph-step::before, .ph-step + .ph-step::after {
+  content: ""; position: absolute; top: 21px; height: 2px;
+  left: calc(-50% + 16px); right: calc(50% + 16px);
+  background: var(--hairline);
+}
+.ph-step + .ph-step::after { background: var(--leaf); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-layout) var(--ease-expo); }
+.ph-step.is-active::after, .ph-step.is-done::after { transform: scaleX(1); }
+.ph-step__btn {
+  width: 100%; min-height: 72px; padding: 12px 2px 8px;
+  display: grid; justify-items: center; align-content: start; gap: 5px;
+  border: 0; border-radius: 12px; background: none;
+  color: var(--fg-dim); font: inherit; text-align: center; cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.ph-step__btn:hover { color: var(--fg); }
+.ph-step__node {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--hairline-strong); background: var(--ground-raise);
+  transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out), transform var(--dur-state) var(--ease-expo);
+}
+.is-active .ph-step__node { background: var(--leaf); border-color: var(--leaf); transform: scale(1.1); }
+.is-done .ph-step__node { border-color: var(--leaf); background: radial-gradient(circle, var(--leaf) 0 3px, var(--ground-raise) 3.5px); }
+.ph-step__name { font-weight: 650; font-size: 0.88rem; line-height: 1.3; overflow-wrap: anywhere; hyphens: manual; }
+.is-active .ph-step__name { color: var(--fg); }
+.ph-step__time { font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .ph-step::after, .ph-step__node { transition: none !important; } }
+.mw-hint { padding-top: 16px; border-top: 1px solid var(--hairline); margin-top: 18px; }
+.mw-hint h3 { font-size: 1.05rem; margin: 0 0 6px; }
+.mw-hint p { margin: 0; color: var(--fg-dim); font-size: 0.96rem; }
+.mw-hint .is-done { color: var(--mint); }
+@media (prefers-reduced-motion: no-preference) { .mw-hint.is-new { animation: t-rise var(--dur-state) var(--ease-expo); } }
+.mw-qs { display: grid; gap: 12px; }
+.mw-qs label { display: block; }
+.mw-qs input { margin: 0; min-height: 46px; }
+.mw-qs small { color: var(--fg-dim); font-size: 0.86rem; }
+
+/* Cornell-Seite */
+.mw-sheet {
+  background: var(--paper-bright); color: var(--ink);
+  border-radius: 18px; overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.25), 0 30px 60px -32px rgba(0, 0, 0, 0.75);
+}
+.mw-sheet__head, .mw-row { display: grid; grid-template-columns: 30% minmax(0, 1fr); }
+.mw-sheet__head span { padding: 12px 18px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; color: var(--leaf-ink); border-bottom: 1px solid var(--paper-line); }
+.mw-sheet__head span:first-child, .mw-cue { border-right: 1px solid var(--paper-line); }
+.mw-row + .mw-row { border-top: 1px solid var(--paper-line); }
+.mw-cue { padding: 14px 18px; font-weight: 700; overflow-wrap: anywhere; }
+.mw-note { position: relative; padding: 14px 18px; min-height: 56px; }
+.mw-note p { margin: 0; font-size: 0.97rem; line-height: 1.55; transition: opacity var(--dur-state) var(--ease-out), filter var(--dur-state) var(--ease-out); }
+.mw-cover {
+  position: absolute; inset: 6px 8px; display: none;
+  align-items: center; justify-content: flex-start; gap: 8px; padding: 0 14px;
+  border: 1px dashed var(--paper-line); border-radius: 10px;
+  background: var(--paper); color: var(--ink-muted);
+  font: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+}
+.mw-cover:hover { color: var(--ink); border-color: var(--leaf-ink); }
+.is-covered .mw-row:not(.is-shown) .mw-cover { display: flex; }
+.is-covered .mw-row:not(.is-shown) .mw-note p { opacity: 0; filter: blur(6px); }
+.mw-sum { padding: 14px 18px 18px; border-top: 2px solid var(--paper-line); background: var(--paper); }
+.mw-sum span { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; color: var(--leaf-ink); margin-bottom: 4px; }
+.mw-sum p { margin: 0; font-size: 0.97rem; }
+.mw-sheet ::selection { background: var(--leaf-deep); color: var(--paper-bright); }
+.mw-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 14px; }
+.mw-bar .t-label { margin: 0; }
+.mw-legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.mw-legend li { color: var(--fg-dim); font-size: 0.95rem; }
+.mw-legend strong { display: block; color: var(--fg); font-weight: 650; }
+
+/* Referat: Anteile der Redezeit */
+.mw-stepper { display: inline-flex; align-items: center; gap: 6px; }
+.mw-stepper output { min-width: 5.2em; text-align: center; font-size: 1.15rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--fg); }
+.pg-bar { display: flex; gap: 3px; height: 34px; margin: 18px 0 20px; }
+.pg-bar > span {
+  flex: var(--w) 1 0; min-width: 24px;
+  display: flex; align-items: center; justify-content: center; gap: 6px; padding: 0 6px;
+  border-radius: 7px; overflow: hidden; white-space: nowrap;
+  font-size: 0.78rem; font-weight: 700; color: var(--ground);
+  background: rgba(143, 184, 119, var(--a, 0.6));
+}
+.pg-bar > span:nth-child(2n) { --a: 0.85; }
+.pg-bar > span:nth-child(3n) { background: var(--mint); }
+.pg-bar > span i { font-style: normal; font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+.mw-parts { list-style: none; margin: 0; padding: 0; }
+.mw-parts li { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 4px 14px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--hairline-soft); }
+.mw-parts li > span:first-child { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; align-self: center; background: rgba(143, 184, 119, 0.22); color: var(--fg); font-size: 0.78rem; font-weight: 700; }
+.mw-parts strong { color: var(--fg); font-weight: 650; }
+.mw-parts p { grid-column: 2 / -1; margin: 0; color: var(--fg-dim); font-size: 0.94rem; }
+.mw-parts .mw-t { font-variant-numeric: tabular-nums; color: var(--mint); font-weight: 650; white-space: nowrap; }
+.mw-parts .mw-t small { color: var(--fg-dim); font-weight: 400; margin-left: 6px; }
+.mw-probe { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--hairline); }
+.mw-probe h3 { font-size: 1.05rem; margin: 0 0 4px; }
+.mw-probe > p { color: var(--fg-dim); font-size: 0.95rem; margin: 0 0 16px; }
+
+.pg-def { margin: 6px 0 14px; }
+.pg-def > div { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 4px 28px; padding: 12px 0; border-top: 1px solid var(--hairline-soft); }
+.pg-def dt { color: var(--fg); font-weight: 650; }
+.pg-def dd { margin: 0; }
+
+@media (max-width: 880px) {
+  .mw-two { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .pg-modes .t-seg__btn { padding: 0 10px; font-size: 0.88rem; }
+  .pg-def > div { grid-template-columns: 1fr; }
+  .mw-status { grid-template-columns: 1fr; }
+  .mw-sheet__head span, .mw-cue, .mw-note { padding-left: 10px; padding-right: 10px; }
+  .mw-cue { font-size: 0.92rem; overflow-wrap: normal; }
+  .ph-step__name { font-size: 0.78rem; }
+  .ph-step__time { font-size: 0.74rem; }
+  .pg-bar > span i { display: none; }
+  .mw-parts li { grid-template-columns: 30px minmax(0, 1fr); }
+  .mw-parts .mw-t { grid-column: 2; }
+}
+</style>
 </head>
 <body>
 
@@ -24,95 +187,257 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Mitarbeit und Referate</h1>
-    <p class="tool-lede">Die mündliche Note entsteht nicht in der Klausur, sondern Stunde für Stunde im Unterricht, und sie folgt Mustern, die kaum jemand offen ausspricht: Erste Eindrücke färben spätere Bewertungen, Qualität schlägt Meldefrequenz, und fünfzehn Minuten Vorbereitung verändern eine ganze Stunde. Dieses Werkzeug bündelt die Strategien für bessere Beiträge, bessere Mitschriften und Referate, die im Gedächtnis bleiben.</p>
-    <p class="tool-src">Dieser Trainer folgt dem Kapitel Mitarbeit im Unterricht aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
-
-    <div class="panel">
-      <h2>Die Psychologie der mündlichen Note</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Halo-Effekt</dt><dd>Ein starker Ersteindruck färbt alle späteren Bewertungen. Investiere in den ersten vier Wochen eines Schuljahres sichtbar: täglich melden, überlegte Beiträge, eine gute Frage. Danach hält konstantere Mitarbeit das Bild.</dd></div>
-        <div class="row"><dt>Primacy-Recency</dt><dd>Erinnert wird, was am Anfang und am Ende steht. Stark starten und zum Halbjahresende noch einmal Präsenz zeigen wiegt Schwächephasen in der Mitte auf.</dd></div>
-        <div class="row"><dt>Qualität vor Quantität</dt><dd>Häufiges Melden ohne Substanz fällt auf. Substanziell ist: eine neue Perspektive, eine Verbindung zu anderem Stoff oder aktuellem Geschehen, eine echte tiefergehende Frage, eine differenzierte Gegenposition.</dd></div>
-        <div class="row"><dt>Feedback-Schleife</dt><dd>Nach der Klausur konkret fragen: Was hätte ich besser machen können? Die Ratschläge umsetzen und beim nächsten Gespräch darauf zurückkommen. Sichtbare Entwicklung gewinnt Wohlwollen, nicht Schmeichelei.</dd></div>
-      </dl>
-    </div>
-
-    <div class="panel">
-      <h2>Die 15-Minuten-Routine am Vorabend</h2>
-      <ol class="phasen">
-        <li><h3>Rückblick</h3><p>Die letzte Seite der Mitschrift lesen (2 Minuten) und überlegen: Was hat die Lehrkraft betont, was wird heute fortgeführt? (5 Minuten)</p></li>
-        <li><h3>Vorblick</h3><p>Das nächste Kapitel im Schulbuch überfliegen: Überschriften und Grafiken, nicht den ganzen Text. (3 Minuten)</p></li>
-        <li><h3>Zwei Fragen</h3><p>Zwei Fragen formulieren, die du im Unterricht stellen willst. (5 Minuten)</p></li>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Lernen und KI</a></li>
+        <li><span aria-current="page">Mitarbeit und Referate</span></li>
       </ol>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:14px">Der doppelte Effekt: Du kannst Fragen beantworten, die andere nicht beantworten können, und die aktivierten Vorkenntnisse lassen neue Inhalte im Unterricht hängen bleiben. Du lernst in derselben Stunde mehr als unvorbereitete Mitschüler.</p>
-      <div class="cee-box"><strong>Die PREP-Methode für Beiträge:</strong> Point (Kernaussage in einem Satz), Reason (Begründung), Evidence (Beleg oder Beispiel), Point (Kernaussage wiederholen). Beispiel: „Ich denke, der Erste Weltkrieg war unvermeidlich. Weil die Allianzsysteme ein Dominoeffekt-Mechanismus waren. Als Österreich-Ungarn Serbien angriff, zogen die Bündnisse alle Großmächte hinein. Das macht ihn strukturell unvermeidlich.“ Ein strukturierter Beitrag in unter einer Minute.</div>
-    </div>
+    </nav>
 
-    <div class="panel">
-      <h2>Cornell-Mitschriften</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Jede Seite in drei Bereiche teilen: schmale linke Spalte für Schlüsselwörter, breite rechte Spalte für Notizen in eigenen Worten, unteres Drittel für eine Zwei-Sätze-Zusammenfassung nach der Stunde. Die linke Spalte wird zur Active-Recall-Grundlage: rechte Spalte abdecken, aus den Schlüsselwörtern rekonstruieren.</p>
-      <dl class="ledger">
-        <div class="row"><dt>Mitschreiben</dt><dd>Die zentrale These, Fachbegriffe, Verbindungen zwischen Ideen, Überraschendes und Unverstandenes.</dd></div>
-        <div class="row"><dt>Nicht mitschreiben</dt><dd>Was im Schulbuch steht, Selbstverständlichkeiten, vollständige Sätze. Wer alles mitschreibt, hört nicht mehr richtig zu und erzeugt ein nutzloses Lernwerkzeug.</dd></div>
-        <div class="row"><dt>Drei starke Fragetypen</dt><dd>Verbindungsfragen (Wie hängt das mit letzter Woche zusammen?), Transferfragen (Gilt das auch für ...?), Vertiefungsfragen (Ich habe gelesen, dass ... Passt das dazu?).</dd></div>
-      </dl>
-    </div>
-
-    <div class="panel">
-      <h2>Referate: von gut zu unvergesslich</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Die meisten Referate scheitern am selben Fehler: Sie übertragen Inhalte statt Ideen zu vermitteln. „Gandhi wurde 1869 geboren...“ schläfert ein. „Gandhi hat einer der mächtigsten Armeen der Welt mit einer Waffe getrotzt, die keine Waffe ist. Wie macht man das?“ packt.</p>
-      <dl class="ledger">
-        <div class="row"><dt>Struktur</dt><dd>Hook (10 Prozent), Roadmap als Versprechen (5), drei Kernpunkte tief statt zehn flüchtig (70), Synthese mit größerer Bedeutung statt Wiederholung (10), eigene Frage ans Publikum vor der Fragerunde (5).</dd></div>
-        <div class="row"><dt>Frei sprechen</dt><dd>Nicht den Text auswendig lernen, sondern Struktur und Kernpunkte internalisieren: beim Abendessen erklären, auf dem Schulweg erzählen, ins Handy sprechen und anhören. Variation macht flexibler als zehnmal durchlesen.</dd></div>
-        <div class="row"><dt>Körper und Stimme</dt><dd>Aufrecht stehen, Publikum scannen (2 bis 3 Sekunden pro Person), langsamer sprechen als es sich richtig anfühlt, Pausen nach wichtigen Punkten, Lautstärke variieren.</dd></div>
-        <div class="row"><dt>Hausaufgaben</dt><dd>Als persönliche Diagnostik nutzen: Wo du hängen bleibst, ist die Lücke, die vor der Klausur geschlossen werden muss. Notieren, dann lösen, notfalls mit Hilfe.</dd></div>
-      </dl>
-      <div class="buch-tipp">
-        <span><strong>Aus dem Buch:</strong> <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a> vertieft jede dieser Techniken, vom Umgang mit schwierigen Lehrkräften bis zur Klausurvorbereitung, deren 14-Tage-Zyklus der <a href="/tools/klausurplaner.html">Klausur-Planer</a> umsetzt.</span>
+    <header class="t-intro">
+      <div>
+        <h1>Mitarbeit und Referate</h1>
+        <p class="t-goal">Vier Methoden für den Unterricht zum Ausprobieren: <strong>Wortbeiträge nach PREP</strong>, Mitschriften nach Cornell, eine 15-Minuten-Vorbereitung am Vorabend und der Aufbau eines Referats.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start=".t-card">Übung starten</a>
+          <a class="btn btn--ghost" href="#methoden">Eine Methode ausprobieren</a>
+        </div>
       </div>
-    </div>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>15</dt><dd>Übungskarten</dd></div>
+          <div><dt>4</dt><dd>Methoden zum Ausprobieren</dd></div>
+          <div><dt>10</dt><dd>Quizfragen</dd></div>
+          <div><dt>15</dt><dd>Min Vorbereitung am Vorabend</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So gehst du vor">
+          <li><span><strong>Übungskarten:</strong> erst selbst antworten, dann umdrehen.</span></li>
+          <li><span><strong>Methode ausprobieren:</strong> Beitrag bauen, Routine mit Timer, Cornell-Seite abdecken, Referat takten.</span></li>
+          <li><span><strong>Quiz:</strong> zehn Fragen, jede mit Begründung.</span></li>
+        </ol>
+      </div>
+    </header>
 
-    <div class="panel">
-      <h2>Methoden als Lernkarten</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">PREP, Cornell, Fragetypen und Referatstechnik zum Einprägen: erst selbst antworten, dann umdrehen. Pfeil rechts heißt „sitzt“, Pfeil links heißt „nochmal“.</p>
-      <div class="chip-row" id="deckRow" style="display:none"></div>
-      <div class="chip-row" id="catRow"></div>
-      <div class="deck-kopf"><span id="dkLabel"></span><span class="dk-stand" id="dkStand"></span></div>
-      <div class="deck-balken"><div id="dkBalken" style="width:0%"></div></div>
-      <div class="fcard-buehne" id="buehne">
-        <div class="fcard" id="fcard" tabindex="0" role="button">
-          <div class="fcard-seite" data-hinweis="Klicken oder Leertaste: Karte umdrehen">
-            <div class="fc-etikett" id="fcKatV"></div>
-            <div class="fc-haupt" id="fcFrage"></div>
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Üben: Übungskarten</h2>
+        <p class="t-zone__hint">Dein Fortschritt bleibt auf diesem Gerät.</p>
+      </div>
+      <div class="t-surface">
+        <div id="deck"></div>
+        <noscript><p class="t-noscript">Die Übungskarten brauchen JavaScript. Die Methoden weiter unten und die Erklärungen sind ohne lesbar.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone" id="methoden" aria-labelledby="h-methoden">
+      <div class="t-zone__head">
+        <h2 id="h-methoden">Methoden ausprobieren</h2>
+        <p class="t-zone__hint">Entwürfe und Fragen bleiben auf diesem Gerät.</p>
+      </div>
+      <div class="t-surface">
+        <div class="pg-modes">
+          <span class="t-label" id="lblMethode">Methode</span>
+          <div class="t-seg" id="methodeWahl" data-seg data-seg-store="methode" aria-labelledby="lblMethode">
+            <button class="t-seg__btn" data-value="prep" aria-controls="p-prep" aria-selected="true">PREP-Beitrag</button>
+            <button class="t-seg__btn" data-value="routine" aria-controls="p-routine">15-Minuten-Routine</button>
+            <button class="t-seg__btn" data-value="cornell" aria-controls="p-cornell">Cornell-Seite</button>
+            <button class="t-seg__btn" data-value="referat" aria-controls="p-referat">Referat planen</button>
           </div>
-          <div class="fcard-seite fcard-rueck" data-hinweis="Pfeil rechts: sitzt · Pfeil links: nochmal">
-            <div class="fc-etikett" id="fcKatR"></div>
-            <div class="fc-haupt" id="fcAntwort"></div>
-            <div class="fc-detail" id="fcDetail"></div>
-            <div class="fc-note" id="fcNote"></div>
+        </div>
+
+        <!-- PREP -->
+        <div id="p-prep">
+          <h3 class="mw-panel-title">PREP-Beitrag bauen</h3>
+          <p class="pg-lead">Bau einen Wortbeitrag in vier Schritten: Point, Reason, Evidence, Point. Die Vorschau zeigt, wie er im Unterricht klingt. Ein solcher Beitrag dauert unter einer Minute.</p>
+          <div class="mw-two">
+            <form class="mw-fields" id="prepForm" novalidate>
+              <label class="mw-field"><span class="mw-key" aria-hidden="true">P</span><span><span class="t-label">Point: Kernaussage in einem Satz</span><textarea class="feld-area" id="prep0" rows="2" placeholder="Ich denke, ..."></textarea></span></label>
+              <label class="mw-field"><span class="mw-key" aria-hidden="true">R</span><span><span class="t-label">Reason: Begründung</span><textarea class="feld-area" id="prep1" rows="2" placeholder="Weil ..."></textarea></span></label>
+              <label class="mw-field"><span class="mw-key" aria-hidden="true">E</span><span><span class="t-label">Evidence: Beleg oder Beispiel</span><textarea class="feld-area" id="prep2" rows="2" placeholder="Zum Beispiel ..."></textarea></span></label>
+              <label class="mw-field"><span class="mw-key" aria-hidden="true">P</span><span><span class="t-label">Point: Kernaussage wiederholen</span><textarea class="feld-area" id="prep3" rows="2" placeholder="Deshalb ..."></textarea></span></label>
+              <div class="t-actions" style="margin-top:4px">
+                <button type="button" class="btn btn--ghost" id="prepBeispiel">Beispiel einsetzen</button>
+                <button type="button" class="t-iconbtn" id="prepLeeren">Felder leeren</button>
+              </div>
+            </form>
+            <div class="mw-preview" aria-labelledby="prepTitel">
+              <h3 id="prepTitel">So klingt dein Beitrag</h3>
+              <p class="mw-say" id="prepSay">Füll links die vier Felder aus oder setz das Beispiel ein.</p>
+              <ul class="mw-status" id="prepStatus" aria-label="Stand der vier Teile">
+                <li>Kernaussage</li><li>Begründung</li><li>Beleg</li><li>Kernaussage wiederholt</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 15-Minuten-Routine -->
+        <div id="p-routine">
+          <h3 class="mw-panel-title">Die 15-Minuten-Routine am Vorabend</h3>
+          <p class="pg-lead">Vier kurze Schritte am Abend vor der Stunde. Der Timer führt dich durch, die zwei Fragen nimmst du mit in den Unterricht.</p>
+          <div class="mw-two">
+            <div>
+              <ol class="ph-steps" id="rtSteps" aria-label="Schritte der Routine"></ol>
+              <div id="rtTimer"></div>
+              <noscript><p class="t-noscript">Der Timer braucht JavaScript. Die Schritte: letzte Seite der Mitschrift lesen (2 Minuten), überlegen, was betont wurde (5 Minuten), das nächste Kapitel überfliegen (3 Minuten), zwei Fragen formulieren (5 Minuten).</p></noscript>
+            </div>
+            <div>
+              <div class="mw-hint" id="rtHint" aria-live="polite" style="margin-top:0;border-top:0;padding-top:0"></div>
+              <div class="mw-qs" style="margin-top:22px">
+                <label><span class="t-label">Frage 1 für morgen</span><input type="text" id="frage1" autocomplete="off" placeholder="Wie hängt das mit letzter Woche zusammen?"></label>
+                <label><span class="t-label">Frage 2 für morgen</span><input type="text" id="frage2" autocomplete="off" placeholder="Gilt das auch für ...?"></label>
+                <small>Starke Fragetypen: Verbindungsfragen, Transferfragen, Vertiefungsfragen.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cornell -->
+        <div id="p-cornell">
+          <h3 class="mw-panel-title">Cornell-Seite</h3>
+          <p class="pg-lead">Eine Seite, drei Bereiche. Nach der Stunde deckst du die Notizen ab und rekonstruierst sie aus den Schlüsselwörtern. So wird die Mitschrift zum Abfragewerkzeug.</p>
+          <div class="mw-two">
+            <div>
+              <div class="mw-bar">
+                <span class="t-label">Beispielseite: Mitschrift zur PREP-Methode</span>
+                <button type="button" class="t-iconbtn" id="cornellCover" aria-pressed="false" hidden>Notizen abdecken</button>
+              </div>
+              <div class="mw-sheet" id="cornell">
+                <div class="mw-sheet__head" aria-hidden="true"><span>Schlüssel&shy;wörter</span><span>Notizen in eigenen Worten</span></div>
+                <div class="mw-row"><div class="mw-cue">PREP</div><div class="mw-note"><p>Ordnet einen Wortbeitrag in vier Schritte. Ein strukturierter Beitrag dauert unter einer Minute.</p></div></div>
+                <div class="mw-row"><div class="mw-cue">Point</div><div class="mw-note"><p>Die Kernaussage in einem Satz. Steht am Anfang und am Ende.</p></div></div>
+                <div class="mw-row"><div class="mw-cue">Reason</div><div class="mw-note"><p>Die Begründung: Warum stimmt die Aussage?</p></div></div>
+                <div class="mw-row"><div class="mw-cue">Evidence</div><div class="mw-note"><p>Ein Beleg oder Beispiel, das die Begründung stützt.</p></div></div>
+                <div class="mw-sum"><span>Zusammenfassung nach der Stunde</span><p>PREP heißt Kernaussage, Begründung, Beleg, Kernaussage. Die Wiederholung am Ende rahmt den Beitrag.</p></div>
+              </div>
+              <p class="t-zone__hint" id="cornellStand" aria-live="polite" style="margin-top:12px"></p>
+            </div>
+            <ul class="mw-legend">
+              <li><strong>Linke Spalte, schmal</strong>Schlüsselwörter. Sie werden später zu Abfragefragen.</li>
+              <li><strong>Rechte Spalte, breit</strong>Notizen in eigenen Worten: die zentrale These, Fachbegriffe, Verbindungen zwischen Ideen, Überraschendes und Unverstandenes.</li>
+              <li><strong>Unteres Drittel</strong>Zwei Sätze Zusammenfassung, geschrieben nach der Stunde.</li>
+              <li><strong>Nicht mitschreiben</strong>Was im Schulbuch steht, Selbstverständlichkeiten, vollständige Sätze. Wer alles mitschreibt, hört schlechter zu.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Referat -->
+        <div id="p-referat">
+          <h3 class="mw-panel-title">Referat planen</h3>
+          <p class="pg-lead">Gib deine Redezeit ein. Die Aufteilung folgt der Struktur aus dem Buch: Hook, Roadmap, drei Kernpunkte, Synthese, eigene Frage ans Publikum.</p>
+          <div class="mw-bar">
+            <span class="t-label" id="lblRedezeit">Redezeit</span>
+            <div class="mw-stepper" role="group" aria-labelledby="lblRedezeit">
+              <button type="button" class="t-iconbtn" id="refMinus" aria-label="Eine Minute weniger" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg></button>
+              <output id="refOut" aria-live="polite">10 Minuten</output>
+              <button type="button" class="t-iconbtn" id="refPlus" aria-label="Eine Minute mehr" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9M8 3.5v9"/></svg></button>
+            </div>
+          </div>
+          <div class="pg-bar" aria-hidden="true">
+            <span style="--w:10">1</span><span style="--w:5">2</span><span style="--w:70">3<i>Drei Kernpunkte</i></span><span style="--w:10">4</span><span style="--w:5">5</span>
+          </div>
+          <ol class="mw-parts" id="refParts">
+            <li data-p="10"><span>1</span><strong>Hook</strong><span class="mw-t">1:00 Min<small>10 %</small></span><p>Eine Frage, ein überraschendes Faktum oder ein Szenario statt „Heute halte ich ein Referat über...“.</p></li>
+            <li data-p="5"><span>2</span><strong>Roadmap</strong><span class="mw-t">0:30 Min<small>5 %</small></span><p>Kündige an, was kommt, als Versprechen an dein Publikum.</p></li>
+            <li data-p="70"><span>3</span><strong>Drei Kernpunkte</strong><span class="mw-t">7:00 Min<small>70 %</small></span><p>Drei Punkte in der Tiefe statt zehn flüchtig, jeder mit Aussage, Beleg und Übergang zum nächsten.</p></li>
+            <li data-p="10"><span>4</span><strong>Synthese</strong><span class="mw-t">1:00 Min<small>10 %</small></span><p>Zeig die größere Bedeutung, statt nur zu wiederholen.</p></li>
+            <li data-p="5"><span>5</span><strong>Eigene Frage</strong><span class="mw-t">0:30 Min<small>5 %</small></span><p>Stell dem Publikum vor der Fragerunde selbst eine Frage.</p></li>
+          </ol>
+          <div class="mw-probe">
+            <h3>Probelauf mit Timer</h3>
+            <p>Sprich dein Referat einmal laut, der Timer wechselt von Teil zu Teil. Langsamer sprechen, als es sich richtig anfühlt, und nach wichtigen Punkten eine Pause.</p>
+            <ol class="ph-steps" id="refSteps" aria-label="Teile des Probelaufs"></ol>
+            <div id="refTimer"></div>
           </div>
         </div>
       </div>
-      <div class="fcard-aktionen">
-        <button class="btn btn--ghost" id="btnAgain">Nochmal üben</button>
-        <button class="btn" id="btnKnown">Sitzt, nächste</button>
-        <button class="btn btn--ghost" id="btnShuffle">Neu mischen</button>
-        <span class="hint" id="restHint"></span>
-      </div>
-      <div class="deck-fertig" id="deckFertig" hidden>
-        <strong>Stapel geschafft.</strong>
-        <span id="fertigText"></span>
-      </div>
-    </div>
+    </section>
 
-    <div class="panel">
-      <h2>Quiz: Strategien verstanden?</h2>
-      <div id="quizBox" aria-live="polite"></div>
-      <button class="btn" id="btnQuiz">Quiz starten</button>
-    </div>
+    <section class="t-zone" id="quiz" aria-labelledby="h-quiz">
+      <div class="t-zone__head">
+        <h2 id="h-quiz">Selbsttest: Quiz</h2>
+        <p class="t-zone__hint">Zehn Fragen zu Beiträgen, Mitschrift und Referat.</p>
+      </div>
+      <div class="t-surface">
+        <div id="quizBox"></div>
+        <noscript><p class="t-noscript">Das Quiz braucht JavaScript.</p></noscript>
+      </div>
+    </section>
+
+    <section class="t-zone reveal" id="erklaerung" aria-labelledby="h-erkl">
+      <div class="t-zone__head">
+        <h2 id="h-erkl">Erklärung</h2>
+        <p class="t-zone__hint">Kurz gefasst, zum Aufklappen.</p>
+      </div>
+      <details class="t-explain">
+        <summary>Wie die mündliche Note entsteht: Faustregeln</summary>
+        <div class="t-explain__body">
+          <div class="t-note"><p><strong>Faustregeln, keine Gesetze.</strong> Jede Lehrkraft gewichtet anders. Die Muster aus dem Buch beschreiben, was oft gilt, nicht was immer gilt.</p></div>
+          <dl class="pg-def" style="margin-top:14px">
+            <div><dt>Erster Eindruck</dt><dd>Ein starker Ersteindruck färbt spätere Bewertungen oft mit (Halo-Effekt). Es lohnt sich deshalb, in den ersten vier Wochen eines Schuljahres sichtbar mitzuarbeiten: regelmäßig melden, überlegte Beiträge, eine gute Frage. Danach hält konstante Mitarbeit das Bild.</dd></div>
+            <div><dt>Anfang und Ende</dt><dd>Anfang und Ende bleiben meist besser in Erinnerung als die Mitte (Primacy-Recency). Stark starten und zum Halbjahresende noch einmal präsent sein kann schwächere Phasen dazwischen ausgleichen.</dd></div>
+            <div><dt>Qualität vor Quantität</dt><dd>Viele Lehrkräfte achten mehr auf Substanz als auf die Zahl der Meldungen. Substanziell ist: eine neue Perspektive, eine Verbindung zu anderem Stoff oder aktuellem Geschehen, eine echte, tiefergehende Frage, eine differenzierte Gegenposition.</dd></div>
+            <div><dt>Feedback holen</dt><dd>Nach der Klausur konkret fragen: Was hätte ich besser machen können? Die Ratschläge umsetzen und beim nächsten Gespräch darauf zurückkommen. Sichtbare Entwicklung überzeugt eher als Schmeichelei.</dd></div>
+          </dl>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Was die Vorbereitung am Vorabend bringt</summary>
+        <div class="t-explain__body">
+          <p>Die 15 Minuten haben zwei Effekte: Du kannst Fragen beantworten, auf die andere nicht vorbereitet sind, und mit aktiviertem Vorwissen bleibt Neues im Unterricht leichter hängen.</p>
+          <p>Hausaufgaben kannst du ähnlich nutzen, als persönliche Diagnose: Wo du hängen bleibst, liegt eine Lücke, die vor der Klausur geschlossen werden muss. Notieren, dann lösen, notfalls mit Hilfe.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Mitschrift und Fragen im Unterricht</summary>
+        <div class="t-explain__body">
+          <p>Die linke Spalte der Cornell-Seite ist die Grundlage zum Abfragen: rechte Spalte abdecken, aus den Schlüsselwörtern rekonstruieren. Das ist Abrufübung (Active Recall).</p>
+          <dl class="pg-def">
+            <div><dt>Verbindungsfragen</dt><dd>Wie hängt das mit letzter Woche zusammen?</dd></div>
+            <div><dt>Transferfragen</dt><dd>Gilt das auch für ...?</dd></div>
+            <div><dt>Vertiefungsfragen</dt><dd>Ich habe gelesen, dass ... Passt das dazu?</dd></div>
+          </dl>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Referat: Einstieg, freies Sprechen, Körper und Stimme</summary>
+        <div class="t-explain__body">
+          <p>Ein häufiger Fehler: Das Referat reiht Inhalte aneinander, statt eine Idee zu vermitteln. „Gandhi wurde 1869 geboren...“ schläfert ein. „Gandhi hat einer der mächtigsten Armeen der Welt mit einer Waffe getrotzt, die keine Waffe ist. Wie macht man das?“ weckt Neugier.</p>
+          <dl class="pg-def">
+            <div><dt>Frei sprechen</dt><dd>Nicht den Text auswendig lernen, sondern Struktur und Kernpunkte verinnerlichen: beim Abendessen erklären, auf dem Schulweg erzählen, ins Handy sprechen und anhören. Abwechslung macht flexibler als zehnmal durchlesen.</dd></div>
+            <div><dt>Körper und Stimme</dt><dd>Aufrecht stehen, das Publikum scannen (2 bis 3 Sekunden pro Person), langsamer sprechen, als es sich richtig anfühlt, Pausen nach wichtigen Punkten, Lautstärke variieren.</dd></div>
+          </dl>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Bedienung und was gespeichert wird</summary>
+        <div class="t-explain__body">
+          <p>Karten: <kbd>Leertaste</kbd> dreht um, <kbd>&rarr;</kbd> heißt „sitzt“, <kbd>&larr;</kbd> heißt „nochmal“. Auf dem Handy tippst du zum Umdrehen und wischst. Die Methoden wechselst du mit den Pfeiltasten im Umschalter.</p>
+          <p>Gespeichert werden nur deine Kartenstände, der PREP-Entwurf, die zwei Fragen, die Redezeit und dein bestes Quizergebnis, im Speicher deines Browsers auf diesem Gerät. Nichts davon wird übertragen.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/lernen.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Das Kapitel „Mitarbeit im Unterricht“ in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern: Der simple Weg zum schulischen Erfolg</a> vertieft diese Techniken, vom Umgang mit schwierigen Lehrkräften bis zur Klausurvorbereitung.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/klausurplaner.html"><span class="t-related__img"><img src="/assets/previews/klausurplaner.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Klausur-Planer</strong><span>Aus Datum und Themen ein Tagesplan bis zur Klausur</span></span></a></li>
+          <li><a href="/tools/pruefungscoach.html"><span class="t-related__img"><img src="/assets/previews/pruefungscoach.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Prüfungscoach</strong><span>Atemübung gegen Nervosität vor dem Referat</span></span></a></li>
+        </ul>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -120,46 +445,234 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/klausurplaner.html">Zum Klausur-Planer</a></span>
     </div>
   </div>
 </footer>
 
 <script>
+// Kartenformat: [Vorderseite, Antwort, Beispiel, Notiz]
 const DECKS = {
   "Methoden": {
     "Beiträge": [
       ["Wofür steht PREP?", "Point, Reason, Evidence, Point: Kernaussage, Begründung, Beleg, Kernaussage wiederholen.", "", "Ein strukturierter Beitrag in unter einer Minute."],
-      ["Was macht einen Beitrag substanziell?", "Neue Perspektive, Verbindung zu anderem Stoff oder aktuellem Geschehen, echte tiefergehende Frage, differenzierte Gegenposition.", "", "Ablesen aus dem Buch und Wiederholen zählen nicht."],
-      ["Die drei starken Fragetypen?", "Verbindungsfragen, Transferfragen, Vertiefungsfragen.", "Wie hängt das mit letzter Woche zusammen? · Gilt das auch für ...? · Ich habe gelesen, dass ...", "Gute Fragen sind oft wertvoller als gute Antworten."]
+      ["Was macht einen Beitrag substanziell?", "Eine neue Perspektive, eine Verbindung zu anderem Stoff oder aktuellem Geschehen, eine echte, tiefergehende Frage, eine differenzierte Gegenposition.", "", "Ablesen aus dem Buch und bloßes Wiederholen zählen meist wenig."],
+      ["Die drei starken Fragetypen?", "Verbindungsfragen, Transferfragen, Vertiefungsfragen.", "Wie hängt das mit letzter Woche zusammen? / Gilt das auch für ...? / Ich habe gelesen, dass ... Passt das dazu?", "Eine gute Frage zählt oft so viel wie eine gute Antwort."]
+    ],
+    "Vorbereitung": [
+      ["Die Schritte der 15-Minuten-Routine am Vorabend?", "Letzte Seite der Mitschrift lesen und überlegen, was betont wurde; das nächste Kapitel überfliegen; zwei eigene Fragen formulieren.", "2 + 5 Minuten Rückblick, 3 Minuten Vorblick, 5 Minuten für die Fragen.", "Beim Vorblick nur Überschriften und Grafiken, nicht den ganzen Text."],
+      ["Was bringt die Vorbereitung am Vorabend?", "Du kannst Fragen beantworten, auf die andere nicht vorbereitet sind, und mit aktiviertem Vorwissen bleibt Neues leichter hängen.", "", ""],
+      ["Wie nutzt du Hausaufgaben als Diagnose?", "Wo du hängen bleibst, liegt eine Lücke, die vor der Klausur geschlossen werden muss.", "", "Notieren, dann lösen, notfalls mit Hilfe."]
     ],
     "Mitschrift": [
-      ["Die drei Bereiche des Cornell-Systems?", "Linke Spalte Schlüsselwörter, rechte Spalte Notizen in eigenen Worten, unten die Zwei-Sätze-Zusammenfassung.", "", "Die linke Spalte wird zur Active-Recall-Grundlage."],
-      ["Was gehört NICHT in die Mitschrift?", "Alles, was im Schulbuch steht, Selbstverständlichkeiten, vollständige Sätze.", "", "Alles mitschreiben heißt: weder zuhören noch ein Lernwerkzeug haben."]
+      ["Die drei Bereiche des Cornell-Systems?", "Linke Spalte Schlüsselwörter, rechte Spalte Notizen in eigenen Worten, unten die Zusammenfassung in zwei Sätzen.", "", "Die linke Spalte wird zur Grundlage für Abrufübungen."],
+      ["Was gehört in die Mitschrift?", "Die zentrale These, Fachbegriffe, Verbindungen zwischen Ideen, Überraschendes und Unverstandenes.", "", ""],
+      ["Was gehört NICHT in die Mitschrift?", "Was im Schulbuch steht, Selbstverständlichkeiten, vollständige Sätze.", "", "Wer alles mitschreibt, hört schlechter zu und hat am Ende kein gutes Lernmaterial."],
+      ["Wie wird die Cornell-Seite zum Lernmaterial?", "Rechte Spalte abdecken und den Inhalt aus den Schlüsselwörtern links rekonstruieren.", "", "Das ist Abrufübung (Active Recall)."]
     ],
     "Referat": [
-      ["Der Unterschied zwischen gutem und schwachem Einstieg?", "Hook statt Ankündigung: eine provokante Frage, ein überraschendes Faktum, ein Szenario.", "Nicht: Heute halte ich ein Referat über...", "Ideen vermitteln statt Inhalte übertragen."],
-      ["Wie viele Kernpunkte trägt ein starkes Referat?", "Drei, in der Tiefe, mit je Aussage, Beleg und Übergang.", "", "70 Prozent der Zeit gehören dem Hauptteil."],
-      ["Wie übt man freies Sprechen wirklich?", "Struktur und Kernpunkte internalisieren und in wechselnden Situationen erklären, nicht den Text auswendig lernen.", "Beim Abendessen, auf dem Schulweg, ins Handy gesprochen.", ""]
+      ["Der Unterschied zwischen starkem und schwachem Einstieg?", "Hook statt Ankündigung: eine Frage, ein überraschendes Faktum, ein Szenario.", "Nicht: Heute halte ich ein Referat über...", "Ideen vermitteln statt Inhalte aneinanderreihen."],
+      ["Wie viele Kernpunkte trägt ein Referat?", "Drei, in der Tiefe, jeder mit Aussage, Beleg und Übergang.", "", "70 Prozent der Zeit gehören dem Hauptteil."],
+      ["Wie teilt sich die Redezeit auf?", "Hook 10 %, Roadmap 5 %, drei Kernpunkte 70 %, Synthese 10 %, eigene Frage ans Publikum 5 %.", "", "Die Synthese zeigt die größere Bedeutung, statt nur zu wiederholen."],
+      ["Wie übst du freies Sprechen?", "Struktur und Kernpunkte verinnerlichen und in wechselnden Situationen erklären, nicht den Text auswendig lernen.", "Beim Abendessen, auf dem Schulweg, ins Handy gesprochen.", ""],
+      ["Worauf achtest du bei Körper und Stimme?", "Aufrecht stehen, Publikum scannen, langsamer sprechen, als es sich richtig anfühlt, Pausen nach wichtigen Punkten, Lautstärke variieren.", "2 bis 3 Sekunden Blickkontakt pro Person.", ""]
     ]
   }
 };
 
 const QUIZ = [
-  {f: 'Wann investierst du am meisten in die Mitarbeit?', o: ['Gleichmäßig übers Jahr', 'In den ersten vier Wochen und zum Halbjahresende', 'Kurz vor der Zeugniskonferenz'], r: 1, e: 'Halo-Effekt und Primacy-Recency: Anfang und Ende prägen die Erinnerung.'},
-  {f: 'Was zählt für die mündliche Note mehr?', o: ['Häufigkeit der Meldungen', 'Substanz der Beiträge', 'Lautstärke und Sichtbarkeit'], r: 1, e: 'Seltener melden mit Beiträgen, die den Unterricht voranbringen, wird besser bewertet.'},
-  {f: 'Die 15-Minuten-Routine umfasst...', o: ['Das nächste Kapitel vollständig lesen', 'Letzte Mitschrift, Überschriften des nächsten Kapitels, zwei eigene Fragen', 'Alle Hausaufgaben kontrollieren'], r: 1, e: 'Minimaler Aufwand, doppelter Effekt: antworten können und besser behalten.'},
-  {f: 'PREP beginnt und endet mit...', o: ['...einer Frage', '...dem Point: der Kernaussage in einem Satz', '...einem Beispiel'], r: 1, e: 'Point, Reason, Evidence, Point: Die Wiederholung rahmt den Beitrag.'},
-  {f: 'Beim Cornell-System entsteht das Lernwerkzeug...', o: ['...während des Unterrichts', '...nach der Stunde: Schlüsselwörter links, Zusammenfassung unten', '...vor der Klausur beim Durchlesen'], r: 1, e: 'Abdecken und aus Schlüsselwörtern rekonstruieren ist Active Recall.'},
-  {f: 'Warum scheitern die meisten Referate?', o: ['Zu wenige Folien', 'Sie übertragen Inhalte statt Ideen zu vermitteln', 'Zu kurze Dauer'], r: 1, e: 'Eine Frage, die das Publikum packt, schlägt die Faktenaufzählung.'},
-  {f: 'Ein starkes Referat hat...', o: ['...zehn Punkte im Schnelldurchlauf', '...drei Kernpunkte in der Tiefe', '...möglichst viele Zitate'], r: 1, e: 'Jeder Kernpunkt mit Aussage, Beleg und Verbindung zum nächsten.'},
-  {f: 'Nach einer enttäuschenden Klausur...', o: ['...wartest du auf die nächste Chance', '...holst du konkretes Feedback, setzt es um und meldest dich zurück', '...vergleichst du dich mit Mitschülern'], r: 1, e: 'Die Feedback-Schleife: sichtbare Entwicklung überzeugt mehr als Schmeichelei.'},
-  {f: 'Hausaufgaben sind laut Buch vor allem...', o: ['...Pflichterfüllung', '...persönliche Diagnostik: Die Lücken dort sind die Klausurlücken', '...Zeitverschwendung bei guter Mitarbeit'], r: 1, e: 'Hängenbleiben ist ein Signal, kein Versagen: notieren und schließen.'},
-  {f: 'Unter Nervosität solltest du...', o: ['...schneller sprechen, um es hinter dich zu bringen', '...langsamer sprechen, als du denkst, und Pausen setzen', '...leiser werden'], r: 1, e: 'Die meisten sprechen nervös zu schnell; eine Sekunde Stille wirkt stärker als Weiterreden.'}
+  {f: "Wann lohnt sich besonders viel Einsatz bei der Mitarbeit?", o: ["Gleichmäßig übers Jahr", "In den ersten vier Wochen und zum Halbjahresende", "Kurz vor der Zeugniskonferenz"], r: 1, e: "Faustregel nach Halo-Effekt und Primacy-Recency: Anfang und Ende prägen die Erinnerung oft stärker als die Mitte."},
+  {f: "Worauf achten viele Lehrkräfte bei der mündlichen Note mehr?", o: ["Auf die Zahl der Meldungen", "Auf die Substanz der Beiträge", "Auf Lautstärke und Sichtbarkeit"], r: 1, e: "Seltener melden mit Beiträgen, die den Unterricht voranbringen, kommt meist besser an als häufiges Melden ohne Inhalt."},
+  {f: "Was gehört zur 15-Minuten-Routine?", o: ["Das nächste Kapitel vollständig lesen", "Letzte Mitschrift, Überschriften des nächsten Kapitels, zwei eigene Fragen", "Alle Hausaufgaben kontrollieren"], r: 1, e: "Wenig Aufwand mit zwei Effekten: antworten können und besser behalten."},
+  {f: "Womit beginnt und endet ein PREP-Beitrag?", o: ["Mit einer Frage", "Mit dem Point: der Kernaussage in einem Satz", "Mit einem Beispiel"], r: 1, e: "Point, Reason, Evidence, Point: Die Wiederholung rahmt den Beitrag."},
+  {f: "Wann entsteht beim Cornell-System das Lernmaterial?", o: ["Während des Unterrichts", "Nach der Stunde: Schlüsselwörter links, Zusammenfassung unten", "Vor der Klausur beim Durchlesen"], r: 1, e: "Abdecken und aus Schlüsselwörtern rekonstruieren ist Abrufübung."},
+  {f: "Woran scheitern viele Referate?", o: ["An zu wenigen Folien", "Sie reihen Inhalte aneinander, statt eine Idee zu vermitteln", "An zu kurzer Dauer"], r: 1, e: "Eine Frage, die das Publikum neugierig macht, trägt weiter als eine Faktenaufzählung."},
+  {f: "Ein gut aufgebautes Referat hat...", o: ["...zehn Punkte im Schnelldurchlauf", "...drei Kernpunkte in der Tiefe", "...möglichst viele Zitate"], r: 1, e: "Jeder Kernpunkt mit Aussage, Beleg und Verbindung zum nächsten."},
+  {f: "Nach einer enttäuschenden Klausur...", o: ["...wartest du auf die nächste Chance", "...holst du konkretes Feedback, setzt es um und kommst darauf zurück", "...vergleichst du dich mit Mitschülern"], r: 1, e: "Die Feedback-Schleife: Sichtbare Entwicklung überzeugt eher als Schmeichelei."},
+  {f: "Wofür sind Hausaufgaben laut Buch vor allem gut?", o: ["Als Pflichterfüllung", "Als persönliche Diagnose: Die Lücken dort sind die Klausurlücken", "Gar nicht, wenn die Mitarbeit stimmt"], r: 1, e: "Hängenbleiben ist ein Signal, kein Versagen: notieren und schließen."},
+  {f: "Du bist beim Referat nervös. Was hilft?", o: ["Schneller sprechen, um es hinter dich zu bringen", "Langsamer sprechen, als es sich anfühlt, und Pausen setzen", "Leiser werden"], r: 1, e: "Nervös sprechen viele zu schnell. Eine Sekunde Stille wirkt stärker als hastiges Weiterreden."}
 ];
 </script>
 <script src="/assets/trainer.js"></script>
+<script>
+(function () {
+  "use strict";
+  var T = window.PaviTools;
+  var $ = function (id) { return document.getElementById(id); };
+
+  T.deck("#deck", { decks: DECKS, storageKey: "karten", catLabel: "Thema" });
+  T.quiz("#quizBox", { fragen: QUIZ, storageKey: "quiz" });
+  T.segment("#methodeWahl");
+
+  /* ---------- Phasen mit Timer (Routine und Referat-Probelauf) ---------- */
+  function dauer(sec) { var m = Math.floor(sec / 60), s = Math.round(sec % 60); return s ? m + ":" + (s < 10 ? "0" : "") + s + " Min" : m + " Min"; }
+  function phaseRun(cfg) {
+    var cur = 0, timer = null, finished = false, steps = cfg.steps;
+    function drawSteps(focusIdx) {
+      steps.innerHTML = "";
+      steps.style.setProperty("--n", cfg.phases.length);
+      cfg.phases.forEach(function (p, i) {
+        var done = finished || i < cur, active = !finished && i === cur;
+        var b = T.h("button", { type: "button", class: "ph-step__btn", "aria-current": active ? "step" : null,
+          "aria-label": "Schritt " + (i + 1) + " von " + cfg.phases.length + ": " + p.label + ", " + dauer(p.sec) + (active ? ", aktuell" : done ? ", erledigt" : "") }, [
+          T.h("span", { class: "ph-step__node", "aria-hidden": "true" }),
+          T.h("span", { class: "ph-step__name", "aria-hidden": "true", text: p.short || p.label }),
+          T.h("span", { class: "ph-step__time", "aria-hidden": "true", text: dauer(p.sec) })
+        ]);
+        b.addEventListener("click", function () { go(i, false, true); });
+        steps.appendChild(T.h("li", { class: "ph-step" + (done ? " is-done" : active ? " is-active" : "") }, [b]));
+      });
+      if (focusIdx != null && steps.children[focusIdx]) steps.children[focusIdx].firstChild.focus();
+    }
+    function mount(autostart) {
+      var focusIn = cfg.host.contains(document.activeElement);
+      if (timer) timer.reset();
+      var el = T.h("div");
+      cfg.host.innerHTML = "";
+      cfg.host.appendChild(el);
+      var p = cfg.phases[cur];
+      timer = T.timer(el, { seconds: p.sec, label: p.short || p.label, doneText: p.label + " beendet.", onDone: next });
+      if (autostart) timer.start();
+      if (focusIn) { var b = el.querySelector(".btn--primary"); if (b) b.focus(); }
+    }
+    function next() {
+      if (cur < cfg.phases.length - 1) {
+        cur++; drawSteps(); mount(true); if (cfg.onPhase) cfg.onPhase(cur, false);
+        T.announce("Weiter mit: " + cfg.phases[cur].label + ", " + dauer(cfg.phases[cur].sec) + ".");
+      } else {
+        finished = true; drawSteps(); if (cfg.onPhase) cfg.onPhase(cur, true);
+        T.announce(cfg.doneText);
+      }
+    }
+    function go(i, autostart, focusStep) { cur = i; finished = false; drawSteps(focusStep ? i : null); mount(autostart); if (cfg.onPhase) cfg.onPhase(cur, false); }
+    go(0, false);
+    return { go: go, running: function () { return !!cfg.host.querySelector(".t-timer.is-running"); } };
+  }
+
+  /* ---------- 15-Minuten-Routine ---------- */
+  var ROUTINE = [
+    { label: "Mitschrift lesen", short: "Lesen", sec: 120, text: "Lies die letzte Seite deiner Mitschrift." },
+    { label: "Überlegen", short: "Über­legen", sec: 300, text: "Was hat die Lehrkraft betont? Was wird in der nächsten Stunde fortgeführt?" },
+    { label: "Vorblick", short: "Vor­blick", sec: 180, text: "Überfliege das nächste Kapitel im Schulbuch: Überschriften und Grafiken, nicht den ganzen Text." },
+    { label: "Zwei Fragen", short: "Fragen", sec: 300, text: "Formuliere zwei Fragen, die du im Unterricht stellen willst, und trag sie in die Felder ein." }
+  ];
+  function rtHint(i, finished) {
+    var box = $("rtHint");
+    box.innerHTML = "";
+    if (finished) {
+      box.appendChild(T.h("h3", { class: "is-done", text: "Fertig für morgen" }));
+      box.appendChild(T.h("p", { text: "Nimm deine zwei Fragen mit in die Stunde. Sie bleiben hier gespeichert." }));
+    } else {
+      box.appendChild(T.h("h3", { text: "Jetzt: " + ROUTINE[i].label }));
+      box.appendChild(T.h("p", { text: ROUTINE[i].text }));
+    }
+    box.classList.remove("is-new"); void box.offsetWidth; box.classList.add("is-new");
+  }
+  phaseRun({ steps: $("rtSteps"), host: $("rtTimer"), phases: ROUTINE, onPhase: rtHint, doneText: "Routine beendet." });
+  ["frage1", "frage2"].forEach(function (id) {
+    var v = T.store.get(id, "");
+    if (v) $(id).value = v;
+    $(id).addEventListener("input", function () { T.store.set(id, $(id).value); });
+  });
+
+  /* ---------- PREP-Baukasten ---------- */
+  var KEYS = ["P", "R", "E", "P"];
+  var LEER = ["[Kernaussage fehlt]", "[Begründung fehlt]", "[Beleg fehlt]", "[Kernaussage am Ende fehlt]"];
+  var BEISPIEL = [
+    "Ich denke, der Erste Weltkrieg war unvermeidlich.",
+    "Weil die Allianzsysteme ein Dominoeffekt-Mechanismus waren.",
+    "Als Österreich-Ungarn Serbien angriff, zogen die Bündnisse alle Großmächte hinein.",
+    "Das macht ihn strukturell unvermeidlich."
+  ];
+  var fields = [0, 1, 2, 3].map(function (i) { return $("prep" + i); });
+  var wasComplete = false;
+  function prepRender() {
+    var say = $("prepSay"), vals = fields.map(function (f) { return f.value.trim(); });
+    var any = vals.some(Boolean);
+    say.innerHTML = "";
+    if (!any) { say.textContent = "Füll links die vier Felder aus oder setz das Beispiel ein."; }
+    vals.forEach(function (v, i) {
+      fields[i].closest(".mw-field").classList.toggle("is-filled", !!v);
+      $("prepStatus").children[i].classList.toggle("is-on", !!v);
+      if (!any) return;
+      if (i) say.appendChild(document.createTextNode(" "));
+      say.appendChild(T.h("span", { "data-k": KEYS[i], class: v ? null : "is-empty", text: v || LEER[i] }));
+    });
+    var complete = vals.every(Boolean);
+    if (complete && !wasComplete) T.announce("Alle vier Teile stehen.");
+    wasComplete = complete;
+    T.store.set("prep", vals);
+  }
+  var gespeichert = T.store.get("prep", null);
+  if (Array.isArray(gespeichert)) fields.forEach(function (f, i) { f.value = gespeichert[i] || ""; });
+  fields.forEach(function (f) { f.addEventListener("input", prepRender); });
+  $("prepBeispiel").addEventListener("click", function () { fields.forEach(function (f, i) { f.value = BEISPIEL[i]; }); prepRender(); T.announce("Beispiel eingesetzt."); });
+  $("prepLeeren").addEventListener("click", function () { fields.forEach(function (f) { f.value = ""; }); prepRender(); fields[0].focus(); T.announce("Felder geleert."); });
+  prepRender();
+
+  /* ---------- Cornell: abdecken und aufdecken ---------- */
+  var sheet = $("cornell"), coverBtn = $("cornellCover");
+  var rows = Array.prototype.slice.call(sheet.querySelectorAll(".mw-row"));
+  function stand() {
+    if (!sheet.classList.contains("is-covered")) { $("cornellStand").textContent = "Deck die Notizen ab und erklär jedes Schlüsselwort zuerst laut."; return; }
+    var n = rows.filter(function (r) { return r.classList.contains("is-shown"); }).length;
+    $("cornellStand").textContent = n + " von " + rows.length + " Notizen aufgedeckt.";
+  }
+  rows.forEach(function (r) {
+    var cue = r.querySelector(".mw-cue").textContent;
+    var b = T.h("button", { type: "button", class: "mw-cover", text: "Erst erklären, dann aufdecken: " + cue });
+    b.addEventListener("click", function () {
+      r.classList.add("is-shown"); stand();
+      var next = rows.filter(function (x) { return !x.classList.contains("is-shown"); })[0];
+      if (next) next.querySelector(".mw-cover").focus(); else { coverBtn.focus(); T.announce("Alle Notizen aufgedeckt."); }
+    });
+    r.querySelector(".mw-note").appendChild(b);
+  });
+  coverBtn.hidden = false;
+  coverBtn.addEventListener("click", function () {
+    var on = !sheet.classList.contains("is-covered");
+    sheet.classList.toggle("is-covered", on);
+    rows.forEach(function (r) { r.classList.remove("is-shown"); });
+    coverBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    coverBtn.textContent = on ? "Alles aufdecken" : "Notizen abdecken";
+    stand();
+    if (on) rows[0].querySelector(".mw-cover").focus();
+  });
+  stand();
+
+  /* ---------- Referat: Redezeit aufteilen und Probelauf ---------- */
+  var REF = [
+    { label: "Hook", sec: 0 }, { label: "Roadmap", sec: 0 }, { label: "Drei Kernpunkte", short: "Kern­punkte", sec: 0 },
+    { label: "Synthese", sec: 0 }, { label: "Eigene Frage", short: "Frage", sec: 0 }
+  ];
+  var parts = Array.prototype.slice.call($("refParts").children);
+  var refMin = Number(T.store.get("refmin", 10)) || 10;
+  var refRun = null;
+  function refRender() {
+    $("refOut").textContent = refMin + " Minuten";
+    parts.forEach(function (li, i) {
+      var p = Number(li.getAttribute("data-p"));
+      var sec = Math.round(refMin * 60 * p / 100);
+      REF[i].sec = sec;
+      var t = li.querySelector(".mw-t");
+      t.innerHTML = "";
+      t.appendChild(document.createTextNode(dauer(sec)));
+      t.appendChild(T.h("small", { text: p + " %" }));
+    });
+    $("refMinus").disabled = refMin <= 3;
+    $("refPlus").disabled = refMin >= 45;
+    T.store.set("refmin", refMin);
+    if (!refRun) refRun = phaseRun({ steps: $("refSteps"), host: $("refTimer"), phases: REF, doneText: "Probelauf beendet." });
+    else if (!refRun.running()) refRun.go(0, false);
+  }
+  $("refMinus").hidden = false; $("refPlus").hidden = false;
+  $("refMinus").addEventListener("click", function () { if (refMin > 3) { refMin--; refRender(); } });
+  $("refPlus").addEventListener("click", function () { if (refMin < 45) { refMin++; refRender(); } });
+  refRender();
+})();
+</script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>

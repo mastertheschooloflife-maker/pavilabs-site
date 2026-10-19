@@ -1,13 +1,144 @@
 <!doctype html>
-<html lang="de" style="--akzent:#C9A75B;--akzent-tief:#7A5F26">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Prüfungscoach</title>
-<meta name="description" content="Prüfungsangst verstehen und regulieren: produktive Anspannung statt Blackout, geführte Atemübungen mit Timer, kognitive Umstrukturierung, das Blackout-Protokoll und die Routine für den Prüfungsmorgen, nach den Büchern Englisch Meistern und Lernen meistern.">
+<title>Prüfungscoach: Atemübung, Blackout-Plan und Routinen</title>
+<meta name="description" content="Vier Module für vier Momente vor und in der Prüfung: eine geführte Atemübung mit Timer, ein Plan in drei Schritten für den Blackout, eine Checkliste für die Wochen davor und eine Routine für den Prüfungsmorgen. Nach Englisch Meistern und Lernen meistern.">
+<link rel="canonical" href="https://pavilabs.de/tools/pruefungscoach.html">
 <link rel="icon" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css">
+<script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.PaviMotion)document.documentElement.classList.add("motion-off")},3000)</script>
+<style>
+/* Prüfungscoach: seitenlokale Ergänzungen zum Grundsystem */
+
+/* Modul-Navigation: Segment-Umschalter als Kacheln, der Daumen gleitet mit */
+.pc-tabs.t-seg { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; width: 100%; padding: 5px; border-radius: 20px; }
+.pc-tabs .t-seg__btn {
+  display: grid; align-content: start; gap: 3px;
+  min-height: 76px; padding: 14px 16px;
+  border-radius: 15px; text-align: left; white-space: normal;
+}
+.pc-tabs .t-seg__btn strong { font-size: 1rem; font-weight: 700; color: var(--fg); transition: color var(--dur-state) var(--ease-out); }
+.pc-tabs .t-seg__btn small { font-size: 0.84rem; font-weight: 500; line-height: 1.4; }
+.pc-tabs .t-seg__btn[aria-selected="true"] strong { color: var(--ground); }
+.pc-tabs .t-seg__thumb { border-radius: 15px; }
+.js .pc-modules:not(.is-ready) > .pc-panel + .pc-panel { display: none; }
+/* Ohne JS: keine toten Bedienelemente, alle Module stehen untereinander */
+html:not(.js) .pc-tabs, html:not(.js) .pc-breath { display: none; }
+
+.pc-panel { margin-top: 18px; }
+.pc-panel:focus { outline: none; }
+.pc-panel:focus-visible { outline: 2px solid var(--mint); outline-offset: 6px; border-radius: 24px; }
+.pc-panel__head { display: grid; gap: 6px; margin-bottom: 26px; max-width: 62ch; }
+.pc-panel__head h3 { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin: 0; }
+.pc-panel__head p { margin: 0; color: var(--fg-dim); }
+
+/* Atemübung */
+.pc-breath { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 28px 44px; align-items: start; }
+.pc-breath__setup { display: grid; gap: 20px; }
+.pc-info { margin: 0; color: var(--fg-dim); font-size: 0.97rem; }
+.pc-phases { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pc-phases li {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  padding: 7px 12px; border-radius: 999px;
+  border: 1px solid var(--hairline); color: var(--fg-dim); font-size: 0.9rem;
+  transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out), color var(--dur-state) var(--ease-out);
+}
+.pc-phases li b { color: var(--fg); font-weight: 700; font-variant-numeric: tabular-nums; }
+.pc-phases li.is-now { border-color: var(--leaf); background: rgba(143, 184, 119, 0.16); color: var(--fg); }
+.pc-total { margin: 0; font-size: 0.9rem; color: var(--fg-dim); font-variant-numeric: tabular-nums; }
+.pc-stage { display: grid; gap: 18px; padding: 24px; border-radius: 20px; background: rgba(238, 244, 239, 0.03); border: 1px solid var(--hairline); }
+.pc-stage .t-timer__ring { width: clamp(180px, 26vw, 220px); }
+.pc-done { margin: 0; min-height: 1.5em; color: var(--mint); font-size: 0.95rem; }
+.pc-caution { margin: 0; font-size: 0.88rem; color: var(--fg-dim); }
+
+/* Blackout-Plan als Schrittfolge */
+.pc-flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: flow; }
+.pc-flow__step {
+  counter-increment: flow;
+  position: relative;
+  display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px 18px;
+  padding: 18px 20px; border-radius: 18px;
+  border: 1px solid var(--hairline);
+  transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out), opacity var(--dur-state) var(--ease-out);
+}
+.pc-flow__step::before {
+  content: counter(flow);
+  grid-row: span 2;
+  width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--leaf); color: var(--fg);
+  font-weight: 750; font-variant-numeric: tabular-nums;
+  transition: background-color var(--dur-state) var(--ease-out), color var(--dur-state) var(--ease-out);
+}
+.pc-flow__step h4 { margin: 6px 0 0; font-size: 1.1rem; }
+.pc-flow__step h4 button {
+  all: unset; cursor: pointer; border-radius: 6px;
+  display: inline-block; padding: 4px 0; min-height: 28px;
+}
+.pc-flow__step h4 button:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
+.pc-flow__step p { margin: 0; color: var(--fg-dim); }
+.pc-flow.is-guided .pc-flow__step { opacity: 0.55; }
+.pc-flow.is-guided .pc-flow__step.is-past { opacity: 0.8; }
+.pc-flow.is-guided .pc-flow__step.is-past::before { background: rgba(143, 184, 119, 0.2); }
+.pc-flow.is-guided .pc-flow__step.is-current { opacity: 1; background: rgba(143, 184, 119, 0.1); border-color: var(--leaf); }
+.pc-flow.is-guided .pc-flow__step.is-current::before { background: var(--leaf); color: var(--ground); }
+.pc-flow.is-guided .pc-flow__step.is-current p { color: var(--fg); }
+.pc-flow__nav[hidden] { display: none; }
+.pc-flow__nav { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 18px; }
+.pc-flow__nav .btn { margin: 0; }
+.pc-flow__count { font-size: 0.9rem; color: var(--fg-dim); font-variant-numeric: tabular-nums; margin-right: auto; }
+.pc-sentence {
+  margin: 28px 0 0; padding: 22px 26px;
+  border-radius: 18px; background: var(--paper-bright); color: var(--ink);
+}
+.pc-sentence figcaption { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.03em; color: var(--leaf-ink); margin-bottom: 8px; }
+.pc-sentence blockquote { margin: 0; font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 650; line-height: 1.45; }
+.pc-sentence p { margin: 10px 0 0; font-size: 0.93rem; color: var(--ink-muted); }
+
+/* Wochen davor und Prüfungsmorgen */
+.pc-two { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px 44px; align-items: start; }
+.pc-routine { counter-reset: rt; }
+.pc-routine li { counter-increment: rt; }
+.pc-routine label > span::before {
+  content: counter(rt) ". ";
+  font-variant-numeric: tabular-nums; color: var(--fg-dim); font-weight: 650;
+}
+.pc-side h4 { font-size: 1.05rem; margin: 0 0 12px; }
+.pc-side p { color: var(--fg-dim); font-size: 0.95rem; }
+.pc-side .t-run { margin-top: 4px; }
+
+/* Unterstützung bei anhaltender Angst: bleibt sichtbar */
+.pc-help {
+  margin-top: 28px; padding: clamp(20px, 3vw, 30px);
+  border-radius: 22px; border: 1px solid rgba(157, 187, 192, 0.4);
+  background: rgba(21, 80, 92, 0.24);
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px 40px;
+}
+.pc-help h2 { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin: 0 0 10px; }
+.pc-help p { color: var(--fg-dim); margin: 0 0 0.8em; }
+.pc-help ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.pc-help li { padding: 10px 14px; border-radius: 12px; background: rgba(238, 244, 239, 0.05); color: var(--fg); font-size: 0.95rem; }
+.pc-help li span { display: block; color: var(--fg-dim); font-size: 0.86rem; }
+
+@media (max-width: 880px) {
+  .pc-tabs.t-seg { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pc-breath, .pc-two, .pc-help { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .pc-tabs .t-seg__btn { min-height: 70px; padding: 12px; }
+  .pc-tabs .t-seg__btn small { font-size: 0.8rem; }
+  .pc-stage { padding: 18px 12px; }
+  .pc-flow__step { grid-template-columns: 34px minmax(0, 1fr); gap: 4px 14px; padding: 16px; }
+  .pc-flow__step::before { width: 32px; height: 32px; }
+  .pc-flow__count { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-flow__step, .pc-flow__step::before, .pc-phases li { transition: none; }
+}
+</style>
 </head>
 <body>
 
@@ -24,81 +155,254 @@
   </div>
 </header>
 
-<main class="tool-main">
+<main class="t-page">
   <div class="wrap">
-    <h1>Prüfungscoach: Ruhe, wenn es zählt</h1>
-    <p class="tool-lede">Prüfungsangst ist kein Zeichen von Schwäche und kein Zeichen mangelnder Vorbereitung. Sie ist eine neurologische Reaktion, die die Klügsten und Fleißigsten genauso trifft wie alle anderen. Der Unterschied liegt nicht darin, ob du sie hast, sondern wie du mit ihr umgehst. Dieses Werkzeug erklärt, was dabei im Kopf passiert, und gibt dir die Techniken für drei Momente: die Wochen davor, den Prüfungsmorgen und die Minute, in der die Panik aufsteigt.</p>
-    <p class="tool-src">Dieser Coach folgt dem Prüfungsangst-Kapitel aus <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für die Oberstufe</a> und dem Gesundheitskapitel aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
+    <nav class="t-crumbs" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="/de/#werkzeuge">Lernwerkzeuge</a></li>
+        <li><a href="/de/#werkzeuge">Lernen und KI</a></li>
+        <li><span aria-current="page">Prüfungscoach</span></li>
+      </ol>
+    </nav>
 
-    <div class="panel">
-      <h2>Anspannung ist nicht der Feind</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Das Yerkes-Dodson-Gesetz beschreibt den Zusammenhang zwischen Erregung und Leistung als umgekehrte U-Kurve: Zu wenig Aktivierung macht träge, ein mittleres Niveau macht wach und abrufbereit, zu viel kippt in Denkblockaden und Blackout. Das Ziel ist nicht absolute Ruhe, sondern der Wechsel von lähmender Angst (Distress) in produktive Anspannung (Eustress).</p>
-      <dl class="ledger">
-        <div class="row"><dt>Eustress</dt><dd>Leichtes Kribbeln, Fokus, Wachheit, der Wille, es gut zu machen. Das Gehirn ist aktiviert und abrufbereit. Hier willst du hin.</dd></div>
-        <div class="row"><dt>Distress</dt><dd>Panik, Tunnelblick, Herzrasen, das Gefühl, alles vergessen zu haben. Das Gehirn ist überstimuliert; der Zugriff auf vorhandenes Wissen ist blockiert.</dd></div>
-        <div class="row"><dt>Typische Denkfehler</dt><dd>Katastrophisieren („Wenn das schiefgeht, ist alles vorbei“), Alles-oder-Nichts („Entweder brillant oder schlecht“), Gedankenlesen („Alle werden es merken“). Solche Gedanken wirken im Moment wahr, sind aber überzogen; wer sie erkennt, nimmt ihnen die Wucht.</dd></div>
-      </dl>
-      <div class="cee-box"><strong>Kognitive Umstrukturierung in drei Fragen:</strong> Stimmt der Gedanke „Ich werde versagen“ wirklich? Welche Belege sprechen dagegen (bestandene Klausuren, die investierte Vorbereitung)? Wie lautet der realistische Satz? Zum Beispiel: „Ich bin gut vorbereitet. Das Ergebnis spiegelt eine einzelne Leistungssituation wider, nicht meinen Wert als Mensch.“</div>
-    </div>
-
-    <div class="panel">
-      <h2>Atem-Trainer</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Zwei Techniken aus dem Buch, geführt mit Timer. Die verlängerte Ausatmung signalisiert dem Nervensystem Sicherheit; beide lassen sich diskret am Tisch anwenden. Sie ersetzen keine Vorbereitung, fangen aber die akute Stressspitze ab.</p>
-      <div class="atem-wahl chip-row">
-        <button class="chip aktiv" id="btn478" type="button">4-7-8-Atmung</button>
-        <button class="chip" id="btnSeufzer" type="button">Physiologischer Seufzer</button>
-      </div>
-      <div class="atem-buehne">
-        <div class="atem-kreis" id="atemKreis"><span id="atemPhase" role="status">Bereit?</span></div>
-        <p class="atem-info" id="atemInfo">Vier Sekunden durch die Nase einatmen, sieben Sekunden halten, acht Sekunden durch den Mund ausatmen. Drei Zyklen genügen oft.</p>
-        <div class="fcard-aktionen" style="justify-content:center">
-          <button class="btn" id="btnAtem">Übung starten</button>
-          <span class="hint" id="atemZyklus" role="status"></span>
+    <header class="t-intro">
+      <div>
+        <h1>Prüfungscoach</h1>
+        <p class="t-goal">Vier kurze Module für vier Momente: eine Atemübung für die Stressspitze, ein Plan für den Blackout, eine Checkliste für die Wochen davor und eine Routine für den Prüfungsmorgen. Fang mit dem Modul an, das gerade passt.</p>
+        <div class="t-actions">
+          <a class="btn btn--primary" href="#ueben" data-start="#atemHost .btn--primary" id="startAtem">Übung starten</a>
+          <a class="btn btn--ghost" href="#unterstuetzung">Wenn die Angst anhält</a>
         </div>
       </div>
-    </div>
-
-    <div class="panel">
-      <h2>Wenn der Blackout kommt</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:58ch">Ein Blackout ist eine vorübergehende Abrufblockade unter hohem Stress, nicht das Verschwinden deines Wissens. Das Protokoll:</p>
-      <ol class="phasen">
-        <li><h3>Verankern</h3><p>Tischfläche bewusst berühren, beide Füße auf den Boden drücken, ein ruhiger Atemzug. Das holt das Gehirn in den Moment zurück.</p></li>
-        <li><h3>Aufgabe wechseln</h3><p>An etwas anderem arbeiten; das Gehirn sucht im Hintergrund weiter nach der Information.</p></li>
-        <li><h3>Abruf öffnen</h3><p>Frei in Stichpunkten notieren, was allgemein zum Thema einfällt, und Kontextanker nutzen: Wo habe ich das gelernt, mit welchem Beispiel?</p></li>
-      </ol>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch;margin-top:14px">Dazu das Reframing: Dein Körper unterscheidet Angst und Aufregung kaum. Statt „Ich bin vollkommen ruhig“ (was er nicht glaubt) hilft der realistische Satz: „Ich bin angespannt, weil mir das wichtig ist, und ich kann trotzdem klar arbeiten.“</p>
-    </div>
-
-    <div class="panel">
-      <h2>Die Wochen davor: das stärkste Gegenmittel</h2>
-      <dl class="ledger">
-        <div class="row"><dt>Vorbereitung</dt><dd>Angst entsteht aus Ungewissheit. Probeprüfungen unter echten Bedingungen, aktives Abrufen statt Wiederlesen, verteiltes Wiederholen. Kein Atemtrick ersetzt fehlende Vorbereitung.</dd></div>
-        <div class="row"><dt>Exposition</dt><dd>Die Prüfungssituation selbst üben: unter Zeitdruck schreiben, am fremden Tisch, pünktlich beginnen. So lernt das Nervensystem: unangenehm, aber bewältigbar.</dd></div>
-        <div class="row"><dt>Schlaf und Bewegung</dt><dd>Schlafentzug ist einer der stärksten Leistungskiller; wer müde ist, bewertet Anforderungen schneller als Bedrohung. Regelmäßige Bewegung baut Stress physiologisch ab.</dd></div>
-        <div class="row"><dt>Fehlerprotokoll</dt><dd>Nach jeder Probeklausur kurz notieren: Was war inhaltlich schwer, was Stressfehler, was Flüchtigkeit? So wird Angst in konkrete Lernarbeit übersetzt.</dd></div>
-      </dl>
-      <div class="buch-tipp">
-        <span><strong>Aus den Büchern:</strong> Den 14-Tage-Vorbereitungszyklus aus <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a> setzt der <a href="/tools/klausurplaner.html">Klausur-Planer</a> direkt in einen Tagesplan um; die Klausurtaktik unter Zeitdruck vertieft <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern</a>.</span>
+      <div class="t-aside">
+        <dl class="t-facts" aria-label="Umfang">
+          <div><dt>4</dt><dd>Module</dd></div>
+          <div><dt>2</dt><dd>Atemtechniken</dd></div>
+          <div><dt>3</dt><dd>Blackout-Schritte</dd></div>
+          <div><dt>ca. 1</dt><dd>Min pro Atemübung</dd></div>
+        </dl>
+        <ol class="t-run" aria-label="So nutzt du den Coach">
+          <li><span><strong>Modul wählen</strong>, je nachdem, wie weit die Prüfung noch weg ist.</span></li>
+          <li><span><strong>In Ruhe üben</strong>, damit Atemübung und Blackout-Plan in der Prüfung nicht neu sind.</span></li>
+          <li><span><strong>Abhaken</strong>, was erledigt ist. Der Stand bleibt auf diesem Gerät.</span></li>
+        </ol>
       </div>
-    </div>
+    </header>
 
-    <div class="panel">
-      <h2>Der Prüfungsmorgen</h2>
-      <ul class="check-liste" id="checkListe">
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Eiweißreich gefrühstückt: Eier, Vollkornbrot, Joghurt, Nüsse oder Haferflocken.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Koffein mit Maß: ein Kaffee oder Tee, nicht drei. Zu viel verstärkt Zittern und Unruhe.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Keine neue Lerneinheit: nur wenige Ankerbegriffe oder Übersichten wiederholt.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Zehn Minuten Bewegung: Spazierengehen oder leichtes Stretching reguliert die Anspannung.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Bewusst gewählt, was stabilisiert: Musik oder Ruhe, nicht das, was zusätzlich hochfährt.</span></button></li>
-        <li><button class="check-item" type="button" aria-pressed="false"><span class="ck" aria-hidden="true">✓</span><span>Das Startritual steht: erste Minute atmen, Aufgaben überfliegen, leichte Aufgaben markieren, dann erst loslegen.</span></button></li>
+    <section class="t-zone" id="ueben" aria-labelledby="h-ueben">
+      <div class="t-zone__head">
+        <h2 id="h-ueben">Üben: vier Module</h2>
+        <p class="t-zone__hint">Häkchen und Auswahl bleiben auf diesem Gerät gespeichert.</p>
+      </div>
+
+      <div class="t-seg pc-tabs" data-seg data-seg-store="modul" id="modTabs" aria-label="Modul wählen">
+        <button class="t-seg__btn" data-value="atem" aria-controls="m-atem" aria-selected="true"><strong>Atemübung</strong><small>Mit Timer, etwa eine Minute</small></button>
+        <button class="t-seg__btn" data-value="blackout" aria-controls="m-blackout"><strong>Blackout-Plan</strong><small>Drei Schritte, wenn nichts mehr kommt</small></button>
+        <button class="t-seg__btn" data-value="wochen" aria-controls="m-wochen"><strong>Wochen davor</strong><small>Checkliste für die Vorbereitung</small></button>
+        <button class="t-seg__btn" data-value="morgen" aria-controls="m-morgen"><strong>Prüfungsmorgen</strong><small>Routine vor dem Aufbruch</small></button>
+      </div>
+
+      <div class="pc-modules" id="pcModules">
+        <!-- Modul 1: Atemübung -->
+        <div class="t-surface pc-panel" id="m-atem">
+          <div class="pc-panel__head">
+            <h3>Atemübung</h3>
+            <p>Wähl eine Technik und die Zahl der Runden, drück auf Start und atme im Takt des Kreises. Beide Techniken aus dem Buch arbeiten mit einer langen Ausatmung und lassen sich unauffällig am Tisch anwenden. Sie ersetzen keine Vorbereitung, können aber eine akute Stressspitze abfangen.</p>
+          </div>
+          <div class="pc-breath">
+            <div class="pc-breath__setup">
+              <div>
+                <span class="t-label" id="lblTechnik">Technik</span>
+                <div class="t-seg" data-seg data-seg-store="technik" id="segTechnik" aria-labelledby="lblTechnik">
+                  <button class="t-seg__btn" data-value="478" aria-checked="true">4-7-8-Atmung</button>
+                  <button class="t-seg__btn" data-value="seufzer">Physiologischer Seufzer</button>
+                </div>
+              </div>
+              <p class="pc-info" id="atemInfo">Vier Sekunden durch die Nase einatmen, sieben Sekunden halten, acht Sekunden durch den Mund ausatmen. Drei Runden genügen oft.</p>
+              <ol class="pc-phases" id="atemPhasen" aria-label="Ablauf einer Runde"></ol>
+              <div>
+                <span class="t-label" id="lblRunden">Runden</span>
+                <div class="t-seg" data-seg data-seg-store="runden" id="segRunden" aria-labelledby="lblRunden">
+                  <button class="t-seg__btn" data-value="2">2</button>
+                  <button class="t-seg__btn" data-value="3" aria-checked="true">3</button>
+                  <button class="t-seg__btn" data-value="4">4</button>
+                  <button class="t-seg__btn" data-value="5">5</button>
+                </div>
+              </div>
+              <p class="pc-total" id="atemDauer"></p>
+            </div>
+            <div class="pc-stage">
+              <div id="atemHost"></div>
+              <p class="pc-done" id="atemFertig" aria-live="polite"></p>
+              <p class="pc-caution">Fühlt sich etwas unangenehm an, brich ab und atme in deinem normalen Rhythmus weiter.</p>
+            </div>
+          </div>
+          <noscript><p class="t-noscript">Der Timer braucht JavaScript. Ohne ihn geht die 4-7-8-Atmung so: vier Sekunden einatmen, sieben halten, acht ausatmen, drei Runden. Beim physiologischen Seufzer atmest du ruhig ein, setzt ein zweites kurzes Einatmen obendrauf und atmest dann lang aus.</p></noscript>
+        </div>
+
+        <!-- Modul 2: Blackout-Plan -->
+        <div class="t-surface pc-panel" id="m-blackout">
+          <div class="pc-panel__head">
+            <h3>Blackout-Plan</h3>
+            <p>Für den Moment in der Prüfung, in dem nichts mehr abrufbar scheint. Ein Blackout ist eine vorübergehende Abrufblockade unter hohem Stress, dein Wissen ist nicht verschwunden. Geh die Schritte jetzt einmal durch und präg sie dir ein: In der Prüfung hast du nur deinen Kopf.</p>
+          </div>
+          <ol class="pc-flow" id="pcFlow">
+            <li class="pc-flow__step">
+              <h4><button type="button">Verankern</button></h4>
+              <p>Tischfläche bewusst berühren, beide Füße auf den Boden drücken, ein ruhiger Atemzug. Das lenkt die Aufmerksamkeit zurück in den Moment.</p>
+            </li>
+            <li class="pc-flow__step">
+              <h4><button type="button">Aufgabe wechseln</button></h4>
+              <p>An etwas anderem weiterarbeiten. Oft taucht die gesuchte Information dabei später von selbst wieder auf.</p>
+            </li>
+            <li class="pc-flow__step">
+              <h4><button type="button">Abruf öffnen</button></h4>
+              <p>Frei in Stichpunkten notieren, was allgemein zum Thema einfällt, und Kontextanker nutzen: Wo habe ich das gelernt, mit welchem Beispiel?</p>
+            </li>
+          </ol>
+          <div class="pc-flow__nav" id="flowNav" hidden>
+            <span class="pc-flow__count" id="flowCount" aria-live="polite"></span>
+            <button type="button" class="btn btn--ghost" id="flowBack">Zurück</button>
+            <button type="button" class="btn btn--primary" id="flowNext">Nächster Schritt</button>
+          </div>
+          <figure class="pc-sentence">
+            <figcaption>Der Satz für den Kopf</figcaption>
+            <blockquote>„Ich bin angespannt, weil mir das wichtig ist, und ich kann trotzdem klar arbeiten.“</blockquote>
+            <p>Körperlich fühlen sich Angst und Aufregung sehr ähnlich an. Ein Satz wie „Ich bin vollkommen ruhig“ wirkt deshalb oft unglaubwürdig, der realistische Satz eher nicht.</p>
+          </figure>
+        </div>
+
+        <!-- Modul 3: Wochen davor -->
+        <div class="t-surface pc-panel" id="m-wochen">
+          <div class="pc-panel__head">
+            <h3>Die Wochen davor</h3>
+            <p>Im Buch steht die Vorbereitung an erster Stelle, denn viel Angst speist sich aus Ungewissheit. Kein Atemtrick ersetzt fehlende Vorbereitung. Hake ab, was du schon machst.</p>
+          </div>
+          <div class="pc-two">
+            <div>
+              <ul class="t-check" data-checklist="wochen-davor" data-unit="erledigt">
+                <li><label><input type="checkbox"><span>Einen Plan bis zur Prüfung angelegt <small>Einen Tagesplan in vier Phasen erstellt der Klausur-Planer.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Mit Abfragen statt Wiederlesen gelernt <small>Aktiv abrufen und über mehrere Tage verteilt wiederholen.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Eine Probeprüfung unter echten Bedingungen geschrieben <small>Mit Zeitlimit, ohne Hilfsmittel, an einem fremden Tisch, pünktlich begonnen. So erlebst du die Lage als unangenehm, aber bewältigbar.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Ein Fehlerprotokoll zur Probeklausur geführt <small>Was war inhaltlich schwer, was Stressfehler, was Flüchtigkeit? So wird aus Angst konkrete Lernarbeit.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Auf genug Schlaf geachtet <small>Schlafmangel drückt die Leistung, und wer müde ist, erlebt Anforderungen schneller als Bedrohung.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Bewegung eingeplant <small>Regelmäßige Bewegung hilft vielen, Stress abzubauen.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Die Atemübung ein paar Mal in Ruhe geübt <small>Damit sie in der Prüfung nicht neu ist.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Die drei Schritte des Blackout-Plans im Kopf <small>Verankern, Aufgabe wechseln, Abruf öffnen.</small></span></label></li>
+              </ul>
+            </div>
+            <div class="pc-side">
+              <h4>Gedanken prüfen</h4>
+              <p>In den Wochen vor einer Prüfung tauchen oft Sätze auf wie „Wenn das schiefgeht, ist alles vorbei“. Drei Fragen helfen, sie zu prüfen:</p>
+              <ol class="t-run" aria-label="Drei Fragen an einen Angstgedanken">
+                <li><span><strong>Stimmt das wirklich?</strong> Zum Beispiel der Gedanke „Ich werde versagen“.</span></li>
+                <li><span><strong>Was spricht dagegen?</strong> Bestandene Klausuren, die Vorbereitung, die du schon investiert hast.</span></li>
+                <li><span><strong>Wie lautet der realistische Satz?</strong> „Ich bin gut vorbereitet. Das Ergebnis spiegelt eine einzelne Leistungssituation wider, nicht meinen Wert als Mensch.“</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modul 4: Prüfungsmorgen -->
+        <div class="t-surface pc-panel" id="m-morgen">
+          <div class="pc-panel__head">
+            <h3>Der Prüfungsmorgen</h3>
+            <p>Eine feste Reihenfolge nimmt dir am Morgen Entscheidungen ab. Geh die Routine vor dem Aufbruch durch und hake ab, was erledigt ist.</p>
+          </div>
+          <div class="pc-two">
+            <div>
+              <ul class="t-check pc-routine" data-checklist="pruefungsmorgen" data-unit="erledigt">
+                <li><label><input type="checkbox"><span>Eiweißreich frühstücken <small>Eier, Vollkornbrot, Joghurt, Nüsse oder Haferflocken.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Koffein mit Maß <small>Ein Kaffee oder Tee, nicht drei. Zu viel verstärkt Zittern und Unruhe.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Keine neue Lerneinheit <small>Nur wenige Ankerbegriffe oder Übersichten wiederholen.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Zehn Minuten Bewegung <small>Spazierengehen oder leichtes Stretching kann die Anspannung senken.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Bewusst wählen, was stabilisiert <small>Musik oder Ruhe, nicht das, was zusätzlich hochfährt.</small></span></label></li>
+                <li><label><input type="checkbox"><span>Das Startritual für die Prüfung festlegen <small>Die vier Schritte stehen unter „Die erste Minute“.</small></span></label></li>
+              </ul>
+            </div>
+            <div class="pc-side">
+              <h4>In der Prüfung: die erste Minute</h4>
+              <p>Bevor du schreibst, ein kurzes Startritual:</p>
+              <ol class="t-run" aria-label="Startritual">
+                <li><span><strong>Atmen.</strong> Eine Runde der Atemübung.</span></li>
+                <li><span><strong>Überfliegen.</strong> Alle Aufgaben einmal lesen.</span></li>
+                <li><span><strong>Markieren.</strong> Die leichten Aufgaben kennzeichnen.</span></li>
+                <li><span><strong>Loslegen.</strong> Erst jetzt beginnt das Schreiben.</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pc-help" id="unterstuetzung" aria-labelledby="h-hilfe">
+      <div>
+        <h2 id="h-hilfe">Wenn die Angst anhält</h2>
+        <p>Anhaltende, intensive Prüfungsangst über Wochen ist mehr als normale Nervosität. Wenn du wegen anstehender Prüfungen über Wochen schlecht schläfst, schon lange vorher panikartige Symptome erlebst oder die Angst dich vom Lernen und vom normalen Leben abhält, sprich mit jemandem.</p>
+        <p>Prüfungsangst auf diesem Niveau ist behandelbar, und Unterstützung zu suchen ist kein Zeichen von Schwäche.</p>
+      </div>
+      <ul aria-label="Anlaufstellen">
+        <li>Eltern oder eine Vertrauensperson</li>
+        <li>Klassenlehrkraft oder Beratungslehrkraft <span>an deiner Schule</span></li>
+        <li>Schulpsychologische Beratung <span>über deine Schule erreichbar</span></li>
+        <li>Psychologische Beratungsstelle <span>an Hochschulen, für Studierende</span></li>
+        <li>Hausärztin oder Hausarzt</li>
+        <li>Nummer gegen Kummer, 116 111 <span>anonym und kostenlos, montags bis samstags von 14 bis 20 Uhr</span></li>
       </ul>
-      <p class="check-stand" id="checkStand" role="status"></p>
-    </div>
+    </section>
 
-    <div class="panel">
-      <h2>Wenn die Angst chronisch ist</h2>
-      <p style="color:var(--cream-dim);font-size:0.95rem;max-width:62ch">Anhaltende, intensive Prüfungsangst über Wochen, die Schlaf, Konzentration oder Alltag deutlich beeinträchtigt, ist mehr als normale Nervosität. Wenn du wegen anstehender Prüfungen über Wochen schlecht schläfst, schon lange vorher panikartige Symptome erlebst oder die Angst dich vom Lernen und vom normalen Leben abhält, sprich mit jemandem: einem Elternteil, einer Lehrkraft, der Schulpsychologie oder einer Ärztin oder einem Arzt. Prüfungsangst auf diesem Niveau ist behandelbar, und Unterstützung zu suchen ist kein Zeichen von Schwäche. Wenn du anonym und kostenlos reden willst: Die Nummer gegen Kummer ist montags bis samstags von 14 bis 20 Uhr unter 116 111 erreichbar.</p>
-    </div>
+    <section class="t-zone reveal" id="erklaerung" aria-labelledby="h-erkl">
+      <div class="t-zone__head">
+        <h2 id="h-erkl">Erklärung</h2>
+      </div>
+      <details class="t-explain">
+        <summary>Was bei Prüfungsangst passiert</summary>
+        <div class="t-explain__body">
+          <p>Prüfungsangst ist kein Zeichen von Schwäche oder mangelnder Vorbereitung, sie trifft auch Fleißige und gut Vorbereitete.</p>
+          <p>Viele beschreiben zwei Zustände: <strong>Eustress</strong> fühlt sich an wie leichtes Kribbeln, Fokus und Wachheit, du kommst gut an dein Wissen heran. <strong>Distress</strong> fühlt sich an wie Panik, Tunnelblick und Herzrasen, der Zugriff auf vorhandenes Wissen fällt dann schwer. Das Ziel ist also keine völlige Ruhe, sondern eine Anspannung, mit der du arbeiten kannst.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Das Bild vom umgekehrten U</summary>
+        <div class="t-explain__body">
+          <p>Oft wird der Zusammenhang zwischen Anspannung und Leistung als umgekehrtes U gezeichnet: Zu wenig Aktivierung macht träge, ein mittleres Niveau macht wach, zu viel kippt in Denkblockaden.</p>
+          <p>Das Bild geht meist auf Yerkes und Dodson (1908) zurück, die das Lernverhalten von Mäusen untersucht haben. Wie gut es sich auf Menschen in Prüfungen übertragen lässt, ist in der Psychologie umstritten. Nimm es als Bild, nicht als Gesetz: Wie viel Anspannung dir hilft, ist von Person zu Person und von Aufgabe zu Aufgabe verschieden.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Typische Denkfehler</summary>
+        <div class="t-explain__body">
+          <p><strong>Katastrophisieren:</strong> „Wenn das schiefgeht, ist alles vorbei.“ <strong>Alles oder nichts:</strong> „Entweder brillant oder schlecht.“ <strong>Gedankenlesen:</strong> „Alle werden es merken.“</p>
+          <p>Solche Gedanken wirken im Moment wahr, sind aber überzogen. Wer sie erkennt, nimmt ihnen einen Teil ihrer Wucht. Die drei Prüffragen stehen im Modul „Wochen davor“.</p>
+        </div>
+      </details>
+      <details class="t-explain">
+        <summary>Was gespeichert wird</summary>
+        <div class="t-explain__body">
+          <p>Nur das zuletzt gewählte Modul, Technik und Rundenzahl der Atemübung und deine Häkchen, im Speicher deines Browsers auf diesem Gerät. Nichts davon wird übertragen. „Zurücksetzen“ unter einer Liste löscht ihre Häkchen.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="t-outro reveal" aria-label="Vertiefung">
+      <div>
+        <h2>Vertiefung im Buch</h2>
+        <div class="t-book">
+          <a href="https://www.amazon.de/dp/1691857440" rel="noopener" tabindex="-1" aria-hidden="true"><span class="buch3d"><img src="/assets/covers/englisch-oberstufe.webp" alt="" width="86" height="138" loading="lazy"></span></a>
+          <div>
+            <p>Die Module folgen dem Kapitel zur Prüfungsangst in <a href="https://www.amazon.de/dp/1691857440" rel="noopener">Englisch Meistern: Das Handbuch für Englisch in der Oberstufe</a>, dort auch mit Klausurtaktik unter Zeitdruck. Schlaf, Ernährung und Bewegung behandelt das Gesundheitskapitel in <a href="https://www.amazon.de/dp/B08TQDLRSC" rel="noopener">Lernen meistern</a>.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Passt dazu</h2>
+        <ul class="t-related">
+          <li><a href="/tools/klausurplaner.html"><span class="t-related__img"><img src="/assets/previews/klausurplaner.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Klausur-Planer</strong><span>Tagesplan für die Tage vor der Klausur</span></span></a></li>
+          <li><a href="/tools/mitarbeit.html"><span class="t-related__img"><img src="/assets/previews/mitarbeit.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Mitarbeit und Referate</strong><span>Frei sprechen und Referate üben</span></span></a></li>
+          <li><a href="/tools/kommunikationspruefung-englisch.html"><span class="t-related__img"><img src="/assets/previews/kommunikationspruefung-englisch.webp" alt="" width="480" height="300" loading="lazy"></span><span class="t-related__text"><strong>Kommunikationsprüfung Englisch</strong><span>Mündliche Prüfung mit Timer üben</span></span></a></li>
+        </ul>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -106,99 +410,131 @@
   <div class="foot-copy">
     <div class="wrap">
       <span>© 2026 PaviLabs</span>
-      <span><a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+      <span><a href="/impressum.html">Impressum</a>, <a href="/datenschutz.html">Datenschutz</a></span>
       <span><a href="/tools/klausurplaner.html">Zum Klausur-Planer</a></span>
     </div>
   </div>
 </footer>
 
+<script src="/assets/trainer.js"></script>
 <script>
-const $$ = id => document.getElementById(id);
+(function () {
+  "use strict";
+  var T = window.PaviTools;
+  var $ = function (id) { return document.getElementById(id); };
 
-// Atem-Trainer
-const TECHNIKEN = {
-  k478: {
-    name: "4-7-8-Atmung",
-    info: "Vier Sekunden durch die Nase einatmen, sieben Sekunden halten, acht Sekunden durch den Mund ausatmen. Drei Zyklen genügen oft.",
-    zyklen: 3,
-    phasen: [
-      {label: "Einatmen", dauer: 4, scale: 1.45},
-      {label: "Halten", dauer: 7, scale: 1.45},
-      {label: "Ausatmen", dauer: 8, scale: 1.0}
-    ]
-  },
-  seufzer: {
-    name: "Physiologischer Seufzer",
-    info: "Ruhig durch die Nase einatmen, ein zweites kleines Einatmen obendrauf, dann lang und kontrolliert durch den Mund ausatmen. Ein bis drei Wiederholungen fangen die erste Stressspitze ab.",
-    zyklen: 3,
-    phasen: [
-      {label: "Einatmen", dauer: 3, scale: 1.3},
-      {label: "Nachatmen", dauer: 1.5, scale: 1.45},
-      {label: "Lang ausatmen", dauer: 6, scale: 1.0}
-    ]
-  }
-};
-let technik = TECHNIKEN.k478;
-let atemLauf = null;
+  /* ---------- Module ---------- */
+  var mods = T.segment($("modTabs"));
+  $("pcModules").classList.add("is-ready");
+  $("startAtem").addEventListener("click", function () { mods.set("atem"); });
 
-function waehle(t, btnAktiv, btnAndere) {
-  technik = t;
-  $$(btnAktiv).classList.add("aktiv");
-  $$(btnAndere).classList.remove("aktiv");
-  $$("atemInfo").textContent = t.info;
-  stoppeAtem();
-}
-$$("btn478").onclick = () => waehle(TECHNIKEN.k478, "btn478", "btnSeufzer");
-$$("btnSeufzer").onclick = () => waehle(TECHNIKEN.seufzer, "btnSeufzer", "btn478");
-
-function stoppeAtem() {
-  if (atemLauf) { clearTimeout(atemLauf); atemLauf = null; }
-  const k = $$("atemKreis");
-  k.style.transitionDuration = "600ms";
-  k.style.transform = "scale(1)";
-  $$("atemPhase").textContent = "Bereit?";
-  $$("atemZyklus").textContent = "";
-  $$("btnAtem").textContent = "Übung starten";
-}
-
-$$("btnAtem").onclick = () => {
-  if (atemLauf) { stoppeAtem(); return; }
-  $$("btnAtem").textContent = "Abbrechen";
-  let zyklus = 0, phase = 0;
-  function schritt() {
-    if (phase === 0) {
-      zyklus++;
-      if (zyklus > technik.zyklen) {
-        stoppeAtem();
-        $$("atemPhase").textContent = "Gut so.";
-        $$("atemZyklus").textContent = "Übung abgeschlossen.";
-        return;
-      }
-      $$("atemZyklus").textContent = "Zyklus " + zyklus + " von " + technik.zyklen;
+  /* ---------- Atemübung ---------- */
+  var TECHNIKEN = {
+    "478": {
+      info: "Vier Sekunden durch die Nase einatmen, sieben Sekunden halten, acht Sekunden durch den Mund ausatmen. Drei Runden genügen oft.",
+      phasen: [
+        { label: "Einatmen", seconds: 4, breath: 1 },
+        { label: "Halten", seconds: 7 },
+        { label: "Ausatmen", seconds: 8, breath: -1 }
+      ]
+    },
+    seufzer: {
+      info: "Ruhig durch die Nase einatmen, ein zweites kleines Einatmen obendrauf, dann lang und kontrolliert durch den Mund ausatmen. Ein bis drei Wiederholungen können die erste Stressspitze abfangen.",
+      phasen: [
+        { label: "Einatmen", seconds: 3, breath: 1 },
+        { label: "Nachatmen", seconds: 1.5, breath: 1 },
+        { label: "Lang ausatmen", seconds: 6, breath: -1 }
+      ]
     }
-    const p = technik.phasen[phase];
-    const k = $$("atemKreis");
-    $$("atemPhase").textContent = p.label;
-    k.style.transitionDuration = p.dauer + "s";
-    k.style.transform = "scale(" + p.scale + ")";
-    phase = (phase + 1) % technik.phasen.length;
-    atemLauf = setTimeout(schritt, p.dauer * 1000);
-  }
-  schritt();
-};
+  };
+  var segTechnik = T.segment($("segTechnik"));
+  var segRunden = T.segment($("segRunden"));
+  var timer = null, beobachter = null;
 
-// Checkliste
-const items = document.querySelectorAll("#checkListe .check-item");
-function checkStand() {
-  const ok = document.querySelectorAll("#checkListe .check-item.ok").length;
-  $$("checkStand").style.setProperty("--anteil", String(Math.round((ok / items.length) * 100)));
-  $$("checkStand").textContent = ok === items.length
-    ? "Alle " + items.length + " Punkte sitzen. Geh ruhig rein."
-    : ok + " von " + items.length + " Punkten erledigt.";
-}
-items.forEach(b => b.addEventListener("click", () => { const an = b.classList.toggle("ok"); b.setAttribute("aria-pressed", an); checkStand(); }));
-checkStand();
+  function dauerText(sek) {
+    sek = Math.round(sek);
+    if (sek < 60) return "etwa " + sek + " Sekunden";
+    var m = Math.floor(sek / 60), s = sek % 60;
+    return "etwa " + m + (m === 1 ? " Minute" : " Minuten") + (s ? " und " + s + " Sekunden" : "");
+  }
+
+  function aufbauen() {
+    var t = TECHNIKEN[segTechnik.value] || TECHNIKEN["478"];
+    var runden = Number(segRunden.value) || 3;
+    $("atemInfo").textContent = t.info;
+    var liste = $("atemPhasen");
+    liste.innerHTML = "";
+    t.phasen.forEach(function (p) {
+      liste.appendChild(T.h("li", { "data-label": p.label }, [p.label + " ", T.h("b", { text: String(p.seconds).replace(".", ",") + " s" })]));
+    });
+    var summe = t.phasen.reduce(function (a, p) { return a + p.seconds; }, 0) * runden;
+    $("atemDauer").textContent = runden + " Runden, " + dauerText(summe) + ".";
+    $("atemFertig").textContent = "";
+
+    if (timer) timer.reset();
+    if (beobachter) beobachter.disconnect();
+    var host = $("atemHost");
+    host.innerHTML = "";
+    var el = T.h("div");
+    host.appendChild(el);
+    timer = T.timer(el, {
+      phases: t.phasen,
+      cycles: runden,
+      doneText: "Übung beendet.",
+      onDone: function () {
+        markiere("");
+        $("atemFertig").textContent = "Fertig: " + runden + " Runden. Noch eine Übung oder zurück an die Aufgabe, beides ist in Ordnung.";
+      }
+    });
+    // Aktuelle Phase in der Ablaufleiste hervorheben
+    var phaseEl = el.querySelector(".t-timer__phase");
+    if (phaseEl && "MutationObserver" in window) {
+      beobachter = new MutationObserver(function () {
+        markiere(el.classList.contains("is-running") ? phaseEl.textContent.split(",")[0] : "");
+      });
+      beobachter.observe(phaseEl, { childList: true, characterData: true, subtree: true });
+      beobachter.observe(el, { attributes: true, attributeFilter: ["class"] });
+    }
+    el.querySelector(".btn--primary").addEventListener("click", function () { $("atemFertig").textContent = ""; });
+  }
+  var zuletzt = "";
+  function markiere(label) {
+    if (label === zuletzt) return;
+    zuletzt = label;
+    Array.prototype.forEach.call($("atemPhasen").children, function (li) {
+      li.classList.toggle("is-now", !!label && li.getAttribute("data-label") === label);
+    });
+  }
+  $("segTechnik").addEventListener("seg:change", aufbauen);
+  $("segRunden").addEventListener("seg:change", aufbauen);
+  aufbauen();
+
+  /* ---------- Blackout-Plan als Schrittfolge ---------- */
+  var flow = $("pcFlow");
+  var steps = Array.prototype.slice.call(flow.querySelectorAll(".pc-flow__step"));
+  var akt = 0;
+  flow.classList.add("is-guided");
+  $("flowNav").hidden = false;
+  function zeigeSchritt(i, ansagen) {
+    akt = Math.max(0, Math.min(steps.length - 1, i));
+    steps.forEach(function (s, j) {
+      s.classList.toggle("is-current", j === akt);
+      s.classList.toggle("is-past", j < akt);
+      var b = s.querySelector("h4 button");
+      if (j === akt) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+    });
+    $("flowCount").textContent = "Schritt " + (akt + 1) + " von " + steps.length;
+    $("flowBack").disabled = akt === 0;
+    $("flowNext").textContent = akt === steps.length - 1 ? "Von vorn" : "Nächster Schritt";
+    if (ansagen) T.announce(steps[akt].querySelector("h4").textContent + ". " + steps[akt].querySelector("p").textContent);
+  }
+  steps.forEach(function (s, j) { s.querySelector("h4 button").addEventListener("click", function () { zeigeSchritt(j, true); }); });
+  $("flowNext").addEventListener("click", function () { zeigeSchritt(akt === steps.length - 1 ? 0 : akt + 1, true); });
+  $("flowBack").addEventListener("click", function () { zeigeSchritt(akt - 1, true); });
+  zeigeSchritt(0, false);
+})();
 </script>
+<script src="/assets/motion.js" defer></script>
 
 </body>
 </html>
