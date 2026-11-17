@@ -2353,32 +2353,6 @@ input[aria-invalid="true"] { border-color: var(--danger); }
   .app-features li { padding: 13px 0 15px; }
 }
 
-/* Fragen und Antworten: Überschrift links, Liste rechts. Nutzt die aufklappbare Erklärung (.t-explain). */
-.faq-sec .wrap {
-  display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
-  gap: 20px 72px;
-  align-items: start;
-  padding-top: 10px;
-  padding-bottom: 110px;
-}
-.faq-sec h2 { font-size: clamp(1.9rem, 3.1vw, 2.6rem); }
-.faq-intro { color: var(--fg-dim); font-weight: 350; max-width: 34ch; }
-.faq-intro a { color: var(--mint); }
-.faq-list summary h3 {
-  margin: 0;
-  font: inherit;
-  letter-spacing: 0;
-  line-height: 1.4;
-  text-wrap: pretty;
-  color: inherit;
-}
-.faq-list .t-explain__body p { max-width: 60ch; }
-.faq-list .t-explain__body p:last-child { margin-bottom: 0; }
-@media (max-width: 880px) {
-  .faq-sec .wrap { grid-template-columns: 1fr; padding-bottom: 84px; }
-  .faq-intro { max-width: 56ch; }
-}
 
 /* Papier-Karte auf dem Handy: weniger Rahmen, mehr Zeilenlänge */
 @media (max-width: 560px) {
